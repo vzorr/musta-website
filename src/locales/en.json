@@ -1,0 +1,107 @@
+{
+  "header": {
+    "cta": "Register"
+  },
+  "hero": {
+    "title": "We bring the job to you!",
+    "subtitle": "Your next job is just a click away. Join myUSTA and connect with homeowners.",
+    "cta": "Join the Waitlist - It's free!"
+  },
+  "whyJoin": {
+    "title": "Why join myUsta?",
+    "description": "At myUsta, we connect homeowners with trusted professionals for all home and maintenance needs. From quick fixes to major projects, we make finding and hiring the right expert simple. Our platform empowers both customers and tradespeople with tools for seamless collaboration and quality results.<br><br>Get things done smarter with myUsta.",
+    "benefits": {
+      "directOpportunities": {
+        "title": "Get Direct Job Leads",
+        "description": "Connect with clients actively looking for professionals like you."
+      },
+      "saveTime": {
+        "title": "Save Time",
+        "description": "We bring the jobs to you - no more chasing leads."
+      },
+      "buildReputation": {
+        "title": "Grow Your Reputation",
+        "description": "Showcase your work, collect reviews, and stand out."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How it works?",
+    "steps": {
+      "step1": {
+        "title": "Step 1",
+        "description": "Tell us your trade and location."
+      },
+      "step2": {
+        "title": "Step 2",
+        "description": "Showcase your expertise."
+      },
+      "step3": {
+        "title": "Step 3",
+        "description": "Start receiving job opportunities."
+      }
+    }
+  },
+  "registration": {
+    "title": "Register Today. It's Free!",
+    "formTitle": "Fill out the following<br>information below.",
+    "fields": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Phone Number",
+      "category": "Category",
+      "location": "Location"
+    },
+    "categories": {
+      "placeholder": "Category",
+      "plumber": "Plumber",
+      "electrician": "Electrician",
+      "painter": "Painter",
+      "carpenter": "Carpenter",
+      "other": "Other"
+    },
+    "locations": {
+      "placeholder": "Location",
+      "tirana": "Tirana",
+      "durres": "Durres",
+      "vlore": "Vlore",
+      "shkoder": "Shkoder",
+      "elbasan": "Elbasan",
+      "korce": "Korce",
+      "other": "Other"
+    },
+    "cta": "Join the Waitlist!",
+    "success": "Thank you! You have been successfully registered.",
+    "error": "An error occurred. Please try again."
+  },
+  "faq": {
+    "title": "FAQ",
+    "items": {
+      "cost": {
+        "question": "How much does it cost to join myUSTA?",
+        "answer": "Joining myUSTA is completely free. There are no hidden costs."
+      },
+      "howItHelps": {
+        "question": "How does myUsta help me find jobs?",
+        "answer": "myUSTA connects you directly with clients actively searching for tradespeople in your field and area."
+      },
+      "whoCanJoin": {
+        "question": "Who can join myUsta?",
+        "answer": "myUSTA is open to all tradespeople, including plumbers, electricians, painters, carpenters, and many more."
+      },
+      "launch": {
+        "question": "When will myUsta launch?",
+        "answer": "The launch date is coming soon. Sign up now to join the waitlist and stay updated!"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Your Skills. Our platform. Endless Opportunities.",
+    "copyright": "©2025 myUsta. All rights reserved.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact Us"
+    }
+  }
+}
