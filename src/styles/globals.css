@@ -4,186 +4,639 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* Custom CSS for myUsta Landing Page */
+/* ========================================
+   CUSTOM CSS FOR MYUSTA LANDING PAGE
+   Updated with Figma Responsive Specifications
+======================================== */
 
-/* Hero Background */
-.hero-bg {
-    background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
-    position: relative;
+/* ========================================
+   BASE STYLES & RESET
+======================================== */
+
+/* Prevent horizontal scroll and ensure proper box sizing */
+* {
+  box-sizing: border-box;
 }
 
-/* Neumorphic Elements */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ========================================
+   HERO BACKGROUND
+======================================== */
+
+.hero-bg {
+  background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
+  position: relative;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="%23FFC800" opacity="0.3"/><circle cx="800" cy="300" r="1.5" fill="%2300203F" opacity="0.2"/><circle cx="400" cy="600" r="1" fill="%23335372" opacity="0.3"/><circle cx="700" cy="100" r="2.5" fill="%23FFC800" opacity="0.2"/></svg>');
+  pointer-events: none;
+}
+
+/* ========================================
+   NEUMORPHIC DESIGN SYSTEM
+======================================== */
+
+/* Base Neumorphic Card */
 .neumorphic-card {
-    background: #f3f3f3;
+  background: #f3f3f3;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Neumorphic Shadows */
+@media (max-width: 640px) {
+  .neumorphic-card {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 
+                -2px -2px 4px rgba(255, 255, 255, 0.9);
+  }
+}
+
+@media (min-width: 641px) {
+  .neumorphic-card {
     box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
                 -4px -4px 7.3px rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
+  }
 }
 
 .neumorphic-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
-                -6px -6px 10px rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
+/* Neumorphic Button */
 .neumorphic-btn {
-    background: #FFC800;
-    box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-                -4px -4px 7.3px rgba(255, 255, 255, 0.9);
-    transition: all 0.2s ease-out;
-    border: none;
-    cursor: pointer;
+  background: #FFC800;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease-out;
+  border: none;
+  cursor: pointer;
 }
 
 .neumorphic-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
-                -6px -6px 10px rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
 .neumorphic-btn:active {
-    transform: scale(0.98);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 
-                -2px -2px 4px rgba(255, 255, 255, 0.9);
+  transform: scale(0.98);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 
+              -2px -2px 4px rgba(255, 255, 255, 0.9);
 }
 
+/* Neumorphic Input Fields */
 .neumorphic-input {
-    background: #f3f3f3;
+  background: #f3f3f3;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Responsive Input Shadows */
+@media (max-width: 640px) {
+  .neumorphic-input {
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1), 
+                inset -2px -2px 3px rgba(255, 255, 255, 1);
+  }
+  
+  .neumorphic-input:focus {
+    box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0.15), 
+                inset -3px -3px 4px rgba(255, 255, 255, 1);
+  }
+}
+
+@media (min-width: 641px) {
+  .neumorphic-input {
     box-shadow: inset 3px 3px 2px rgba(0, 0, 0, 0.1), 
                 inset -3px -3px 4px rgba(255, 255, 255, 1);
-    border: none;
-    outline: none;
-    transition: all 0.2s ease;
-}
-
-.neumorphic-input:focus {
+  }
+  
+  .neumorphic-input:focus {
     box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.15), 
                 inset -4px -4px 6px rgba(255, 255, 255, 1);
+  }
 }
 
 .neumorphic-input::placeholder {
-    color: #00203F;
-    opacity: 0.7;
+  color: #00203F;
+  opacity: 0.7;
 }
 
-/* Icon Containers */
+/* ========================================
+   ICON CONTAINERS
+======================================== */
+
 .icon-container {
-    background: #FFC800;
-    box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
-                1px 1px 1.4px rgba(0, 0, 0, 0.15);
-    transition: all 0.2s ease;
+  background: #FFC800;
+  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
+              1px 1px 1.4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
 }
 
 .icon-container:hover {
-    transform: scale(1.1);
-    box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
-                2px 2px 3px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
+              2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* FAQ Styles */
+/* ========================================
+   FAQ STYLES
+======================================== */
+
 .faq-item {
-    background: #f3f3f3;
-    transition: all 0.3s ease;
-    box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-                -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  background: #f3f3f3;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
 }
 
 .faq-item.active {
-    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
-                -6px -6px 10px rgba(255, 255, 255, 0.9);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
-/* Header Styles */
+/* ========================================
+   HEADER STYLES
+======================================== */
+
 header {
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Hero Section Enhancements */
-.hero-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="%23FFC800" opacity="0.3"/><circle cx="800" cy="300" r="1.5" fill="%2300203F" opacity="0.2"/><circle cx="400" cy="600" r="1" fill="%23335372" opacity="0.3"/><circle cx="700" cy="100" r="2.5" fill="%23FFC800" opacity="0.2"/></svg>');
-    pointer-events: none;
+/* ========================================
+   RESPONSIVE LAYOUT SYSTEM
+======================================== */
+
+/* Container Responsive Breakpoints following Figma specs */
+.responsive-container {
+  width: 100%;
+  max-width: 1440px; /* Desktop max-width from Figma */
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* Smooth Scroll Behavior */
-html {
-    scroll-behavior: smooth;
+/* Mobile First Responsive Breakpoints */
+@media (min-width: 640px) {
+  .responsive-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
+@media (min-width: 768px) {
+  .responsive-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
-::-webkit-scrollbar-track {
-    background: #f3f3f3;
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
-::-webkit-scrollbar-thumb {
-    background: #FFC800;
-    border-radius: 4px;
+@media (min-width: 1440px) {
+  .responsive-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #e6b400;
+/* ========================================
+   REGISTRATION FORM RESPONSIVE DESIGN
+======================================== */
+
+/* Registration Form Container - Figma Specs: 384px width */
+.registration-form-container {
+  width: 100%;
+  max-width: 384px; /* Fixed width from Figma on desktop */
+  margin: 0 auto;
 }
 
-/* Form Validation Styles */
+/* Mobile adjustments for registration form */
+@media (max-width: 640px) {
+  .registration-form-container {
+    max-width: calc(100vw - 2rem);
+    margin: 0 1rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .registration-form-container {
+    max-width: min(384px, 80vw);
+  }
+}
+
+/* Desktop - Fixed 384px width as per Figma */
+@media (min-width: 1024px) {
+  .registration-form-container {
+    width: 384px;
+    max-width: 384px;
+  }
+}
+
+/* Form Field Responsive Sizing */
+.form-field {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .form-field {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+/* ========================================
+   TYPOGRAPHY RESPONSIVE SCALING
+======================================== */
+
+.responsive-heading {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.responsive-subheading {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  line-height: 1.4;
+}
+
+.responsive-body {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  line-height: 1.6;
+}
+
+/* ========================================
+   HERO SECTION RESPONSIVE LAYOUT
+======================================== */
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-content-grid {
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+  }
+}
+
+/* ========================================
+   GRID SYSTEM FOR CONSISTENT LAYOUT
+======================================== */
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .content-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ========================================
+   MODAL RESPONSIVE BEHAVIOR
+======================================== */
+
+.modal-container {
+  width: 100%;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .modal-container {
+    max-width: 64rem;
+    margin: 2rem;
+  }
+}
+
+/* ========================================
+   MOBILE TOUCH OPTIMIZATION
+======================================== */
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+  button, input, select {
+    min-height: 44px; /* iOS recommended touch target */
+  }
+  
+  .language-switcher button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ========================================
+   FORM VALIDATION STYLES
+======================================== */
+
 .neumorphic-input:invalid:not(:placeholder-shown) {
-    box-shadow: inset 3px 3px 2px rgba(220, 38, 38, 0.1), 
-                inset -3px -3px 4px rgba(255, 255, 255, 1);
-    border: 1px solid rgba(220, 38, 38, 0.3);
+  box-shadow: inset 3px 3px 2px rgba(220, 38, 38, 0.1), 
+              inset -3px -3px 4px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
 .neumorphic-input:valid:not(:placeholder-shown) {
-    box-shadow: inset 3px 3px 2px rgba(34, 197, 94, 0.1), 
-                inset -3px -3px 4px rgba(255, 255, 255, 1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
+  box-shadow: inset 3px 3px 2px rgba(34, 197, 94, 0.1), 
+              inset -3px -3px 4px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-/* Accessibility Improvements */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    html {
-        scroll-behavior: auto;
-    }
+/* ========================================
+   CUSTOM SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
 }
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFC800;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e6b400;
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+======================================== */
 
 /* Focus Styles for Keyboard Navigation */
 button:focus,
 input:focus,
 select:focus,
 a:focus {
-    outline: 2px solid #FFC800;
-    outline-offset: 2px;
+  outline: 2px solid #FFC800;
+  outline-offset: 2px;
 }
 
-/* Print Styles */
-@media print {
-    header,
-    footer,
-    .neumorphic-btn {
-        display: none;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-    
-    .neumorphic-card {
-        border: 1px solid #ccc;
-        box-shadow: none;
-    }
+/* Improved Focus States for Accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  *:focus {
+    transition: outline-offset 0.2s ease;
+    outline-offset: 2px;
+  }
 }
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .neumorphic-card,
+  .neumorphic-input,
+  .neumorphic-btn {
+    border: 1px solid currentColor;
+  }
+}
+
+/* ========================================
+   DARK MODE PREPARATION
+======================================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Add dark mode styles here if needed in the future */
+  /* Currently using light theme only */
+}
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  header,
+  footer,
+  .neumorphic-btn,
+  .language-switcher {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .neumorphic-card {
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .hero-bg {
+    background: white;
+  }
+  
+  .hero-bg::before {
+    display: none;
+  }
+}
+
+/* ========================================
+   COMPONENT-SPECIFIC RESPONSIVE STYLES
+======================================== */
+
+/* Language Switcher Responsive */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .language-switcher {
+    gap: 0.75rem;
+  }
+}
+
+/* Form Button Responsive */
+.form-submit-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .form-submit-button {
+    padding: 1.25rem;
+    font-size: 1.125rem;
+    border-radius: 1.5rem;
+  }
+}
+
+/* Card Grid Responsive */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Footer Responsive */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+
+/* Spacing Utilities */
+.spacing-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .spacing-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .spacing-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Text Alignment Utilities */
+.text-center-mobile {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .text-left-desktop {
+    text-align: left;
+  }
+}
+
+/* Display Utilities */
+.hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hidden-mobile {
+    display: block;
+  }
+}
+
+.visible-mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .visible-mobile-only {
+    display: none;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+======================================== */
+
+/* GPU Acceleration for Animations */
+.neumorphic-card,
+.neumorphic-btn,
+.icon-container {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize Font Loading */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* ========================================
+   END OF STYLESHEET
+======================================== */

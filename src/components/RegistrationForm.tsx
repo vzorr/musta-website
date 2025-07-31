@@ -1,9 +1,8 @@
-// src/components/RegistrationForm.tsx
+// src/components/RegistrationForm.tsx - Updated to work with global GDPR consent
 'use client';
 
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import GDPRConsent from './GDPRConsent';
 import Image from 'next/image';
 
 interface FormData {
@@ -22,7 +21,11 @@ interface ConsentState {
   timestamp: string;
 }
 
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+  gdprConsents: ConsentState;
+}
+
+export default function RegistrationForm({ gdprConsents }: RegistrationFormProps) {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -30,13 +33,6 @@ export default function RegistrationForm() {
     phone: '',
     category: '',
     location: ''
-  });
-  const [consents, setConsents] = useState<ConsentState>({
-    necessary: false,
-    analytics: false,
-    marketing: false,
-    gdprAccepted: false,
-    timestamp: ''
   });
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [marketingOptIn, setMarketingOptIn] = useState(false);
@@ -51,10 +47,6 @@ export default function RegistrationForm() {
       ...prev,
       [name]: value
     }));
-  };
-
-  const handleConsentChange = (newConsents: ConsentState) => {
-    setConsents(newConsents);
   };
 
   const validateForm = (): boolean => {
@@ -83,11 +75,11 @@ export default function RegistrationForm() {
       return false;
     }
 
-    // GDPR consent (basic consent is enough)
-    if (!consents.gdprAccepted) {
+    // GDPR consent check (global consent)
+    if (!gdprConsents.gdprAccepted) {
       setMessage(language === 'sq'
-        ? 'Ju duhet të jepni pëlqimin për mbrojtjen e të dhënave.'
-        : 'You must provide data protection consent.');
+        ? 'Ju duhet të jepni pëlqimin për mbrojtjen e të dhënave në fund të faqes.'
+        : 'You must provide data protection consent at the bottom of the page.');
       setMessageType('error');
       return false;
     }
@@ -118,9 +110,9 @@ export default function RegistrationForm() {
           ...formData,
           language,
           userAgent,
-          gdprConsent: consents.gdprAccepted,
+          gdprConsent: gdprConsents.gdprAccepted,
           marketingConsent: marketingOptIn,
-          consentDetails: consents
+          consentDetails: gdprConsents
         }),
       });
 
@@ -176,217 +168,224 @@ export default function RegistrationForm() {
 
   return (
     <>
-      <section id="registration" className="py-12 sm:py-20 bg-myusta-gray">
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 text-center">
+      <section id="registration" className="py-12 sm:py-20 bg-myusta-gray relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy mb-12 sm:mb-16">
             {t('registration.title')}
           </h2>
           
-          <div className="neumorphic-card p-6 sm:p-8 rounded-2xl max-w-md mx-auto">
-            <div 
-              className="text-xl font-semibold text-myusta-navy mb-8"
-              dangerouslySetInnerHTML={{ __html: t('registration.formTitle') }}
-            />
-            
-            {message && (
-              <div className={`mb-6 p-4 rounded-lg ${
-                messageType === 'success' 
-                  ? 'bg-green-100 text-green-700 border border-green-300' 
-                  : 'bg-red-100 text-red-700 border border-red-300'
-              }`}>
-                {message}
-              </div>
-            )}
-            
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <input 
-                type="text" 
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder={t('registration.fields.name')} 
-                className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy focus:outline-none" 
-                required 
-                maxLength={100}
+          {/* Fixed form container with proper centering */}
+          <div className="w-full max-w-md mx-auto">
+            <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
+              <div 
+                className="text-xl font-semibold text-myusta-navy mb-8"
+                dangerouslySetInnerHTML={{ __html: t('registration.formTitle') }}
               />
               
-              <input 
-                type="email" 
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder={t('registration.fields.email')} 
-                className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy focus:outline-none" 
-                required 
-                maxLength={150}
-              />
-              
-              <input 
-                type="tel" 
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder={t('registration.fields.phone')} 
-                className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy focus:outline-none" 
-                required 
-                maxLength={20}
-              />
-              
-              <div className="neumorphic-input rounded-lg relative">
-                <select 
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                  required
-                >
-                  <option value="">{t('registration.categories.placeholder')}</option>
-                  {categories.map(category => (
-                    <option key={category.value} value={category.value}>
-                      {category.label}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <Image 
-                    src="/assets/vector.svg" 
-                    alt="Dropdown" 
-                    width={16}
-                    height={16}
-                    className="w-4 h-4"
-                  />
+              {message && (
+                <div className={`mb-6 p-4 rounded-lg ${
+                  messageType === 'success' 
+                    ? 'bg-green-100 text-green-700 border border-green-300' 
+                    : 'bg-red-100 text-red-700 border border-red-300'
+                }`}>
+                  {message}
                 </div>
-              </div>
-              
-              <div className="neumorphic-input rounded-lg relative">
-                <select 
-                  name="location"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                  required
-                >
-                  <option value="">{t('registration.locations.placeholder')}</option>
-                  {locations.map(location => (
-                    <option key={location.value} value={location.value}>
-                      {location.label}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <Image 
-                    src="/assets/vector.svg" 
-                    alt="Dropdown" 
-                    width={16}
-                    height={16}
-                    className="w-4 h-4"
-                  />
-                </div>
-              </div>
+              )}
 
-              {/* Privacy Policy Agreement */}
-              <div className="text-left mt-6">
-                <label className="flex items-start space-x-3 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={privacyAccepted}
-                    onChange={(e) => setPrivacyAccepted(e.target.checked)}
-                    className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow"
-                    required
-                  />
-                  <span className="text-myusta-text-gray">
-                    {language === 'sq' ? (
-                      <>
-                        Unë pranoj{' '}
-                        <button
-                          type="button"
-                          onClick={() => setShowPrivacyModal(true)}
-                          className="text-myusta-blue underline hover:text-myusta-navy"
-                        >
-                          Politikën e Privatësisë
-                        </button>
-                        {' '}dhe{' '}
-                        <button
-                          type="button"
-                          onClick={() => setShowPrivacyModal(true)}
-                          className="text-myusta-blue underline hover:text-myusta-navy"
-                        >
-                          Kushtet e Shërbimit
-                        </button>
-                        .*
-                      </>
-                    ) : (
-                      <>
-                        I accept the{' '}
-                        <button
-                          type="button"
-                          onClick={() => setShowPrivacyModal(true)}
-                          className="text-myusta-blue underline hover:text-myusta-navy"
-                        >
-                          Privacy Policy
-                        </button>
-                        {' '}and{' '}
-                        <button
-                          type="button"
-                          onClick={() => setShowPrivacyModal(true)}
-                          className="text-myusta-blue underline hover:text-myusta-navy"
-                        >
-                          Terms of Service
-                        </button>
-                        .*
-                      </>
-                    )}
-                  </span>
-                </label>
-              </div>
-
-              {/* Marketing Consent */}
-              <div className="text-left">
-                <label className="flex items-start space-x-3 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={marketingOptIn}
-                    onChange={(e) => setMarketingOptIn(e.target.checked)}
-                    className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow"
-                  />
-                  <span className="text-myusta-text-gray">
-                    {language === 'sq' 
-                      ? 'Dëshiroj të marr email-e me përditësime dhe ofertat e myUsta (opsionale).'
-                      : 'I would like to receive emails with myUsta updates and offers (optional).'
-                    }
-                  </span>
-                </label>
-              </div>
-
-              {/* GDPR Consent Component */}
-              <GDPRConsent onConsentChange={handleConsentChange} required />
-              
-              <button 
-                type="submit" 
-                disabled={isSubmitting || !privacyAccepted || !consents.gdprAccepted}
-                className="neumorphic-btn w-full py-3 rounded-lg text-myusta-navy font-semibold text-lg hover:scale-105 transition-transform mt-8 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-myusta-yellow focus:ring-offset-2"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-myusta-navy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              {/* GDPR Status Indicator - Only show warning if consent not given */}
+              {!gdprConsents.gdprAccepted && (
+                <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-sm text-yellow-800 flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
-                    {language === 'sq' ? 'Po regjistrohet...' : 'Registering...'}
-                  </span>
-                ) : t('registration.cta')}
-              </button>
+                    {language === 'sq' 
+                      ? 'Ju duhet të jepni pëlqimin për cookies në fund të faqes.'
+                      : 'You need to accept cookies at the bottom of the page.'
+                    }
+                  </p>
+                </div>
+              )}
+              
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <input 
+                  type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder={t('registration.fields.name')} 
+                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                  required 
+                  maxLength={100}
+                />
+                
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder={t('registration.fields.email')} 
+                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                  required 
+                  maxLength={150}
+                />
+                
+                <input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder={t('registration.fields.phone')} 
+                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                  required 
+                  maxLength={20}
+                />
+                
+                <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
+                  <select 
+                    name="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                    className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
+                    required
+                  >
+                    <option value="">{t('registration.categories.placeholder')}</option>
+                    {categories.map(category => (
+                      <option key={category.value} value={category.value}>
+                        {category.label}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                
+                <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
+                  <select 
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
+                    required
+                  >
+                    <option value="">{t('registration.locations.placeholder')}</option>
+                    {locations.map(location => (
+                      <option key={location.value} value={location.value}>
+                        {location.label}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                  </div>
+                </div>
 
-              {/* Data Usage Notice */}
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-xs text-blue-800">
-                  🔒 {language === 'sq' 
-                    ? 'Të dhënat tuaja do të ruhen në mënyrë të sigurt dhe do të përdoren vetëm për qëllimet e specifikuara në Politikën e Privatësisë. Ju mund të kërkoni fshirjen e të dhënave tuaja në çdo kohë.'
-                    : 'Your data will be stored securely and used only for the purposes specified in our Privacy Policy. You can request deletion of your data at any time.'
-                  }
-                </p>
-              </div>
-            </form>
+                {/* Privacy Policy Agreement */}
+                <div className="text-left mt-6">
+                  <label className="flex items-start space-x-3 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={privacyAccepted}
+                      onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                      className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                      required
+                    />
+                    <span className="text-myusta-text-gray">
+                      {language === 'sq' ? (
+                        <>
+                          Unë pranoj{' '}
+                          <button
+                            type="button"
+                            onClick={() => setShowPrivacyModal(true)}
+                            className="text-myusta-blue underline hover:text-myusta-navy"
+                          >
+                            Politikën e Privatësisë
+                          </button>
+                          {' '}dhe{' '}
+                          <button
+                            type="button"
+                            onClick={() => setShowPrivacyModal(true)}
+                            className="text-myusta-blue underline hover:text-myusta-navy"
+                          >
+                            Kushtet e Shërbimit
+                          </button>
+                          .*
+                        </>
+                      ) : (
+                        <>
+                          I accept the{' '}
+                          <button
+                            type="button"
+                            onClick={() => setShowPrivacyModal(true)}
+                            className="text-myusta-blue underline hover:text-myusta-navy"
+                          >
+                            Privacy Policy
+                          </button>
+                          {' '}and{' '}
+                          <button
+                            type="button"
+                            onClick={() => setShowPrivacyModal(true)}
+                            className="text-myusta-blue underline hover:text-myusta-navy"
+                          >
+                            Terms of Service
+                          </button>
+                          .*
+                        </>
+                      )}
+                    </span>
+                  </label>
+                </div>
+
+                {/* Marketing Consent */}
+                <div className="text-left">
+                  <label className="flex items-start space-x-3 text-sm">
+                    <input
+                      type="checkbox"
+                      checked={marketingOptIn}
+                      onChange={(e) => setMarketingOptIn(e.target.checked)}
+                      className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                    />
+                    <span className="text-myusta-text-gray">
+                      {language === 'sq' 
+                        ? 'Dëshiroj të marr email-e me përditësime dhe ofertat e myUsta (opsionale).'
+                        : 'I would like to receive emails with myUsta updates and offers (optional).'
+                      }
+                    </span>
+                  </label>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting || !privacyAccepted || !gdprConsents.gdprAccepted}
+                  className="neumorphic-btn w-full py-3 rounded-lg text-myusta-navy font-semibold text-lg hover:scale-105 transition-transform mt-8 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-myusta-yellow focus:ring-offset-2 bg-myusta-yellow"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-myusta-navy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      {language === 'sq' ? 'Po regjistrohet...' : 'Registering...'}
+                    </span>
+                  ) : t('registration.cta')}
+                </button>
+
+                {/* Data Usage Notice */}
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="text-xs text-blue-800">
+                    🔒 {language === 'sq' 
+                      ? 'Të dhënat tuaja do të ruhen në mënyrë të sigurt dhe do të përdoren vetëm për qëllimet e specifikuara në Politikën e Privatësisë. Ju mund të kërkoni fshirjen e të dhënave tuaja në çdo kohë.'
+                      : 'Your data will be stored securely and used only for the purposes specified in our Privacy Policy. You can request deletion of your data at any time.'
+                    }
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
