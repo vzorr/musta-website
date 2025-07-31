@@ -1,3 +1,4 @@
+// src/components/Footer.tsx - Updated with max-width constraint
 'use client';
 
 import { useLanguage } from '../contexts/LanguageContext';
@@ -9,7 +10,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-myusta-navy text-white py-12 sm:py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+      {/* UPDATED: Added max-width container */}
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8">
         {/* Main Footer Content */}
         <div className="flex flex-col sm:flex-row justify-between items-start mb-8 sm:mb-12 gap-8">
           {/* Left Side - Logo and Social */}

@@ -1,54 +1,32 @@
-/* src/styles/HeroSection.module.css - FIXED: Reduce hero height to show more content */
+/* src/styles/HeroSection.module.css - Fixed layout without empty space */
+
+.heroWrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
 
 .hero {
-  /* Keep full width stretch */
-  width: 100vw;
+  /* FIXED: Reduce side margins by using larger max-width */
+  width: 100%;
+  max-width: 2000px; /* Increased from 1440px to reduce side margins */
+  margin: 0 auto;
   position: relative;
   
-  /* FIXED: Reduce height instead of using full viewport */
-  min-height: 70vh; /* CHANGED from 100vh to 70vh - shows 30% more content */
-  max-height: 800px; /* ADDED: Cap maximum height for very tall screens */
+  /* FIXED: Better height constraints */
+  min-height: 400px;
+  height: min(800px, 70vh);
+  max-height: 800px;
   
-  /* FIXED: No more image distortion */
+  /* Background image setup */
   background-image: url('/assets/herobanner.png');
-  background-size: cover; /* CHANGED: No stretching/distortion */
-  background-position: center center; /* ADDED: Center the image */
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: scroll; /* Changed from fixed for better compatibility */
+  background-attachment: scroll;
   background-color: #f3f3f3;
-  
-  /* Keep overflow settings */
-  overflow: visible;
 }
 
-/* Alternative with even shorter height if needed */
-.heroShort {
-  width: 100vw;
-  min-height: 60vh; /* Even shorter - 60% of viewport height */
-  max-height: 700px;
-  /* ... rest same as above */
-}
-
-/* Alternative with fixed pixel height */
-.heroFixed {
-  width: 100vw;
-  height: 600px; /* Fixed height regardless of screen size */
-  /* ... rest same as above */
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(243, 243, 243, 0.1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Separate overlay class for cleaner structure */
 .heroOverlay {
   position: absolute;
   top: 0;
@@ -64,25 +42,72 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 100vw;
-  padding: 3rem 1rem;
-  box-sizing: border-box;
-  
-  /* ADDED: Better vertical centering within reduced height */
-  min-height: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .heroText {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+.heroSubtitle {
+  opacity: 0.9;
+}
+
 .phoneContainer {
   position: relative;
-  width: 16rem;
-  height: 20rem;
+  width: 18rem; /* Larger phone like in reference */
+  height: 22rem;
   margin: 0 auto;
+  transition: all 0.3s ease;
+  
+  /* ADDED: Make container visible and styled like a phone */
+  background: #1a1a1a;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
+  /* ADDED: Ensure the container is visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ADDED: Inner content area for the image */
+.phoneContainer::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  background: #f0f0f0;
+  border-radius: 1.5rem;
+  z-index: 1;
+}
+
+/* Adjust phone size for different screens */
+@media (max-width: 640px) {
+  .phoneContainer {
+    width: 14rem;
+    height: 18rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .phoneContainer {
+    width: 20rem; /* Even larger on desktop to match reference */
+    height: 25rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .phoneContainer {
+    width: 22rem; /* Maximum size for large displays */
+    height: 27rem;
+  }
 }
 
 .ctaButton {
@@ -111,96 +136,163 @@
 
 .heroLoaded {
   background-image: url('/assets/herobanner.png');
-  background-size: cover; /* FIXED: No distortion */
-  background-position: center center; /* ADDED: Center image */
+  background-size: cover;
+  background-position: center center;
 }
 
-/* RESPONSIVE: Adjust height based on screen size */
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+======================================== */
 
-/* Mobile - Keep shorter height */
-@media (max-width: 768px) {
+/* Mobile devices */
+@media (max-width: 640px) {
   .hero {
-    min-height: 80vh; /* Slightly taller on mobile for better content fit */
-    max-height: none; /* Remove max-height constraint on mobile */
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 500px;
   }
 
-  .heroContent {
-    padding: 2rem 1rem;
-    max-width: 100%;
+  .hero h1 {
+    font-size: 2rem !important;
+    line-height: 1.1;
+    margin-bottom: 1.5rem !important;
   }
 
-  .phoneContainer {
-    width: 12rem;
-    height: 15rem;
+  .hero p {
+    font-size: 1.125rem !important;
+    margin-bottom: 2rem !important;
   }
-}
 
-/* Tablet - Medium height */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .hero {
-    min-height: 75vh;
-    max-height: 750px;
-  }
-  
-  .phoneContainer {
-    width: 18rem;
-    height: 22rem;
+  .ctaButton {
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
   }
 }
 
-/* Desktop and large screens - Constrained height to show more content */
-@media (min-width: 1025px) {
+/* Tablets */
+@media (min-width: 641px) and (max-width: 1023px) {
   .hero {
-    min-height: 65vh; /* SHORTER on desktop to show more content below */
-    max-height: 800px;
-  }
-}
-
-/* Very large screens (like your HP Omen) - Even more constrained */
-@media (min-width: 1440px) {
-  .hero {
-    min-height: 60vh; /* EVEN SHORTER on very large screens */
-    max-height: 700px; /* Cap the height more aggressively */
-  }
-  
-  .heroContent {
-    padding: 4rem 2rem;
-    max-width: 1440px;
-    margin: 0 auto;
-  }
-}
-
-/* Extra large screens - Most constrained */
-@media (min-width: 2560px) {
-  .hero {
-    min-height: 50vh; /* VERY SHORT on ultra-wide screens */
+    height: min(600px, 80vh);
     max-height: 600px;
   }
+
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .hero p {
+    font-size: 1.125rem !important;
+  }
 }
 
-/* Accessibility - Reduced motion */
+/* Desktop */
+@media (min-width: 1024px) {
+  .hero {
+    height: min(700px, 70vh); /* Slightly taller to accommodate larger phone */
+    max-height: 700px;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem !important;
+  }
+
+  .hero p {
+    font-size: 1.25rem !important;
+  }
+
+  .ctaButton {
+    padding: 1rem 2.5rem !important;
+    font-size: 1.125rem !important;
+  }
+}
+
+/* Large desktop - match reference proportions */
+@media (min-width: 1440px) {
+  .hero {
+    height: min(800px, 70vh);
+    max-height: 800px;
+  }
+
+  .hero h1 {
+    font-size: 4rem !important;
+  }
+
+  .hero p {
+    font-size: 1.375rem !important;
+  }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION
+======================================== */
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .hero {
+    height: 100vh;
+    max-height: none;
+  }
+
+  .phoneContainer {
+    display: none; /* Hide phone on landscape mobile */
+  }
+
+  .hero h1 {
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero p {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
 @media (prefers-reduced-motion: reduce) {
   .hero {
     background-attachment: scroll;
   }
   
-  .ctaButton {
+  .ctaButton,
+  .phoneContainer {
     transition: none;
   }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
-  .hero::before {
+  .heroOverlay {
     background: rgba(0, 0, 0, 0.3);
   }
   
   .ctaButton {
     border: 1px solid currentColor;
   }
+
+  .heroText {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.heroLoaded {
+  animation: heroFadeIn 0.6s ease-out;
 }
 
 /* Print styles */
@@ -210,11 +302,16 @@
     background-image: none;
     width: 100%;
     margin: 0;
-    min-height: auto;
-    height: auto;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
   }
   
-  .hero::before {
+  .heroOverlay {
+    display: none;
+  }
+
+  .phoneContainer {
     display: none;
   }
 }

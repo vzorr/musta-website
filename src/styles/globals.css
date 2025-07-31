@@ -36,6 +36,33 @@ body {
 }
 
 /* ========================================
+   MAX-WIDTH CONTAINER SYSTEM
+======================================== */
+
+/* Global max-width container utility */
+.max-width-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .max-width-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .max-width-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ========================================
    NEUMORPHIC DESIGN SYSTEM
 ======================================== */
 
@@ -160,64 +187,57 @@ body {
 }
 
 /* ========================================
-   HEADER STYLES - ENHANCED & FIXED STICKY
+   FOOTER STYLES
 ======================================== */
 
-header {
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
-  isolation: isolate;
+footer {
+  /* Full width background */
+  width: 100%;
 }
 
-/* Professional features strip styling */
-.features-strip {
-  background: linear-gradient(135deg, rgba(51, 83, 114, 0.95) 0%, rgba(0, 32, 63, 0.95) 100%);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* Footer content constrained */
+footer > div {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   SECTION LAYOUT CONSISTENCY
+======================================== */
+
+/* Ensure all main sections have consistent max-width */
+.section-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Container for consistent spacing */
+.page-section {
+  width: 100%;
   position: relative;
 }
 
-/* Feature item hover effect */
-.feature-item {
-  transition: all 0.2s ease;
+.page-section-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.feature-item:hover {
-  transform: translateY(-1px);
-}
-
-.feature-item:hover .tick-icon {
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(255, 200, 0, 0.3);
-}
-
-/* Tick icon styling */
-.tick-icon {
-  transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-/* Mobile responsiveness for features */
-@media (max-width: 640px) {
-  .features-strip {
-    padding: 0.75rem 1rem;
-  }
-  
-  .feature-item {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* Additional sticky fix for Safari */
-@supports (-webkit-backdrop-filter: blur(12px)) {
-  header {
-    -webkit-backdrop-filter: blur(12px);
+@media (min-width: 640px) {
+  .page-section-content {
+    padding: 0 2rem;
   }
 }
 
@@ -274,6 +294,20 @@ header {
   margin: 0 auto;
 }
 
+/* Registration section improvements */
+.registration-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.registration-form-wrapper {
+  width: 100%;
+  max-width: 384px; /* Keep form at optimal width */
+  margin: 0 auto;
+}
+
 /* Mobile adjustments for registration form */
 @media (max-width: 640px) {
   .registration-form-container {
@@ -309,6 +343,33 @@ header {
   .form-field {
     padding: 1.25rem;
     font-size: 1rem;
+  }
+}
+
+/* ========================================
+   GDPR BANNER ADJUSTMENTS
+======================================== */
+
+/* GDPR banner should span full width but content should be constrained */
+.gdpr-banner {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.gdpr-banner-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .gdpr-banner-content {
+    padding: 0 2rem;
   }
 }
 
@@ -391,6 +452,88 @@ header {
   .language-switcher button {
     min-width: 44px;
     min-height: 44px;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES FOR CONSISTENT LAYOUT
+======================================== */
+
+/* Full width background with constrained content */
+.full-bg-constrained-content {
+  width: 100%;
+}
+
+.full-bg-constrained-content > .content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .full-bg-constrained-content > .content {
+    padding: 0 2rem;
+  }
+}
+
+/* Helper for centering content blocks */
+.centered-content-block {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .centered-content-block {
+    padding: 0 2rem;
+  }
+}
+
+/* For sections that need tighter content width */
+.centered-content-narrow {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .centered-content-narrow {
+    padding: 0 2rem;
+  }
+}
+
+/* ========================================
+   HIGH RESOLUTION DISPLAY OPTIMIZATIONS
+======================================== */
+
+/* Specific optimizations for 1440p and higher displays */
+@media (min-width: 2560px) {
+  .max-width-container,
+  .section-container,
+  .page-section-content,
+  .responsive-container,
+  .content-grid {
+    max-width: 1600px; /* Slightly larger for ultra-wide displays */
+  }
+  
+  /* Add more generous side margins on very large displays */
+  .page-section-content {
+    padding: 0 4rem;
+  }
+}
+
+/* 4K display optimizations */
+@media (min-width: 3840px) {
+  .max-width-container,
+  .section-container,
+  .page-section-content,
+  .responsive-container,
+  .content-grid {
+    max-width: 1800px;
+    padding: 0 6rem;
   }
 }
 
@@ -479,11 +622,8 @@ a:focus {
 ======================================== */
 
 @media print {
-  header,
-  footer,
   .neumorphic-btn,
-  .language-switcher,
-  .features-strip {
+  .language-switcher {
     display: none;
   }
   
@@ -632,9 +772,7 @@ a:focus {
 /* GPU Acceleration for Animations */
 .neumorphic-card,
 .neumorphic-btn,
-.icon-container,
-.feature-item,
-.tick-icon {
+.icon-container {
   will-change: transform;
   transform: translateZ(0);
 }

@@ -1,0 +1,221 @@
+/* src/styles/Header.module.css - Header component styles */
+
+/* ========================================
+   HEADER WRAPPER & CONTAINER
+======================================== */
+
+.headerWrapper {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.header {
+  width: 100%;
+  max-width: 1440px;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
+  isolation: isolate;
+  background: #00203F;
+  color: white;
+}
+
+.headerContent {
+  width: 100%;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .headerContent {
+    padding: 1.25rem 2rem;
+  }
+}
+
+/* ========================================
+   HEADER SECTIONS
+======================================== */
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.centerSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================
+   HEADER CTA BUTTON
+======================================== */
+
+.ctaButton {
+  background: #FFC800;
+  color: #00203F;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
+}
+
+.ctaButton:active {
+  transform: scale(0.98);
+}
+
+.ctaButton:focus {
+  outline: 2px solid #FFC800;
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .ctaButton {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Features strip removed for cleaner header design */
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+======================================== */
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+  .headerContent {
+    padding: 1rem 0.75rem;
+  }
+
+  .ctaButton {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .headerContent {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .headerContent {
+    padding: 1.25rem 2rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .headerContent {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Ultra-wide displays */
+@media (min-width: 2560px) {
+  .headerContent {
+    max-width: 1600px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ========================================
+   BROWSER-SPECIFIC FIXES
+======================================== */
+
+/* Additional sticky fix for Safari */
+@supports (-webkit-backdrop-filter: blur(12px)) {
+  .header {
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Firefox backdrop-filter fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .header {
+    background: rgba(0, 32, 63, 0.95);
+  }
+
+  .featuresStrip {
+    background: rgba(51, 83, 114, 0.95);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+======================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom: 2px solid white;
+  }
+
+  .ctaButton {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .ctaButton {
+    transition: none;
+  }
+
+  .ctaButton:hover {
+    transform: none;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  .header {
+    display: none;
+  }
+}
+
+/* ========================================
+   DARK MODE SUPPORT (Future-proofing)
+======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: #00203F;
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+}

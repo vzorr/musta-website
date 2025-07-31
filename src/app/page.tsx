@@ -1,4 +1,4 @@
-// src/app/page.tsx - FIXED: Hero section layout to prevent clipping
+// src/app/page.tsx - Fixed to not interfere with header width
 'use client';
 
 import Header from '../components/Header';
@@ -35,19 +35,20 @@ export default function Home() {
 
   return (
     <LanguageProvider>
-      {/* FIXED: Root container to prevent horizontal overflow */}
-      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative">
-        {/* Header - Full width */}
+      {/* Root container to prevent horizontal overflow */}
+      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
+        
+        {/* Header - NO WRAPPER, let it handle its own width constraint */}
         <Header />
         
-        {/* FIXED: Main content with proper overflow handling */}
+        {/* Main content */}
         <main className="w-full relative">
-          {/* FIXED: Hero Section - Ensure it can break out of container constraints */}
+          {/* Hero Section - Has its own max-width handling */}
           <div className="w-full relative">
             <HeroSection />
           </div>
 
-          {/* Other sections with centered content */}
+          {/* Other sections with consistent max-width containers */}
           <div className="w-full">
             {/* Why Join Section */}
             <div className="w-full bg-myusta-gray">
@@ -63,9 +64,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Registration Form */}
+            {/* Registration Form - Centered within max-width container */}
             <div className="w-full bg-myusta-gray">
-              <RegistrationForm gdprConsents={gdprConsents} />
+              <div className="w-full max-w-[1440px] mx-auto">
+                <RegistrationForm gdprConsents={gdprConsents} />
+              </div>
             </div>
 
             {/* FAQ Section */}
@@ -77,10 +80,10 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Footer - Full width */}
+        {/* Footer - NO WRAPPER, let it handle its own width constraint */}
         <Footer />
 
-        {/* GDPR Consent Banner */}
+        {/* GDPR Consent Banner - Full width */}
         <GDPRConsent onConsentChange={handleGdprConsentChange} />
       </div>
     </LanguageProvider>
