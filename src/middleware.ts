@@ -1,4 +1,4 @@
-// src/middleware.ts - Next.js middleware for App Router
+// src/middleware.ts - Fixed middleware configuration
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
@@ -46,15 +46,16 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
+// FIXED: More permissive matcher that allows the root page
 export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
-     * - _next/image (image optimization files)
+     * - _next/image (image optimization files)  
      * - favicon.ico (favicon file)
-     * - public folder files
+     * But DO include the root path and other pages
      */
-    '/((?!_next/static|_next/image|favicon.ico|assets).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 }

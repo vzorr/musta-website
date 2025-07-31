@@ -1,3 +1,4 @@
+// src/contexts/LanguageContext.tsx - IMPROVED: Better error handling and hydration
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
@@ -10,6 +11,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  isLoading: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -21,18 +23,17 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('sq');
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Only run on client side after hydration
-    setIsHydrated(true);
-    
     if (typeof window !== 'undefined') {
       const savedLanguage = localStorage.getItem('myusta-language') as Language;
       if (savedLanguage && (savedLanguage === 'sq' || savedLanguage === 'en')) {
         setLanguage(savedLanguage);
       }
     }
+    setIsLoading(false);
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
@@ -43,6 +44,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: string): string => {
+    // Return empty string during loading to prevent hydration mismatch
+    if (isLoading) {
+      return '';
+    }
+
     const keys = key.split('.');
     let value: any = translations[language];
     
@@ -50,16 +56,29 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       value = value?.[k];
     }
     
-    return value || (isHydrated ? key : '');
+    // Fallback to key if translation not found
+    return value || key;
   };
 
-  // Prevent hydration mismatch by showing nothing until hydrated
-  if (!isHydrated) {
-    return <>{children}</>;
+  // Show loading state to prevent hydration mismatch
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-myusta-gray flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-myusta-yellow border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-myusta-navy">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage: handleSetLanguage, 
+      t,
+      isLoading 
+    }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -68,7 +87,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    // More descriptive error message
+    throw new Error(
+      'useLanguage must be used within a LanguageProvider. ' +
+      'Make sure to wrap your app with <LanguageProvider> in your root layout.'
+    );
   }
   return context;
 }

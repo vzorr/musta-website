@@ -17,12 +17,19 @@ export default function HeroSection() {
         {/* Left side - Phone mockup */}
         <div className="w-full lg:w-1/3 order-2 lg:order-1">
           <div className="relative w-64 h-80 sm:w-80 sm:h-96 mx-auto">
+            {/* Phone mockup with transparent background */}
             <Image 
               src="/assets/change-this.png" 
               alt="myUsta App Mockup" 
               fill
               className="object-contain"
               priority
+              sizes="(max-width: 640px) 256px, 320px"
+              onError={(e) => {
+                console.error('Image failed to load:', e);
+                // Fallback: try different path
+                e.currentTarget.src = '/change-this.png';
+              }}
             />
           </div>
         </div>

@@ -11,10 +11,10 @@ const nextConfig = {
   },
   
   // Internationalization (keeping for potential future use)
-  i18n: {
-    locales: ['sq', 'en'],
-    defaultLocale: 'sq',
-  },
+ // i18n: {
+  //  locales: ['sq', 'en'],
+  //  defaultLocale: 'sq',
+  //},
   
   // Performance optimizations
   swcMinify: true,

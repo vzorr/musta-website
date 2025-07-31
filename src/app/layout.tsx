@@ -1,6 +1,8 @@
+// src/app/layout.tsx - FIXED: Add LanguageProvider at the root level
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+import { LanguageProvider } from '../contexts/LanguageContext';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -9,7 +11,6 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  // FIXED: Added metadataBase to resolve the warning
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: 'myUsta - Platforma për Profesionistë',
   description: 'Platforma që lidh pronarët e shtëpive me profesionistë të besuar për të gjitha nevojat e mirëmbajtjes dhe riparimeve.',
@@ -41,7 +42,9 @@ export default function RootLayout({
         <link rel="canonical" href="https://myusta.com" />
       </head>
       <body className={`${inter.className} font-inter bg-myusta-gray text-myusta-navy min-h-screen`}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
