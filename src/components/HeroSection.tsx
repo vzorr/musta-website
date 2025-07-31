@@ -33,13 +33,7 @@ export default function HeroSection() {
     <section 
       className={`${styles.hero} ${imageLoaded ? styles.heroLoaded : styles.heroLoading}`}
     >
-      {/* Debug info - remove this in production */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className={styles.debugInfo}>
-          <div>Image Status: {imageLoaded ? '✅ Loaded' : imageError ? '❌ Failed' : '⏳ Loading'}</div>
-          <div>Path: /assets/herobanner.png</div>
-        </div>
-      )}
+   
 
       {/* Content container */}
       <div className={styles.heroContent}>

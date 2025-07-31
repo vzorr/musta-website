@@ -5,11 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 /* ========================================
-   CUSTOM CSS FOR MYUSTA LANDING PAGE
-   Updated with Figma Responsive Specifications
-======================================== */
-
-/* ========================================
    BASE STYLES & RESET
 ======================================== */
 
@@ -21,114 +16,23 @@
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
+  margin: 0;
+  padding: 0;
 }
 
-/* ========================================
-   FULL WIDTH HERO BACKGROUND WITH ASSETS PATH
-======================================== */
-
-.hero-bg {
-
-   width: 100vw;
-  min-height: 100vh;
+/* Root container to prevent clipping */
+#__next,
+.main-container {
+  width: 100%;
   position: relative;
-  
-  /* Force full width even if parent has constraints */
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  
-  /* Background image settings */
-  background-image: url('/assets/herobanner.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
-  /* Fallback gradient background */
-  background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
-  
-  /* Hero banner image from assets folder */
-  background-image: url('/assets/herobanner.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  
- 
-}
-
-/* Mobile optimization - disable fixed attachment for better performance */
-@media (max-width: 768px) {
-  .hero-bg {
-    background-attachment: scroll;
-    min-height: 80vh;
-  }
-}
-
-/* Subtle overlay for better text readability */
-.hero-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(243, 243, 243, 0.1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Ensure hero content is above the overlay */
-.hero-bg > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Enhanced text readability over the banner */
-.hero-bg h1,
-.hero-bg p {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-/* Fallback for slow connections */
-@media (max-width: 640px) {
-  .hero-bg {
-    background-image: url('/assets/herobanner.png'), linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
-    background-size: cover, cover;
-    background-position: center center, center center;
-  }
-}
-
-/* High-DPI displays optimization */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero-bg {
-    background-image: url('/assets/herobanner.png');
-  }
-}
-
-/* Loading state for better UX */
-.hero-bg.loading {
-  background-color: #f3f3f3;
-  background-image: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
-}
-
-.hero-bg.loaded {
-  background-image: url('/assets/herobanner.png');
-}
-
-/* Accessibility - Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .hero-bg {
-    background-attachment: scroll;
-  }
+  overflow-x: hidden;
 }
 
 /* ========================================
@@ -318,131 +222,6 @@ header {
 }
 
 /* ========================================
-   HOW IT WORKS SECTION - FIGMA SPACING
-======================================== */
-
-/* How It Works Section Container - Exact Figma measurements */
-.how-it-works-section {
-  padding-top: 4rem; /* 64px top spacing as shown in Figma */
-  padding-bottom: 4rem; /* 64px bottom spacing as shown in Figma */
-}
-
-/* Title to Cards Gap - 48px as shown in Figma */
-.how-it-works-title {
-  margin-bottom: 3rem; /* 48px gap between title and cards */
-}
-
-/* Cards Container - Proper spacing between cards */
-.how-it-works-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem; /* 24px gap on mobile */
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Tablet spacing */
-@media (min-width: 768px) {
-  .how-it-works-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; /* 32px gap on tablet */
-  }
-}
-
-/* Desktop spacing - Match Figma exactly */
-@media (min-width: 1024px) {
-  .how-it-works-section {
-    padding-top: 5rem; /* 80px on desktop */
-    padding-bottom: 5rem; /* 80px on desktop */
-  }
-  
-  .how-it-works-title {
-    margin-bottom: 3rem; /* Keep 48px gap */
-  }
-  
-  .how-it-works-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; /* 32px gap between cards on desktop */
-    max-width: 1200px;
-  }
-}
-
-/* Individual Step Card Styling */
-.step-card {
-  background: #f3f3f3;
-  padding: 2rem 1.5rem; /* 32px vertical, 24px horizontal */
-  border-radius: 1rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
-}
-
-@media (min-width: 768px) {
-  .step-card {
-    padding: 2.5rem 2rem; /* 40px vertical, 32px horizontal on tablet+ */
-  }
-}
-
-/* Step Card Elements Spacing */
-.step-card .step-number {
-  margin-bottom: 1rem; /* 16px below step number */
-  font-weight: 500;
-  color: #00203F;
-}
-
-.step-card .step-icon-container {
-  margin: 0 auto 1.5rem auto; /* 24px below icon */
-  width: 3rem;
-  height: 3rem;
-  background: #FFC800;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
-              1px 1px 1.4px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
-}
-
-.step-card .step-icon-container:hover {
-  transform: scale(1.1);
-  box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
-              2px 2px 3px rgba(0, 0, 0, 0.2);
-}
-
-.step-card .step-description {
-  color: #888888;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* Hover Effects */
-.step-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
-              -6px -6px 10px rgba(255, 255, 255, 0.9);
-}
-
-/* Large Desktop Adjustments */
-@media (min-width: 1440px) {
-  .how-it-works-section {
-    padding-top: 6rem; /* 96px on very large screens */
-    padding-bottom: 6rem;
-  }
-  
-  .how-it-works-grid {
-    max-width: 1400px;
-    gap: 2.5rem; /* 40px gap on very large screens */
-  }
-  
-  .step-card {
-    padding: 3rem 2.5rem; /* More padding on large screens */
-  }
-}
-
-/* ========================================
    RESPONSIVE LAYOUT SYSTEM
 ======================================== */
 
@@ -550,33 +329,6 @@ header {
 .responsive-body {
   font-size: clamp(0.875rem, 2vw, 1rem);
   line-height: 1.6;
-}
-
-/* ========================================
-   HERO SECTION RESPONSIVE LAYOUT
-======================================== */
-
-.hero-content-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: center;
-  min-height: 70vh;
-  padding: 2rem 0;
-}
-
-@media (min-width: 1024px) {
-  .hero-content-grid {
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    min-height: 80vh;
-  }
-}
-
-/* Enhanced text readability over hero banner */
-.hero-content-grid h1,
-.hero-content-grid p {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================
@@ -711,10 +463,6 @@ a:focus {
   html {
     scroll-behavior: auto;
   }
-  
-  .hero-bg {
-    background-attachment: scroll;
-  }
 }
 
 /* High Contrast Mode Support */
@@ -724,19 +472,6 @@ a:focus {
   .neumorphic-btn {
     border: 1px solid currentColor;
   }
-  
-  .hero-bg::before {
-    background: rgba(0, 0, 0, 0.3);
-  }
-}
-
-/* ========================================
-   DARK MODE PREPARATION
-======================================== */
-
-@media (prefers-color-scheme: dark) {
-  /* Add dark mode styles here if needed in the future */
-  /* Currently using light theme only */
 }
 
 /* ========================================
@@ -760,15 +495,6 @@ a:focus {
   .neumorphic-card {
     border: 1px solid #ccc;
     box-shadow: none;
-  }
-  
-  .hero-bg {
-    background: white;
-    background-image: none;
-  }
-  
-  .hero-bg::before {
-    display: none;
   }
 }
 
@@ -807,7 +533,7 @@ a:focus {
   }
 }
 
-/* Card Grid Responsive */
+/* Generic Card Grid Utility - Keep for other components that might need it */
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -918,31 +644,3 @@ a:focus {
   font-family: 'Inter';
   font-display: swap;
 }
-
-/* Optimize hero banner loading */
-.hero-bg {
-  /* Preload hint for hero banner */
-  background-image: url('/assets/herobanner.png');
-}
-
-/* ========================================
-   HERO BANNER LOADING OPTIMIZATION
-======================================== */
-
-/* Preload critical hero banner */
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  background-image: url('/assets/herobanner.png');
-  background-size: 0 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* ========================================
-   END OF STYLESHEET
-======================================== */

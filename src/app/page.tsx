@@ -1,4 +1,4 @@
-// src/app/page.tsx - Updated with full-width hero
+// src/app/page.tsx - FIXED: Hero section layout to prevent clipping
 'use client';
 
 import Header from '../components/Header';
@@ -35,14 +35,17 @@ export default function Home() {
 
   return (
     <LanguageProvider>
-      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
+      {/* FIXED: Root container to prevent horizontal overflow */}
+      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative">
         {/* Header - Full width */}
         <Header />
         
-        {/* Main content */}
-        <main className="w-full overflow-x-hidden">
-          {/* Hero Section - FULL WIDTH - No container restrictions */}
-          <HeroSection />
+        {/* FIXED: Main content with proper overflow handling */}
+        <main className="w-full relative">
+          {/* FIXED: Hero Section - Ensure it can break out of container constraints */}
+          <div className="w-full relative">
+            <HeroSection />
+          </div>
 
           {/* Other sections with centered content */}
           <div className="w-full">

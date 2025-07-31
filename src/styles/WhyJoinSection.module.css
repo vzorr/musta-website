@@ -1,0 +1,149 @@
+/* WhyJoinSection.module.css - Module CSS for Why Join section */
+
+/* Why Join Section Container */
+.whyJoinSection {
+  padding-top: 3rem;
+
+  background: #f3f3f3;
+}
+
+/* Header Container */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.description {
+  max-width: 64rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Benefits Cards Grid */
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Feature Card Styles */
+.featureCard {
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: #f3f3f3;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
+}
+
+.imageContainer {
+  height: 12rem;
+  position: relative;
+}
+
+.cardContent {
+  padding: 1rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.iconContainer {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  background: #FFC800;
+  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
+              1px 1px 1.4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.iconContainer:hover {
+  transform: scale(1.1);
+  box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
+              2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #00203F;
+}
+
+.cardDescription {
+  color: #888888;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .whyJoinSection {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .header {
+    margin-bottom: 4rem;
+  }
+  
+  .title {
+    margin-bottom: 3rem;
+  }
+  
+  .imageContainer {
+    height: 15rem;
+  }
+  
+  .cardContent {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .whyJoinSection {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .benefitsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Large Desktop Adjustments */
+@media (min-width: 1440px) {
+  .whyJoinSection {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .benefitsGrid {
+    gap: 2.5rem;
+  }
+}
