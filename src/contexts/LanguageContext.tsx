@@ -21,17 +21,25 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('sq');
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('myusta-language') as Language;
-    if (savedLanguage && (savedLanguage === 'sq' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage);
+    // Only run on client side after hydration
+    setIsHydrated(true);
+    
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('myusta-language') as Language;
+      if (savedLanguage && (savedLanguage === 'sq' || savedLanguage === 'en')) {
+        setLanguage(savedLanguage);
+      }
     }
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem('myusta-language', lang);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('myusta-language', lang);
+    }
   };
 
   const t = (key: string): string => {
@@ -42,8 +50,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       value = value?.[k];
     }
     
-    return value || key;
+    return value || (isHydrated ? key : '');
   };
+
+  // Prevent hydration mismatch by showing nothing until hydrated
+  if (!isHydrated) {
+    return <>{children}</>;
+  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>

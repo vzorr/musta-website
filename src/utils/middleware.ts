@@ -1,0 +1,63 @@
+// src/middleware.ts - Next.js middleware for App Router
+import { NextRequest, NextResponse } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // Security headers
+  const response = NextResponse.next();
+  
+  // Set security headers
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  
+  // CSP header for security
+  const cspHeader = `
+    default-src 'self';
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' blob: data:;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self';
+    frame-ancestors 'none';
+  `.replace(/\s{2,}/g, ' ').trim();
+  
+  response.headers.set('Content-Security-Policy', cspHeader);
+  
+  // Handle API routes
+  if (request.nextUrl.pathname.startsWith('/api/')) {
+    // Add CORS headers for API routes
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    
+    // Handle preflight requests
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 200, headers: response.headers });
+    }
+  }
+  
+  // Logging for development
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[Middleware] ${request.method} ${request.nextUrl.pathname}`);
+  }
+  
+  // Rate limiting check could be added here
+  // const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+  
+  return response;
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder files
+     */
+    '/((?!_next/static|_next/image|favicon.ico|assets).*)',
+  ],
+}

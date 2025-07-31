@@ -1,5 +1,5 @@
-// src/api/client.ts - Generic API Handler Class
-import { APIResponse, APIError } from '../../types';
+// src/api/client.ts - Generic API Handler Class (Updated for App Router)
+import { APIResponse } from '../types';
 
 interface RequestConfig {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
@@ -23,7 +23,7 @@ export class APIClient {
 
   constructor(config: Partial<APIClientConfig> = {}) {
     this.config = {
-      baseURL: process.env.NEXT_PUBLIC_BASE_URL || '',
+      baseURL: typeof window !== 'undefined' ? window.location.origin : '',
       timeout: 30000,
       retries: 3,
       defaultHeaders: {
@@ -221,6 +221,8 @@ export class APIClient {
   }
 
   private getCSRFToken(): string | null {
+    if (typeof window === 'undefined') return null;
+    
     // Get CSRF token from meta tag or cookie
     const metaTag = document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement;
     return metaTag?.content || null;
@@ -306,9 +308,6 @@ export class APIClient {
   }
 }
 
-// Create singleton instance
-export const apiClient = new APIClient();
-
 // Custom API Error class
 export class APIError extends Error {
   public readonly code: string;
@@ -335,3 +334,6 @@ export class APIError extends Error {
     return this.status === 0;
   }
 }
+
+// Create singleton instance
+export const apiClient = new APIClient();

@@ -1,17 +1,6 @@
-// 📁 src/pages/api/health.ts - Health check endpoint
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ 
-      success: false,
-      message: 'Method not allowed' 
-    });
-  }
-
+export async function GET(request: NextRequest) {
   try {
     // Basic health check
     const health = {
@@ -28,13 +17,13 @@ export default async function handler(
       }
     };
 
-    return res.status(200).json(health);
+    return NextResponse.json(health, { status: 200 });
   } catch (error) {
-    return res.status(500).json({
+    return NextResponse.json({
       success: false,
       status: 'unhealthy',
       timestamp: new Date().toISOString(),
-      error: error.message
-    });
+      error: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }
