@@ -1,0 +1,159 @@
+/* HeroSection.module.css */
+
+.hero {
+  background-image: url('/assets/herobanner.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #f3f3f3;
+  
+  /* Full width layout */
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(243, 243, 243, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 3rem 1rem;
+}
+
+.heroText {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.phoneContainer {
+  position: relative;
+  width: 16rem;
+  height: 20rem;
+  margin: 0 auto;
+}
+
+.ctaButton {
+  background: #FFC800;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
+}
+
+.ctaButton:active {
+  transform: scale(0.98);
+}
+
+.debugInfo {
+  position: fixed;
+  top: 80px;
+  left: 16px;
+  background: black;
+  color: white;
+  padding: 8px;
+  font-size: 12px;
+  z-index: 50;
+  border-radius: 4px;
+}
+
+/* Loading states */
+.heroLoading {
+  background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
+}
+
+.heroLoaded {
+  background-image: url('/assets/herobanner.png');
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+    min-height: 80vh;
+  }
+
+  .heroContent {
+    padding: 2rem 1rem;
+  }
+
+  .phoneContainer {
+    width: 12rem;
+    height: 15rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .phoneContainer {
+    width: 20rem;
+    height: 24rem;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .heroContent {
+    padding: 4rem 2rem;
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    background-attachment: scroll;
+  }
+  
+  .ctaButton {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .hero::before {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .ctaButton {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero {
+    background: white;
+    background-image: none;
+  }
+  
+  .hero::before {
+    display: none;
+  }
+  
+  .debugInfo {
+    display: none;
+  }
+}

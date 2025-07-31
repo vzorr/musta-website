@@ -12,10 +12,11 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Main Footer Content */}
         <div className="flex flex-col sm:flex-row justify-between items-start mb-8 sm:mb-12 gap-8">
-          {/* Logo and Social */}
+          {/* Left Side - Logo and Social */}
           <div className="space-y-6 sm:space-y-8">
+            {/* Logo - Same as header */}
             <div className="flex items-center">
-              <Logo className="w-10 h-10 mr-3" />
+              <Logo variant="custom" width={118} height={40} className="w-[118px] h-[40px]" />
             </div>
             
             {/* Social Icons */}
@@ -65,7 +66,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Footer Links */}
+          {/* Right Side - Footer Links */}
           <div className="text-left sm:text-right space-y-3">
             <a 
               href="#" 
@@ -88,19 +89,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-white/20 pt-6 sm:pt-8">
-          <Image 
-            src="/assets/separator.svg" 
-            alt="Separator" 
-            width={100}
-            height={4}
-            className="w-full mb-6 sm:mb-8 opacity-30"
-          />
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
-            <p className="text-white text-center sm:text-left">{t('footer.tagline')}</p>
-            <p className="text-white text-center sm:text-right">{t('footer.copyright')}</p>
-          </div>
+        {/* Separator Line */}
+        <div className="border-t border-white/20 mb-6 sm:mb-8"></div>
+
+        {/* Footer Bottom - Two Column Layout like Figma */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
+          <p className="text-white text-center sm:text-left">{t('footer.tagline')}</p>
+          <p className="text-white text-center sm:text-right">{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

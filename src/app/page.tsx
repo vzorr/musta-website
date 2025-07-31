@@ -1,4 +1,4 @@
-// src/app/page.tsx - Updated with GDPR banner
+// src/app/page.tsx - Updated with full-width hero
 'use client';
 
 import Header from '../components/Header';
@@ -35,42 +35,41 @@ export default function Home() {
 
   return (
     <LanguageProvider>
-      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative">
+      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
         {/* Header - Full width */}
         <Header />
         
-        {/* Main content with responsive container */}
-        <main className="w-full">
-          {/* Hero Section - Full width background with centered content */}
+        {/* Main content */}
+        <main className="w-full overflow-x-hidden">
+          {/* Hero Section - FULL WIDTH - No container restrictions */}
+          <HeroSection />
+
+          {/* Other sections with centered content */}
           <div className="w-full">
-            <div className="w-full max-w-[1440px] mx-auto">
-              <HeroSection />
+            {/* Why Join Section */}
+            <div className="w-full bg-myusta-gray">
+              <div className="w-full max-w-[1440px] mx-auto">
+                <WhyJoinSection />
+              </div>
             </div>
-          </div>
 
-          {/* Why Join Section - Full width background with centered content */}
-          <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1440px] mx-auto">
-              <WhyJoinSection />
+            {/* How It Works Section */}
+            <div className="w-full bg-myusta-gray">
+              <div className="w-full max-w-[1440px] mx-auto">
+                <HowItWorksSection />
+              </div>
             </div>
-          </div>
 
-          {/* How It Works Section - Full width background with centered content */}
-          <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1440px] mx-auto">
-              <HowItWorksSection />
+            {/* Registration Form */}
+            <div className="w-full bg-myusta-gray">
+              <RegistrationForm gdprConsents={gdprConsents} />
             </div>
-          </div>
 
-          {/* Registration Form - Full width background with centered form */}
-          <div className="w-full bg-myusta-gray">
-            <RegistrationForm gdprConsents={gdprConsents} />
-          </div>
-
-          {/* FAQ Section - Full width background with centered content */}
-          <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1440px] mx-auto">
-              <FAQSection />
+            {/* FAQ Section */}
+            <div className="w-full bg-myusta-gray">
+              <div className="w-full max-w-[1440px] mx-auto">
+                <FAQSection />
+              </div>
             </div>
           </div>
         </main>
@@ -78,7 +77,7 @@ export default function Home() {
         {/* Footer - Full width */}
         <Footer />
 
-        {/* GDPR Consent Banner - Shows on page load */}
+        {/* GDPR Consent Banner */}
         <GDPRConsent onConsentChange={handleGdprConsentChange} />
       </div>
     </LanguageProvider>

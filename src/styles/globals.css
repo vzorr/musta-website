@@ -26,17 +26,54 @@ html {
 body {
   overflow-x: hidden;
   width: 100%;
-}
-
-/* ========================================
-   HERO BACKGROUND
-======================================== */
-
-.hero-bg {
-  background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
   position: relative;
 }
 
+/* ========================================
+   FULL WIDTH HERO BACKGROUND WITH ASSETS PATH
+======================================== */
+
+.hero-bg {
+
+   width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  
+  /* Force full width even if parent has constraints */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  
+  /* Background image settings */
+  background-image: url('/assets/herobanner.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Fallback gradient background */
+  background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
+  
+  /* Hero banner image from assets folder */
+  background-image: url('/assets/herobanner.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+ 
+}
+
+/* Mobile optimization - disable fixed attachment for better performance */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+    min-height: 80vh;
+  }
+}
+
+/* Subtle overlay for better text readability */
 .hero-bg::before {
   content: '';
   position: absolute;
@@ -44,8 +81,54 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="2" fill="%23FFC800" opacity="0.3"/><circle cx="800" cy="300" r="1.5" fill="%2300203F" opacity="0.2"/><circle cx="400" cy="600" r="1" fill="%23335372" opacity="0.3"/><circle cx="700" cy="100" r="2.5" fill="%23FFC800" opacity="0.2"/></svg>');
+  background: rgba(243, 243, 243, 0.1);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure hero content is above the overlay */
+.hero-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced text readability over the banner */
+.hero-bg h1,
+.hero-bg p {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Fallback for slow connections */
+@media (max-width: 640px) {
+  .hero-bg {
+    background-image: url('/assets/herobanner.png'), linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
+    background-size: cover, cover;
+    background-position: center center, center center;
+  }
+}
+
+/* High-DPI displays optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-bg {
+    background-image: url('/assets/herobanner.png');
+  }
+}
+
+/* Loading state for better UX */
+.hero-bg.loading {
+  background-color: #f3f3f3;
+  background-image: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
+}
+
+.hero-bg.loaded {
+  background-image: url('/assets/herobanner.png');
+}
+
+/* Accessibility - Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
 }
 
 /* ========================================
@@ -173,12 +256,190 @@ body {
 }
 
 /* ========================================
-   HEADER STYLES
+   HEADER STYLES - ENHANCED & FIXED STICKY
 ======================================== */
 
 header {
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
+  isolation: isolate;
+}
+
+/* Professional features strip styling */
+.features-strip {
+  background: linear-gradient(135deg, rgba(51, 83, 114, 0.95) 0%, rgba(0, 32, 63, 0.95) 100%);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* Feature item hover effect */
+.feature-item {
+  transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-1px);
+}
+
+.feature-item:hover .tick-icon {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(255, 200, 0, 0.3);
+}
+
+/* Tick icon styling */
+.tick-icon {
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsiveness for features */
+@media (max-width: 640px) {
+  .features-strip {
+    padding: 0.75rem 1rem;
+  }
+  
+  .feature-item {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Additional sticky fix for Safari */
+@supports (-webkit-backdrop-filter: blur(12px)) {
+  header {
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* ========================================
+   HOW IT WORKS SECTION - FIGMA SPACING
+======================================== */
+
+/* How It Works Section Container - Exact Figma measurements */
+.how-it-works-section {
+  padding-top: 4rem; /* 64px top spacing as shown in Figma */
+  padding-bottom: 4rem; /* 64px bottom spacing as shown in Figma */
+}
+
+/* Title to Cards Gap - 48px as shown in Figma */
+.how-it-works-title {
+  margin-bottom: 3rem; /* 48px gap between title and cards */
+}
+
+/* Cards Container - Proper spacing between cards */
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem; /* 24px gap on mobile */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tablet spacing */
+@media (min-width: 768px) {
+  .how-it-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* 32px gap on tablet */
+  }
+}
+
+/* Desktop spacing - Match Figma exactly */
+@media (min-width: 1024px) {
+  .how-it-works-section {
+    padding-top: 5rem; /* 80px on desktop */
+    padding-bottom: 5rem; /* 80px on desktop */
+  }
+  
+  .how-it-works-title {
+    margin-bottom: 3rem; /* Keep 48px gap */
+  }
+  
+  .how-it-works-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; /* 32px gap between cards on desktop */
+    max-width: 1200px;
+  }
+}
+
+/* Individual Step Card Styling */
+.step-card {
+  background: #f3f3f3;
+  padding: 2rem 1.5rem; /* 32px vertical, 24px horizontal */
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+  .step-card {
+    padding: 2.5rem 2rem; /* 40px vertical, 32px horizontal on tablet+ */
+  }
+}
+
+/* Step Card Elements Spacing */
+.step-card .step-number {
+  margin-bottom: 1rem; /* 16px below step number */
+  font-weight: 500;
+  color: #00203F;
+}
+
+.step-card .step-icon-container {
+  margin: 0 auto 1.5rem auto; /* 24px below icon */
+  width: 3rem;
+  height: 3rem;
+  background: #FFC800;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
+              1px 1px 1.4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.step-card .step-icon-container:hover {
+  transform: scale(1.1);
+  box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
+              2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.step-card .step-description {
+  color: #888888;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Hover Effects */
+.step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
+}
+
+/* Large Desktop Adjustments */
+@media (min-width: 1440px) {
+  .how-it-works-section {
+    padding-top: 6rem; /* 96px on very large screens */
+    padding-bottom: 6rem;
+  }
+  
+  .how-it-works-grid {
+    max-width: 1400px;
+    gap: 2.5rem; /* 40px gap on very large screens */
+  }
+  
+  .step-card {
+    padding: 3rem 2.5rem; /* More padding on large screens */
+  }
 }
 
 /* ========================================
@@ -300,13 +561,22 @@ header {
   grid-template-columns: 1fr;
   gap: 2rem;
   align-items: center;
+  min-height: 70vh;
+  padding: 2rem 0;
 }
 
 @media (min-width: 1024px) {
   .hero-content-grid {
     grid-template-columns: 1fr 2fr;
     gap: 4rem;
+    min-height: 80vh;
   }
+}
+
+/* Enhanced text readability over hero banner */
+.hero-content-grid h1,
+.hero-content-grid p {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ========================================
@@ -441,6 +711,10 @@ a:focus {
   html {
     scroll-behavior: auto;
   }
+  
+  .hero-bg {
+    background-attachment: scroll;
+  }
 }
 
 /* High Contrast Mode Support */
@@ -449,6 +723,10 @@ a:focus {
   .neumorphic-input,
   .neumorphic-btn {
     border: 1px solid currentColor;
+  }
+  
+  .hero-bg::before {
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -469,7 +747,8 @@ a:focus {
   header,
   footer,
   .neumorphic-btn,
-  .language-switcher {
+  .language-switcher,
+  .features-strip {
     display: none;
   }
   
@@ -485,6 +764,7 @@ a:focus {
   
   .hero-bg {
     background: white;
+    background-image: none;
   }
   
   .hero-bg::before {
@@ -626,7 +906,9 @@ a:focus {
 /* GPU Acceleration for Animations */
 .neumorphic-card,
 .neumorphic-btn,
-.icon-container {
+.icon-container,
+.feature-item,
+.tick-icon {
   will-change: transform;
   transform: translateZ(0);
 }
@@ -635,6 +917,30 @@ a:focus {
 @font-face {
   font-family: 'Inter';
   font-display: swap;
+}
+
+/* Optimize hero banner loading */
+.hero-bg {
+  /* Preload hint for hero banner */
+  background-image: url('/assets/herobanner.png');
+}
+
+/* ========================================
+   HERO BANNER LOADING OPTIMIZATION
+======================================== */
+
+/* Preload critical hero banner */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-image: url('/assets/herobanner.png');
+  background-size: 0 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ========================================

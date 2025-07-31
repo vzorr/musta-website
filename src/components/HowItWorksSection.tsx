@@ -1,39 +1,77 @@
 'use client';
 
 import { useLanguage } from '../contexts/LanguageContext';
-import StepCard from './StepCard';
+import Image from 'next/image';
 
 export default function HowItWorksSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-12 sm:py-20 bg-myusta-gray">
+    <section className="how-it-works-section bg-myusta-gray">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy text-center mb-12 sm:mb-16">
+        {/* Title with Figma spacing */}
+        <h2 className="how-it-works-title text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy text-center">
           {t('howItWorks.title')}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <StepCard
-            stepNumber={t('howItWorks.steps.step1.title')}
-            iconSrc="/assets/vector.svg"
-            iconAlt="Profile Icon"
-            description={t('howItWorks.steps.step1.description')}
-          />
+        {/* Cards Grid with proper Figma spacing */}
+        <div className="how-it-works-grid">
+          {/* Step 1 */}
+          <div className="step-card">
+            <p className="step-number text-myusta-navy font-medium">
+              {t('howItWorks.steps.step1.title')}
+            </p>
+            <div className="step-icon-container">
+              <Image 
+                src="/assets/vector.svg" 
+                alt="Profile Icon" 
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
+            </div>
+            <p className="step-description text-myusta-text-gray leading-relaxed">
+              {t('howItWorks.steps.step1.description')}
+            </p>
+          </div>
           
-          <StepCard
-            stepNumber={t('howItWorks.steps.step2.title')}
-            iconSrc="/assets/subtract.svg"
-            iconAlt="Skills Icon"
-            description={t('howItWorks.steps.step2.description')}
-          />
+          {/* Step 2 */}
+          <div className="step-card">
+            <p className="step-number text-myusta-navy font-medium">
+              {t('howItWorks.steps.step2.title')}
+            </p>
+            <div className="step-icon-container">
+              <Image 
+                src="/assets/subtract.svg" 
+                alt="Skills Icon" 
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
+            </div>
+            <p className="step-description text-myusta-text-gray leading-relaxed">
+              {t('howItWorks.steps.step2.description')}
+            </p>
+          </div>
           
-          <StepCard
-            stepNumber={t('howItWorks.steps.step3.title')}
-            iconSrc="/assets/vector.svg"
-            iconAlt="Work Icon"
-            description={t('howItWorks.steps.step3.description')}
-          />
+          {/* Step 3 */}
+          <div className="step-card">
+            <p className="step-number text-myusta-navy font-medium">
+              {t('howItWorks.steps.step3.title')}
+            </p>
+            <div className="step-icon-container">
+              <Image 
+                src="/assets/vector.svg" 
+                alt="Work Icon" 
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
+            </div>
+            <p className="step-description text-myusta-text-gray leading-relaxed">
+              {t('howItWorks.steps.step3.description')}
+            </p>
+          </div>
         </div>
       </div>
     </section>
