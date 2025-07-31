@@ -1,40 +1,39 @@
-/* HeroSection.module.css - FIXED: Hero banner image clipping issue */
+/* src/styles/HeroSection.module.css - FIXED: Reduce hero height to show more content */
 
 .hero {
-  /* Full viewport width without clipping */
+  /* Keep full width stretch */
   width: 100vw;
-  min-height: 100vh;
   position: relative;
   
-  /* FIXED: Remove the negative margin technique that can cause clipping */
-  /* left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw; */
+  /* FIXED: Reduce height instead of using full viewport */
+  min-height: 70vh; /* CHANGED from 100vh to 70vh - shows 30% more content */
+  max-height: 800px; /* ADDED: Cap maximum height for very tall screens */
   
-  /* FIXED: Use simpler full-width approach */
-  /*margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);*/
-  
-  /* Background image settings - FIXED positioning */
+  /* FIXED: No more image distortion */
   background-image: url('/assets/herobanner.png');
-  background-size: 100% 100%; 
-
+  background-size: cover; /* CHANGED: No stretching/distortion */
+  background-position: center center; /* ADDED: Center the image */
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll; /* Changed from fixed for better compatibility */
   background-color: #f3f3f3;
   
-  /* FIXED: Ensure no overflow clipping */
+  /* Keep overflow settings */
   overflow: visible;
 }
 
-/* FIXED: Alternative approach for problematic browsers */
-@supports not (width: 100vw) {
-  .hero {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-  }
+/* Alternative with even shorter height if needed */
+.heroShort {
+  width: 100vw;
+  min-height: 60vh; /* Even shorter - 60% of viewport height */
+  max-height: 700px;
+  /* ... rest same as above */
+}
+
+/* Alternative with fixed pixel height */
+.heroFixed {
+  width: 100vw;
+  height: 600px; /* Fixed height regardless of screen size */
+  /* ... rest same as above */
 }
 
 .hero::before {
@@ -49,13 +48,30 @@
   z-index: 1;
 }
 
+/* Separate overlay class for cleaner structure */
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(243, 243, 243, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .heroContent {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 100vw; /* FIXED: Ensure content doesn't exceed viewport */
+  max-width: 100vw;
   padding: 3rem 1rem;
-  box-sizing: border-box; /* FIXED: Include padding in width calculation */
+  box-sizing: border-box;
+  
+  /* ADDED: Better vertical centering within reduced height */
+  min-height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .heroText {
@@ -88,8 +104,6 @@
   transform: scale(0.98);
 }
 
-
-
 /* Loading states */
 .heroLoading {
   background: linear-gradient(135deg, #f3f3f3 0%, #e8e8e8 100%);
@@ -97,14 +111,17 @@
 
 .heroLoaded {
   background-image: url('/assets/herobanner.png');
+  background-size: cover; /* FIXED: No distortion */
+  background-position: center center; /* ADDED: Center image */
 }
 
-/* FIXED: Mobile optimization with proper viewport handling */
+/* RESPONSIVE: Adjust height based on screen size */
+
+/* Mobile - Keep shorter height */
 @media (max-width: 768px) {
   .hero {
-    background-attachment: scroll;
-    min-height: 80vh;
-    /* FIXED: Simpler mobile approach */
+    min-height: 80vh; /* Slightly taller on mobile for better content fit */
+    max-height: none; /* Remove max-height constraint on mobile */
     margin-left: 0;
     margin-right: 0;
     width: 100%;
@@ -121,27 +138,46 @@
   }
 }
 
-/* Tablet */
-@media (min-width: 640px) {
+/* Tablet - Medium height */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    min-height: 75vh;
+    max-height: 750px;
+  }
+  
   .phoneContainer {
-    width: 20rem;
-    height: 24rem;
+    width: 18rem;
+    height: 22rem;
   }
 }
 
-/* FIXED: Large desktop - ensure proper full width */
+/* Desktop and large screens - Constrained height to show more content */
+@media (min-width: 1025px) {
+  .hero {
+    min-height: 65vh; /* SHORTER on desktop to show more content below */
+    max-height: 800px;
+  }
+}
+
+/* Very large screens (like your HP Omen) - Even more constrained */
 @media (min-width: 1440px) {
   .hero {
-    /* Ensure full width on large screens */
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+    min-height: 60vh; /* EVEN SHORTER on very large screens */
+    max-height: 700px; /* Cap the height more aggressively */
   }
   
   .heroContent {
     padding: 4rem 2rem;
     max-width: 1440px;
     margin: 0 auto;
+  }
+}
+
+/* Extra large screens - Most constrained */
+@media (min-width: 2560px) {
+  .hero {
+    min-height: 50vh; /* VERY SHORT on ultra-wide screens */
+    max-height: 600px;
   }
 }
 
@@ -174,10 +210,11 @@
     background-image: none;
     width: 100%;
     margin: 0;
+    min-height: auto;
+    height: auto;
   }
   
   .hero::before {
     display: none;
   }
- 
 }
