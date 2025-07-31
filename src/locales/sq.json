@@ -58,6 +58,8 @@
       "electrician": "Elektriçist",
       "painter": "Piktor",
       "carpenter": "Marangoz",
+      "tiler": "Pllakaxhi",
+      "mason": "Murator",
       "other": "Tjetër"
     },
     "locations": {
@@ -68,11 +70,17 @@
       "shkoder": "Shkodër",
       "elbasan": "Elbasan",
       "korce": "Korçë",
+      "fier": "Fier",
+      "berat": "Berat",
       "other": "Tjetër"
     },
     "cta": "Futu tek Lista e Pritjes!",
     "success": "Faleminderit! Jeni regjistruar me sukses.",
-    "error": "Ka ndodhur një gabim. Ju lutemi provoni përsëri."
+    "error": "Ka ndodhur një gabim. Ju lutemi provoni përsëri.",
+    "validation": {
+      "required": "Të gjitha fushat janë të obligueshme",
+      "email": "Ju lutemi shkruani një email të vlefshëm"
+    }
   },
   "faq": {
     "title": "FAQ",

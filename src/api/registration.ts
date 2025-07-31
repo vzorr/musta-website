@@ -1,6 +1,6 @@
-// src/api/registration.ts - Registration API calls
+// src/api/registration.ts - Registration API calls (Fixed imports)
 import { apiClient } from './client';
-import { RegistrationFormData, APIResponse } from '../../types';
+import { RegistrationFormData, APIResponse } from '../types';
 
 class RegistrationAPI {
   private readonly endpoint = '/register';

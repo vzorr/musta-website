@@ -1,6 +1,8 @@
-// src/contexts/ApiContext.tsx - Global API state management (optional)
+// src/contexts/ApiContext.tsx - Global API state management (Fixed imports)
+'use client';
+
 import React, { createContext, useContext, useCallback, useState } from 'react';
-import { apiClient, APIError } from '../app/api/client';
+import { APIError } from '../types';
 
 interface ApiContextType {
   isOnline: boolean;
@@ -28,13 +30,15 @@ export function ApiProvider({ children }: { children: React.ReactNode }) {
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
 
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('online', handleOnline);
+      window.addEventListener('offline', handleOffline);
 
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
+      return () => {
+        window.removeEventListener('online', handleOnline);
+        window.removeEventListener('offline', handleOffline);
+      };
+    }
   }, []);
 
   const handleGlobalError = useCallback((error: APIError) => {

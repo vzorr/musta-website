@@ -58,6 +58,8 @@
       "electrician": "Electrician",
       "painter": "Painter",
       "carpenter": "Carpenter",
+      "tiler": "Tiler",
+      "mason": "Mason",
       "other": "Other"
     },
     "locations": {
@@ -68,11 +70,17 @@
       "shkoder": "Shkoder",
       "elbasan": "Elbasan",
       "korce": "Korce",
+      "fier": "Fier",
+      "berat": "Berat",
       "other": "Other"
     },
     "cta": "Join the Waitlist!",
     "success": "Thank you! You have been successfully registered.",
-    "error": "An error occurred. Please try again."
+    "error": "An error occurred. Please try again.",
+    "validation": {
+      "required": "All fields are required",
+      "email": "Please enter a valid email address"
+    }
   },
   "faq": {
     "title": "FAQ",

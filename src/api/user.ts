@@ -1,6 +1,6 @@
-// src/api/user.ts - User-related API calls
+// src/api/user.ts - User-related API calls (Fixed imports)
 import { apiClient } from './client';
-import { APIResponse, UserData } from '../../types';
+import { APIResponse, UserData } from '../types';
 
 class UserAPI {
   private readonly endpoint = '/user';

@@ -1,6 +1,6 @@
-// src/api/gdpr.ts - GDPR API calls
+// src/api/gdpr.ts - GDPR API calls (Fixed imports)
 import { apiClient } from './client';
-import { GDPRRequest, APIResponse, UserData } from '../../types';
+import { GDPRRequest, APIResponse, UserData } from '../types';
 
 class GDPRAPI {
   private readonly baseEndpoint = '/gdpr';
@@ -9,14 +9,22 @@ class GDPRAPI {
    * Request data access
    */
   async requestDataAccess(email: string, language: 'sq' | 'en' = 'sq'): Promise<APIResponse<UserData[]>> {
-    return apiClient.post(`${this.baseEndpoint}/access`, { email, language });
+    return apiClient.post(`${this.baseEndpoint}`, { 
+      email, 
+      language,
+      requestType: 'access'
+    });
   }
 
   /**
    * Request data export
    */
   async requestDataExport(email: string, language: 'sq' | 'en' = 'sq'): Promise<APIResponse> {
-    return apiClient.post(`${this.baseEndpoint}/export`, { email, language });
+    return apiClient.post(`${this.baseEndpoint}`, { 
+      email, 
+      language,
+      requestType: 'export'
+    });
   }
 
   /**
@@ -28,11 +36,12 @@ class GDPRAPI {
     reason?: string, 
     language: 'sq' | 'en' = 'sq'
   ): Promise<APIResponse> {
-    return apiClient.post(`${this.baseEndpoint}/delete`, {
+    return apiClient.post(`${this.baseEndpoint}`, {
       email,
       confirmEmail,
       reason,
-      language
+      language,
+      requestType: 'delete'
     });
   }
 
@@ -44,10 +53,11 @@ class GDPRAPI {
     details: string, 
     language: 'sq' | 'en' = 'sq'
   ): Promise<APIResponse> {
-    return apiClient.post(`${this.baseEndpoint}/rectify`, {
+    return apiClient.post(`${this.baseEndpoint}`, {
       email,
       details,
-      language
+      language,
+      requestType: 'rectify'
     });
   }
 }

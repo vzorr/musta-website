@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Security headers
+  // Create response
   const response = NextResponse.next();
   
   // Set security headers
@@ -42,9 +42,6 @@ export function middleware(request: NextRequest) {
   if (process.env.NODE_ENV === 'development') {
     console.log(`[Middleware] ${request.method} ${request.nextUrl.pathname}`);
   }
-  
-  // Rate limiting check could be added here
-  // const clientIP = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
   
   return response;
 }
