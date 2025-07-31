@@ -1,4 +1,4 @@
-// src/services/email.service.ts - Comprehensive Email service
+// src/services/email.service.ts - Comprehensive Email service (MINIMAL FIX - ALL FUNCTIONALITY PRESERVED)
 import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 import { EmailTemplateData } from '../types';
@@ -19,11 +19,19 @@ interface RegistrationEmailData {
 }
 
 class EmailService {
-  private transporter: nodemailer.Transporter;
+  private transporter: nodemailer.Transporter | null = null; // CHANGE: Added | null
   private gmail: any;
+  private initialized = false; // CHANGE: Added initialization flag
 
   constructor() {
-    this.initializeServices();
+    // CHANGE: Removed this.initializeServices(); (async call from constructor)
+  }
+
+  // CHANGE: Added this method to ensure initialization
+  private async ensureInitialized() {
+    if (!this.initialized) {
+      await this.initializeServices();
+    }
   }
 
   private async initializeServices() {
@@ -44,7 +52,7 @@ class EmailService {
       // Initialize Nodemailer
       const accessToken = await oauth2Client.getAccessToken();
 
-      this.transporter = nodemailer.createTransporter({
+      this.transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
           type: 'OAuth2',
@@ -55,6 +63,8 @@ class EmailService {
           accessToken: accessToken.token as string,
         },
       });
+
+      this.initialized = true; // CHANGE: Added this line
     } catch (error) {
       console.error('Error initializing email service:', error);
       throw new Error('Failed to initialize email service');
@@ -66,6 +76,8 @@ class EmailService {
    */
   async sendConfirmationEmail(data: RegistrationEmailData): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const template = this.getConfirmationTemplate(data);
 
       const mailOptions = {
@@ -76,7 +88,7 @@ class EmailService {
         html: template.html,
       };
 
-      await this.transporter.sendMail(mailOptions);
+      await this.transporter!.sendMail(mailOptions);
       return true;
     } catch (error) {
       console.error('Error sending confirmation email:', error);
@@ -89,6 +101,8 @@ class EmailService {
    */
   async sendAdminNotification(data: RegistrationEmailData): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const template = this.getAdminNotificationTemplate(data);
 
       const mailOptions = {
@@ -98,7 +112,7 @@ class EmailService {
         html: template.html,
       };
 
-      await this.transporter.sendMail(mailOptions);
+      await this.transporter!.sendMail(mailOptions);
       return true;
     } catch (error) {
       console.error('Error sending admin notification:', error);
@@ -111,6 +125,8 @@ class EmailService {
    */
   async sendGDPREmail(email: string, type: 'confirmation' | 'data_export', data?: any): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const template = this.getGDPRTemplate(type, data);
 
       const mailOptions = {
@@ -120,7 +136,7 @@ class EmailService {
         html: template.html,
       };
 
-      await this.transporter.sendMail(mailOptions);
+      await this.transporter!.sendMail(mailOptions);
       return true;
     } catch (error) {
       console.error('Error sending GDPR email:', error);

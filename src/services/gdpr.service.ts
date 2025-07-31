@@ -1,15 +1,18 @@
-// src/services/gdpr.service.ts - GDPR business logic
+// src/services/gdpr.service.ts - MINIMAL FIX: Make return types consistent
 import { GDPRRequest } from '../types';
 import { googleService } from './google.service';
 import { emailService } from './email.service';
 
+// CHANGE: Added consistent return type interface
+interface GDPRServiceResponse {
+  success: boolean;
+  message: string;
+  data?: any;
+  error?: string;
+}
+
 class GDPRService {
-  async processDataAccess(email: string, language: 'sq' | 'en'): Promise<{
-    success: boolean;
-    message: string;
-    data?: any;
-    error?: string;
-  }> {
+  async processDataAccess(email: string, language: 'sq' | 'en'): Promise<GDPRServiceResponse> {
     try {
       const userData = await googleService.getUserData(email);
       
@@ -43,11 +46,8 @@ class GDPRService {
     }
   }
 
-  async processDataDeletion(email: string, language: 'sq' | 'en'): Promise<{
-    success: boolean;
-    message: string;
-    error?: string;
-  }> {
+  // CHANGE: Updated return type to be consistent
+  async processDataDeletion(email: string, language: 'sq' | 'en'): Promise<GDPRServiceResponse> {
     try {
       const userData = await googleService.getUserData(email);
       
@@ -73,6 +73,7 @@ class GDPRService {
         return {
           success: true,
           message: language === 'sq' ? 'Të dhënat u fshinë' : 'Data deleted'
+          // CHANGE: No data property needed for deletion
         };
       } else {
         return {
@@ -92,11 +93,8 @@ class GDPRService {
     }
   }
 
-  async processDataExport(email: string, language: 'sq' | 'en'): Promise<{
-    success: boolean;
-    message: string;
-    error?: string;
-  }> {
+  // CHANGE: Updated return type to be consistent
+  async processDataExport(email: string, language: 'sq' | 'en'): Promise<GDPRServiceResponse> {
     try {
       const userData = await googleService.getUserData(email);
       
@@ -122,6 +120,7 @@ class GDPRService {
           ? (language === 'sq' ? 'Eksporti u dërgua' : 'Export sent')
           : (language === 'sq' ? 'Gabim në dërgim' : 'Send error'),
         error: exportSuccess ? undefined : 'EMAIL_ERROR'
+        // CHANGE: No data property needed for export (sent via email)
       };
 
     } catch (error) {

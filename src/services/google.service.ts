@@ -1,15 +1,23 @@
-// src/services/google.service.ts - Consolidated Google services
+// src/services/google.service.ts - Consolidated Google services (MINIMAL FIX - ALL FUNCTIONALITY PRESERVED)
 import { google } from 'googleapis';
 import { RegistrationData, GDPRRequest } from '../types';
 
 class GoogleService {
-  private sheets: any;
-  private gmail: any;
+  private sheets: any = null; // CHANGE: Added = null
+  private gmail: any = null;  // CHANGE: Added = null
   private spreadsheetId: string;
+  private initialized = false; // CHANGE: Added initialization flag
 
   constructor() {
-    this.initializeServices();
+    // CHANGE: Removed this.initializeServices(); (async call from constructor)
     this.spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
+  }
+
+  // CHANGE: Added this method to ensure initialization
+  private async ensureInitialized() {
+    if (!this.initialized) {
+      await this.initializeServices();
+    }
   }
 
   private async initializeServices() {
@@ -26,11 +34,14 @@ class GoogleService {
 
     this.sheets = google.sheets({ version: 'v4', auth });
     this.gmail = google.gmail({ version: 'v1', auth });
+    this.initialized = true; // CHANGE: Added this line
   }
 
   // Sheets operations
   async addRegistration(data: RegistrationData): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const timestamp = new Date().toISOString();
       const row = [
         timestamp,
@@ -65,6 +76,8 @@ class GoogleService {
 
   async getUserData(email: string): Promise<any[]> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const response = await this.sheets.spreadsheets.values.get({
         spreadsheetId: this.spreadsheetId,
         range: 'Registrations!A:M'
@@ -93,6 +106,8 @@ class GoogleService {
 
   async deleteUserData(email: string): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const response = await this.sheets.spreadsheets.values.get({
         spreadsheetId: this.spreadsheetId,
         range: 'Registrations!A:M'
@@ -134,6 +149,8 @@ class GoogleService {
 
   async logGDPRRequest(request: GDPRRequest): Promise<boolean> {
     try {
+      await this.ensureInitialized(); // CHANGE: Added this line
+      
       const timestamp = new Date().toISOString();
       const row = [
         timestamp,
@@ -160,6 +177,8 @@ class GoogleService {
 
   async initializeSheets(): Promise<void> {
     // Initialize sheets with proper headers if they don't exist
+    await this.ensureInitialized(); // CHANGE: Added this line
+    
     const registrationHeaders = [
       'Timestamp', 'Name', 'Email', 'Phone', 'Category', 'Location',
       'Language', 'IP', 'User Agent', 'GDPR Consent', 'Marketing Consent',

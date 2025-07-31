@@ -9,6 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // FIXED: Added metadataBase to resolve the warning
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: 'myUsta - Platforma për Profesionistë',
   description: 'Platforma që lidh pronarët e shtëpive me profesionistë të besuar për të gjitha nevojat e mirëmbajtjes dhe riparimeve.',
   keywords: 'myUsta, profesionistë, hidraulik, elektriçist, piktor, marangoz, mirëmbajtje, riparime',

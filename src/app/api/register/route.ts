@@ -1,10 +1,24 @@
-// src/app/api/register/route.ts
+// src/app/api/register/route.ts - MINIMAL FIX: Added OPTIONS handler only
 import { NextRequest, NextResponse } from 'next/server';
 import { registrationService } from '../../../services/registration.service';
 import { security } from '../../../utils/security';
 import { rateLimiters } from '../../../utils/rate-limiters';
 import { helpers } from '../../../utils/helpers';
 
+// CHANGE: Added OPTIONS handler for CORS preflight requests
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
+}
+
+// ALL EXISTING FUNCTIONALITY PRESERVED - NO CHANGES TO POST METHOD
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting check

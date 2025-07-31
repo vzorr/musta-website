@@ -1,18 +1,17 @@
-// src/utils/rate-limiters.ts - Rate limiting utilities (Updated for App Router)
+// src/utils/rate-limiters.ts - FIXED: Correct rate-limiter-flexible API usage
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 import { NextRequest } from 'next/server';
 
 class RateLimiterUtil {
+  // CHANGE: Removed keyGenerator - not supported in rate-limiter-flexible
   // Registration rate limiter: 5 requests per 15 minutes per IP
   registrationLimiter = new RateLimiterMemory({
-    keyGenerator: (req: any) => this.getClientKey(req),
     points: 5,
     duration: 900, // 15 minutes
   });
 
   // GDPR rate limiter: 3 requests per hour per IP
   gdprLimiter = new RateLimiterMemory({
-    keyGenerator: (req: any) => this.getClientKey(req),
     points: 3,
     duration: 3600, // 1 hour
   });
@@ -35,7 +34,9 @@ class RateLimiterUtil {
 
   async checkRegistrationLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
     try {
-      await this.registrationLimiter.consume(req);
+      // CHANGE: Use consume() with the key, not pass the request object
+      const key = this.getClientKey(req);
+      await this.registrationLimiter.consume(key);
       return { allowed: true };
     } catch (rateLimiterRes: any) {
       return { 
@@ -47,7 +48,9 @@ class RateLimiterUtil {
 
   async checkGDPRLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
     try {
-      await this.gdprLimiter.consume(req);
+      // CHANGE: Use consume() with the key, not pass the request object
+      const key = this.getClientKey(req);
+      await this.gdprLimiter.consume(key);
       return { allowed: true };
     } catch (rateLimiterRes: any) {
       return { 

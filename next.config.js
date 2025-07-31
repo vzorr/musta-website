@@ -19,13 +19,11 @@ const nextConfig = {
   // Performance optimizations
   swcMinify: true,
   
-  // Experimental features
+  // FIXED: Updated experimental features for Next.js 14.2.0
   experimental: {
-    // Enable App Router (default in Next.js 13+)
-    appDir: true,
-    // Server actions for form handling
-    serverActions: true,
-    // Optimize server components
+    // REMOVED: appDir is now default in Next.js 14+
+    // REMOVED: serverActions is now enabled by default
+    // Server components external packages
     serverComponentsExternalPackages: ['nodemailer', 'googleapis'],
   },
   
@@ -34,10 +32,8 @@ const nextConfig = {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
   
-  // Webpack configuration
+  // FIXED: Webpack configuration with cache improvements
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Custom webpack configurations if needed
-    
     // Handle node modules that might not be compatible with edge runtime
     if (!isServer) {
       config.resolve.fallback = {
@@ -46,6 +42,18 @@ const nextConfig = {
         net: false,
         tls: false,
         crypto: false,
+      };
+    }
+    
+    // FIXED: Improved webpack cache configuration for development
+    if (dev) {
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+        // Exclude problematic packages from managed paths
+        managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!(googleapis|nodemailer|@types[\\/]node))/],
       };
     }
     
@@ -60,7 +68,7 @@ const nextConfig = {
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT,OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
         ],
       },
