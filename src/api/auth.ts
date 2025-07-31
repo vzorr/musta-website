@@ -1,6 +1,6 @@
 // src/api/auth.ts - Authentication API calls (if needed in future)
 import { apiClient } from './client';
-import { APIResponse } from '../types';
+import { APIResponse } from '../../types';
 
 interface LoginCredentials {
   email: string;

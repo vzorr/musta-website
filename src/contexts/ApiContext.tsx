@@ -1,6 +1,6 @@
 // src/contexts/ApiContext.tsx - Global API state management (optional)
 import React, { createContext, useContext, useCallback, useState } from 'react';
-import { apiClient, APIError } from '../api/client';
+import { apiClient, APIError } from '../app/api/client';
 
 interface ApiContextType {
   isOnline: boolean;

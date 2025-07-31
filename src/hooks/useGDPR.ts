@@ -1,7 +1,7 @@
 // src/hooks/useGDPR.ts - GDPR-specific hook
 import { useCallback } from 'react';
 import { useApi } from './useApi';
-import { gdprApi } from '../api';
+import { gdprApi } from '../app/api';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function useGDPR() {

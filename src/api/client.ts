@@ -1,5 +1,5 @@
 // src/api/client.ts - Generic API Handler Class
-import { APIResponse, APIError } from '../types';
+import { APIResponse, APIError } from '../../types';
 
 interface RequestConfig {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

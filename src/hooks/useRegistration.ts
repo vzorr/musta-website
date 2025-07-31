@@ -1,7 +1,7 @@
 // src/hooks/useRegistration.ts - Registration-specific hook
 import { useCallback } from 'react';
 import { useApi } from './useApi';
-import { registrationApi } from '../api';
+import { registrationApi } from '../app/api';
 import { RegistrationFormData } from '../types';
 import { useLanguage } from '../contexts/LanguageContext';
 

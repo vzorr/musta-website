@@ -1,6 +1,6 @@
 // src/api/gdpr.ts - GDPR API calls
 import { apiClient } from './client';
-import { GDPRRequest, APIResponse, UserData } from '../types';
+import { GDPRRequest, APIResponse, UserData } from '../../types';
 
 class GDPRAPI {
   private readonly baseEndpoint = '/gdpr';
