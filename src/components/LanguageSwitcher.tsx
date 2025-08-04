@@ -2,18 +2,19 @@
 
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import styles from '../styles/language.module.css';
 
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-4 sm:gap-3">
       {/* UK Flag */}
       <button
         onClick={() => setLanguage('en')}
-        className={`w-8 h-6 relative rounded-sm transition-all duration-200 border border-gray-300 overflow-hidden ${
+        className={`w-8 h-6 relative rounded-sm transition-all duration-200 overflow-hidden ${styles.ukflag}  ${
           language === 'en' 
-            ? 'opacity-100 ring-2 ring-myusta-yellow ring-offset-1' 
+            ? 'opacity-100 ring-2 ring-offset-1' 
             : 'opacity-70 hover:opacity-90'
         }`}
         title="English"
@@ -34,12 +35,13 @@ export default function LanguageSwitcher() {
         <span className="sr-only">Switch to English</span>
       </button>
       
+      
       {/* Albania Flag */}
       <button
         onClick={() => setLanguage('sq')}
-        className={`w-8 h-6 relative rounded-sm transition-all duration-200 border border-gray-300 overflow-hidden ${
+        className={`w-8 h-6 relative rounded-sm transition-all duration-200 border  overflow-hidden  ${styles.ukflag} ${
           language === 'sq' 
-            ? 'opacity-100 ring-2 ring-myusta-yellow ring-offset-1' 
+            ? 'opacity-100 ring-2 ring-offset-1' 
             : 'opacity-70 hover:opacity-90'
         }`}
         title="Shqip"

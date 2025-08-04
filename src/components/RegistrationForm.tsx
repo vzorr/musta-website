@@ -4,6 +4,9 @@
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import styles from '../styles/registeration.module.css';
+
+
 
 interface FormData {
   name: string;
@@ -165,14 +168,24 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
     { value: 'berat', label: t('registration.locations.berat') },
     { value: 'other', label: t('registration.locations.other') },
   ];
+const fullTitle = t('whyJoin.title');
+const lastWord = fullTitle?.trim().split(/\s+/).slice(-1)[0] || "";
 
+  // Split the title into words
+  const words = fullTitle?.trim().split(/\s+/) || [];
+
+// Remove the last word
+const remainingTitle = words.slice(0, -1).join(" ")
   return (
     <>
       <section id="registration" className="py-12 sm:py-20 bg-myusta-gray relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy mb-12 sm:mb-16">
-            {t('registration.title')}
+          <div className={`flex flex-row justify-center gap-2 ${styles.registeration}`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl text-myusta-navy mb-12 sm:mb-16">
+            {remainingTitle}
           </h2>
+          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{lastWord}</h1>
+          </div>
           
           {/* Fixed form container with proper centering */}
           <div className="w-full max-w-md mx-auto">
@@ -362,7 +375,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                 <button 
                   type="submit" 
                   disabled={isSubmitting || !privacyAccepted || !gdprConsents.gdprAccepted}
-                  className="neumorphic-btn w-full py-3 rounded-lg text-myusta-navy font-semibold text-lg hover:scale-105 transition-transform mt-8 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-myusta-yellow focus:ring-offset-2 bg-myusta-yellow"
+                  className={` neumorphic-btn w-full py-2 rounded-xl text-myusta-navy font-semibold text-lg hover:scale-105 transition-transform mt-8 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-myusta-y ${styles.formbtn}`}
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
@@ -376,14 +389,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                 </button>
 
                 {/* Data Usage Notice */}
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-xs text-blue-800">
-                    🔒 {language === 'sq' 
-                      ? 'Të dhënat tuaja do të ruhen në mënyrë të sigurt dhe do të përdoren vetëm për qëllimet e specifikuara në Politikën e Privatësisë. Ju mund të kërkoni fshirjen e të dhënave tuaja në çdo kohë.'
-                      : 'Your data will be stored securely and used only for the purposes specified in our Privacy Policy. You can request deletion of your data at any time.'
-                    }
-                  </p>
-                </div>
+                
               </form>
             </div>
           </div>

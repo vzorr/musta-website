@@ -13,9 +13,12 @@
   margin-bottom: 3rem;
 }
 
+
 .title {
   margin-bottom: 2rem;
+  opacity: 0.8;
 }
+
 
 .description {
   max-width: 64rem;

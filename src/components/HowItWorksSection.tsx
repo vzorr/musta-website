@@ -6,14 +6,26 @@ import styles from '../styles/HowItWorksSection.module.css';
 
 export default function HowItWorksSection() {
   const { t } = useLanguage();
+    const fullTitle = t('howItWorks.title');
+const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
+
+
+  // Split the title into words
+  const words = fullTitle?.trim().split(/\s+/) || [];
+
+  // Extract first word and remaining part
+  const remainingTitle = words.slice(1).join(" ");
 
   return (
     <section className={styles.howItWorksSection}>
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Title with Figma spacing */}
-        <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy italic`}>
-          {t('howItWorks.title')}
+        <div className='flex flex-row justify-center gap-2'>
+          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
+        <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl text-myusta-navy italic`}>
+          {remainingTitle}
         </h2>
+        </div>
         
         {/* Cards Grid with proper Figma spacing */}
         <div className={styles.howItWorksGrid}>

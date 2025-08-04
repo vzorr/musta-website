@@ -65,7 +65,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     return (
       <div className="min-h-screen bg-myusta-gray flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-myusta-yellow border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4  border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-myusta-navy">Loading...</p>
         </div>
       </div>

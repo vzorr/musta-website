@@ -14,6 +14,8 @@ export default function Header() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+
+  
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
@@ -26,7 +28,7 @@ export default function Header() {
 
             {/* Logo - Centered */}
             <div className={styles.centerSection}>
-              <Logo variant="custom" width={118} height={40} className="w-[118px] h-[40px]" />
+              <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
             </div>
 
             {/* CTA Button */}

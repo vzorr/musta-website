@@ -1,12 +1,19 @@
 'use client';
-
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
 import styles from '../styles/WhyJoinSection.module.css';
 
 export default function WhyJoinSection() {
   const { t } = useLanguage();
+  const fullTitle = t('whyJoin.title');
+  const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
 
+
+  // Split the title into words
+  const words = fullTitle?.trim().split(/\s+/) || [];
+
+  // Extract first word and remaining part
+  const remainingTitle = words.slice(1).join(" ");
   // Feature cards data
   const features = [
     {
@@ -39,10 +46,14 @@ export default function WhyJoinSection() {
     <section className={styles.whyJoinSection}>
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Header */}
-        <div className={styles.header}>
-          <h2 className={`${styles.title} text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>
-            {t('whyJoin.title')}
+        <div className={` ${styles.header}`}>
+          <div className='flex flex-row justify-center gap-2 text-center'>
+          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
+          <h2 className={`${styles.title} text-2xl sm:text-4xl lg:text-5xl text-myusta-navy`}>
+            {remainingTitle}
           </h2>
+          
+          </div>
           <div 
             className={`${styles.description} text-base sm:text-lg text-myusta-navy leading-relaxed`}
             dangerouslySetInnerHTML={{ __html: t('whyJoin.description') }}
