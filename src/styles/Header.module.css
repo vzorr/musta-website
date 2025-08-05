@@ -32,7 +32,7 @@
 
 .headerContent {
   width: 100%;
-  padding: 1rem 1rem;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +40,7 @@
 
 @media (min-width: 640px) {
   .headerContent {
-    padding: 1.25rem 2rem;
+  
   }
 }
 
@@ -48,10 +48,7 @@
    HEADER SECTIONS
 ======================================== */
 
-.leftSection {
-  display: flex;
-  align-items: center;
-}
+
 
 .centerSection {
   display: flex;
@@ -110,7 +107,6 @@
 @media (min-width: 640px) {
   .ctaButton {
     font-size: 1rem;
-    padding: 0.5rem 1rem;
   }
 }
 
@@ -123,7 +119,7 @@
 /* Extra small mobile */
 @media (max-width: 480px) {
   .headerContent {
-    padding: 1rem 0.75rem;
+
   }
 
   .ctaButton {
@@ -135,22 +131,19 @@
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
   .headerContent {
-    padding: 1.25rem 1.5rem;
+    
   }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
   .headerContent {
-    padding: 1.25rem 2rem;
   }
 }
 
 /* Large desktop */
 @media (min-width: 1440px) {
   .headerContent {
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 }
 

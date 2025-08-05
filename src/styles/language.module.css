@@ -1,6 +1,97 @@
+/* Language Switcher Container */
+.langContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6.4px;
+  flex-shrink: 0;
+}
 
-@media (max-width: 640px){
-    .ukflag{
-        transform: rotate(90deg);
-    }
+/* Flag Image Styling - Desktop */
+.flagImage {
+  width: 26.667px;
+  height: 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.flagImage:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.flagImage:active {
+  transform: scale(0.95);
+}
+
+.flagImage:focus {
+  outline: 2px solid #FFC800;
+  outline-offset: 2px;
+}
+
+/* Active/Inactive States */
+.active {
+  opacity: 1;
+}
+
+.inactive {
+  opacity: 0.7;
+}
+
+.inactive:hover {
+  opacity: 0.9;
+}
+
+/* Mobile View - Exact Figma specifications */
+@media (max-width: 640px) {
+  .langContainer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6.4px;
+    width: 49.0667px;
+    height: 16px;
+  }
+  
+  .flagImage {
+    width: 21.333px !important;
+    height: 16px !important;
+    border-radius: 3.2px;
+  }
+  
+  .flagImage:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+  /* Removed padding and margin that was causing overlap */
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .langIcon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Focus states for accessibility */
+.langIcon:focus {
+  outline: 2px solid #FFC800;
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .langIcon {
+    transition: none;
+  }
+  
+  .langIcon:hover {
+    transform: none;
+  }
 }

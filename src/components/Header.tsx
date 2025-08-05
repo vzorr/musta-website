@@ -22,10 +22,8 @@ export default function Header() {
         <div className="py-4 sm:py-5">
           <div className={styles.headerContent}>
             {/* Language Selector */}
-            <div className={styles.leftSection}>
               <LanguageSwitcher />
-            </div>
-
+         
             {/* Logo - Centered */}
             <div className={styles.centerSection}>
               <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />

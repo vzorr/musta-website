@@ -1,6 +1,5 @@
-// src/components/HeroSection.tsx - FIXED: Proper width constraints
+// src/components/HeroSection.tsx - UPDATED: Added extra column after hero text
 'use client';
-
 
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -33,14 +32,10 @@ export default function HeroSection() {
       <section 
         className={`${styles.hero} ${imageLoaded ? styles.heroLoaded : styles.heroLoading}`}
       >
-        {/* Background overlay */}
-        <div className={styles.heroOverlay} />
-
-        {/* Content container - FIXED: Properly constrained */}
+        {/* Content container */}
         <div className={styles.heroContent}>
-          {/* FIXED: Flex layout that respects max-width */}
+          {/* Three column layout for desktop */}
           <div className="flex flex-col lg:flex-row items-center justify-center h-full w-full mx-auto">
-            
             
             {/* Left: Phone mockup */}
             <div className="flex-shrink-0 order-2 lg:order-1">
@@ -59,10 +54,10 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right: Text content */}
+            {/* Center: Text content */}
             <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
               <div className={styles.heroTextContainer}>
-                <h1 className={`font-bold  mb-4 lg:mb-6 leading-tight text-4xl lg:text-4xl xl:text-6xl ${styles.heroText} ${styles.herobgtext}`} id='dataheader'>
+                <h1 className={`font-bold mb-4 lg:mb-6 leading-tight text-4xl lg:text-4xl xl:text-6xl ${styles.heroText} ${styles.herobgtext}`} id='dataheader'>
                   {t('hero.title')}
                 </h1>
                 
@@ -70,6 +65,7 @@ export default function HeroSection() {
                    style={{ color: '#335372' }}>
                   {t('hero.subtitle')}
                 </p>
+                
                 <button 
                   onClick={scrollToRegistration}
                   className={`${styles.ctaButton} px-6 sm:px-8 py-3 sm:py-4 text-myusta-navy font-semibold text-base sm:text-lg focus:outline-none focus:ring-2 focus:ring-myusta-yellow focus:ring-offset-2`}
@@ -77,6 +73,11 @@ export default function HeroSection() {
                   {t('hero.cta')}
                 </button>
               </div>
+            </div>
+
+            {/* Right: Duplicate hero text (200px width on desktop, hidden on mobile) */}
+            <div className="hidden lg:block order-3" style={{ width: '28%', flexShrink: 0 }}>
+              This is a naothere 
             </div>
           </div>
         </div>

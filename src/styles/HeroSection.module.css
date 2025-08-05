@@ -1,61 +1,32 @@
-/* src/styles/HeroSection.module.css - FIXED: Proper width constraints */
-
+/* src/styles/HeroSection.module.css - CLEANED UP VERSION */
 
 .heroWrapper {
   width: 100vw;
   position: relative;
   overflow: hidden;
-  /* FIXED: Full viewport width, no gaps */
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  /* FIXED: Add flex centering for proper alignment */
   display: flex;
   justify-content: center;
-  background: #f3f3f3; /* Fallback background */
+  background: #f3f3f3;
 }
 
 .hero {
-  /* FIXED: Constrain to 1440px like other sections */
-  width: 100%;
-  max-width: 1440px;
+  width: 1440px;
+  height: 600px;
+  flex-shrink: 0;
+  aspect-ratio: 12/5;
   margin: 0 auto;
   position: relative;
-  
-  /* FIXED: Better height constraints */
-  min-height: 400px;
-  height: min(800px, 70vh);
-  max-height: 800px;
-  
-  /* Direct background image - no pseudo elements */
   background-image: url('/assets/herobanner.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  
-  /* FIXED: Ensure content doesn't overflow */
   overflow: hidden;
 }
-.herobgtext{
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-/* Remove the pseudo element */
 
-
-.heroOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(243, 243, 243, 0.1);
-  pointer-events: none;
-  z-index: 1;
-}
+/* Overlay removed - no longer needed */
 
 .heroContent {
   position: relative;
@@ -64,77 +35,62 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* FIXED: Add padding to prevent edge overflow */
+  justify-content: flex-start;
   padding: 50px 1rem;
+  margin: 0 100px;
 }
 
-@media (min-width: 640px) {
-  .heroContent {
-    padding: 50px 2rem;
-  }
-}
-
-.heroText {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-
-
-.heroSubtitle {
-  opacity: 0.9;
-}
-
-.phoneContainer {
-  position: relative;
-  width: 18rem;
-  height: 22rem;
-  margin: 0 auto;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  padding: 40px;
-
-}
-.heroTextContainer{
+.heroTextColumn {
   display: flex;
+  flex-direction: column;
+  width: 400px;
+  flex-shrink: 0;
+}
+
+.heroTextContainer {
+  display: inline-flex;
+  height: 346px;
+  padding: 23px 32px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
 }
-.heroTextContainer p{
+
+.heroTextContainer h1 {
+  text-shadow: none; /* NO SHADOWS */
+}
+
+.heroTextContainer p {
   width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: none; /* NO SHADOWS */
 }
+
+.phoneContainer {
+  width: 392.869px;
+  height: 493.667px;
+  flex-shrink: 0;
+  position: relative;
+  background: url('/assets/change-this.png') transparent 0px 0px / 100% 100% no-repeat;
+}
+
 .ctaButton {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 32px;
   background: #FFC800;
-  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  
   transition: all 0.2s ease-out;
   border: none;
   cursor: pointer;
-  border-radius: 50px;
-  width: 80%;
-  height: 50px;
-  display: flex;
-  text-align: center;
-  align-items: center;
 }
-@media (max-width: 740px) {
-.ctaButton{
-  width: 100%;
-  height: 40px;
-  justify-content: center;
-}
-.heroTextContainer{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-}
-}
-
 
 .ctaButton:hover {
   opacity: 0.8;
@@ -144,75 +100,19 @@
   transform: scale(0.98);
 }
 
-/* Loading states - simplified */
-.heroLoaded {
-  background-image: url('/assets/herobanner.png');
-}
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .heroContent {
+    padding: 50px 2rem;
+  }
 
-/* Hero text container - half width */
-.heroTextContainer {
-  width: 50%;
-  max-width: 600px;
-}
-
-@media (max-width: 1023px) {
   .heroTextContainer {
     width: 100%;
-  }
-}
-
-/* ========================================
-   RESPONSIVE BREAKPOINTS
-======================================== */
-
-/* Mobile devices */
-@media (max-width: 640px) {
-  .hero {
-    height: 100vh;
-    max-height: 100vh;
-    min-height: 500px;
-  }
-
-  .phoneContainer {
-    width: 14rem;
-    height: 18rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem !important;
-    line-height: 1.1;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .hero p {
-    font-size: 1.125rem !important;
-    margin-bottom: 2rem !important;
-  }
-
-  .ctaButton {
-    padding: 1rem 2rem !important;
-    font-size: 1rem !important;
-  }
-}
-
-/* Tablets */
-@media (min-width: 641px) and (max-width: 1023px) {
-  .hero {
-    height: min(600px, 80vh);
-    max-height: 600px;
   }
 
   .phoneContainer {
     width: 16rem;
     height: 20rem;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem !important;
-  }
-
-  .hero p {
-    font-size: 1.125rem !important;
   }
 }
 
@@ -223,29 +123,26 @@
     max-height: 700px;
   }
 
+  .heroContent {
+    padding: 50px 2rem;
+  }
+
   .phoneContainer {
-    width: 20rem;
-    height: 25rem;
-  }
-
-  .hero h1 {
-    font-size: 3.5rem !important;
-  }
-
-  .hero p {
-    font-size: 1.25rem !important;
+    width: 392.869px;
+    height: 493.667px;
+    flex-shrink: 0;
+    margin-left: 100px;
+    background: url('/assets/change-this.png') transparent 0px 0px / 100% 100% no-repeat;
   }
 
   .ctaButton {
-    padding: 1rem 2.5rem !important;
-    font-size: 1.125rem !important;
+    font-size: 1.125rem;
   }
 }
 
-/* Large desktop - FIXED: Constrained at 1440px */
+/* Large Desktop */
 @media (min-width: 1440px) {
   .hero {
-    /* FIXED: Keep max-width at 1440px */
     max-width: 1440px;
     height: min(800px, 70vh);
     max-height: 800px;
@@ -255,131 +152,59 @@
     width: 22rem;
     height: 27rem;
   }
-
-  .hero h1 {
-    font-size: 4rem !important;
-  }
-
-  .hero p {
-    font-size: 1.375rem !important;
-  }
 }
 
-/* FIXED: Ultra-wide displays - don't exceed 1440px */
-@media (min-width: 2560px) {
-  .hero {
-    max-width: 1440px; /* Keep constrained */
+/* Mobile View */
+@media (max-width: 760px) {
+  .phoneContainer {
+    display: none;
   }
   
-  .heroWrapper {
-    /* Add side backgrounds for ultra-wide */
-    background: #f3f3f3;
-  }
-}
-
-/* ========================================
-   LANDSCAPE ORIENTATION - REMOVED DISPLAY NONE
-======================================== */
-
-@media (orientation: landscape) and (max-height: 600px) {
   .hero {
-    height: 100vh;
-    max-height: none;
+    width: 375px;
+    height: 547.266px;
+    flex-shrink: 0;
+    background: url('/assets/mobile.jpg') lightgray -20.197px -63.779px / 110.772% 117.715% no-repeat;
+  }
+  
+  .heroContent {
+   
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
-  .hero h1 {
-    font-size: 2rem !important;
-    margin-bottom: 1rem !important;
+  .heroTextContainer {
+    width: 100%;
+    margin: 0;
+    gap: 1rem;
+    text-align: center;
+    padding-right: -40%;
+  }
+  
+  .heroTextContainer h1 {
+    font-size: 2rem;
+    line-height: 1.1;
+    margin: 0 0 1rem 0;
+    text-shadow: none;
   }
 
-  .hero p {
-    font-size: 1rem !important;
-    margin-bottom: 1.5rem !important;
+  .heroTextContainer p {
+    width: 90%;
+    font-size: 1.125rem;
+      }
+
+  .ctaButton {
+    width: 84%;
+    height: 40px;
+    margin: 0;
+    box-shadow: none;
   }
 }
 
-/* ========================================
-   ACCESSIBILITY
-======================================== */
-
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .hero {
-    background-attachment: scroll;
-  }
-  
   .ctaButton,
   .phoneContainer {
     transition: none;
-  }
-}
-
-@media (prefers-contrast: high) {
-  .heroOverlay {
-    background: rgba(0, 0, 0, 0.3);
-  }
-  
-  .ctaButton {
-    border: 1px solid currentColor;
-  }
-
-  .heroText {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  }
-}
-
-/* ========================================
-   ANIMATIONS
-======================================== */
-
-@keyframes heroFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.heroLoaded {
-  animation: heroFadeIn 0.6s ease-out;
-}
-
-@media (max-width: 760px){
-  .phoneContainer{
-    display: none;
-  }
-  .hero{
-    background-image: url('/assets/mobile.jpg'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-attachment: scroll;
-  }
-  .ctaButton{
-    width: 84%;
-  }
-  .heroTextContainer p{
-    width: 90%;
-  }
-}
-/* Print styles */
-@media print {
-  .hero {
-    background: white;
-    background-image: none;
-    width: 100%;
-    margin: 0;
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-  }
-  
-  .heroOverlay {
-    display: none;
-  }
-
-  .phoneContainer {
-    display: none;
   }
 }
