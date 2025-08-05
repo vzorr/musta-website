@@ -1,9 +1,10 @@
-// src/components/Header.tsx - Header with proper width constraint
+// src/components/Header.tsx - ✅ UPDATED with Button Component
 'use client';
 
 import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import Logo from './Logo';
+import Button from './Button';
 import styles from '../styles/Header.module.css';
 
 export default function Header() {
@@ -14,29 +15,29 @@ export default function Header() {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-
-  
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
         <div className="py-4 sm:py-5">
           <div className={styles.headerContent}>
             {/* Language Selector */}
-              <LanguageSwitcher />
+            <LanguageSwitcher />
          
             {/* Logo - Centered */}
             <div className={styles.centerSection}>
               <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
             </div>
 
-            {/* CTA Button */}
+            {/* ✅ UPDATED: Using Button Component instead of CSS module */}
             <div className={styles.rightSection}>
-              <button 
+              <Button
+                variant="primary"
+                size="small"
                 onClick={scrollToRegistration}
                 className={styles.ctaButton}
               >
                 {language === 'sq' ? 'Regjistrohu' : 'Register'}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

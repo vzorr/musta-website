@@ -1,0 +1,186 @@
+/* src/styles/PageLayout.module.css - Page-level layout classes */
+
+/* ========================================
+   PAGE LAYOUT SYSTEM
+======================================== */
+
+/* Main page wrapper */
+.pageWrapper {
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Page section wrapper */
+.pageSection {
+  width: 100%;
+  position: relative;
+}
+
+/* Page section content */
+.pageSectionContent {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .pageSectionContent {
+    padding: 0 2rem;
+  }
+}
+
+/* ========================================
+   FULL WIDTH BACKGROUND PATTERNS
+======================================== */
+
+/* Full width background with constrained content */
+.fullBgConstrainedContent {
+  width: 100%;
+}
+
+.fullBgConstrainedContent .content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .fullBgConstrainedContent .content {
+    padding: 0 2rem;
+  }
+}
+
+/* ========================================
+   CONTENT ALIGNMENT HELPERS
+======================================== */
+
+/* Helper for centering content blocks */
+.centeredContentBlock {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .centeredContentBlock {
+    padding: 0 2rem;
+  }
+}
+
+/* For sections that need tighter content width */
+.centeredContentNarrow {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .centeredContentNarrow {
+    padding: 0 2rem;
+  }
+}
+
+/* ========================================
+   SECTION SPACING
+======================================== */
+
+/* Standard section spacing */
+.sectionSpacing {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+  .sectionSpacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionSpacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Tight section spacing */
+.sectionSpacingTight {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .sectionSpacingTight {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Loose section spacing */
+.sectionSpacingLoose {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .sectionSpacingLoose {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionSpacingLoose {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ========================================
+   HIGH RESOLUTION DISPLAY OPTIMIZATIONS
+======================================== */
+
+/* Ultra-wide displays */
+@media (min-width: 2560px) {
+  .pageSectionContent,
+  .centeredContentBlock,
+  .centeredContentNarrow {
+    max-width: 1600px;
+  }
+  
+  .pageSectionContent,
+  .centeredContentBlock,
+  .centeredContentNarrow {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+  
+  .fullBgConstrainedContent .content {
+    max-width: 1600px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* 4K displays */
+@media (min-width: 3840px) {
+  .pageSectionContent,
+  .centeredContentBlock,
+  .centeredContentNarrow {
+    max-width: 1800px;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  
+  .fullBgConstrainedContent .content {
+    max-width: 1800px;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}

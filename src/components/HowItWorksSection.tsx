@@ -1,14 +1,15 @@
+// src/components/HowItWorksSection.tsx - Updated to use SectionContainer module
 'use client';
 
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
 import styles from '../styles/HowItWorksSection.module.css';
+import containerStyles from '../styles/SectionContainer.module.css';
 
 export default function HowItWorksSection() {
   const { t } = useLanguage();
-    const fullTitle = t('howItWorks.title');
-const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
-
+  const fullTitle = t('howItWorks.title');
+  const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
 
   // Split the title into words
   const words = fullTitle?.trim().split(/\s+/) || [];
@@ -18,13 +19,14 @@ const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
 
   return (
     <section className={styles.howItWorksSection}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+      {/* Updated: Using container module instead of global classes */}
+      <div className={containerStyles.sectionContainer}>
         {/* Title with Figma spacing */}
         <div className='flex flex-row justify-center gap-2'>
           <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
-        <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl text-myusta-navy italic`}>
-          {remainingTitle}
-        </h2>
+          <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl text-myusta-navy italic`}>
+            {remainingTitle}
+          </h2>
         </div>
         
         {/* Cards Grid with proper Figma spacing */}

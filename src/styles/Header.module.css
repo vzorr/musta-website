@@ -63,29 +63,44 @@
 }
 
 /* ========================================
-   HEADER CTA BUTTON
+   HEADER CTA BUTTON - UPDATED
 ======================================== */
 
 .ctaButton {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 32px;
   background: #FFC800;
+  box-shadow: none;
+  
   color: #00203F;
   font-weight: 600;
   font-size: 0.860rem;
-  padding: 0.5rem 0.75rem;
   border: none;
-  border-radius: 1.5rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   width: 120px;
   height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  outline: none;
 }
 
 .ctaButton:hover {
-  transform: scale(1.05);
+  background-color: #e6b300;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.40);
 }
+
+.ctaButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.60);
+}
+
+.ctaButton:active {
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.80);
+}
+
 @media (max-width: 640px) {
   .ctaButton{
     display: none;
@@ -94,14 +109,6 @@
     padding: 0px 20px;
     height: 90px;
   }
-}
-
-.ctaButton:active {
-  transform: scale(0.98);
-}
-
-.ctaButton:focus {
-  outline-offset: 2px;
 }
 
 @media (min-width: 640px) {

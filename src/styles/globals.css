@@ -36,34 +36,7 @@ body {
 }
 
 /* ========================================
-   MAX-WIDTH CONTAINER SYSTEM
-======================================== */
-
-/* Global max-width container utility */
-.max-width-container {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .max-width-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .max-width-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* ========================================
-   NEUMORPHIC DESIGN SYSTEM
+   NEUMORPHIC DESIGN SYSTEM - UPDATED
 ======================================== */
 
 /* Base Neumorphic Card */
@@ -93,27 +66,9 @@ body {
               -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
-/* Neumorphic Button */
-.neumorphic-btn {
-  background: #FFC800;
-  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
-  transition: all 0.2s ease-out;
-  border: none;
-  cursor: pointer;
-}
-
-.neumorphic-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
-              -6px -6px 10px rgba(255, 255, 255, 0.9);
-}
-
-.neumorphic-btn:active {
-  transform: scale(0.98);
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 
-              -2px -2px 4px rgba(255, 255, 255, 0.9);
-}
+/* ========================================
+   NEUMORPHIC INPUT FIELDS
+======================================== */
 
 /* Neumorphic Input Fields */
 .neumorphic-input {
@@ -203,150 +158,6 @@ footer > div {
 }
 
 /* ========================================
-   SECTION LAYOUT CONSISTENCY
-======================================== */
-
-/* Ensure all main sections have consistent max-width */
-.section-container {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .section-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Container for consistent spacing */
-.page-section {
-  width: 100%;
-  position: relative;
-}
-
-.page-section-content {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .page-section-content {
-    padding: 0 2rem;
-  }
-}
-
-/* ========================================
-   RESPONSIVE LAYOUT SYSTEM
-======================================== */
-
-/* Container Responsive Breakpoints following Figma specs */
-.responsive-container {
-  width: 100%;
-  max-width: 1440px; /* Desktop max-width from Figma */
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Mobile First Responsive Breakpoints */
-@media (min-width: 640px) {
-  .responsive-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .responsive-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .responsive-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .responsive-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* ========================================
-   REGISTRATION FORM RESPONSIVE DESIGN
-======================================== */
-
-/* Registration Form Container - Figma Specs: 384px width */
-.registration-form-container {
-  width: 100%;
-  max-width: 384px; /* Fixed width from Figma on desktop */
-  margin: 0 auto;
-}
-
-/* Registration section improvements */
-.registration-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.registration-form-wrapper {
-  width: 100%;
-  max-width: 384px; /* Keep form at optimal width */
-  margin: 0 auto;
-}
-
-/* Mobile adjustments for registration form */
-@media (max-width: 640px) {
-  .registration-form-container {
-    max-width: calc(100vw - 2rem);
-    margin: 0 1rem;
-  }
-}
-
-/* Tablet adjustments */
-@media (min-width: 641px) and (max-width: 1023px) {
-  .registration-form-container {
-    max-width: min(384px, 80vw);
-  }
-}
-
-/* Desktop - Fixed 384px width as per Figma */
-@media (min-width: 1024px) {
-  .registration-form-container {
-    width: 384px;
-    max-width: 384px;
-  }
-}
-
-/* Form Field Responsive Sizing */
-.form-field {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-@media (min-width: 768px) {
-  .form-field {
-    padding: 1.25rem;
-    font-size: 1rem;
-  }
-}
-
-/* ========================================
    GDPR BANNER ADJUSTMENTS
 ======================================== */
 
@@ -393,35 +204,6 @@ footer > div {
 }
 
 /* ========================================
-   GRID SYSTEM FOR CONSISTENT LAYOUT
-======================================== */
-
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .content-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    padding: 0 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .content-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-}
-
-/* ========================================
    MODAL RESPONSIVE BEHAVIOR
 ======================================== */
 
@@ -452,88 +234,6 @@ footer > div {
   .language-switcher button {
     min-width: 44px;
     min-height: 44px;
-  }
-}
-
-/* ========================================
-   UTILITY CLASSES FOR CONSISTENT LAYOUT
-======================================== */
-
-/* Full width background with constrained content */
-.full-bg-constrained-content {
-  width: 100%;
-}
-
-.full-bg-constrained-content > .content {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .full-bg-constrained-content > .content {
-    padding: 0 2rem;
-  }
-}
-
-/* Helper for centering content blocks */
-.centered-content-block {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .centered-content-block {
-    padding: 0 2rem;
-  }
-}
-
-/* For sections that need tighter content width */
-.centered-content-narrow {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .centered-content-narrow {
-    padding: 0 2rem;
-  }
-}
-
-/* ========================================
-   HIGH RESOLUTION DISPLAY OPTIMIZATIONS
-======================================== */
-
-/* Specific optimizations for 1440p and higher displays */
-@media (min-width: 2560px) {
-  .max-width-container,
-  .section-container,
-  .page-section-content,
-  .responsive-container,
-  .content-grid {
-    max-width: 1600px; /* Slightly larger for ultra-wide displays */
-  }
-  
-  /* Add more generous side margins on very large displays */
-  .page-section-content {
-    padding: 0 4rem;
-  }
-}
-
-/* 4K display optimizations */
-@media (min-width: 3840px) {
-  .max-width-container,
-  .section-container,
-  .page-section-content,
-  .responsive-container,
-  .content-grid {
-    max-width: 1800px;
-    padding: 0 6rem;
   }
 }
 
@@ -611,8 +311,7 @@ a:focus {
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
   .neumorphic-card,
-  .neumorphic-input,
-  .neumorphic-btn {
+  .neumorphic-input {
     border: 1px solid currentColor;
   }
 }
@@ -622,7 +321,6 @@ a:focus {
 ======================================== */
 
 @media print {
-  .neumorphic-btn,
   .language-switcher {
     display: none;
   }
@@ -655,25 +353,7 @@ a:focus {
   }
 }
 
-/* Form Button Responsive */
-.form-submit-button {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 1rem;
-  transition: all 0.2s ease;
-}
-
-@media (min-width: 768px) {
-  .form-submit-button {
-    padding: 1.25rem;
-    font-size: 1.125rem;
-    border-radius: 1.5rem;
-  }
-}
-
-/* Generic Card Grid Utility - Keep for other components that might need it */
+/* Generic Card Grid Utility */
 .card-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -771,7 +451,6 @@ a:focus {
 
 /* GPU Acceleration for Animations */
 .neumorphic-card,
-.neumorphic-btn,
 .icon-container {
   will-change: transform;
   transform: translateZ(0);

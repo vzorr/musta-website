@@ -1,4 +1,4 @@
-/* src/styles/HeroSection.module.css - CLEANED UP VERSION */
+/* src/styles/HeroSection.module.css - FIXED CENTER ALIGNMENT */
 
 .heroWrapper {
   width: 100vw;
@@ -26,8 +26,6 @@
   overflow: hidden;
 }
 
-/* Overlay removed - no longer needed */
-
 .heroContent {
   position: relative;
   z-index: 2;
@@ -47,37 +45,60 @@
   flex-shrink: 0;
 }
 
+/* ✅ FIXED: Center alignment for text container - ORIGINAL PADDING RESTORED + DESKTOP LEFT MARGIN */
 .heroTextContainer {
   display: inline-flex;
   height: 346px;
-  padding: 23px 32px;
+  padding: 23px 32px; /* ✅ Restored original padding on all sides */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 32px;
   flex-shrink: 0;
+  text-align: center;
+  margin-left: -100px; /* ✅ Added negative left margin for desktop */
 }
 
+/* ✅ UPDATED: Hero heading with exact specifications and Inter font */
 .heroTextContainer h1 {
-  text-shadow: none; /* NO SHADOWS */
+  color: var(--Navy, #00203F);
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 64px */
+  text-shadow: none;
+  margin: 0; /* Remove default margins */
 }
 
+/* ✅ UPDATED: Hero subheading with exact specifications and Inter font */
 .heroTextContainer p {
-  width: 70%;
+  color: #335372;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 28px */
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: none; /* NO SHADOWS */
+  text-shadow: none;
+  margin: 0; /* Remove default margins */
 }
 
 .phoneContainer {
-  width: 392.869px;
-  height: 493.667px;
+  width: 100%; /* ✅ Use full width of the reduced column */
+  height: auto; /* ✅ Maintain aspect ratio */
+  aspect-ratio: 392.869 / 493.667; /* ✅ Maintain original aspect ratio */
   flex-shrink: 0;
   position: relative;
   background: url('/assets/change-this.png') transparent 0px 0px / 100% 100% no-repeat;
 }
 
+/* ✅ UPDATED: Button with center alignment */
 .ctaButton {
   display: flex;
   padding: 8px 24px;
@@ -86,21 +107,30 @@
   gap: 16px;
   border-radius: 32px;
   background: #FFC800;
+  box-shadow: none;
   
-  transition: all 0.2s ease-out;
+  transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  outline: none;
+  margin: 0 auto; /* ✅ Center the button */
 }
 
 .ctaButton:hover {
-  opacity: 0.8;
+  background-color: #e6b300;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.40);
+}
+
+.ctaButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.60);
 }
 
 .ctaButton:active {
-  transform: scale(0.98);
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.80);
 }
 
-/* Tablet */
+/* Tablet - Responsive typography with adjusted left margin */
 @media (min-width: 641px) and (max-width: 1023px) {
   .heroContent {
     padding: 50px 2rem;
@@ -108,15 +138,36 @@
 
   .heroTextContainer {
     width: 100%;
+    text-align: center;
+    margin-left: -50px; /* ✅ Reduced left margin for tablet */
+  }
+  
+  /* ✅ Tablet heading - scaled down with Inter font */
+  .heroTextContainer h1 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 48px; /* Reduced from 64px */
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--Navy, #00203F);
+  }
+  
+  /* ✅ Tablet subheading - slightly smaller with Inter font */
+  .heroTextContainer p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px; /* Reduced from 20px */
+    font-weight: 500;
+    line-height: 140%;
+    color: #335372;
   }
 
   .phoneContainer {
-    width: 16rem;
-    height: 20rem;
+    width: 100%; /* ✅ Use full width of reduced column on tablet */
+    height: auto;
+    aspect-ratio: 392.869 / 493.667;
   }
 }
 
-/* Desktop */
+/* Desktop - Original specifications maintained with left margin */
 @media (min-width: 1024px) {
   .hero {
     height: min(700px, 70vh);
@@ -127,16 +178,39 @@
     padding: 50px 2rem;
   }
 
+  /* ✅ Desktop - maintain exact specifications with left margin */
+  .heroTextContainer {
+    text-align: center;
+    margin-left: -100px; /* ✅ Full desktop left margin */
+  }
+  
+  .heroTextContainer h1 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 64px; /* Original desktop size */
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--Navy, #00203F);
+  }
+  
+  .heroTextContainer p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 20px; /* Original desktop size */
+    font-weight: 500;
+    line-height: 140%;
+    color: #335372;
+  }
+
   .phoneContainer {
-    width: 392.869px;
-    height: 493.667px;
-    flex-shrink: 0;
-    margin-left: 100px;
+    width: 100%; /* ✅ Use full width of reduced column on desktop */
+    height: auto;
+    aspect-ratio: 392.869 / 493.667;
+    margin-left: 0; /* ✅ Remove left margin, phone starts at column edge */
     background: url('/assets/change-this.png') transparent 0px 0px / 100% 100% no-repeat;
   }
 
   .ctaButton {
     font-size: 1.125rem;
+    margin: 0 auto;
   }
 }
 
@@ -149,12 +223,13 @@
   }
 
   .phoneContainer {
-    width: 22rem;
-    height: 27rem;
+    width: 100%; /* ✅ Maintain responsive width on large desktop */
+    height: auto;
+    aspect-ratio: 392.869 / 493.667;
   }
 }
 
-/* Mobile View */
+/* Mobile View - Responsive typography with closer positioning */
 @media (max-width: 760px) {
   .phoneContainer {
     display: none;
@@ -168,35 +243,47 @@
   }
   
   .heroContent {
-   
     justify-content: flex-start;
     align-items: flex-start;
   }
 
+  /* ✅ UPDATED: Restored original padding on mobile + negative top margin */
   .heroTextContainer {
     width: 100%;
-    margin: 0;
+    margin: -120px 0 0 0; /* ✅ Only top margin on mobile, no left margin */
     gap: 1rem;
     text-align: center;
-    padding-right: -40%;
+    padding: 23px 32px; /* ✅ Restored original padding */
   }
   
+  /* ✅ Mobile heading - significantly scaled down with Inter font */
   .heroTextContainer h1 {
-    font-size: 2rem;
-    line-height: 1.1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 32px; /* Responsive size for mobile */
+    font-weight: 700;
+    line-height: 100%;
+    color: var(--Navy, #00203F);
     margin: 0 0 1rem 0;
     text-shadow: none;
+    text-align: center;
   }
 
+  /* ✅ Mobile subheading - scaled down with Inter font */
   .heroTextContainer p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segue UI', Roboto, sans-serif;
     width: 90%;
-    font-size: 1.125rem;
-      }
+    font-size: 16px; /* Responsive size for mobile */
+    font-weight: 500;
+    line-height: 140%;
+    color: #335372;
+    text-align: center;
+    margin: 0 auto 1.5rem auto; /* ✅ Added bottom margin for button spacing */
+  }
 
   .ctaButton {
     width: 84%;
     height: 40px;
-    margin: 0;
+    margin: 0 auto;
     box-shadow: none;
   }
 }

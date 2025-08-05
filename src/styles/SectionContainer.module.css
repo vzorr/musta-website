@@ -1,0 +1,190 @@
+/* src/styles/SectionContainer.module.css - Container system for sections */
+
+/* ========================================
+   SECTION CONTAINER CLASSES
+======================================== */
+
+/* Main section wrapper - full width background */
+.sectionWrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Content container with max-width constraint */
+.sectionContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sectionContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .sectionContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE CONTAINERS
+======================================== */
+
+/* Standard responsive container */
+.responsiveContainer {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Mobile First Responsive Breakpoints */
+@media (min-width: 640px) {
+  .responsiveContainer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsiveContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsiveContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .responsiveContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ========================================
+   SPECIALIZED CONTAINERS
+======================================== */
+
+/* Narrow content container */
+.narrowContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .narrowContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Form container (specific width) */
+.formContainer {
+  width: 100%;
+  max-width: 384px;
+  margin: 0 auto;
+}
+
+/* Mobile adjustments for form container */
+@media (max-width: 640px) {
+  .formContainer {
+    max-width: calc(100vw - 2rem);
+    margin: 0 1rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .formContainer {
+    max-width: min(384px, 80vw);
+  }
+}
+
+/* Desktop - Fixed width */
+@media (min-width: 1024px) {
+  .formContainer {
+    width: 384px;
+    max-width: 384px;
+  }
+}
+
+/* ========================================
+   GRID CONTAINERS
+======================================== */
+
+/* Content grid system */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ========================================
+   HIGH RESOLUTION DISPLAY OPTIMIZATIONS
+======================================== */
+
+/* Specific optimizations for 1440p and higher displays */
+@media (min-width: 2560px) {
+  .sectionContainer,
+  .responsiveContainer,
+  .contentGrid {
+    max-width: 1600px;
+  }
+  
+  .sectionContainer,
+  .responsiveContainer {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* 4K display optimizations */
+@media (min-width: 3840px) {
+  .sectionContainer,
+  .responsiveContainer,
+  .contentGrid {
+    max-width: 1800px;
+  }
+  
+  .sectionContainer,
+  .responsiveContainer {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
