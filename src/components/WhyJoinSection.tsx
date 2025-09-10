@@ -20,15 +20,15 @@ export default function WhyJoinSection() {
     {
       imageSrc: "/assets/image_container.svg",
       imageAlt: "Direct Opportunities",
-      iconSrc: "/assets/vector.svg",
-      iconAlt: "User Icon",
+      iconSrc: "/assets/wrench-icon.svg",
+      iconAlt: "Wrench Icon",
       titleKey: "whyJoin.benefits.directOpportunities.title",
       descriptionKey: "whyJoin.benefits.directOpportunities.description"
     },
     {
       imageSrc: "/assets/image_container.svg",
       imageAlt: "Save Time",
-      iconSrc: "/assets/vector.svg",
+      iconSrc: "/assets/clock-icon.svg",
       iconAlt: "Clock Icon",
       titleKey: "whyJoin.benefits.saveTime.title",
       descriptionKey: "whyJoin.benefits.saveTime.description"
@@ -36,8 +36,8 @@ export default function WhyJoinSection() {
     {
       imageSrc: "/assets/image_container.svg",
       imageAlt: "Build Reputation",
-      iconSrc: "/assets/vector.svg",
-      iconAlt: "Star Icon",
+      iconSrc: "/assets/chain-icon.svg",
+      iconAlt: "Chain Link Icon",
       titleKey: "whyJoin.benefits.buildReputation.title",
       descriptionKey: "whyJoin.benefits.buildReputation.description"
     }
@@ -79,9 +79,9 @@ export default function WhyJoinSection() {
                     <Image 
                       src={feature.iconSrc}
                       alt={feature.iconAlt}
-                      width={20}
-                      height={20}
-                      className="w-5 h-5"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
                     />
                   </div>
                   <h3 className={styles.cardTitle}>

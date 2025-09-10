@@ -19,12 +19,11 @@ interface RegistrationEmailData {
 }
 
 class EmailService {
-  private transporter: nodemailer.Transporter | null = null; // CHANGE: Added | null
+  private transporter: nodemailer.Transporter | null = null;
   private gmail: any;
-  private initialized = false; // CHANGE: Added initialization flag
+  private initialized = false;
 
   constructor() {
-    // CHANGE: Removed this.initializeServices(); (async call from constructor)
   }
 
   // CHANGE: Added this method to ensure initialization
@@ -64,7 +63,7 @@ class EmailService {
         },
       });
 
-      this.initialized = true; // CHANGE: Added this line
+      this.initialized = true;
     } catch (error) {
       console.error('Error initializing email service:', error);
       throw new Error('Failed to initialize email service');
@@ -76,7 +75,7 @@ class EmailService {
    */
   async sendConfirmationEmail(data: RegistrationEmailData): Promise<boolean> {
     try {
-      await this.ensureInitialized(); // CHANGE: Added this line
+      await this.ensureInitialized();
       
       const template = this.getConfirmationTemplate(data);
 
@@ -101,7 +100,7 @@ class EmailService {
    */
   async sendAdminNotification(data: RegistrationEmailData): Promise<boolean> {
     try {
-      await this.ensureInitialized(); // CHANGE: Added this line
+      await this.ensureInitialized();
       
       const template = this.getAdminNotificationTemplate(data);
 
@@ -125,7 +124,7 @@ class EmailService {
    */
   async sendGDPREmail(email: string, type: 'confirmation' | 'data_export', data?: any): Promise<boolean> {
     try {
-      await this.ensureInitialized(); // CHANGE: Added this line
+      await this.ensureInitialized();
       
       const template = this.getGDPRTemplate(type, data);
 
@@ -140,6 +139,102 @@ class EmailService {
       return true;
     } catch (error) {
       console.error('Error sending GDPR email:', error);
+      return false;
+    }
+  }
+
+ 
+  async sendContactConfirmation(data: any): Promise<boolean> {
+    try {
+      await this.ensureInitialized();
+      
+      const template = this.getContactConfirmationTemplate(data);
+
+      const mailOptions = {
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: data.email,
+        subject: template.subject,
+        text: template.text,
+        html: template.html,
+      };
+
+      await this.transporter!.sendMail(mailOptions);
+      return true;
+    } catch (error) {
+      console.error('Error sending contact confirmation email:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Send contact form notification to admin
+   */
+  async sendContactAdminNotification(data: any): Promise<boolean> {
+    try {
+      await this.ensureInitialized();
+      
+      const template = this.getContactAdminTemplate(data);
+
+      const mailOptions = {
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        subject: template.subject,
+        html: template.html,
+      };
+
+      await this.transporter!.sendMail(mailOptions);
+      return true;
+    } catch (error) {
+      console.error('Error sending contact admin notification:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Send recommend form confirmation email to user
+   */
+  async sendRecommendConfirmation(data: any): Promise<boolean> {
+    try {
+      await this.ensureInitialized();
+      
+      const template = this.getRecommendConfirmationTemplate(data);
+
+      const mailOptions = {
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: data.email || data.recommender_email,
+        subject: template.subject,
+        text: template.text,
+        html: template.html,
+      };
+
+      await this.transporter!.sendMail(mailOptions);
+      return true;
+    } catch (error) {
+      console.error('Error sending recommend confirmation email:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Send recommend form notification to admin
+   */
+  async sendRecommendAdminNotification(data: any): Promise<boolean> {
+    try {
+      await this.ensureInitialized();
+      
+      const template = this.getRecommendAdminTemplate(data);
+
+      const mailOptions = {
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        subject: template.subject,
+        html: template.html,
+      };
+
+      await this.transporter!.sendMail(mailOptions);
+      return true;
+    } catch (error) {
+      console.error('Error sending recommend admin notification:', error);
       return false;
     }
   }
@@ -510,6 +605,366 @@ Your Skills. Our platform. Endless Opportunities.
     };
 
     return translations[location]?.[language] || location;
+  }
+
+  /**
+   * Get contact confirmation email template
+   */
+  private getContactConfirmationTemplate(data: any): EmailTemplate {
+    if (data.language === 'sq') {
+      return {
+        subject: 'Faleminderit për mesazhin - myUsta',
+        html: this.getContactConfirmationHTML(data),
+        text: this.getContactConfirmationText(data)
+      };
+    } else {
+      return {
+        subject: 'Thank you for your message - myUsta',
+        html: this.getContactConfirmationHTML(data),
+        text: this.getContactConfirmationText(data)
+      };
+    }
+  }
+
+  /**
+   * Get contact admin notification template
+   */
+  private getContactAdminTemplate(data: any): EmailTemplate {
+    return {
+      subject: `New Contact Form Submission - ${data.subject}`,
+      html: this.getContactAdminHTML(data),
+      text: ''
+    };
+  }
+
+  /**
+   * Get recommend confirmation email template
+   */
+  private getRecommendConfirmationTemplate(data: any): EmailTemplate {
+    if (data.language === 'sq') {
+      return {
+        subject: data.isRecommendation ? 'Faleminderit për rekomandimin - myUsta' : 'Faleminderit për regjistrimin - myUsta',
+        html: this.getRecommendConfirmationHTML(data),
+        text: this.getRecommendConfirmationText(data)
+      };
+    } else {
+      return {
+        subject: data.isRecommendation ? 'Thank you for your recommendation - myUsta' : 'Thank you for your registration - myUsta',
+        html: this.getRecommendConfirmationHTML(data),
+        text: this.getRecommendConfirmationText(data)
+      };
+    }
+  }
+
+  /**
+   * Get recommend admin notification template
+   */
+  private getRecommendAdminTemplate(data: any): EmailTemplate {
+    return {
+      subject: data.isRecommendation ? `New Usta Recommendation - ${data.name}` : `New Usta Registration - ${data.name}`,
+      html: this.getRecommendAdminHTML(data),
+      text: ''
+    };
+  }
+
+  /**
+   * Contact confirmation HTML template
+   */
+  private getContactConfirmationHTML(data: any): string {
+    return `
+    <!DOCTYPE html>
+    <html lang="${data.language}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${data.language === 'sq' ? 'Faleminderit për mesazhin' : 'Thank you for your message'}</title>
+        <style>
+            body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #00203F; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #00203F; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #F3F3F3; padding: 30px; border-radius: 0 0 8px 8px; }
+            .details { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .footer { text-align: center; margin-top: 20px; color: #888; font-size: 12px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="font-size: 24px; margin: 0 auto 10px;">🔧 myUsta</div>
+                <p style="margin: 0;">${data.language === 'sq' ? 'Platforma juaj për mundësi pune' : 'Your platform for endless opportunities'}</p>
+            </div>
+            
+            <div class="content">
+                <h2>${data.language === 'sq' ? `Përshëndetje ${data.name}! 👋` : `Hello ${data.name}! 👋`}</h2>
+                
+                <p>${data.language === 'sq' 
+                  ? 'Faleminderit që na kontaktuat! Ne kemi marrë mesazhin tuaj dhe do t\'ju përgjigjemi sa më shpejt që të jetë e mundur.'
+                  : 'Thank you for contacting us! We have received your message and will respond as soon as possible.'
+                }</p>
+                
+                <div class="details">
+                    <h3>${data.language === 'sq' ? 'Detajet e mesazhit tuaj:' : 'Your message details:'}</h3>
+                    <ul>
+                        <li><strong>${data.language === 'sq' ? 'Subjekti:' : 'Subject:'}</strong> ${data.subject}</li>
+                        <li><strong>${data.language === 'sq' ? 'Data:' : 'Date:'}</strong> ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}</li>
+                    </ul>
+                </div>
+                
+                <p>${data.language === 'sq' 
+                  ? 'Ne do t\'ju kontaktojmë në adresën tuaj email ose numrin e telefonit që keni dhënë.'
+                  : 'We will contact you at the email address or phone number you provided.'
+                }</p>
+                
+                <p style="margin-top: 30px;">${data.language === 'sq' ? 'Faleminderit për durimin,' : 'Thank you for your patience,'}<br>
+                <strong>${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}</strong></p>
+            </div>
+            
+            <div class="footer">
+                <p>© 2025 myUsta. ${data.language === 'sq' ? 'Të gjitha të drejtat e rezervuara.' : 'All rights reserved.'}</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+  }
+
+  /**
+   * Contact confirmation text template
+   */
+  private getContactConfirmationText(data: any): string {
+    return `
+${data.language === 'sq' ? `Përshëndetje ${data.name}!` : `Hello ${data.name}!`}
+
+${data.language === 'sq' 
+  ? 'Faleminderit që na kontaktuat! Ne kemi marrë mesazhin tuaj dhe do t\'ju përgjigjemi sa më shpejt që të jetë e mundur.'
+  : 'Thank you for contacting us! We have received your message and will respond as soon as possible.'
+}
+
+${data.language === 'sq' ? 'Detajet e mesazhit tuaj:' : 'Your message details:'}
+- ${data.language === 'sq' ? 'Subjekti:' : 'Subject:'} ${data.subject}
+- ${data.language === 'sq' ? 'Data:' : 'Date:'} ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}
+
+${data.language === 'sq' 
+  ? 'Ne do t\'ju kontaktojmë në adresën tuaj email ose numrin e telefonit që keni dhënë.'
+  : 'We will contact you at the email address or phone number you provided.'
+}
+
+${data.language === 'sq' ? 'Faleminderit për durimin,' : 'Thank you for your patience,'}
+${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}
+
+© 2025 myUsta. ${data.language === 'sq' ? 'Të gjitha të drejtat e rezervuara.' : 'All rights reserved.'}
+    `;
+  }
+
+  /**
+   * Contact admin notification HTML template
+   */
+  private getContactAdminHTML(data: any): string {
+    return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>New Contact Form Submission</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+            .container { max-width: 600px; margin: 0 auto; }
+            .header { background: #00203F; color: white; padding: 15px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
+            .details { background: white; padding: 15px; border-radius: 5px; margin: 10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .message { background: #e8f4fd; padding: 15px; border-radius: 5px; border-left: 4px solid #00203F; margin: 10px 0; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>📧 New Contact Form Submission</h2>
+            </div>
+            
+            <div class="content">
+                <p>A new contact form has been submitted on the myUsta website!</p>
+                
+                <div class="details">
+                    <h3>📋 Contact Details:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 8px 0;"><strong>👤 Name:</strong> ${data.name}</li>
+                        <li style="margin: 8px 0;"><strong>📧 Email:</strong> ${data.email}</li>
+                        <li style="margin: 8px 0;"><strong>📱 Phone:</strong> ${data.phone}</li>
+                        <li style="margin: 8px 0;"><strong>📝 Subject:</strong> ${data.subject}</li>
+                        <li style="margin: 8px 0;"><strong>🌐 Language:</strong> ${data.language.toUpperCase()}</li>
+                        <li style="margin: 8px 0;"><strong>📅 Submitted:</strong> ${new Date().toLocaleString()}</li>
+                    </ul>
+                </div>
+                
+                <div class="message">
+                    <h4>💬 Message:</h4>
+                    <p style="white-space: pre-wrap; margin: 0;">${data.message}</p>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 5px; border-left: 4px solid #ffc107;">
+                    <p style="margin: 0;"><strong>Action Required:</strong> Please respond to this contact inquiry promptly.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+  }
+
+  /**
+   * Recommend confirmation HTML template
+   */
+  private getRecommendConfirmationHTML(data: any): string {
+    return `
+    <!DOCTYPE html>
+    <html lang="${data.language}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${data.language === 'sq' ? 'Faleminderit për rekomandimin' : 'Thank you for your recommendation'}</title>
+        <style>
+            body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #00203F; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #00203F; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #F3F3F3; padding: 30px; border-radius: 0 0 8px 8px; }
+            .details { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .footer { text-align: center; margin-top: 20px; color: #888; font-size: 12px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div style="font-size: 24px; margin: 0 auto 10px;">🔧 myUsta</div>
+                <p style="margin: 0;">${data.language === 'sq' ? 'Platforma juaj për mundësi pune' : 'Your platform for endless opportunities'}</p>
+            </div>
+            
+            <div class="content">
+                <h2>${data.language === 'sq' ? `Përshëndetje ${data.name}! 👋` : `Hello ${data.name}! 👋`}</h2>
+                
+                <p>${data.isRecommendation 
+                  ? (data.language === 'sq' 
+                      ? 'Faleminderit që rekomanduat një Usta! Ne do të kontaktojmë personin që rekomanduat dhe do t\'ju njoftojmë për progresin.'
+                      : 'Thank you for recommending a Usta! We will contact the person you recommended and keep you updated on the progress.')
+                  : (data.language === 'sq' 
+                      ? 'Faleminderit që u regjistruat! Ne do t\'ju kontaktojmë sa më shpejt që myUsta të lançohet.'
+                      : 'Thank you for registering! We will contact you as soon as myUsta launches.')
+                }</p>
+                
+                <div class="details">
+                    <h3>${data.language === 'sq' ? 'Detajet:' : 'Details:'}</h3>
+                    <ul>
+                        <li><strong>${data.language === 'sq' ? 'Kategoria:' : 'Category:'}</strong> ${this.getCategoryTranslation(data.category, data.language)}</li>
+                        <li><strong>${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'}</strong> ${this.getLocationTranslation(data.location, data.language)}</li>
+                        ${data.isRecommendation && data.ustaName ? `<li><strong>${data.language === 'sq' ? 'Usta i rekomanduar:' : 'Recommended Usta:'}</strong> ${data.ustaName}</li>` : ''}
+                        <li><strong>${data.language === 'sq' ? 'Data:' : 'Date:'}</strong> ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 30px;">${data.language === 'sq' ? 'Faleminderit për durimin,' : 'Thank you for your patience,'}<br>
+                <strong>${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}</strong></p>
+            </div>
+            
+            <div class="footer">
+                <p>© 2025 myUsta. ${data.language === 'sq' ? 'Të gjitha të drejtat e rezervuara.' : 'All rights reserved.'}</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+  }
+
+  /**
+   * Recommend confirmation text template
+   */
+  private getRecommendConfirmationText(data: any): string {
+    return `
+${data.language === 'sq' ? `Përshëndetje ${data.name}!` : `Hello ${data.name}!`}
+
+${data.isRecommendation 
+  ? (data.language === 'sq' 
+      ? 'Faleminderit që rekomanduat një Usta! Ne do të kontaktojmë personin që rekomanduat dhe do t\'ju njoftojmë për progresin.'
+      : 'Thank you for recommending a Usta! We will contact the person you recommended and keep you updated on the progress.')
+  : (data.language === 'sq' 
+      ? 'Faleminderit që u regjistruat! Ne do t\'ju kontaktojmë sa më shpejt që myUsta të lançohet.'
+      : 'Thank you for registering! We will contact you as soon as myUsta launches.')
+}
+
+${data.language === 'sq' ? 'Detajet:' : 'Details:'}
+- ${data.language === 'sq' ? 'Kategoria:' : 'Category:'} ${this.getCategoryTranslation(data.category, data.language)}
+- ${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'} ${this.getLocationTranslation(data.location, data.language)}
+${data.isRecommendation && data.ustaName ? `- ${data.language === 'sq' ? 'Usta i rekomanduar:' : 'Recommended Usta:'} ${data.ustaName}` : ''}
+- ${data.language === 'sq' ? 'Data:' : 'Date:'} ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}
+
+${data.language === 'sq' ? 'Faleminderit për durimin,' : 'Thank you for your patience,'}
+${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}
+
+© 2025 myUsta. ${data.language === 'sq' ? 'Të gjitha të drejtat e rezervuara.' : 'All rights reserved.'}
+    `;
+  }
+
+  /**
+   * Recommend admin notification HTML template
+   */
+  private getRecommendAdminHTML(data: any): string {
+    return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>${data.isRecommendation ? 'New Usta Recommendation' : 'New Usta Registration'}</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; }
+            .container { max-width: 600px; margin: 0 auto; }
+            .header { background: #00203F; color: white; padding: 15px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 20px; border-radius: 0 0 8px 8px; }
+            .details { background: white; padding: 15px; border-radius: 5px; margin: 10px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+            .highlight { background: #FFC800; padding: 2px 8px; border-radius: 3px; color: #00203F; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>${data.isRecommendation ? '🤝 New Usta Recommendation' : '👤 New Usta Registration'}</h2>
+            </div>
+            
+            <div class="content">
+                <p>${data.isRecommendation 
+                  ? 'Someone has recommended a Usta for the myUsta platform!'
+                  : 'A new professional has registered on the myUsta platform!'
+                }</p>
+                
+                <div class="details">
+                    <h3>📋 ${data.isRecommendation ? 'Recommendation Details:' : 'Registration Details:'}</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 8px 0;"><strong>👤 Name:</strong> ${data.name}</li>
+                        <li style="margin: 8px 0;"><strong>📧 Email:</strong> ${data.email || data.recommender_email || 'Not provided'}</li>
+                        <li style="margin: 8px 0;"><strong>📱 Phone:</strong> ${data.phone}</li>
+                        <li style="margin: 8px 0;"><strong>🔧 Category:</strong> <span class="highlight">${this.getCategoryTranslation(data.category, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>📍 Location:</strong> <span class="highlight">${this.getLocationTranslation(data.location, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>🌐 Language:</strong> ${data.language.toUpperCase()}</li>
+                        <li style="margin: 8px 0;"><strong>📅 Submitted:</strong> ${new Date().toLocaleString()}</li>
+                    </ul>
+                </div>
+                
+                ${data.isRecommendation && data.ustaName ? `
+                <div class="details">
+                    <h3>🔧 Recommended Usta Details:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin: 8px 0;"><strong>👤 Usta Name:</strong> ${data.ustaName}</li>
+                        <li style="margin: 8px 0;"><strong>📱 Usta Phone:</strong> ${data.ustaPhone || 'Not provided'}</li>
+                        <li style="margin: 8px 0;"><strong>📧 Usta Email:</strong> ${data.ustaEmail || 'Not provided'}</li>
+                    </ul>
+                </div>
+                ` : ''}
+                
+                <div style="background: #e8f4fd; padding: 15px; border-radius: 5px; border-left: 4px solid #00203F;">
+                    <p style="margin: 0;"><strong>Action Required:</strong> Please follow up with this ${data.isRecommendation ? 'recommendation' : 'registration'} and add them to the appropriate contact lists.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
   }
 }
 

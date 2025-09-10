@@ -12,7 +12,7 @@
 /* Updated: Main container with specified max-width and layout */
 .whyJoinContainer {
   display: flex;
-  width: 1000px;
+  width: 1040px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -40,6 +40,7 @@
 .benefitsGrid {
   display: grid;
   grid-template-columns: 1fr;
+  width: 1040px;
   gap: 1.5rem;
 }
 

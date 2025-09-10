@@ -152,6 +152,10 @@
       "email": "Please enter a valid email address"
     }
   },
+  "recommend": {
+    "title": "Recommend a Usta",
+    "subtitle": "Know someone who would be perfect for myUsta? Help us grow our community by recommending skilled professionals."
+  },
   "faq": {
     "title": "FAQ",
     "items": {

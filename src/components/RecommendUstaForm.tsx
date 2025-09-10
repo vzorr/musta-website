@@ -33,7 +33,6 @@ export default function RecommendUstaForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string>('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
-  const [showRecommendAnother, setShowRecommendAnother] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -68,29 +67,16 @@ export default function RecommendUstaForm() {
   const validateForm = (): boolean => {
     // Required fields for recommender
     if (!formData.name.trim() || !formData.phone.trim() || !formData.category || !formData.location) {
-      setMessage(language === 'sq' 
-        ? 'Ju lutemi plotësoni të gjitha fushat e detyrueshme' 
-        : 'Please fill in all required fields');
+      setMessage('Please fill in all required fields');
       setMessageType('error');
       return false;
-    }
-
-    // If recommending another usta, validate those fields
-    if (showRecommendAnother) {
-      if (!formData.ustaName?.trim() || !formData.ustaPhone?.trim()) {
-        setMessage(language === 'sq' 
-          ? 'Ju lutemi jepni të dhënat e usta-së që rekomandoni' 
-          : 'Please provide the usta\'s information you are recommending');
-        setMessageType('error');
-        return false;
-      }
     }
 
     // Email validation if provided
     if (formData.email && formData.email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        setMessage(language === 'sq' ? 'Email-i nuk është i vlefshëm' : 'Invalid email address');
+        setMessage('Invalid email address');
         setMessageType('error');
         return false;
       }
@@ -118,20 +104,14 @@ export default function RecommendUstaForm() {
         body: JSON.stringify({
           ...formData,
           language,
-          isRecommendation: showRecommendAnother
+          isRecommendation: false
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(language === 'sq' 
-          ? showRecommendAnother 
-            ? 'Rekomandimi u dërgua me sukses! Faleminderit që na ndihmoni të rritemi.' 
-            : 'Të dhënat tuaja u regjistruan me sukses! Do t\'ju njoftojmë së shpejti.'
-          : showRecommendAnother
-            ? 'Recommendation sent successfully! Thank you for helping us grow.'
-            : 'Your information was registered successfully! We will notify you soon.');
+        setMessage('Your information was registered successfully! We will notify you soon.');
         setMessageType('success');
         
         // Reset form
@@ -146,31 +126,25 @@ export default function RecommendUstaForm() {
           ustaEmail: ''
         });
       } else {
-        setMessage(data.message || (language === 'sq' ? 'Ndodhi një gabim' : 'An error occurred'));
+        setMessage(data.message || 'An error occurred');
         setMessageType('error');
       }
     } catch (error) {
       console.error('Recommend form error:', error);
-      setMessage(language === 'sq' ? 'Ndodhi një gabim' : 'An error occurred');
+      setMessage('An error occurred');
       setMessageType('error');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleRecommendAnother = () => {
-    setShowRecommendAnother(true);
-    setMessage('');
-  };
 
   return (
     <div className={styles.recommendContainer}>
       <div className={styles.formCard}>
         <div className={styles.formHeader}>
           <h2 className={styles.formTitle}>
-            {language === 'sq' 
-              ? 'Plotësoni informacionet e mëposhtme.' 
-              : 'Fill out the following information below.'}
+            Join the Waitlist - It's Free!
           </h2>
         </div>
 
@@ -241,17 +215,6 @@ export default function RecommendUstaForm() {
             </div>
           </div>
 
-          <div className={styles.categoryList}>
-            {categories.slice(0, 5).map(cat => (
-              <div
-                key={cat.value}
-                className={`${styles.categoryItem} ${formData.category === cat.value ? styles.selected : ''}`}
-                onClick={() => setFormData(prev => ({ ...prev, category: cat.value }))}
-              >
-                {cat.label}
-              </div>
-            ))}
-          </div>
 
           <div className={styles.formGroup}>
             <div className={styles.selectWrapper}>
@@ -275,91 +238,20 @@ export default function RecommendUstaForm() {
             </div>
           </div>
 
-          {showRecommendAnother && (
-            <>
-              <div className={styles.sectionDivider}>
-                <h3>{language === 'sq' ? 'Të dhënat e Usta-së që rekomandoni' : 'Usta Information You\'re Recommending'}</h3>
-              </div>
-              
-              <div className={styles.formGroup}>
-                <input
-                  type="text"
-                  name="ustaName"
-                  value={formData.ustaName}
-                  onChange={handleInputChange}
-                  placeholder={language === 'sq' ? 'Emri i Usta-së' : 'Usta Name'}
-                  className={styles.input}
-                  maxLength={100}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <input
-                  type="tel"
-                  name="ustaPhone"
-                  value={formData.ustaPhone}
-                  onChange={handleInputChange}
-                  placeholder={language === 'sq' ? 'Numri i Usta-së' : 'Usta Phone Number'}
-                  className={styles.input}
-                  maxLength={20}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <input
-                  type="email"
-                  name="ustaEmail"
-                  value={formData.ustaEmail}
-                  onChange={handleInputChange}
-                  placeholder={`${language === 'sq' ? 'Email i Usta-së' : 'Usta Email'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`}
-                  className={styles.input}
-                  maxLength={150}
-                />
-              </div>
-            </>
-          )}
-
           <div className={styles.buttonGroup}>
-            {!showRecommendAnother ? (
-              <>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="large"
-                  fullWidth
-                  loading={isSubmitting}
-                  disabled={isSubmitting}
-                  className={styles.submitButton}
-                >
-                  {isSubmitting 
-                    ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...') 
-                    : (language === 'sq' ? 'Usta Rekomanduar' : 'Usta Recommended')}
-                </Button>
-
-                <button
-                  type="button"
-                  onClick={handleRecommendAnother}
-                  className={styles.recommendAnotherButton}
-                >
-                  <span className={styles.plusIcon}>+</span>
-                  {language === 'sq' ? 'Rekomando një Usta tjetër' : 'Recommend Another Usta'}
-                </button>
-              </>
-            ) : (
-              <Button
-                type="submit"
-                variant="primary"
-                size="large"
-                fullWidth
-                loading={isSubmitting}
-                disabled={isSubmitting}
-                className={styles.submitButton}
-              >
-                {isSubmitting 
-                  ? (language === 'sq' ? 'Po dërgohet...' : 'Sending...') 
-                  : (language === 'sq' ? 'Dërgo Rekomandimin' : 'Send Recommendation')}
-              </Button>
-            )}
+            <Button
+              type="submit"
+              variant="primary"
+              size="large"
+              fullWidth
+              loading={isSubmitting}
+              disabled={isSubmitting}
+              className={styles.submitButton}
+            >
+              {isSubmitting 
+                ? 'Registering...' 
+                : 'Join the Waitlist'}
+            </Button>
           </div>
         </form>
       </div>

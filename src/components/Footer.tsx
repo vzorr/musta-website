@@ -85,7 +85,7 @@ export default function Footer() {
               {t('footer.links.terms')}
             </a>
             <a 
-              href="#" 
+              href="/contact" 
               className="block text-white hover:text-myusta-yellow transition-colors"
             >
               {t('footer.links.contact')}
