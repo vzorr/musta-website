@@ -14,7 +14,11 @@ interface ContactFormData {
   message: string;
 }
 
-export default function ContactForm() {
+interface ContactFormProps {
+  defaultLanguage?: 'sq' | 'en';
+}
+
+export default function ContactForm({ defaultLanguage }: ContactFormProps) {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',

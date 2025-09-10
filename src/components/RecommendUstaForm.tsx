@@ -18,7 +18,11 @@ interface RecommendFormData {
   ustaEmail?: string;
 }
 
-export default function RecommendUstaForm() {
+interface RecommendFormProps {
+  defaultLanguage?: 'sq' | 'en';
+}
+
+export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProps) {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState<RecommendFormData>({
     name: '',
