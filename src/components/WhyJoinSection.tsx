@@ -1,9 +1,8 @@
-// src/components/WhyJoinSection.tsx - Updated to use SectionContainer module
+// src/components/WhyJoinSection.tsx - Updated to use new container
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
 import styles from '../styles/WhyJoinSection.module.css';
-import containerStyles from '../styles/SectionContainer.module.css';
 
 export default function WhyJoinSection() {
   const { t } = useLanguage();
@@ -46,8 +45,8 @@ export default function WhyJoinSection() {
 
   return (
     <section className={styles.whyJoinSection}>
-      {/* Updated: Using container module instead of global classes */}
-      <div className={containerStyles.sectionContainer}>
+      {/* Updated: Using new container with specified width and layout */}
+      <div className={styles.whyJoinContainer}>
         {/* Header */}
         <div className={styles.header}>
           <div className='flex flex-row justify-center gap-2 text-center'>

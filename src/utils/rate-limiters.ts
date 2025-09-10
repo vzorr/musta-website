@@ -1,9 +1,8 @@
-// src/utils/rate-limiters.ts - FIXED: Correct rate-limiter-flexible API usage
+// src/utils/rate-limiters.ts - Updated with Contact and Recommend limiters
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 import { NextRequest } from 'next/server';
 
 class RateLimiterUtil {
-  // CHANGE: Removed keyGenerator - not supported in rate-limiter-flexible
   // Registration rate limiter: 5 requests per 15 minutes per IP
   registrationLimiter = new RateLimiterMemory({
     points: 5,
@@ -13,6 +12,18 @@ class RateLimiterUtil {
   // GDPR rate limiter: 3 requests per hour per IP
   gdprLimiter = new RateLimiterMemory({
     points: 3,
+    duration: 3600, // 1 hour
+  });
+
+  // Contact rate limiter: 5 requests per 10 minutes per IP
+  contactLimiter = new RateLimiterMemory({
+    points: 5,
+    duration: 600, // 10 minutes
+  });
+
+  // Recommend rate limiter: 10 requests per hour per IP
+  recommendLimiter = new RateLimiterMemory({
+    points: 10,
     duration: 3600, // 1 hour
   });
 
@@ -34,7 +45,6 @@ class RateLimiterUtil {
 
   async checkRegistrationLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
     try {
-      // CHANGE: Use consume() with the key, not pass the request object
       const key = this.getClientKey(req);
       await this.registrationLimiter.consume(key);
       return { allowed: true };
@@ -48,7 +58,6 @@ class RateLimiterUtil {
 
   async checkGDPRLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
     try {
-      // CHANGE: Use consume() with the key, not pass the request object
       const key = this.getClientKey(req);
       await this.gdprLimiter.consume(key);
       return { allowed: true };
@@ -60,19 +69,74 @@ class RateLimiterUtil {
     }
   }
 
+  async checkContactLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
+    try {
+      const key = this.getClientKey(req);
+      await this.contactLimiter.consume(key);
+      return { allowed: true };
+    } catch (rateLimiterRes: any) {
+      return { 
+        allowed: false, 
+        retryAfter: Math.round(rateLimiterRes.msBeforeNext / 1000) 
+      };
+    }
+  }
+
+  async checkRecommendLimit(req: NextRequest | any): Promise<{ allowed: boolean; retryAfter?: number }> {
+    try {
+      const key = this.getClientKey(req);
+      await this.recommendLimiter.consume(key);
+      return { allowed: true };
+    } catch (rateLimiterRes: any) {
+      return { 
+        allowed: false, 
+        retryAfter: Math.round(rateLimiterRes.msBeforeNext / 1000) 
+      };
+    }
+  }
+
   /**
    * Reset rate limit for a specific key (useful for testing)
    */
-  async resetLimit(limiterType: 'registration' | 'gdpr', key: string): Promise<void> {
-    const limiter = limiterType === 'registration' ? this.registrationLimiter : this.gdprLimiter;
+  async resetLimit(limiterType: 'registration' | 'gdpr' | 'contact' | 'recommend', key: string): Promise<void> {
+    let limiter;
+    switch (limiterType) {
+      case 'registration':
+        limiter = this.registrationLimiter;
+        break;
+      case 'gdpr':
+        limiter = this.gdprLimiter;
+        break;
+      case 'contact':
+        limiter = this.contactLimiter;
+        break;
+      case 'recommend':
+        limiter = this.recommendLimiter;
+        break;
+    }
     await limiter.delete(key);
   }
 
   /**
    * Get remaining points for a key
    */
-  async getRemainingPoints(limiterType: 'registration' | 'gdpr', req: NextRequest | any): Promise<number> {
-    const limiter = limiterType === 'registration' ? this.registrationLimiter : this.gdprLimiter;
+  async getRemainingPoints(limiterType: 'registration' | 'gdpr' | 'contact' | 'recommend', req: NextRequest | any): Promise<number> {
+    let limiter;
+    switch (limiterType) {
+      case 'registration':
+        limiter = this.registrationLimiter;
+        break;
+      case 'gdpr':
+        limiter = this.gdprLimiter;
+        break;
+      case 'contact':
+        limiter = this.contactLimiter;
+        break;
+      case 'recommend':
+        limiter = this.recommendLimiter;
+        break;
+    }
+    
     const key = this.getClientKey(req);
     
     try {

@@ -42,6 +42,76 @@
       }
     }
   },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here for you. Get in touch with our team anytime.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "messages": {
+      "success": "Your message was sent successfully! We will contact you soon.",
+      "error": "An error occurred. Please try again.",
+      "validationRequired": "All fields are required",
+      "validationEmail": "Invalid email address"
+    }
+  },
+  "recommend": {
+    "title": "Recommend a Usta",
+    "subtitle": "Fill out the following information below.",
+    "form": {
+      "yourInfo": "Your Information",
+      "name": "Name",
+      "email": "E-Mail (Optional)",
+      "phone": "Phone Number",
+      "category": "Category",
+      "location": "Location",
+      "ustaInfo": "Usta Information You're Recommending",
+      "ustaName": "Usta Name",
+      "ustaPhone": "Usta Phone Number",
+      "ustaEmail": "Usta Email (Optional)",
+      "submit": "Usta Recommended",
+      "submitRecommendation": "Send Recommendation",
+      "submitting": "Registering...",
+      "sendingRecommendation": "Sending...",
+      "recommendAnother": "Recommend Another Usta"
+    },
+    "categories": {
+      "plumber": "Plumber",
+      "electrician": "Electrician",
+      "woodworker": "Woodworker",
+      "mason": "Mason",
+      "tiler": "Tiler",
+      "painter": "Painter",
+      "carpenter": "Carpenter",
+      "other": "Other"
+    },
+    "locations": {
+      "tirana": "Tirana",
+      "durres": "Durres",
+      "vlore": "Vlore",
+      "shkoder": "Shkoder",
+      "elbasan": "Elbasan",
+      "korce": "Korce",
+      "fier": "Fier",
+      "berat": "Berat",
+      "other": "Other"
+    },
+    "messages": {
+      "successRegistration": "Your information was registered successfully! We will notify you soon.",
+      "successRecommendation": "Recommendation sent successfully! Thank you for helping us grow.",
+      "error": "An error occurred. Please try again.",
+      "validationRequired": "Please fill in all required fields",
+      "validationUstaRequired": "Please provide the usta's information you are recommending",
+      "validationEmail": "Invalid email address",
+      "duplicateUsta": "This usta is already registered"
+    }
+  },
   "registration": {
     "title": "Register Today. It's Free!",
     "formTitle": "Fill out the following<br>information below.",

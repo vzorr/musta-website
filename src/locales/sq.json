@@ -1,3 +1,4 @@
+// src/locales/sq.json - Updated with Contact and Recommend translations
 {
   "header": {
     "cta": "Regjistrohu"
@@ -5,10 +6,10 @@
   "hero": {
     "title": "Ne e sjellim punën tek ju!",
     "subtitle": "Puna juaj e radhës është vetëm një klik larg. Bashkohuni me myUSTA dhe lidhuni me pronarët e shtëpive.",
-    "cta": "Hyr në Listën e Pritjes - Është "
+    "cta": "Hyr në Listën e Pritjes - Është Falas!"
   },
   "whyJoin": {
-    "title": "të përdorni myUsta?",
+    "title": "Pse të përdorni myUsta?",
     "description": "Në myUsta, ne lidhim pronarët e shtëpive me profesionistë të besuar për të gjitha nevojat e mirëmbajtjes dhe riparimeve. Qoftë për rregullime të vogla apo projekte të mëdha, platforma jonë e bën të lehtë gjetjen dhe punësimin e ekspertit të duhur. Ne fuqizojmë si klientët ashtu edhe mjeshtrit me mjete për bashkëpunim të thjeshtë dhe rezultate cilësore.<br><br>Me myUsta, gjërat bëhen më thjesht dhe më mirë.",
     "benefits": {
       "directOpportunities": {
@@ -26,7 +27,7 @@
     }
   },
   "howItWorks": {
-    "title": "funksionon?",
+    "title": "Si funksionon?",
     "steps": {
       "step1": {
         "title": "Hapi 1",
@@ -42,8 +43,78 @@
       }
     }
   },
+  "contact": {
+    "title": "Na Kontaktoni",
+    "subtitle": "Jemi këtu për ju. Lidhuni me ekipin tonë në çdo kohë.",
+    "form": {
+      "name": "Emri",
+      "email": "E-Mail",
+      "phone": "Numri i Telefonit",
+      "subject": "Subjekti",
+      "message": "Mesazhi Juaj",
+      "submit": "Dërgo Mesazhin",
+      "submitting": "Po dërgohet..."
+    },
+    "messages": {
+      "success": "Mesazhi juaj u dërgua me sukses! Do t'ju kontaktojmë së shpejti.",
+      "error": "Ndodhi një gabim. Ju lutemi provoni përsëri.",
+      "validationRequired": "Të gjitha fushat janë të detyrueshme",
+      "validationEmail": "Email-i nuk është i vlefshëm"
+    }
+  },
+  "recommend": {
+    "title": "Rekomando një Usta",
+    "subtitle": "Plotësoni informacionet e mëposhtme.",
+    "form": {
+      "yourInfo": "Informacionet Tuaja",
+      "name": "Emri",
+      "email": "E-Mail (Opsionale)",
+      "phone": "Numri i Telefonit",
+      "category": "Kategoria",
+      "location": "Vendndodhja",
+      "ustaInfo": "Të dhënat e Usta-së që rekomandoni",
+      "ustaName": "Emri i Usta-së",
+      "ustaPhone": "Numri i Usta-së",
+      "ustaEmail": "Email i Usta-së (Opsionale)",
+      "submit": "Usta Rekomanduar",
+      "submitRecommendation": "Dërgo Rekomandimin",
+      "submitting": "Po regjistrohet...",
+      "sendingRecommendation": "Po dërgohet...",
+      "recommendAnother": "Rekomando një Usta tjetër"
+    },
+    "categories": {
+      "plumber": "Hidraulik",
+      "electrician": "Elektricist",
+      "woodworker": "Zdrukthëtar",
+      "mason": "Murator",
+      "tiler": "Pllakështrues",
+      "painter": "Bojaxhi",
+      "carpenter": "Marangoz",
+      "other": "Tjetër"
+    },
+    "locations": {
+      "tirana": "Tiranë",
+      "durres": "Durrës",
+      "vlore": "Vlorë",
+      "shkoder": "Shkodër",
+      "elbasan": "Elbasan",
+      "korce": "Korçë",
+      "fier": "Fier",
+      "berat": "Berat",
+      "other": "Tjetër"
+    },
+    "messages": {
+      "successRegistration": "Të dhënat tuaja u regjistruan me sukses! Do t'ju njoftojmë së shpejti.",
+      "successRecommendation": "Rekomandimi u dërgua me sukses! Faleminderit që na ndihmoni të rritemi.",
+      "error": "Ndodhi një gabim. Ju lutemi provoni përsëri.",
+      "validationRequired": "Ju lutemi plotësoni të gjitha fushat e detyrueshme",
+      "validationUstaRequired": "Ju lutemi jepni të dhënat e usta-së që rekomandoni",
+      "validationEmail": "Email-i nuk është i vlefshëm",
+      "duplicateUsta": "Ky usta është i regjistruar tashmë"
+    }
+  },
   "registration": {
-    "title": "Regjistrohu Sot. Është ",
+    "title": "Regjistrohu Sot. Është Falas!",
     "formTitle": "Plotësoni informacionet<br>e mëposhtme",
     "fields": {
       "name": "Emri",

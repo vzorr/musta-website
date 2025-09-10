@@ -1,10 +1,22 @@
-/* WhyJoinSection.module.css - Module CSS for Why Join section */
+/* WhyJoinSection.module.css - Updated with specified measurements */
 
 /* Why Join Section Container */
 .whyJoinSection {
   padding-top: 3rem;
-
   background: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Updated: Main container with specified max-width and layout */
+.whyJoinContainer {
+  display: flex;
+  width: 1000px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
 }
 
 /* Header Container */
@@ -13,12 +25,10 @@
   margin-bottom: 3rem;
 }
 
-
 .title {
   margin-bottom: 2rem;
   opacity: 0.8;
 }
-
 
 .description {
   max-width: 64rem;
@@ -49,8 +59,12 @@
               -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
+/* Updated: Image container with specified dimensions and styling */
 .imageContainer {
-  height: 12rem;
+  height: 237px;
+  align-self: stretch;
+  border-radius: 24px 24px 0 0;
+  background: url('/assets/image_container.svg') lightgray 0px -11.483px / 100% 109.69% no-repeat;
   position: relative;
 }
 
@@ -111,10 +125,6 @@
     margin-bottom: 3rem;
   }
   
-  .imageContainer {
-    height: 15rem;
-  }
-  
   .cardContent {
     padding: 1.5rem;
   }
@@ -124,6 +134,11 @@
   .benefitsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+  
+  /* Reduce container width on smaller screens */
+  .whyJoinContainer {
+    width: min(1000px, 90vw);
   }
 }
 
@@ -136,6 +151,11 @@
   .benefitsGrid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+  
+  /* Full width on desktop */
+  .whyJoinContainer {
+    width: 1000px;
   }
 }
 

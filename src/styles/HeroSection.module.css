@@ -1,4 +1,4 @@
-/* src/styles/HeroSection.module.css - FIXED CENTER ALIGNMENT */
+/* src/styles/HeroSection.module.css - REDUCED TEXT COLUMN WIDTH */
 
 .heroWrapper {
   width: 100vw;
@@ -41,7 +41,7 @@
 .heroTextColumn {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 320px; /* Reduced from 400px */
   flex-shrink: 0;
 }
 
@@ -70,6 +70,7 @@
   line-height: 100%; /* 64px */
   text-shadow: none;
   margin: 0; /* Remove default margins */
+  padding-right: 50px;
 }
 
 /* ✅ UPDATED: Hero subheading with exact specifications and Inter font */
@@ -87,12 +88,13 @@
   align-items: center;
   text-shadow: none;
   margin: 0; /* Remove default margins */
+  padding: 0 50px;
 }
 
 .phoneContainer {
-  width: 100%; /* ✅ Use full width of the reduced column */
-  height: auto; /* ✅ Maintain aspect ratio */
-  aspect-ratio: 392.869 / 493.667; /* ✅ Maintain original aspect ratio */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 392.869 / 493.667;
   flex-shrink: 0;
   position: relative;
   background: url('/assets/change-this.png') transparent 0px 0px / 100% 100% no-repeat;
@@ -193,7 +195,7 @@
   }
   
   .heroTextContainer p {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segue UI', Roboto, sans-serif;
     font-size: 20px; /* Original desktop size */
     font-weight: 500;
     line-height: 140%;
@@ -229,7 +231,7 @@
   }
 }
 
-/* Mobile View - Responsive typography with closer positioning */
+/* Mobile View - Responsive typography (no changes needed as mobile uses full width) */
 @media (max-width: 760px) {
   .phoneContainer {
     display: none;
@@ -247,19 +249,18 @@
     align-items: flex-start;
   }
 
-  /* ✅ UPDATED: Restored original padding on mobile + negative top margin */
+  /* ✅ Mobile uses full width so no column restrictions needed */
   .heroTextContainer {
     width: 100%;
-    margin: -120px 0 0 0; /* ✅ Only top margin on mobile, no left margin */
+    margin: -120px 0 0 0;
     gap: 1rem;
     text-align: center;
-    padding: 23px 32px; /* ✅ Restored original padding */
+    padding: 23px 32px;
   }
   
-  /* ✅ Mobile heading - significantly scaled down with Inter font */
   .heroTextContainer h1 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 32px; /* Responsive size for mobile */
+    font-size: 32px;
     font-weight: 700;
     line-height: 100%;
     color: var(--Navy, #00203F);
@@ -268,16 +269,15 @@
     text-align: center;
   }
 
-  /* ✅ Mobile subheading - scaled down with Inter font */
   .heroTextContainer p {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segue UI', Roboto, sans-serif;
     width: 90%;
-    font-size: 16px; /* Responsive size for mobile */
+    font-size: 16px;
     font-weight: 500;
     line-height: 140%;
     color: #335372;
     text-align: center;
-    margin: 0 auto 1.5rem auto; /* ✅ Added bottom margin for button spacing */
+    margin: 0 auto 1.5rem auto;
   }
 
   .ctaButton {

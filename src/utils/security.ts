@@ -1,6 +1,6 @@
-// src/utils/security.ts - Updated for App Router
+// src/utils/security.ts - Updated with Contact and Recommend spam detection
 import { NextRequest, NextResponse } from 'next/server';
-import { RegistrationData } from '../types';
+import { RegistrationData, ContactFormData, RecommendFormData } from '../types';
 
 class SecurityUtil {
   private spamPatterns = [
@@ -11,9 +11,66 @@ class SecurityUtil {
     /(\w)\1{4,}/, // Repeated characters
   ];
 
+  private suspiciousEmailDomains = [
+    'tempmail.com',
+    'guerrillamail.com',
+    '10minutemail.com',
+    'mailinator.com',
+    'throwaway.email'
+  ];
+
   isSpamLike(data: RegistrationData): boolean {
     const textToCheck = `${data.name} ${data.email}`.toLowerCase();
     return this.spamPatterns.some(pattern => pattern.test(textToCheck));
+  }
+
+  isSpamLikeContact(data: ContactFormData): boolean {
+    const textToCheck = `${data.name} ${data.email} ${data.subject} ${data.message}`.toLowerCase();
+    
+    // Check for spam patterns
+    if (this.spamPatterns.some(pattern => pattern.test(textToCheck))) {
+      return true;
+    }
+    
+    // Check for suspicious email domains
+    const emailDomain = data.email.split('@')[1]?.toLowerCase();
+    if (emailDomain && this.suspiciousEmailDomains.includes(emailDomain)) {
+      return true;
+    }
+    
+    // Check for excessive URLs in message
+    const urlCount = (data.message.match(/http[s]?:\/\//g) || []).length;
+    if (urlCount > 2) {
+      return true;
+    }
+    
+    return false;
+  }
+
+  isSpamLikeRecommend(data: RecommendFormData): boolean {
+    const textToCheck = `${data.name} ${data.email || ''} ${data.ustaName || ''} ${data.ustaEmail || ''}`.toLowerCase();
+    
+    // Check for spam patterns
+    if (this.spamPatterns.some(pattern => pattern.test(textToCheck))) {
+      return true;
+    }
+    
+    // Check if recommender and usta info are suspiciously similar
+    if (data.isRecommendation && data.ustaName) {
+      if (data.name === data.ustaName && data.phone === data.ustaPhone) {
+        return true; // Self-recommendation detected
+      }
+    }
+    
+    // Check for suspicious email domains
+    if (data.email) {
+      const emailDomain = data.email.split('@')[1]?.toLowerCase();
+      if (emailDomain && this.suspiciousEmailDomains.includes(emailDomain)) {
+        return true;
+      }
+    }
+    
+    return false;
   }
 
   getClientIP(req: NextRequest | any): string {
@@ -21,6 +78,7 @@ class SecurityUtil {
     if (req instanceof Request || req.headers?.get) {
       return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
              req.headers.get('x-real-ip') ||
+             req.headers.get('cf-connecting-ip') || // Cloudflare
              'unknown';
     }
     
@@ -36,6 +94,7 @@ class SecurityUtil {
     res.headers.set('X-Frame-Options', 'DENY');
     res.headers.set('X-XSS-Protection', '1; mode=block');
     res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   }
 
   // Legacy method for Pages Router compatibility
@@ -54,7 +113,37 @@ class SecurityUtil {
     if (sanitized.phone) {
       sanitized.phone = sanitized.phone.replace(/(\d{3})(\d+)(\d{3})/, '$1***$3');
     }
+    if (sanitized.ustaEmail) {
+      sanitized.ustaEmail = sanitized.ustaEmail.replace(/(.{2})(.*)(@.*)/, '$1***$3');
+    }
+    if (sanitized.ustaPhone) {
+      sanitized.ustaPhone = sanitized.ustaPhone.replace(/(\d{3})(\d+)(\d{3})/, '$1***$3');
+    }
     return sanitized;
+  }
+
+  /**
+   * Validate phone number format
+   */
+  isValidPhoneNumber(phone: string): boolean {
+    // Remove all non-digit characters
+    const digitsOnly = phone.replace(/\D/g, '');
+    
+    // Check if it's a valid length (8-15 digits typically)
+    if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+      return false;
+    }
+    
+    // Check for obvious fake patterns
+    if (/^(\d)\1+$/.test(digitsOnly)) { // All same digit
+      return false;
+    }
+    
+    if (/^1234567890/.test(digitsOnly) || /^0123456789/.test(digitsOnly)) { // Sequential
+      return false;
+    }
+    
+    return true;
   }
 
   /**
@@ -93,6 +182,18 @@ class SecurityUtil {
     }
     
     return new Error('Unknown error occurred');
+  }
+
+  /**
+   * Generate a secure referral code
+   */
+  generateReferralCode(): string {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = 'UST-';
+    for (let i = 0; i < 6; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return code;
   }
 }
 

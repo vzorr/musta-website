@@ -80,7 +80,7 @@ export default function HeroSection() {
 
             {/* Right: Extra content */}
             <div className="hidden lg:block order-3" style={{ width: '28%', flexShrink: 0 }}>
-              This is a naothere 
+            
             </div>
           </div>
         </div>
