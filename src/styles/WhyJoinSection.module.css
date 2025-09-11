@@ -1,5 +1,3 @@
-/* WhyJoinSection.module.css - Updated with specified measurements */
-
 /* Why Join Section Container */
 .whyJoinSection {
   padding-top: 3rem;
@@ -41,7 +39,7 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 1040px;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
 }
 
 /* Feature Card Styles */

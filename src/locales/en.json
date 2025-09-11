@@ -152,10 +152,6 @@
       "email": "Please enter a valid email address"
     }
   },
-  "recommend": {
-    "title": "Recommend a Usta",
-    "subtitle": "Know someone who would be perfect for myUsta? Help us grow our community by recommending skilled professionals."
-  },
   "faq": {
     "title": "FAQ",
     "items": {
@@ -181,8 +177,7 @@
     "tagline": "Your Skills. Our platform. Endless Opportunities.",
     "copyright": "©2025 myUsta. All rights reserved.",
     "links": {
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
+      "termsAndConditions": "Terms and Conditions",
       "contact": "Contact Us"
     }
   }

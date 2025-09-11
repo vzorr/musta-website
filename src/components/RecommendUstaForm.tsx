@@ -33,6 +33,7 @@ export default function RecommendUstaForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string>('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -40,6 +41,12 @@ export default function RecommendUstaForm() {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleRecommendAnother = () => {
+    setIsSuccess(false);
+    setMessage('');
+    setMessageType('');
   };
 
   const categories = [
@@ -111,8 +118,9 @@ export default function RecommendUstaForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('Your information was registered successfully! We will notify you soon.');
+        setMessage('Usta Recommended');
         setMessageType('success');
+        setIsSuccess(true);
         
         // Reset form
         setFormData({
@@ -154,7 +162,8 @@ export default function RecommendUstaForm() {
           </div>
         )}
 
-        <form className={styles.form} onSubmit={handleSubmit}>
+        {!isSuccess ? (
+          <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <input
               type="text"
@@ -254,6 +263,27 @@ export default function RecommendUstaForm() {
             </Button>
           </div>
         </form>
+        ) : (
+          <div className={styles.successState}>
+            <div className={styles.successContent}>
+              <div className={styles.successIcon}>✓</div>
+              <h3 className={styles.successTitle}>Usta Recommended</h3>
+              <p className={styles.successMessage}>
+                Thank you for recommending! We'll reach out to them soon.
+              </p>
+              <Button
+                onClick={handleRecommendAnother}
+                variant="primary"
+                size="large"
+                fullWidth
+                className={styles.recommendAnotherButton}
+              >
+                <span className={styles.plusIcon}>+</span>
+                Recommend Another Usta
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
