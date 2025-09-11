@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import WhyJoinSection from '../components/WhyJoinSection';
 import HowItWorksSection from '../components/HowItWorksSection';
+import VideoSection from '../components/VideoSection';
 import RecommendSection from '../components/RecommendSection';
 import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
@@ -63,6 +64,9 @@ export default function Home() {
                 <HowItWorksSection />
               {/* </div> */}
             {/* </div> */}
+
+            {/* Video Section */}
+            <VideoSection />
 
             {/* Recommend Usta Section - Centered within max-width container */}
             <div className="w-full bg-myusta-gray">
