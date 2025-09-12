@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
+  
   // Image optimization
   images: {
     domains: [],
@@ -55,6 +60,14 @@ const nextConfig = {
         // Exclude problematic packages from managed paths
         managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!(googleapis|nodemailer|@types[\\/]node))/],
       };
+    }
+    
+    if (dev) {
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'process.env.NEXT_RUNTIME': JSON.stringify('nodejs'),
+        })
+      );
     }
     
     return config;

@@ -38,7 +38,7 @@ export default function HowItWorksSection() {
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
-                src="/assets/vector.svg" 
+                src="/assets/file.svg" 
                 alt="Profile Icon" 
                 width={24}
                 height={24}
@@ -57,7 +57,7 @@ export default function HowItWorksSection() {
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
-                src="/assets/subtract.svg" 
+                src="/assets/profile.svg" 
                 alt="Skills Icon" 
                 width={24}
                 height={24}
@@ -76,7 +76,7 @@ export default function HowItWorksSection() {
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
-                src="/assets/vector.svg" 
+                src="/assets/hand.svg" 
                 alt="Work Icon" 
                 width={24}
                 height={24}

@@ -5,12 +5,13 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import WhyJoinSection from '../components/WhyJoinSection';
 import HowItWorksSection from '../components/HowItWorksSection';
-import RegistrationForm from '../components/RegistrationForm';
+import VideoSection from '../components/VideoSection';
+import RecommendSection from '../components/RecommendSection';
 import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 import GDPRConsent from '../components/GDPRConsent';
 import { LanguageProvider } from '../contexts/LanguageContext';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 interface ConsentState {
   necessary: boolean;
@@ -29,9 +30,9 @@ export default function Home() {
     timestamp: ''
   });
 
-  const handleGdprConsentChange = (consents: ConsentState) => {
+  const handleGdprConsentChange = useCallback((consents: ConsentState) => {
     setGdprConsents(consents);
-  };
+  }, []);
 
   return (
     <LanguageProvider>
@@ -51,23 +52,26 @@ export default function Home() {
           {/* Other sections with consistent max-width containers */}
           <div className="w-full">
             {/* Why Join Section */}
-            <div className="w-full bg-myusta-gray">
-              <div className="w-full max-w-[1440px] mx-auto">
+            {/* <div> */}
+              {/* <div className="w-full max-w-[1440px] mx-auto"> */}
                 <WhyJoinSection />
-              </div>
-            </div>
+              {/* </div> */}
+            {/* </div> */}
 
             {/* How It Works Section */}
-            <div className="w-full bg-myusta-gray">
-              <div className="w-full max-w-[1440px] mx-auto">
+            {/* <div> */}
+              {/* <div className="w-full max-w-[1440px] mx-auto"> */}
                 <HowItWorksSection />
-              </div>
-            </div>
+              {/* </div> */}
+            {/* </div> */}
 
-            {/* Registration Form - Centered within max-width container */}
+            {/* Video Section */}
+            <VideoSection />
+
+            {/* Recommend Usta Section - Centered within max-width container */}
             <div className="w-full bg-myusta-gray">
               <div className="w-full max-w-[1440px] mx-auto">
-                <RegistrationForm gdprConsents={gdprConsents} />
+                <RecommendSection />
               </div>
             </div>
 

@@ -73,19 +73,13 @@ export default function Footer() {
           {/* Right Side - Footer Links */}
           <div className="text-left sm:text-right space-y-3">
             <a 
-              href="#" 
+              href="/legal" 
               className="block text-white hover:text-myusta-yellow transition-colors"
             >
-              {t('footer.links.privacy')}
+              {t('footer.links.termsAndConditions')}
             </a>
             <a 
-              href="#" 
-              className="block text-white hover:text-myusta-yellow transition-colors"
-            >
-              {t('footer.links.terms')}
-            </a>
-            <a 
-              href="#" 
+              href="/contact" 
               className="block text-white hover:text-myusta-yellow transition-colors"
             >
               {t('footer.links.contact')}

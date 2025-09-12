@@ -7,8 +7,6 @@
   background: #f3f3f3;
 }
 
-
-
 /* Title to Cards Gap - 48px as shown in Figma */
 .howItWorksTitle {
   margin-bottom: 3rem; /* 48px gap between title and cards */
@@ -21,34 +19,36 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem; /* 24px gap on mobile */
-  width: 100%;
-  max-width: 1200px;
+  width: 1040px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
 /* Individual Step Card Styling */
 .stepCard {
   background: #f3f3f3;
-  height: 190px;
-  padding: 2rem 1.5rem; /* 32px vertical, 24px horizontal */
+  /* Remove fixed height to allow content to define height */
+  /* height: 190px; */
+  padding: 1.25rem 1rem; /* Reduced vertical and horizontal padding */
   border-radius: 1rem;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
               -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  min-height: 120px; /* Optional: ensure a minimum height for visual consistency */
 }
 
 /* Step Card Elements Spacing */
 .stepNumber {
-  margin-bottom: 1rem; /* 16px below step number */
+  margin-bottom: 0.5rem; /* Reduce space below step number */
   font-weight: 500;
   color: #00203F;
 }
 
 .stepIconContainer {
-  margin: 0 auto 1.5rem auto; /* 24px below icon */
-  width: 3rem;
-  height: 3rem;
+  margin: 0 auto 1rem auto; /* Reduce space below icon */
+  width: 2.5rem;
+  height: 2.5rem;
   background: #FFC800;
   border-radius: 0.75rem;
   display: flex;
@@ -67,8 +67,9 @@
 
 .stepDescription {
   color: #888888;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
+  font-size: 0.97rem;
 }
 
 /* Hover Effects */
@@ -86,7 +87,7 @@
   }
   
   .stepCard {
-    padding: 2.5rem 2rem; /* 40px vertical, 32px horizontal on tablet+ */
+    padding: 1.5rem 1.25rem; /* Slightly more padding on tablet, but still reduced */
   }
 }
 
@@ -121,6 +122,6 @@
   }
   
   .stepCard {
-    padding: 3rem 2.5rem; /* More padding on large screens */
+    padding: 2rem 1.5rem; /* More padding on large screens, but still less than before */
   }
 }

@@ -74,7 +74,6 @@ class SecurityUtil {
   }
 
   getClientIP(req: NextRequest | any): string {
-    // Handle NextRequest (App Router)
     if (req instanceof Request || req.headers?.get) {
       return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
              req.headers.get('x-real-ip') ||
@@ -82,7 +81,6 @@ class SecurityUtil {
              'unknown';
     }
     
-    // Handle legacy request (Pages Router) - for gradual migration
     return (req.headers?.['x-forwarded-for'] as string)?.split(',')[0]?.trim() ||
            req.headers?.['x-real-ip'] as string ||
            req.connection?.remoteAddress ||
@@ -97,7 +95,6 @@ class SecurityUtil {
     res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   }
 
-  // Legacy method for Pages Router compatibility
   setSecurityHeadersLegacy(res: any): void {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
@@ -129,17 +126,15 @@ class SecurityUtil {
     // Remove all non-digit characters
     const digitsOnly = phone.replace(/\D/g, '');
     
-    // Check if it's a valid length (8-15 digits typically)
     if (digitsOnly.length < 8 || digitsOnly.length > 15) {
       return false;
     }
     
-    // Check for obvious fake patterns
-    if (/^(\d)\1+$/.test(digitsOnly)) { // All same digit
+    if (/^(\d)\1+$/.test(digitsOnly)) {
       return false;
     }
     
-    if (/^1234567890/.test(digitsOnly) || /^0123456789/.test(digitsOnly)) { // Sequential
+    if (/^1234567890/.test(digitsOnly) || /^0123456789/.test(digitsOnly)) {
       return false;
     }
     

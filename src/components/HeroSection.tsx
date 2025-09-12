@@ -23,8 +23,8 @@ export default function HeroSection() {
     img.src = '/assets/herobanner.png';
   }, []);
 
-  const scrollToRegistration = () => {
-    const element = document.getElementById('registration');
+  const scrollToRecommend = () => {
+    const element = document.getElementById('recommend');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -70,7 +70,7 @@ export default function HeroSection() {
                 <Button 
                   variant="primary"
                   size="medium"
-                  onClick={scrollToRegistration}
+                  onClick={scrollToRecommend}
                   className={styles.ctaButton}
                 >
                   {t('hero.cta')}

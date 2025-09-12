@@ -1,4 +1,3 @@
-// src/app/layout.tsx - FIXED: Add LanguageProvider at the root level
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';

@@ -40,9 +40,11 @@ export default function GDPRConsent({ onConsentChange, required = false }: GDPRC
     } else {
       const parsed = JSON.parse(existingConsent);
       setConsents(parsed);
-      onConsentChange?.(parsed);
+      if (onConsentChange && parsed.gdprAccepted) {
+        onConsentChange(parsed);
+      }
     }
-  }, [onConsentChange]);
+  }, []);
 
   const handleConsentChange = (type: keyof ConsentState, value: boolean) => {
     const newConsents = { ...consents, [type]: value };
