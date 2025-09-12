@@ -34,6 +34,7 @@ export default function RecommendUstaForm() {
   const [message, setMessage] = useState<string>('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -47,6 +48,7 @@ export default function RecommendUstaForm() {
     setIsSuccess(false);
     setMessage('');
     setMessageType('');
+    setShowSuccessMessage(false);
   };
 
   const categories = [
@@ -118,9 +120,9 @@ export default function RecommendUstaForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('Usta Recommended');
+        setMessage(language === 'sq' ? 'Usta u rekomandua me sukses!' : 'Usta Recommended Successfully!');
         setMessageType('success');
-        setIsSuccess(true);
+        setShowSuccessMessage(true);
         
         // Reset form
         setFormData({
@@ -133,6 +135,12 @@ export default function RecommendUstaForm() {
           ustaPhone: '',
           ustaEmail: ''
         });
+        
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+          setMessage('');
+          setMessageType('');
+        }, 3000);
       } else {
         setMessage(data.message || 'An error occurred');
         setMessageType('error');
@@ -152,7 +160,8 @@ export default function RecommendUstaForm() {
       <div className={styles.formCard}>
         <div className={styles.formHeader}>
           <h2 className={styles.formTitle}>
-            Join the Waitlist - It's Free!
+          Fill out the following
+          information below.
           </h2>
         </div>
 
@@ -162,8 +171,8 @@ export default function RecommendUstaForm() {
           </div>
         )}
 
-        {!isSuccess ? (
-          <form className={styles.form} onSubmit={handleSubmit}>
+
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
             <input
               type="text"
@@ -259,31 +268,10 @@ export default function RecommendUstaForm() {
             >
               {isSubmitting 
                 ? 'Registering...' 
-                : 'Join the Waitlist'}
+                : 'Recommend Usta'}
             </Button>
           </div>
         </form>
-        ) : (
-          <div className={styles.successState}>
-            <div className={styles.successContent}>
-              <div className={styles.successIcon}>✓</div>
-              <h3 className={styles.successTitle}>Usta Recommended</h3>
-              <p className={styles.successMessage}>
-                Thank you for recommending! We'll reach out to them soon.
-              </p>
-              <Button
-                onClick={handleRecommendAnother}
-                variant="primary"
-                size="large"
-                fullWidth
-                className={styles.recommendAnotherButton}
-              >
-                <span className={styles.plusIcon}>+</span>
-                Recommend Another Usta
-              </Button>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

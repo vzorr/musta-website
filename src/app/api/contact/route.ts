@@ -1,84 +1,134 @@
-// src/app/api/contact/route.ts - Contact form API endpoint
 import { NextRequest, NextResponse } from 'next/server';
-import { headers } from 'next/headers';
+import { security } from '../../../utils/security';
+import { rateLimiters } from '../../../utils/rate-limiters';
+import { helpers } from '../../../utils/helpers';
+import { validation } from '../../../utils/validation';
+import { emailService } from '../../../services/email.service';
+import { db } from '../../../utils/db';
 
 export async function POST(request: NextRequest) {
   try {
+    const rateLimit = await rateLimiters.checkContactLimit(request);
+    if (!rateLimit.allowed) {
+      helpers.logInfo('Contact rate limit exceeded', { ip: security.getClientIP(request) });
+      return NextResponse.json({
+        success: false,
+        message: 'Too many contact attempts. Please try again later.',
+        error: 'RATE_LIMITED',
+        retryAfter: rateLimit.retryAfter,
+        timestamp: new Date().toISOString()
+      }, { status: 429 });
+    }
+
+    const clientIP = security.getClientIP(request);
+    const userAgent = request.headers.get('user-agent') || 'Unknown';
+
     const body = await request.json();
-    const { name, email, message, subject, language } = body;
 
-    // Validate required fields
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Name, email, and message are required' 
-        },
-        { status: 400 }
-      );
+    const validationResult = validation.validateContactForm(body);
+    if (!validationResult.isValid) {
+      return NextResponse.json({
+        success: false,
+        message: validationResult.errors.join(', '),
+        error: 'VALIDATION_ERROR',
+        timestamp: new Date().toISOString()
+      }, { status: 400 });
     }
 
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Invalid email address' 
-        },
-        { status: 400 }
-      );
+    if (security.isSpamLike(body)) {
+      return NextResponse.json({
+        success: false,
+        message: 'Contact submission rejected',
+        error: 'SPAM_DETECTED',
+        timestamp: new Date().toISOString()
+      }, { status: 400 });
     }
 
-    // Get client IP and user agent
-    const headersList = headers();
-    const userAgent = headersList.get('user-agent') || 'Unknown';
-    const forwarded = headersList.get('x-forwarded-for');
-    const ip = forwarded ? forwarded.split(',')[0] : 'Unknown';
-
-    // Prepare contact data
     const contactData = {
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      message: message.trim(),
-      subject: subject?.trim() || 'Contact Form Submission',
-      language: language || 'en',
-      timestamp: new Date().toISOString(),
+      ...body,
       userAgent,
-      ip
+      ip: clientIP
     };
 
-    // Log the contact submission (in production, you'd save to database or send email)
-    console.log('Contact form submission:', contactData);
+    helpers.logInfo('Contact form submission', security.sanitizeForLog(contactData));
 
-    // In a real application, you would:
-    // 1. Save to database
-    // 2. Send email notification
-    // 3. Send auto-reply to user
-    // 4. Integrate with CRM system
+    try {
+      const result = await db.query(
+        `INSERT INTO contact_submissions (
+          name, email, phone, subject, message, language,
+          ip_address, user_agent, status
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+         RETURNING id, created_at`,
+        [
+          contactData.name,
+          contactData.email,
+          contactData.phone || null,
+          contactData.subject || 'Contact Form Submission',
+          contactData.message,
+          contactData.language || 'en',
+          clientIP,
+          userAgent,
+          'pending'
+        ]
+      );
 
-    // For now, we'll just return success
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Thank you for your message! We will get back to you soon.' 
-      },
-      { status: 200 }
-    );
+      helpers.logInfo('Contact submission stored in database', { 
+        id: result.rows[0].id,
+        created_at: result.rows[0].created_at
+      });
 
-  } catch (error) {
-    console.error('Contact API error:', error);
-    return NextResponse.json(
-      { 
-        success: false, 
-        message: 'An error occurred while processing your request' 
-      },
-      { status: 500 }
-    );
+      const emailData = {
+        name: contactData.name,
+        email: contactData.email,
+        subject: contactData.subject,
+        message: contactData.message,
+        language: contactData.language
+      };
+
+      emailService.sendContactConfirmation(emailData).catch(console.error);
+      emailService.sendContactAdminNotification(emailData).catch(console.error);
+
+      const successMessage = contactData.language === 'sq' 
+        ? 'Faleminderit për mesazhin tuaj! Do t\'ju përgjigjemi së shpejti.' 
+        : 'Thank you for your message! We will get back to you soon.';
+
+      return NextResponse.json({
+        success: true,
+        message: successMessage,
+        timestamp: new Date().toISOString()
+      });
+
+    } catch (dbError) {
+      console.error('Database storage failed:', dbError);
+      helpers.logError('Database storage error', { error: dbError });
+      
+      return NextResponse.json({
+        success: false,
+        message: 'Contact submission failed. Please try again.',
+        error: 'DATABASE_ERROR',
+        timestamp: new Date().toISOString()
+      }, { status: 500 });
+    }
+
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorStack = process.env.NODE_ENV === 'development' && error instanceof Error ? error.stack : undefined;
+
+    helpers.logError('Contact endpoint error', {
+      error: errorMessage,
+      stack: errorStack,
+      ip: security.getClientIP(request)
+    });
+
+    return NextResponse.json({
+      success: false,
+      message: 'An unexpected error occurred. Please try again.',
+      error: 'INTERNAL_ERROR',
+      timestamp: new Date().toISOString()
+    }, { status: 500 });
   }
 }
 
-// Handle preflight requests
 export async function OPTIONS(request: NextRequest) {
   return new NextResponse(null, {
     status: 200,
@@ -90,3 +140,4 @@ export async function OPTIONS(request: NextRequest) {
     },
   });
 }
+

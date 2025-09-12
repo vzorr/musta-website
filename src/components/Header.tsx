@@ -5,14 +5,21 @@ import { useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import Logo from './Logo';
 import Button from './Button';
+import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
 export default function Header() {
   const { language } = useLanguage();
 
   const scrollToRegistration = () => {
-    const element = document.getElementById('registration');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (window.location.pathname === '/') {
+      const element = document.getElementById('waitlist');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      window.location.href = '/#waitlist';
+    }
   };
 
   return (
@@ -23,9 +30,11 @@ export default function Header() {
             {/* Language Selector */}
             <LanguageSwitcher />
          
-            {/* Logo - Centered */}
+            {/* Logo - Centered and Clickable */}
             <div className={styles.centerSection}>
-              <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
+              <Link href="/" className="cursor-pointer">
+                <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
+              </Link>
             </div>
 
             {/* ✅ UPDATED: Using Button Component instead of CSS module */}
