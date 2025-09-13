@@ -302,7 +302,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                         type="checkbox"
                         checked={privacyAccepted}
                         onChange={(e) => setPrivacyAccepted(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-0 flex-shrink-0"
                         required
                       />
                       <span className="text-myusta-text-gray">
@@ -358,7 +358,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                         type="checkbox"
                         checked={marketingOptIn}
                         onChange={(e) => setMarketingOptIn(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-0 flex-shrink-0"
                       />
                       <span className="text-myusta-text-gray">
                         {language === 'sq' 

@@ -3,9 +3,13 @@
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import TwoLineTitle from './TwoLineTitle';
+import Description from './Description';
+import Image from 'next/image';
 import styles from '../styles/registeration.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
 import RecommendUstaForm from './RecommendUstaForm';
+import Title from './Title';
 
 interface FormData {
   name: string;
@@ -147,14 +151,21 @@ export default function WaitlistForm() {
   console.log('showCommunitySection state:', showCommunitySection);
 
   return (
-    <section id="waitlist" className="py-12 sm:py-20 bg-myusta-gray relative z-10">
+    <section id="waitlist" className="py-11 sm:py-20 bg-myusta-gray relative z-10">
       <div className={containerStyles.sectionContainer}>
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy mb-12 sm:mb-16">
-              {language === 'sq' ? 'Regjistrohu Sot. Është Falas!' : 'Register Today. It\'s Free!'}
-            </h2>
+            <div className="mb-12 sm:mb-16">
+              <TwoLineTitle 
+                firstLine={language === 'sq' ? 'Regjistrohu Sot.' : 'Register Today.'}
+                secondLine={language === 'sq' ? 'Është Falas!' : 'It\'s Free!'}
+                firstLineBold={false}
+                secondLineBold={true}
+                as="h2"
+                centered={true}
+              />
+            </div>
           
           <div className={containerStyles.formContainer}>
             <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
@@ -270,28 +281,69 @@ export default function WaitlistForm() {
         </div>
         )}
 
-
-        {/* Help us Grow the Community Section - Always show title and description */}
-        <div className="mt-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy mb-4 sm:mb-6">
-            {language === 'sq' ? 'Ndihmoni të Rritim Komunitetin!' : 'Help us Grow the Community!'}
-          </h2>
-          <p className="text-lg sm:text-xl text-myusta-text-gray mb-8 text-center text-[#898888]">
-            {language === 'sq' 
-              ? 'Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës? Rekomandojeni më poshtë.'
-              : 'Know a fellow Usta who would benefit from job opportunities? Recommend them below.'
-            }
-          </p>
-          
-          {/* Success essage for waitlist registration - only show after successful registration */}
-          {showRegistrationSuccess && (
-            <div className="mb-6 p-4 rounded-lg bg-green-100 text-green-700 border border-green-300">
-              {language === 'sq' 
-                ? 'U regjistruat me sukses në listën e pritjes! Tani mund të rekomandoni një Usta.'
-                : 'Successfully registered in waiting list! Now you can recommend an Usta.'
-              }
+        {showRegistrationSuccess && (
+          <div className=" text-center max-w-2xl mx-auto flex flex-col items-center " style={{marginTop: -100}}>
+            <div style={{ height: 64 }} />
+            <div className="w-16 h-16 mb-6 flex items-center justify-center">
+              <Image 
+                src="/assets/tick.svg" 
+                alt="Success" 
+                width={64}
+                height={64}
+                className="w-16 h-16"
+              />
             </div>
-          )}
+            <div style={{ height: 24 }} />
+             <Title 
+               firstText={language === 'sq' ? 'Sukses!' : 'Success!'} 
+               className="mb-4"
+               style={{
+                 color: 'var(--Navy, #00203F)',
+                 textAlign: 'center',
+                 fontFamily: 'Inter',
+                 fontSize: '20px',
+                 fontStyle: 'normal',
+                 fontWeight: '600',
+                 lineHeight: '120%'
+               }}
+             />
+            <div style={{ height: 24 }} />
+            <Description className="text-base leading-[22.4px]">
+              {language === 'sq' 
+                ? 'Faleminderit që jeni pjesë e komunitetit tonë të listës së pritjes. Do t\'ju informojmë me përditësime, datat e nisjes dhe lajmet ekskluzive.'
+                : 'Thank you for being part of our waitlist community. We\'ll keep you informed with updates, launch dates, and exclusive news.'
+              }
+            </Description>
+          </div>
+        )}
+
+        <div className="mt-11 text-center max-w-2xl mx-auto">
+          <div className="mb-4 sm:mb-6">
+            <TwoLineTitle 
+              firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
+              secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
+              firstLineBold={true}
+              secondLineBold={false}
+              as="h2"
+              centered={true}
+            />
+          </div>
+          <div className="mb-12 text-center">
+            {language === 'sq' 
+              ? (
+                <>
+                  <Description className="mb-2">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</Description>
+                  <Description>Rekomandojeni më poshtë.</Description>
+                </>
+              )
+              : (
+                <>
+                  <Description className="mb-2">Know a fellow Usta who would benefit from job opportunities?</Description>
+                  <Description>Recommend them below.</Description>
+                </>
+              )
+            }
+          </div>
           
           {!showRecommendForm ? (
             <div className="flex justify-center">

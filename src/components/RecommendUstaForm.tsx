@@ -172,105 +172,96 @@ export default function RecommendUstaForm() {
         )}
 
 
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Emri' : 'Name'} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            required 
+            maxLength={100}
+          />
+          
+          <input 
+            type="tel" 
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            required 
+            maxLength={20}
+          />
+          
+          <input 
+            type="email" 
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            maxLength={150}
+          />
+          
+          <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
+            <select 
+              name="category"
+              value={formData.category}
               onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Emri' : 'Name'}
-              className={styles.input}
+              className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
               required
-              maxLength={100}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
-              className={styles.input}
-              required
-              maxLength={20}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`}
-              className={styles.input}
-              maxLength={150}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <div className={styles.selectWrapper}>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                className={styles.select}
-                required
-              >
-                <option value="">{language === 'sq' ? 'Kategoria' : 'Category'}</option>
-                {categories.map(cat => (
-                  <option key={cat.value} value={cat.value}>
-                    {cat.label}
-                  </option>
-                ))}
-              </select>
-              <div className={styles.selectArrow}>
-                <Image src="/assets/vector.svg" alt="arrow" width={16} height={16} />
-              </div>
-            </div>
-          </div>
-
-
-          <div className={styles.formGroup}>
-            <div className={styles.selectWrapper}>
-              <select
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                className={styles.select}
-                required
-              >
-                <option value="">{language === 'sq' ? 'Vendndodhja' : 'Location'}</option>
-                {locations.map(loc => (
-                  <option key={loc.value} value={loc.value}>
-                    {loc.label}
-                  </option>
-                ))}
-              </select>
-              <div className={styles.selectArrow}>
-                <Image src="/assets/vector.svg" alt="arrow" width={16} height={16} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.buttonGroup}>
-            <Button
-              type="submit"
-              variant="primary"
-              size="large"
-              fullWidth
-              loading={isSubmitting}
-              disabled={isSubmitting}
-              className={styles.submitButton}
             >
-              {isSubmitting 
-                ? 'Registering...' 
-                : 'Recommend Usta'}
-            </Button>
+              <option value="">{language === 'sq' ? 'Kategoria' : 'Category'}</option>
+              {categories.map(cat => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="#00203F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
           </div>
+          
+          <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
+            <select 
+              name="location"
+              value={formData.location}
+              onChange={handleInputChange}
+              className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
+              required
+            >
+              <option value="">{language === 'sq' ? 'Vendndodhja' : 'Location'}</option>
+              {locations.map(loc => (
+                <option key={loc.value} value={loc.value}>
+                  {loc.label}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="#00203F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <Button
+            type="submit"
+            variant="primary"
+            size="large"
+            fullWidth
+            loading={isSubmitting}
+            disabled={isSubmitting}
+            className="w-full"
+          >
+            {isSubmitting 
+              ? 'Registering...' 
+              : 'Recommend Usta'}
+          </Button>
         </form>
       </div>
     </div>

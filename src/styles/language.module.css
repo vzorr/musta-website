@@ -28,8 +28,7 @@
 }
 
 .flagImage:focus {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* Active/Inactive States */
@@ -81,8 +80,7 @@
 
 /* Focus states for accessibility */
 .langIcon:focus {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* Reduced motion preferences */

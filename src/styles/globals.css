@@ -108,6 +108,11 @@ body {
   opacity: 0.7;
 }
 
+/* Add space before placeholder when input is focused */
+.neumorphic-input:focus::placeholder {
+  text-indent: 1ch;
+}
+
 /* ========================================
    ICON CONTAINERS
 ======================================== */
@@ -283,8 +288,7 @@ button:focus,
 input:focus,
 select:focus,
 a:focus {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* Improved Focus States for Accessibility */

@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import Title from './Title';
 import styles from '../styles/ContactForm.module.css';
 
 interface ContactFormData {
@@ -110,9 +111,12 @@ export default function ContactForm() {
     <div className={styles.contactFormContainer}>
       <div className={styles.formCard}>
         <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>
-            {language === 'sq' ? 'Na Kontaktoni' : 'Contact Us'}
-          </h2>
+          <Title 
+            firstText={language === 'sq' ? 'Na Kontaktoni' : 'Contact Us'}
+            as="h2"
+            centered={true}
+            className={styles.formTitle}
+          />
           <p className={styles.formSubtitle}>
             {language === 'sq' 
               ? 'Jemi këtu për ju. Lidhuni me ekipin tonë në çdo kohë.' 

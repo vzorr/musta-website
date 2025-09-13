@@ -48,11 +48,12 @@
 }
 
 .formTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #00203F;
-  margin-bottom: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  color: var(--Navy, #00203F);
+text-align: center;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; 
 }
 
 /* ========================================
@@ -92,6 +93,11 @@
 .input::placeholder {
   color: #00203F;
   opacity: 0.6;
+}
+
+/* Add space before placeholder when input is focused */
+.input:focus::placeholder {
+  text-indent: 1ch;
 }
 
 .input:focus {
@@ -419,7 +425,7 @@
   }
   
   .formTitle {
-    font-size: 2rem;
+    font-size: 25px;
   }
   
   .input,
@@ -627,8 +633,7 @@
 .submitButton:focus-visible,
 .recommendAnotherButton:focus-visible,
 .categoryItem:focus-visible {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* High contrast mode */

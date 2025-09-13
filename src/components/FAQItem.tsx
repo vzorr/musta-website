@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Description from './Description';
 
 interface FAQItemProps {
   question: string;
@@ -14,7 +15,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
   return (
     <div className={`faq-item neumorphic-card rounded-xl transition-all duration-300 ${isOpen ? 'active' : ''}`}>
       <button 
-        className="w-full p-6 text-left flex justify-between items-center hover:bg-myusta-yellow/10 transition-colors rounded-xl focus:outline-none focus:ring-2 focus:ring-myusta-yellow focus:ring-inset"
+        className="w-full p-6 text-left flex justify-between items-center hover:bg-myusta-yellow/10 transition-colors rounded-xl focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-semibold text-myusta-navy pr-4">{question}</span>
@@ -34,7 +35,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         }`}
       >
         <div className="px-6">
-          <p className="text-myusta-text-gray leading-relaxed">{answer}</p>
+          <Description>{answer}</Description>
         </div>
       </div>
     </div>

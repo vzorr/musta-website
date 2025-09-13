@@ -12,7 +12,7 @@ import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 import GDPRConsent from '../components/GDPRConsent';
 import { LanguageProvider } from '../contexts/LanguageContext';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface ConsentState {
   necessary: boolean;
@@ -35,6 +35,19 @@ export default function Home() {
     setGdprConsents(consents);
   }, []);
 
+  // Ensure page starts from top on refresh
+  useEffect(() => {
+    // Remove any hash from URL to prevent auto-scrolling
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+    
+    // Scroll to top when component mounts (with a small delay to ensure DOM is ready)
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 0);
+  }, []);
+
   return (
     <LanguageProvider>
       {/* Root container to prevent horizontal overflow */}
@@ -53,13 +66,13 @@ export default function Home() {
 
             <VideoSection />
 
-            <div className="w-full bg-myusta-gray">
+            <div id="waitlist" className="w-full bg-myusta-gray">
               <div className="w-full max-w-[1440px] mx-auto">
                 <WaitlistForm />
               </div>
             </div>
 
-            <div className="w-full bg-myusta-gray">
+            <div className="w-full bg-myusta-gray" style={{marginTop: "-4rem"}}>
               <div className="w-full max-w-[1440px] mx-auto">
                 <FAQSection />
               </div>

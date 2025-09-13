@@ -113,6 +113,11 @@
   opacity: 0.6;
 }
 
+/* Add space before placeholder when input is focused */
+.input:focus::placeholder {
+  text-indent: 1ch;
+}
+
 .input:focus {
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.15), 
               inset -4px -4px 6px rgba(255, 255, 255, 1);
@@ -337,8 +342,7 @@
 /* Focus visible for keyboard navigation */
 .input:focus-visible,
 .submitButton:focus-visible {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* High contrast mode */

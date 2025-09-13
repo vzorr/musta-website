@@ -161,7 +161,6 @@
 /* Loading State */
 .loading {
   position: relative;
-  color: transparent;
 }
 
 .loading::after {

@@ -24,7 +24,7 @@
 }
 
 .title {
-  margin-bottom: 2rem;
+  margin-bottom: 46px !important;
   opacity: 0.8;
 }
 
@@ -121,7 +121,7 @@
   }
   
   .title {
-    margin-bottom: 3rem;
+    margin-bottom: 46px !important;
   }
   
   .cardContent {

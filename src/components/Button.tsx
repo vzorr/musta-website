@@ -77,7 +77,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={handleClick}
         {...props}
       >
-        {loading ? null : children}
+        <span style={{ opacity: loading ? 0 : 1 }}>
+          {children}
+        </span>
       </button>
     );
   }

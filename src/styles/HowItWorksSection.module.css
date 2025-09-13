@@ -7,7 +7,7 @@
   background: #f3f3f3;
 }
 
-/* Title to Cards Gap - 48px as shown in Figma */
+/* Title to Cards Gap - 48px spacing */
 .howItWorksTitle {
   margin-bottom: 3rem; /* 48px gap between title and cards */
   text-align: center;
@@ -79,8 +79,19 @@
               -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
+/* Mobile spacing */
+@media (max-width: 767px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on mobile */
+  }
+}
+
 /* Tablet spacing */
 @media (min-width: 768px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on tablet */
+  }
+  
   .howItWorksGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem; /* 32px gap on tablet */
@@ -99,7 +110,7 @@
   }
   
   .howItWorksTitle {
-    margin-bottom: 3rem; /* Keep 48px gap */
+    margin-bottom: 3rem; /* 48px gap on desktop */
   }
   
   .howItWorksGrid {

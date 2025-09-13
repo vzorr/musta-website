@@ -3,6 +3,8 @@
 
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import Title from './Title';
+import Description from './Description';
 import styles from '../styles/HowItWorksSection.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
 
@@ -21,13 +23,14 @@ export default function HowItWorksSection() {
     <section className={styles.howItWorksSection}>
       {/* Updated: Using container module instead of global classes */}
       <div className={containerStyles.sectionContainer}>
-        {/* Title with Figma spacing */}
-        <div className='flex flex-row justify-center gap-2'>
-          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
-          <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl text-myusta-navy italic`}>
-            {remainingTitle}
-          </h2>
-        </div>
+        {/* Title with increased spacing */}
+        <Title 
+          firstText={firstWord}
+          secondText={remainingTitle}
+          as="h1"
+          centered={true}
+          className={styles.howItWorksTitle}
+        />
         
         {/* Cards Grid with proper Figma spacing */}
         <div className={styles.howItWorksGrid}>
@@ -45,9 +48,9 @@ export default function HowItWorksSection() {
                 className="w-6 h-6"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step1.description')}
-            </p>
+            </Description>
           </div>
           
           {/* Step 2 */}
@@ -64,9 +67,9 @@ export default function HowItWorksSection() {
                 className="w-6 h-6"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step2.description')}
-            </p>
+            </Description>
           </div>
           
           {/* Step 3 */}
@@ -83,9 +86,9 @@ export default function HowItWorksSection() {
                 className="w-6 h-6"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step3.description')}
-            </p>
+            </Description>
           </div>
         </div>
       </div>

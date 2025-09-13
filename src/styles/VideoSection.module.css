@@ -3,7 +3,7 @@
 .videoSection {
   width: 100%;
   background: #f3f3f3;
-  padding: 4rem 0;
+  padding: 2rem 0; /* 32px top and bottom = 64px total */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,7 +79,7 @@
 
 @media (max-width: 768px) {
   .videoSection {
-    padding: 2rem 0;
+    padding: 1.5rem 0; /* 24px top and bottom = 48px total on mobile */
   }
   
   .videoContainer {
@@ -104,7 +104,7 @@
 
 @media (max-width: 480px) {
   .videoSection {
-    padding: 1.5rem 0;
+    padding: 1rem 0; /* 16px top and bottom = 32px total on small mobile */
   }
   
   .playButton {

@@ -2,6 +2,7 @@
 
 import { useLanguage } from '../contexts/LanguageContext';
 import FAQItem from './FAQItem';
+import Title from './Title';
 
 export default function FAQSection() {
   const { t } = useLanguage();
@@ -26,11 +27,15 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="py-12 sm:py-20 bg-myusta-gray">
+    <section className="pt-1 pb-1 sm:pt-16 sm:pb-20 bg-myusta-gray">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy text-center mb-12 sm:mb-16 italic">
-          {t('faq.title')}
-        </h2>
+        <div className="mb-12 sm:mb-16">
+          <Title 
+            firstText={t('faq.title')}
+            as="h2"
+            centered={true}
+          />
+        </div>
         
         <div className="space-y-4 max-w-4xl mx-auto">
           {faqItems.map((item, index) => (

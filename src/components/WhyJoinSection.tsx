@@ -2,23 +2,21 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import Title from './Title';
+import Description from './Description';
 import styles from '../styles/WhyJoinSection.module.css';
 
 export default function WhyJoinSection() {
   const { t } = useLanguage();
   const fullTitle = t('whyJoin.title');
-  const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
-
-  // Split the title into words
-  const words = fullTitle?.trim().split(/\s+/) || [];
-
-  // Extract first word and remaining part
-  const remainingTitle = words.slice(1).join(" ");
+  
+  const firstPart = "Why";
+  const remainingTitle = fullTitle?.replace(/^Why\s+/, "") || "";
   
   // Feature cards data
   const features = [
     {
-      imageSrc: "/assets/image_container.svg",
+      imageSrc: "/assets/c1.svg",
       imageAlt: "Direct Opportunities",
       iconSrc: "/assets/wrench-icon.svg",
       iconAlt: "Wrench Icon",
@@ -26,7 +24,7 @@ export default function WhyJoinSection() {
       descriptionKey: "whyJoin.benefits.directOpportunities.description"
     },
     {
-      imageSrc: "/assets/image_container.svg",
+      imageSrc: "/assets/time.svg",
       imageAlt: "Save Time",
       iconSrc: "/assets/clock-icon.svg",
       iconAlt: "Clock Icon",
@@ -47,16 +45,16 @@ export default function WhyJoinSection() {
     <section className={styles.whyJoinSection}>
       {/* Updated: Using new container with specified width and layout */}
       <div className={styles.whyJoinContainer}>
-        {/* Header */}
         <div className={styles.header}>
-          <div className='flex flex-row justify-center gap-2 text-center'>
-            <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
-            <h2 className={`${styles.title} text-2xl sm:text-4xl lg:text-5xl text-myusta-navy`}>
-              {remainingTitle}
-            </h2>
-          </div>
-          <div 
-            className={`${styles.description} text-base sm:text-lg text-myusta-navy leading-relaxed`}
+          <Title 
+            firstText={firstPart}
+            secondText={remainingTitle}
+            as="h1"
+            centered={true}
+            className={styles.title}
+          />
+          <Description 
+            className="mt-11"
             dangerouslySetInnerHTML={{ __html: t('whyJoin.description') }}
           />
         </div>
@@ -88,9 +86,9 @@ export default function WhyJoinSection() {
                     {t(feature.titleKey)}
                   </h3>
                 </div>
-                <p className={styles.cardDescription}>
+                <Description className={styles.cardDescription}>
                   {t(feature.descriptionKey)}
-                </p>
+                </Description>
               </div>
             </div>
           ))}
