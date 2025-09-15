@@ -41,6 +41,7 @@ export default function HeroSection() {
               fill
               className="object-cover"
               priority
+              sizes="100vw"
             />
           </div>
           
@@ -51,7 +52,8 @@ export default function HeroSection() {
               alt="Mobile Hero Background"
               fill
               className="object-cover"
-              priority
+              priority={false}
+              sizes="100vw"
             />
           </div>
         </div>
@@ -70,6 +72,7 @@ export default function HeroSection() {
                   height={500}
                   className={styles.phoneImage}
                   priority
+                  sizes="(max-width: 768px) 0px, 400px"
                 />
               </div>
             </div>
@@ -106,7 +109,8 @@ export default function HeroSection() {
                   width={400}
                   height={500}
                   className={`${styles.tradespersonImage} ${styles.desktopTradesperson}`}
-                  priority
+                  priority={false}
+                  sizes="(max-width: 768px) 0px, 400px"
                 />
                 {/* Mobile Image */}
                 <Image
@@ -115,7 +119,8 @@ export default function HeroSection() {
                   width={550}
                   height={358}
                   className={`${styles.tradespersonImage} ${styles.mobileTradesperson}`}
-                  priority
+                  priority={false}
+                  sizes="(min-width: 769px) 0px, 550px"
                 />
               </div>
             </div>
