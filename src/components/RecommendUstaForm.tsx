@@ -283,7 +283,8 @@ export default function RecommendUstaForm() {
               fullWidth
               loading={isSubmitting}
               disabled={isSubmitting}
-              className={`text-myusta-navy font-semibold text-lg mt-8 ${styles.formbtn}`}
+              className={`text-myusta-navy font-semibold text-lg ${styles.formbtn}`}
+              style={{ marginTop: '32px' }}
             >
               {isSubmitting 
                 ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')

@@ -267,7 +267,8 @@ export default function WaitlistForm() {
                   size="large"
                   fullWidth
                   loading={isSubmitting}
-                  className="text-myusta-navy font-semibold text-lg mt-8 rounded-lg"
+                  className="text-myusta-navy font-semibold text-lg rounded-lg"
+                  style={{ marginTop: '32px' }}
                 >
                   {isSubmitting ? (
                     language === 'sq' ? 'Po regjistrohet...' : 'Registering...'

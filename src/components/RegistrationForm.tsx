@@ -217,7 +217,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                   </div>
                 )}
                 
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form className="space-y-3" onSubmit={handleSubmit}>
                   <input 
                     type="text" 
                     name="name"
@@ -296,7 +296,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                   </div>
 
                   {/* Privacy Policy Agreement */}
-                  <div className="text-left mt-6">
+                  <div className="text-left" style={{ marginTop: '32px' }}>
                     <label className="flex items-start space-x-3 text-sm">
                       <input
                         type="checkbox"
@@ -370,21 +370,23 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                   </div>
                   
                   {/* ✅ UPDATED: Using Button Component */}
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="large"
-                    fullWidth
-                    loading={isSubmitting}
-                    disabled={!privacyAccepted || !gdprConsents.gdprAccepted}
-                    className={`text-myusta-navy font-semibold text-lg mt-8 ${styles.formbtn}`}
-                  >
+                  <div className="mt-16">
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="large"
+                      fullWidth
+                      loading={isSubmitting}
+                      disabled={!privacyAccepted || !gdprConsents.gdprAccepted}
+                      className={`text-myusta-navy font-semibold text-lg ${styles.formbtn}`}
+                    >
                     {isSubmitting ? (
                       language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
                     ) : (
                       t('registration.cta')
                     )}
-                  </Button>
+                    </Button>
+                  </div>
                 </form>
               </div>
             </div>
