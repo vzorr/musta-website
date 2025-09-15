@@ -40,14 +40,29 @@
   gap: 1rem;
 }
 
+/* Remove any default borders/outlines */
+.benefitsGrid * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.featureCard * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Feature Card Styles */
 .featureCard {
-  border-radius: 1rem;
+  border-radius: 2rem;
   overflow: hidden;
   transition: all 0.3s ease;
   background: #f3f3f3;
-  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
-              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  box-shadow: none;
+  position: relative;
+  border: none;
+  outline: none;
 }
 
 .featureCard:hover {
@@ -61,8 +76,13 @@
   height: 237px;
   align-self: stretch;
   border-radius: 20px 20px 0 0;
-  background: url('/assets/image_container.svg') lightgray 0px -11.483px / 100% 109.69% no-repeat;
+  background: url('/assets/image_container.svg') no-repeat;
+  background-size: cover;
+  background-position: center;
   position: relative;
+  overflow: hidden;
+  border: none;
+  outline: none;
 }
 
 .cardContent {
