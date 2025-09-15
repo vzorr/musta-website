@@ -74,6 +74,14 @@ body {
   min-height: 44px !important;
 }
 
+/* Ensure select elements are exactly 44px */
+.neumorphic-input select,
+select.neumorphic-input {
+  height: 44px !important;
+  min-height: 44px !important;
+  max-height: 44px !important;
+}
+
 /* Select dropdown options styling */
 .neumorphic-input option {
   color: var(--Navy, #00203F) !important;
