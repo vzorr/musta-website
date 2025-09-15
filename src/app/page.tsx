@@ -68,7 +68,7 @@ export default function Home() {
             <WaitlistForm />
           </div>
 
-          <div className="w-full bg-myusta-gray" style={{marginTop: -20}}>
+          <div className="w-full bg-myusta-gray">
             <FAQSection />
           </div>
         </main>
