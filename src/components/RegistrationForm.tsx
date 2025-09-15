@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import CustomDropdown from './CustomDropdown';
 import styles from '../styles/registeration.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
 
@@ -252,49 +253,23 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     maxLength={20}
                   />
                   
-                  <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
-                    <select 
-                      name="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                      className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                      required
-                    >
-                      <option value="">{t('registration.categories.placeholder')}</option>
-                      {categories.map(category => (
-                        <option key={category.value} value={category.value}>
-                          {category.label}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    options={categories}
+                    value={formData.category}
+                    onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                    placeholder={t('registration.categories.placeholder')}
+                    name="category"
+                    required
+                  />
                   
-                  <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
-                    <select 
-                      name="location"
-                      value={formData.location}
-                      onChange={handleInputChange}
-                      className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                      required
-                    >
-                      <option value="">{t('registration.locations.placeholder')}</option>
-                      {locations.map(location => (
-                        <option key={location.value} value={location.value}>
-                          {location.label}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    options={locations}
+                    value={formData.location}
+                    onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+                    placeholder={t('registration.locations.placeholder')}
+                    name="location"
+                    required
+                  />
 
                   {/* Privacy Policy Agreement */}
                   <div className="text-left" style={{ marginTop: '32px' }}>
