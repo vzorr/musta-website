@@ -52,10 +52,7 @@ export default function WhyJoinSection() {
             centered={true}
             className={styles.title}
           />
-          <Description 
-            className="mt-11"
-            dangerouslySetInnerHTML={{ __html: t('whyJoin.description') }}
-          />
+         
         </div>
         {/* Benefits Cards */}
         <div className={styles.benefitsGrid}>
