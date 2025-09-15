@@ -18,7 +18,7 @@
 .howItWorksGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem; /* 24px gap on mobile */
+  gap: 1rem; /* 16px gap on mobile */
   width: 100%;
   margin: 0 auto;
 }
@@ -133,7 +133,7 @@
   
   .howItWorksGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem; /* Reduced gap for better alignment */
+    gap: 1rem; /* 16px gap for better alignment */
   }
 }
 
@@ -145,7 +145,7 @@
   }
   
   .howItWorksGrid {
-    gap: 1.5rem; /* Consistent gap across all screen sizes */
+    gap: 1rem; /* 16px gap across all screen sizes */
   }
   
   .stepCard {

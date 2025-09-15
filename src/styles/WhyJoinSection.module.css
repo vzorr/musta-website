@@ -37,7 +37,7 @@
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 /* Feature Card Styles */
@@ -179,7 +179,7 @@
 @media (min-width: 768px) {
   .benefitsGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1rem;
   }
 }
 
@@ -191,7 +191,7 @@
   
   .benefitsGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1rem;
   }
 }
 
@@ -203,6 +203,6 @@
   }
   
   .benefitsGrid {
-    gap: 1.5rem;
+    gap: 1rem;
   }
 }
