@@ -46,13 +46,14 @@
 
 .stepIconContainer {
   margin: 0 auto 1rem auto; /* Reduce space below icon */
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 48px;
+  height: 48px;
   background: #FFC800;
-  border-radius: 0.75rem;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
               1px 1px 1.4px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;

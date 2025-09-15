@@ -76,17 +76,19 @@
 }
 
 .iconContainer {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.5rem;
   display: flex;
-  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 10px;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: var(--Yellow, #FFC800);
+  box-shadow: 1px 1px 1.4px 0 rgba(0, 0, 0, 0.15), -1px -1px 1.1px 0 #FFF;
   margin-right: 0.5rem;
   flex-shrink: 0;
-  background: #FFC800;
-  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
-              1px 1px 1.4px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
 }
 

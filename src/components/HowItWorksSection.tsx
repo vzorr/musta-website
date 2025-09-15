@@ -36,16 +36,16 @@ export default function HowItWorksSection() {
         <div className={styles.howItWorksGrid}>
           {/* Step 1 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step1.title')}
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
                 src="/assets/file.svg" 
                 alt="Profile Icon" 
-                width={24}
-                height={24}
-                className="w-6 h-6"
+                width={19.589}
+                height={19.586}
+                className="flex-shrink-0"
               />
             </div>
             <Description className={styles.stepDescription}>
@@ -55,16 +55,16 @@ export default function HowItWorksSection() {
           
           {/* Step 2 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step2.title')}
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
                 src="/assets/profile.svg" 
                 alt="Skills Icon" 
-                width={24}
-                height={24}
-                className="w-6 h-6"
+                width={19.589}
+                height={19.586}
+                className="flex-shrink-0"
               />
             </div>
             <Description className={styles.stepDescription}>

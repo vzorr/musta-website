@@ -83,9 +83,9 @@ export default function WhyJoinSection() {
                     <Image 
                       src={feature.iconSrc}
                       alt={feature.iconAlt}
-                      width={24}
-                      height={24}
-                      className="w-6 h-6"
+                      width={19.59}
+                      height={19.59}
+                      className="flex-shrink-0"
                     />
                   </div>
                   <h3 className={styles.cardTitle}>
