@@ -79,11 +79,11 @@
   display: flex;
   width: 32px;
   height: 32px;
-  padding: 10px;
+  padding: 6px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0;
   border-radius: 12px;
   background: var(--Yellow, #FFC800);
   box-shadow: 1px 1px 1.4px 0 rgba(0, 0, 0, 0.15), -1px -1px 1.1px 0 #FFF;
@@ -127,6 +127,8 @@
   min-width: 19px !important;
   min-height: 19px !important;
   object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .cardTitle {
