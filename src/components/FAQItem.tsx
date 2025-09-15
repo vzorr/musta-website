@@ -33,7 +33,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
       </button>
       <div 
         className={`faq-content overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-48 pb-4' : 'max-h-0 pb-0'
+          isOpen ? 'max-h-48 pb-2' : 'max-h-0 pb-0'
         }`}
       >
         <div className="px-3">

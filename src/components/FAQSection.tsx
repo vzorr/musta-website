@@ -27,9 +27,9 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="pb-16 bg-myusta-gray">
+    <section className="pb-3 bg-myusta-gray">
       <div className="max-w-[1000px] mx-auto">
-        <div className="mb-12">
+        <div className="mb-2">
           <Title 
             firstText={t('faq.title')}
             as="h2"
