@@ -5,37 +5,38 @@
 ======================================== */
 
 .headerWrapper {
-  width: 100%;
+  width: 100vw;
   position: sticky;
   top: 0;
   z-index: 50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background: #00203F;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
 }
-
 
 .header {
   width: 100%;
   max-width: 1440px;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
   isolation: isolate;
-  background: #00203F;
   color: white;
   padding: 0px 120px;
   height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 
 .headerContent {
   width: 100%;
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 @media (min-width: 640px) {
@@ -107,7 +108,12 @@
   }
   .header{
     padding: 0px 20px;
-    height: 90px;
+    height: 70px;
+  }
+  .headerWrapper {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 }
 
@@ -137,8 +143,8 @@
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .headerContent {
-    
+  .header {
+    padding: 0px 60px;
   }
 }
 

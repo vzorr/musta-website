@@ -25,29 +25,27 @@ export default function Header() {
   return (
     <div className={styles.headerWrapper}>
       <header className={styles.header}>
-        <div className="py-4 sm:py-5">
-          <div className={styles.headerContent}>
-            {/* Language Selector */}
-            <LanguageSwitcher />
-         
-            {/* Logo - Centered and Clickable */}
-            <div className={styles.centerSection}>
-              <Link href="/" className="cursor-pointer">
-                <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
-              </Link>
-            </div>
+        <div className={styles.headerContent}>
+          {/* Language Selector */}
+          <LanguageSwitcher />
+       
+          {/* Logo - Centered and Clickable */}
+          <div className={styles.centerSection}>
+            <Link href="/" className="cursor-pointer">
+              <Logo variant="custom" width={118} height={40} className="lg:w-[118px] lg:h-[40px] w-[118px] h-[36px]" />
+            </Link>
+          </div>
 
-            {/* ✅ UPDATED: Using Button Component instead of CSS module */}
-            <div className={styles.rightSection}>
-              <Button
-                variant="primary"
-                size="small"
-                onClick={scrollToRegistration}
-                className={styles.ctaButton}
-              >
-                {language === 'sq' ? 'Regjistrohu' : 'Register'}
-              </Button>
-            </div>
+          {/* Register Button */}
+          <div className={styles.rightSection}>
+            <Button
+              variant="primary"
+              size="small"
+              onClick={scrollToRegistration}
+              className={styles.ctaButton}
+            >
+              {language === 'sq' ? 'Regjistrohu' : 'Register'}
+            </Button>
           </div>
         </div>
       </header>

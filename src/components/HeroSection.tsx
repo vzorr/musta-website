@@ -1,4 +1,4 @@
-// src/components/HeroSection.tsx - ✅ FIXED CENTER ALIGNMENT
+// src/components/HeroSection.tsx - Full Width Hero with Three Images
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -18,9 +18,9 @@ export default function HeroSection() {
       setImageLoaded(true);
     };
     img.onerror = () => {
-      console.error('Hero banner failed to load from /assets/herobanner.png');
+      console.error('Hero background failed to load');
     };
-    img.src = '/assets/herobanner.png';
+    img.src = '/assets/hero-bg.svg';
   }, []);
 
   const scrollToRecommend = () => {
@@ -30,43 +30,61 @@ export default function HeroSection() {
 
   return (
     <div className={styles.heroWrapper}>
-      <section 
-        className={`${styles.hero} ${imageLoaded ? styles.heroLoaded : styles.heroLoading}`}
-      >
-        {/* Content container */}
+      <section className={styles.hero}>
+        {/* Background Images */}
+        <div className={styles.backgroundContainer}>
+          {/* Desktop Background */}
+          <div className={styles.desktopBackground}>
+            <Image
+              src="/assets/hero-bg.svg"
+              alt="Hero Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          
+          {/* Mobile Background */}
+          <div className={styles.mobileBackground}>
+            <Image
+              src="/assets/hero-mobile-bg.svg"
+              alt="Mobile Hero Background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Content Container */}
         <div className={styles.heroContent}>
-          {/* ✅ FIXED: Simplified layout for center alignment */}
-          <div className="flex flex-col lg:flex-row items-center justify-center h-full w-full mx-auto">
+          <div className={styles.heroLayout}>
             
-            {/* Left: Phone mockup */}
-            <div className="flex-shrink-0 order-2 lg:order-1">
+            {/* Left: Phone Mockup */}
+            <div className={styles.phoneSection}>
               <div className={styles.phoneContainer}>
-                <img 
-                  src="/assets/change-this.png" 
-                  alt="myUsta App Mockup" 
-                  className="w-full h-full object-contain drop-shadow-2xl relative z-10"
-                  onError={(e) => {
-                    console.error('Phone mockup image failed to load from /assets/change-this.png');
-                  }}
-                  onLoad={() => {
-                    console.log('Phone mockup loaded successfully from /assets/change-this.png');
-                  }}
+                <Image
+                  src="/assets/hero-phone.svg"
+                  alt="myUsta App Mockup"
+                  width={400}
+                  height={500}
+                  className={styles.phoneImage}
+                  priority
                 />
               </div>
             </div>
 
-            {/* Center: Text content - ✅ FIXED: Always center aligned */}
-            <div className="flex-1 text-center order-1 lg:order-2">
+            {/* Center: Text Content */}
+            <div className={styles.textSection}>
               <div className={styles.heroTextContainer}>
-                <h1 className={`${styles.heroText} ${styles.herobgtext}`} id='dataheader'>
+                <h1 className={styles.heroTitle}>
                   {t('hero.title')}
                 </h1>
                 
-                <p className={`${styles.heroText} ${styles.heroSubtitle}`}>
+                <p className={styles.heroSubtitle}>
                   {t('hero.subtitle')}
                 </p>
                 
-                {/* ✅ Button with center alignment */}
                 <Button 
                   variant="primary"
                   size="medium"
@@ -78,14 +96,33 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right: Extra content */}
-            <div className="hidden lg:block order-3" style={{ width: '28%', flexShrink: 0 }}>
-            
+            {/* Right: Tradesperson */}
+            <div className={styles.tradespersonSection}>
+              <div className={styles.tradespersonContainer}>
+                {/* Desktop Image */}
+                <Image
+                  src="/assets/usta-hero.svg"
+                  alt="Tradesperson working"
+                  width={400}
+                  height={500}
+                  className={`${styles.tradespersonImage} ${styles.desktopTradesperson}`}
+                  priority
+                />
+                {/* Mobile Image */}
+                <Image
+                  src="/assets/usta-hero-mobile.svg"
+                  alt="Tradesperson working"
+                  width={550}
+                  height={358}
+                  className={`${styles.tradespersonImage} ${styles.mobileTradesperson}`}
+                  priority
+                />
+              </div>
             </div>
+
           </div>
         </div>
       </section>
     </div>
   );
 }
-

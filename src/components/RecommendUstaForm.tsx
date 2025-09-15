@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
 import Image from 'next/image';
 import styles from '../styles/RecommendUsta.module.css';
+import containerStyles from '../styles/SectionContainer.module.css';
 
 interface RecommendFormData {
   name: string;
@@ -49,6 +50,18 @@ export default function RecommendUstaForm() {
     setMessage('');
     setMessageType('');
     setShowSuccessMessage(false);
+    
+    // Reset form data
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      category: '',
+      location: '',
+      ustaName: '',
+      ustaPhone: '',
+      ustaEmail: ''
+    });
   };
 
   const categories = [
@@ -123,6 +136,7 @@ export default function RecommendUstaForm() {
         setMessage(language === 'sq' ? 'Usta u rekomandua me sukses!' : 'Usta Recommended Successfully!');
         setMessageType('success');
         setShowSuccessMessage(true);
+        setIsSuccess(true);
         
         // Reset form
         setFormData({
@@ -157,22 +171,34 @@ export default function RecommendUstaForm() {
 
   return (
     <div className={styles.recommendContainer}>
-      <div className={styles.formCard}>
-        <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>
-          Fill out the following
-          information below.
-          </h2>
-        </div>
-
-        {message && (
-          <div className={`${styles.message} ${styles[messageType]}`}>
-            {message}
+      <div className={containerStyles.formContainer}>
+        <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
+          <div 
+            className="text-xl font-semibold text-myusta-navy mb-8"
+            style={{
+              color: 'var(--Navy, #00203F)',
+              textAlign: 'center',
+              fontFamily: 'Inter',
+              fontSize: '20px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: '120%'
+            }}
+          >
+            Fill out the following information below.
           </div>
-        )}
 
+          {message && (
+            <div className={`mb-6 p-4 rounded-lg ${
+              messageType === 'success' 
+                ? 'bg-green-100 text-green-700 border border-green-300' 
+                : 'bg-red-100 text-red-700 border border-red-300'
+            }`}>
+              {message}
+            </div>
+          )}
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
           <input 
             type="text" 
             name="name"
@@ -221,8 +247,8 @@ export default function RecommendUstaForm() {
               ))}
             </select>
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#00203F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6,9 12,15 18,9"></polyline>
               </svg>
             </div>
           </div>
@@ -243,26 +269,45 @@ export default function RecommendUstaForm() {
               ))}
             </select>
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-              <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="#00203F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6,9 12,15 18,9"></polyline>
               </svg>
             </div>
           </div>
 
-          <Button
-            type="submit"
-            variant="primary"
-            size="large"
-            fullWidth
-            loading={isSubmitting}
-            disabled={isSubmitting}
-            className="w-full"
-          >
-            {isSubmitting 
-              ? 'Registering...' 
-              : 'Recommend Usta'}
-          </Button>
-        </form>
+          {!isSuccess ? (
+            <Button
+              type="submit"
+              variant="primary"
+              size="large"
+              fullWidth
+              loading={isSubmitting}
+              disabled={isSubmitting}
+              className={`text-myusta-navy font-semibold text-lg mt-8 ${styles.formbtn}`}
+            >
+              {isSubmitting 
+                ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')
+                : (language === 'sq' ? 'Rekomando Usta' : 'Recommend Usta')}
+            </Button>
+          ) : (
+            <div className={styles.successButtons}>
+              <div className={styles.ustaRecommendedCard}>
+                {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
+              </div>
+              <button
+                type="button"
+                onClick={handleRecommendAnother}
+                className={styles.recommendAnotherButton}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F"/>
+                </svg>
+                {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
+              </button>
+            </div>
+          )}
+          </form>
+        </div>
       </div>
     </div>
   );

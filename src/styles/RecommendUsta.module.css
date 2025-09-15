@@ -235,6 +235,134 @@ line-height: 120%;
 }
 
 /* ========================================
+   SUCCESS BUTTONS
+======================================== */
+
+.successButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.ustaRecommendedCard {
+  display: flex;
+  height: 44px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #59BE34;
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  border: none;
+  cursor: default;
+}
+
+.recommendAnotherButton {
+  display: flex;
+  height: 36px;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Yellow, #FFC800);
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+  color: var(--Navy, #00203F);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recommendAnotherButton:hover {
+  background: #e6b300 !important;
+  color: var(--Navy, #00203F) !important;
+  transform: translateY(-1px);
+  box-shadow: -6px -6px 10px 0 rgba(255, 255, 255, 0.95), 6px 6px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.recommendAnotherButton:hover * {
+  color: var(--Navy, #00203F) !important;
+  fill: var(--Navy, #00203F) !important;
+}
+
+.recommendAnotherButton:active {
+  transform: translateY(0);
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+}
+
+.recommendAnotherButton:hover svg {
+  fill: var(--Navy, #00203F);
+}
+
+.recommendAnotherButton svg {
+  fill: var(--Navy, #00203F) !important;
+  transition: fill 0.3s ease;
+  opacity: 1 !important;
+}
+
+.recommendAnotherButton span,
+.recommendAnotherButton {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ========================================
+   FORM BUTTON (matching RegistrationForm)
+======================================== */
+
+.formbtn {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  background: #FFC800;
+  box-shadow: none;
+  
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.formbtn:hover:not(:disabled) {
+  background-color: #e6b300;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.40);
+}
+
+.formbtn:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.60);
+}
+
+.formbtn:active:not(:disabled) {
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.80);
+}
+
+.formbtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ========================================
    SUBMIT BUTTON
 ======================================== */
 
