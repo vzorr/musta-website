@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        tablet: '850px', 
+      },
       colors: {
         'myusta-navy': '#00203F',
         'myusta-blue': '#335372',
