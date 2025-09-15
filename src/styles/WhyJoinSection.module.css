@@ -79,8 +79,8 @@
   display: flex;
   width: 32px;
   height: 32px;
-  padding: 6px;
-  flex-direction: column;
+  padding: 0;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 0;
@@ -90,6 +90,7 @@
   margin-right: 0.5rem;
   flex-shrink: 0;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .iconContainer:hover {
@@ -127,8 +128,10 @@
   min-width: 19px !important;
   min-height: 19px !important;
   object-fit: contain !important;
-  display: block !important;
-  margin: 0 auto !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-45%, -50%) !important;
 }
 
 .cardTitle {
