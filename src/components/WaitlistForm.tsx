@@ -290,7 +290,7 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        <div className="mt-16 text-center max-w-2xl mx-auto">
+        <div className={`${showRecommendForm ? 'mt-0' : 'mt-16'} text-center max-w-2xl mx-auto`}>
           <div className="mb-6">
             <TwoLineTitle 
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}

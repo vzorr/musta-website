@@ -15,7 +15,9 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
   return (
     <div className={`faq-item neumorphic-card rounded-xl transition-all duration-300 ${isOpen ? 'active' : ''}`}>
       <button 
-        className="w-full text-left flex justify-between items-center hover:bg-myusta-yellow/10 transition-colors rounded-xl focus:outline-none"
+        className={`w-full text-left flex justify-between items-center transition-colors rounded-xl focus:outline-none ${
+          isOpen ? '' : 'hover:bg-black/5'
+        }`}
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-myusta-navy pr-4">{question}</span>
