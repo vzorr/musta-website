@@ -60,19 +60,19 @@
 .imageContainer {
   height: 237px;
   align-self: stretch;
-  border-radius: 24px 24px 0 0;
+  border-radius: 20px 20px 0 0;
   background: url('/assets/image_container.svg') lightgray 0px -11.483px / 100% 109.69% no-repeat;
   position: relative;
 }
 
 .cardContent {
-  padding: 1rem;
+  padding: 1.25rem;
 }
 
 .cardHeader {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .iconContainer {
@@ -82,7 +82,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
   flex-shrink: 0;
   background: #FFC800;
   box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
@@ -124,7 +124,7 @@
   }
   
   .cardContent {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 }
 
