@@ -173,7 +173,7 @@ export default function RecommendUstaForm() {
   return (
     <div className={styles.recommendContainer}>
       <div className={containerStyles.formContainer}>
-        <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
+        <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
           <div 
             className="text-xl font-semibold text-myusta-navy mb-8"
             style={{
