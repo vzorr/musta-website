@@ -189,6 +189,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
               <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
                 <div 
                   className="text-xl font-semibold text-myusta-navy mb-8"
+                  style={{ lineHeight: '100%' }}
                   dangerouslySetInnerHTML={{ __html: t('registration.formTitle') }}
                 />
                 
