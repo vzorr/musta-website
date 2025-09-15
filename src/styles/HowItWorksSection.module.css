@@ -54,6 +54,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
   box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
               1px 1px 1.4px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
@@ -70,6 +71,17 @@
   line-height: 1.5;
   margin: 0;
   font-size: 0.97rem;
+}
+
+/* Perfect centering for step icons */
+.stepIconContainer img {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 19.589px !important;
+  height: 19.586px !important;
+  object-fit: contain !important;
 }
 
 /* Hover Effects */
