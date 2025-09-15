@@ -83,14 +83,14 @@ export default function WhyJoinSection() {
                     <img 
                       src={feature.iconSrc}
                       alt={feature.iconAlt}
-                      className={`${styles.stepIcon} flex-shrink-0`}
+                      className={`${styles.stepIcon} ${feature.iconSrc.includes('chain-icon') ? styles.largeIcon : ''} flex-shrink-0`}
                       style={{ 
-                        width: '19px', 
-                        height: '19px',
-                        maxWidth: '19px',
-                        maxHeight: '19px',
-                        minWidth: '19px',
-                        minHeight: '19px'
+                        width: feature.iconSrc.includes('chain-icon') ? '30px' : '19px', 
+                        height: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        maxWidth: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        maxHeight: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        minWidth: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        minHeight: feature.iconSrc.includes('chain-icon') ? '30px' : '19px'
                       }}
                     />
                   </div>

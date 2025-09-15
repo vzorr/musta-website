@@ -43,8 +43,8 @@ export default function HowItWorksSection() {
               <Image 
                 src="/assets/doc.svg" 
                 alt="Profile Icon" 
-                width={19.589}
-                height={19.586}
+                width={24}
+                height={24}
                 className="flex-shrink-0"
               />
             </div>
@@ -81,9 +81,9 @@ export default function HowItWorksSection() {
               <Image 
                 src="/assets/hand.svg" 
                 alt="Work Icon" 
-                width={24}
-                height={24}
-                className="w-6 h-6"
+                width={30}
+                height={30}
+                className="flex-shrink-0"
               />
             </div>
             <Description className={styles.stepDescription}>

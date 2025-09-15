@@ -134,6 +134,15 @@
   transform: translate(-50%, -50%) !important;
 }
 
+.largeIcon {
+  width: 30px !important;
+  height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+}
+
 .cardTitle {
   font-size: 1.125rem;
   font-weight: 600;
