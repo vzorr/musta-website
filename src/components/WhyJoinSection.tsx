@@ -43,8 +43,7 @@ export default function WhyJoinSection() {
 
   return (
     <section className={styles.whyJoinSection}>
-      {/* Updated: Using new container with specified width and layout */}
-      <div className={styles.whyJoinContainer}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
         <div className={styles.header}>
           <Title 
             firstText={firstPart}
@@ -58,7 +57,6 @@ export default function WhyJoinSection() {
             dangerouslySetInnerHTML={{ __html: t('whyJoin.description') }}
           />
         </div>
-
         {/* Benefits Cards */}
         <div className={styles.benefitsGrid}>
           {features.map((feature, index) => (

@@ -151,8 +151,8 @@ export default function WaitlistForm() {
   console.log('showCommunitySection state:', showCommunitySection);
 
   return (
-    <section id="waitlist" className="py-11 sm:py-20 bg-myusta-gray relative z-10">
-      <div className={containerStyles.sectionContainer}>
+    <section id="waitlist" className="bg-myusta-gray relative z-10">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
@@ -167,7 +167,7 @@ export default function WaitlistForm() {
               />
             </div>
           
-          <div className={containerStyles.formContainer}>
+          <div className="max-w-md mx-auto">
             <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
               <div className="text-xl font-semibold text-myusta-navy mb-8 text-center">
                 {language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following information below.'}

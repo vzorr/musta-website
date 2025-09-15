@@ -11,15 +11,17 @@
 
 .videoContainer {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 2rem;
+  margin: 0 auto;
 }
 
 .videoWrapper {
-  width: 1050px;
+  width: 100%;
+  max-width: 1000px;
   height: auto;
   aspect-ratio: 16/9;
   position: relative;

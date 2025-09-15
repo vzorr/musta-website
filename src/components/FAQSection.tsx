@@ -28,7 +28,7 @@ export default function FAQSection() {
 
   return (
     <section className="pt-1 pb-1 sm:pt-16 sm:pb-20 bg-myusta-gray">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
         <div className="mb-12 sm:mb-16">
           <Title 
             firstText={t('faq.title')}
@@ -37,7 +37,7 @@ export default function FAQSection() {
           />
         </div>
         
-        <div className="space-y-4 max-w-4xl mx-auto">
+        <div className="space-y-4">
           {faqItems.map((item, index) => (
             <FAQItem
               key={index}

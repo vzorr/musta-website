@@ -19,8 +19,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem; /* 24px gap on mobile */
-  width: 1040px;
-  /* max-width: 1200px; */
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -115,8 +114,7 @@
   
   .howItWorksGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; /* 32px gap between cards on desktop */
-    max-width: 1200px;
+    gap: 1.5rem; /* Reduced gap for better alignment */
   }
 }
 
@@ -128,11 +126,10 @@
   }
   
   .howItWorksGrid {
-    max-width: 1400px;
-    gap: 2.5rem; /* 40px gap on very large screens */
+    gap: 1.5rem; /* Consistent gap across all screen sizes */
   }
   
   .stepCard {
-    padding: 2rem 1.5rem; /* More padding on large screens, but still less than before */
+    padding: 1.5rem 1.25rem; /* Consistent padding */
   }
 }

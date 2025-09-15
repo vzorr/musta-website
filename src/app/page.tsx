@@ -60,23 +60,16 @@ export default function Home() {
             <HeroSection />
           </div>
 
-          <div className="w-full">
-                <WhyJoinSection />
-                <HowItWorksSection />
+          <WhyJoinSection />
+          <HowItWorksSection />
+          <VideoSection />
 
-            <VideoSection />
+          <div id="waitlist" className="w-full bg-myusta-gray">
+            <WaitlistForm />
+          </div>
 
-            <div id="waitlist" className="w-full bg-myusta-gray">
-              <div className="w-full max-w-[1440px] mx-auto">
-                <WaitlistForm />
-              </div>
-            </div>
-
-            <div className="w-full bg-myusta-gray" style={{marginTop: "-4rem"}}>
-              <div className="w-full max-w-[1440px] mx-auto">
-                <FAQSection />
-              </div>
-            </div>
+          <div className="w-full bg-myusta-gray" style={{marginTop: -20}}>
+            <FAQSection />
           </div>
         </main>
     

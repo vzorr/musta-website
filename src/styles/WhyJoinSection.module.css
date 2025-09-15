@@ -1,20 +1,18 @@
 /* Why Join Section Container */
 .whyJoinSection {
   padding-top: 3rem;
+  padding-bottom: 3rem;
   background: #f3f3f3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Updated: Main container with specified max-width and layout */
+/* Updated: Main container with responsive layout */
 .whyJoinContainer {
   display: flex;
-  width: 1040px;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 64px;
+  /* gap: 64px; */
 }
 
 /* Header Container */
@@ -24,7 +22,7 @@
 }
 
 .title {
-  margin-bottom: 46px !important;
+  margin-bottom: 2rem;
   opacity: 0.8;
 }
 
@@ -38,8 +36,8 @@
 .benefitsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  width: 1040px;
-  /* gap: 1.5rem; */
+  width: 100%;
+  gap: 1.5rem;
 }
 
 /* Feature Card Styles */
@@ -121,7 +119,7 @@
   }
   
   .title {
-    margin-bottom: 46px !important;
+    margin-bottom: 3rem;
   }
   
   .cardContent {
@@ -132,12 +130,7 @@
 @media (min-width: 768px) {
   .benefitsGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  
-  /* Reduce container width on smaller screens */
-  .whyJoinContainer {
-    width: min(1000px, 90vw);
+    gap: 1.5rem;
   }
 }
 
@@ -149,12 +142,7 @@
   
   .benefitsGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-  
-  /* Full width on desktop */
-  .whyJoinContainer {
-    width: 1000px;
+    gap: 1.5rem;
   }
 }
 
@@ -166,6 +154,6 @@
   }
   
   .benefitsGrid {
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
 }

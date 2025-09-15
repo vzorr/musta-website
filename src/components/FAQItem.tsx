@@ -35,7 +35,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         }`}
       >
         <div className="px-6">
-          <Description>{answer}</Description>
+          <Description centered={false}>{answer}</Description>
         </div>
       </div>
     </div>
