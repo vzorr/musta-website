@@ -3,7 +3,7 @@
 .videoSection {
   width: 100%;
   background: #f3f3f3;
-  padding: 0 0 4rem 0; /* 0px top, 64px bottom */
+  padding: 3rem 0 4rem 0; /* 48px top, 64px bottom */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
   margin: 0 auto;
 }
 
@@ -72,12 +71,6 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1300px) {
-  .videoWrapper {
-    width: 90%;
-    max-width: 1200px;
-  }
-}
 
 @media (max-width: 768px) {
   .videoSection {
@@ -86,11 +79,6 @@
   
   .videoContainer {
     padding: 0 1rem;
-  }
-  
-  .videoWrapper {
-    width: 100%;
-    max-width: 1200px;
   }
   
   .playButton {
