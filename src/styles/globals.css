@@ -201,6 +201,10 @@ select.neumorphic-input {
               -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
+.icon-container {
+  border-radius: 50%;
+}
+
 /* ========================================
    FOOTER STYLES
 ======================================== */
