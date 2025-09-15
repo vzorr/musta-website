@@ -317,8 +317,8 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        <div className="mt-11 text-center max-w-2xl mx-auto">
-          <div className="mb-4 sm:mb-6">
+        <div className="mt-16 text-center max-w-2xl mx-auto">
+          <div className="mb-12">
             <TwoLineTitle 
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
               secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
