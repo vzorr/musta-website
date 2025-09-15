@@ -52,7 +52,7 @@ export default function WhyJoinSection() {
 
   return (
     <section className={styles.whyJoinSection}>
-      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[1000px] mx-auto">
         <div className={styles.header}>
           <Title 
             firstText={firstPart}

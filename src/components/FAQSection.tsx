@@ -28,7 +28,7 @@ export default function FAQSection() {
 
   return (
     <section className="pt-1 pb-1 sm:pt-16 sm:pb-20 bg-myusta-gray">
-      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[1000px] mx-auto">
         <div className="mb-12 sm:mb-16">
           <Title 
             firstText={t('faq.title')}

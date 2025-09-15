@@ -152,7 +152,7 @@ export default function WaitlistForm() {
 
   return (
     <section id="waitlist" className="bg-myusta-gray relative z-10">
-      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">

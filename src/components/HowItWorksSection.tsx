@@ -22,7 +22,7 @@ export default function HowItWorksSection() {
   return (
     <section className={styles.howItWorksSection}>
       {/* Updated: Using 1000px width container for consistency */}
-      <div className="max-w-[1000px] mx-auto px-4 sm:px-8">
+      <div className="max-w-[1000px] mx-auto">
         {/* Title with increased spacing */}
         <Title 
           firstText={firstWord}
