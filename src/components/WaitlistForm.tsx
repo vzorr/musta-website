@@ -167,7 +167,7 @@ export default function WaitlistForm() {
               />
             </div>
           
-          <div className="max-w-md mx-auto">
+          <div className="mx-auto" style={{ maxWidth: '400px' }}>
             <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
               <div className="text-xl font-semibold text-myusta-navy mb-8 text-center">
                 {language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following information below.'}
