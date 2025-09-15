@@ -7,11 +7,20 @@ import Description from './Description';
 import styles from '../styles/WhyJoinSection.module.css';
 
 export default function WhyJoinSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const fullTitle = t('whyJoin.title');
   
-  const firstPart = "Why";
-  const remainingTitle = fullTitle?.replace(/^Why\s+/, "") || "";
+  // Handle different languages properly
+  let firstPart, remainingTitle;
+  if (language === 'sq') {
+    // For Albanian: "Pse të përdorni myUsta?" -> "Pse" + "të përdorni myUsta?"
+    firstPart = "Pse";
+    remainingTitle = fullTitle?.replace(/^Pse\s+/, "") || "";
+  } else {
+    // For English: "Why join myUsta?" -> "Why" + "join myUsta?"
+    firstPart = "Why";
+    remainingTitle = fullTitle?.replace(/^Why\s+/, "") || "";
+  }
   
   // Feature cards data
   const features = [

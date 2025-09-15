@@ -11,7 +11,7 @@
 .howItWorksTitle {
   margin-bottom: 3rem; /* 48px gap between title and cards */
   text-align: center;
-  opacity: 0.8;
+  color: var(--Navy, #00203F);
 }
 
 /* Cards Container - Proper spacing between cards */
