@@ -1,133 +1,76 @@
-// src/components/HeroSection.tsx - Full Width Hero with Three Images
-'use client';
+// src/components/HeroSection.tsx
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import Button from './Button';
-import Image from 'next/image';
-import styles from '../styles/HeroSection.module.css';
+import { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function HeroSection() {
   const { t } = useLanguage();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if image exists and can be loaded
     const img = new window.Image();
     img.onload = () => {
       setImageLoaded(true);
     };
     img.onerror = () => {
-      console.error('Hero background failed to load');
+      console.error("Hero background failed to load");
     };
-    img.src = '/assets/hero-bg.svg';
+    img.src = "/assets/hero-bg.svg";
   }, []);
 
   const scrollToRecommend = () => {
-    const element = document.getElementById('recommend');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById("recommend");
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className={styles.heroWrapper}>
-      <section className={styles.hero}>
-        {/* Background Images */}
-        <div className={styles.backgroundContainer}>
-          {/* Desktop Background */}
-          <div className={styles.desktopBackground}>
-            <Image
-              src="/assets/hero-bg.svg"
-              alt="Hero Background"
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-          </div>
-          
-          {/* Mobile Background */}
-          <div className={styles.mobileBackground}>
-            <Image
-              src="/assets/hero-mobile-bg.svg"
-              alt="Mobile Hero Background"
-              fill
-              className="object-cover"
-              priority={false}
-              sizes="100vw"
-            />
+    <div
+      className="h-[600px] w-full flex items-start"
+      style={{
+        backgroundImage: "url(/assets/hero-section-images/bg-image.png)",
+        backgroundRepeat: "repeat-x",
+        backgroundSize: "200px 600px",
+      }}
+    >
+      <div className="max-w-[1280px] w-full mx-auto relative mt-8">
+        <div className="absolute top-7 left-0">
+          <img
+            className="w-[411px] h-[493px] object-contain"
+            src="/assets/hero-section-images/mobile-english.png"
+            alt="phone-left"
+          />
+        </div>
+
+        <div className="absolute top-32 left-[48%] -translate-x-1/2 text-center max-w-[500px]">
+          <h1
+            style={{ lineHeight: "1" }}
+            className="text-[64px] font-bold tracking-tight text-[#00203F]"
+          >
+            {t("hero.title")}
+          </h1>
+          <p className="text-[20px] my-5  mx-auto text-[#335372]">
+            {t("hero.subtitle")}
+          </p>
+          <div className="flex justify-center">
+            <button
+              className="bg-[#FFD700] text-[#00203F]  px-6 py-2 rounded-[8px] cursor-pointer"
+              onClick={scrollToRecommend}
+            >
+              <span className="font-medium">{t("hero.cta1")}</span>
+              <span className="font-semibold">{t("hero.cta2")}</span>
+            </button>
           </div>
         </div>
 
-        {/* Content Container */}
-        <div className={styles.heroContent}>
-          <div className={styles.heroLayout}>
-            
-            {/* Left: Phone Mockup */}
-            <div className={styles.phoneSection}>
-              <div className={styles.phoneContainer}>
-                <Image
-                  src="/assets/hero-phone.svg"
-                  alt="myUsta App Mockup"
-                  width={400}
-                  height={500}
-                  className={styles.phoneImage}
-                  priority
-                  sizes="(max-width: 768px) 0px, 400px"
-                />
-              </div>
-            </div>
-
-            {/* Center: Text Content */}
-            <div className={styles.textSection}>
-              <div className={styles.heroTextContainer}>
-                <h1 className={styles.heroTitle}>
-                  {t('hero.title')}
-                </h1>
-                
-                <p className={styles.heroSubtitle}>
-                  {t('hero.subtitle')}
-                </p>
-                
-                <Button 
-                  variant="primary"
-                  size="medium"
-                  onClick={scrollToRecommend}
-                  className={styles.ctaButton}
-                >
-                  {t('hero.cta')}
-                </Button>
-              </div>
-            </div>
-
-            {/* Right: Tradesperson */}
-            <div className={styles.tradespersonSection}>
-              <div className={styles.tradespersonContainer}>
-                {/* Desktop Image */}
-                <Image
-                  src="/assets/usta-hero.svg"
-                  alt="Tradesperson working"
-                  width={400}
-                  height={500}
-                  className={`${styles.tradespersonImage} ${styles.desktopTradesperson}`}
-                  priority={false}
-                  sizes="(max-width: 768px) 0px, 400px"
-                />
-                {/* Mobile Image */}
-                <Image
-                  src="/assets/usta-hero-mobile.svg"
-                  alt="Tradesperson working"
-                  width={550}
-                  height={358}
-                  className={`${styles.tradespersonImage} ${styles.mobileTradesperson}`}
-                  priority={false}
-                  sizes="(min-width: 769px) 0px, 550px"
-                />
-              </div>
-            </div>
-
-          </div>
+        <div className="absolute top-2 -right-10">
+          <img
+            className="w-[810px] h-[567px] object-contain"
+            src="/assets/hero-section-images/usta-hero-image.png"
+            alt="phone-right"
+          />
         </div>
-      </section>
+      </div>
     </div>
   );
 }

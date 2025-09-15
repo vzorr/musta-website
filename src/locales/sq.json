@@ -5,7 +5,9 @@
   "hero": {
     "title": "Ne e sjellim punën tek ju!",
     "subtitle": "Puna juaj e radhës është vetëm një klik larg. Bashkohuni me myUSTA dhe lidhuni me pronarët e shtëpive.",
-    "cta": "Hyr në Listën e Pritjes - Është Falas!"
+    "cta1": "Hyr në Listën e Pritjes - ",
+    "cta2": "Është Falas!"
+
   },
   "whyJoin": {
     "title": "Pse të përdorni myUsta?",
