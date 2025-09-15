@@ -27,9 +27,10 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="pb-3 bg-myusta-gray">
-      <div className="max-w-[1000px] mx-auto">
-        <div className="mb-2">
+    <section className="bg-myusta-gray">
+      <div className="pb-12">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
           <Title 
             firstText={t('faq.title')}
             as="h2"
@@ -37,7 +38,7 @@ export default function FAQSection() {
           />
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-4" style={{ marginBottom: '48px' }}>
           {faqItems.map((item, index) => (
             <FAQItem
               key={index}
@@ -46,6 +47,7 @@ export default function FAQSection() {
             />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
