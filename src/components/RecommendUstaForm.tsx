@@ -205,7 +205,7 @@ export default function RecommendUstaForm() {
             value={formData.name}
             onChange={handleInputChange}
             placeholder={language === 'sq' ? 'Emri' : 'Name'} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
             required 
             maxLength={100}
           />
@@ -216,7 +216,7 @@ export default function RecommendUstaForm() {
             value={formData.phone}
             onChange={handleInputChange}
             placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
             required 
             maxLength={20}
           />
@@ -227,7 +227,7 @@ export default function RecommendUstaForm() {
             value={formData.email}
             onChange={handleInputChange}
             placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
             maxLength={150}
           />
           

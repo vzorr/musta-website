@@ -224,7 +224,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.name')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={100}
                   />
@@ -235,7 +235,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.email')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={150}
                   />
@@ -246,7 +246,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.phone')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={20}
                   />

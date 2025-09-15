@@ -45,6 +45,47 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ========================================
+   FORM PLACEHOLDER STYLES
+======================================== */
+
+/* Consistent placeholder styling for all forms */
+.neumorphic-input::placeholder {
+  color: var(--Navy, #00203F) !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+  opacity: 1 !important;
+}
+
+/* Select dropdown styling - all options */
+.neumorphic-input {
+  color: var(--Navy, #00203F) !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+}
+
+/* Select dropdown options styling */
+.neumorphic-input option {
+  color: var(--Navy, #00203F) !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+}
+
+/* Select dropdown placeholder option (first option) */
+.neumorphic-input option:first-child {
+  color: var(--Navy, #00203F) !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 24px !important;
+}
+
 /* Responsive Neumorphic Shadows */
 @media (max-width: 640px) {
   .neumorphic-card {
