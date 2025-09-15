@@ -3,7 +3,7 @@
 .videoSection {
   width: 100%;
   background: #f3f3f3;
-  padding: 2rem 0; /* 32px top and bottom = 64px total */
+  padding: 0 0 4rem 0; /* 0px top, 64px bottom */
   display: flex;
   justify-content: center;
   align-items: center;

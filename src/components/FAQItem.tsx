@@ -19,7 +19,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-semibold text-myusta-navy pr-4">{question}</span>
-        <div className="icon-container w-6 h-6 rounded flex items-center justify-center flex-shrink-0">
+        <div className="icon-container w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0">
           <Image 
             src="/assets/vector.svg" 
             alt="Chevron" 

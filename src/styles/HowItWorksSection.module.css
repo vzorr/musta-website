@@ -2,7 +2,7 @@
 
 /* How It Works Section Container - Exact Figma measurements */
 .howItWorksSection {
-  padding-top: 4rem; /* 64px top spacing as shown in Figma */
+  padding-top: 0; /* 0px top spacing */
   padding-bottom: 4rem; /* 64px bottom spacing as shown in Figma */
   background: #f3f3f3;
 }
@@ -104,8 +104,8 @@
 /* Desktop spacing - Match Figma exactly */
 @media (min-width: 1024px) {
   .howItWorksSection {
-    padding-top: 5rem; /* 80px on desktop */
-    padding-bottom: 5rem; /* 80px on desktop */
+    padding-top: 0; /* 0px on desktop */
+    padding-bottom: 4rem; /* 64px on desktop */
   }
   
   .howItWorksTitle {
@@ -121,8 +121,8 @@
 /* Large Desktop Adjustments */
 @media (min-width: 1440px) {
   .howItWorksSection {
-    padding-top: 2rem; /* 96px on very large screens */
-    padding-bottom: 2rem;
+    padding-top: 0; /* 0px on very large screens */
+    padding-bottom: 4rem;
   }
   
   .howItWorksGrid {

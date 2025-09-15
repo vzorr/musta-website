@@ -151,12 +151,12 @@ export default function WaitlistForm() {
   console.log('showCommunitySection state:', showCommunitySection);
 
   return (
-    <section id="waitlist" className="bg-myusta-gray relative z-10">
+    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-16">
       <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
-            <div className="mb-12 sm:mb-16">
+            <div className="mb-12">
               <TwoLineTitle 
                 firstLine={language === 'sq' ? 'Regjistrohu Sot.' : 'Register Today.'}
                 secondLine={language === 'sq' ? 'Është Falas!' : 'It\'s Free!'}
