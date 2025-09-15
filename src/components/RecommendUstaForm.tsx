@@ -184,9 +184,8 @@ export default function RecommendUstaForm() {
               fontWeight: '600',
               lineHeight: '120%'
             }}
-          >
-            Fill out the following information below.
-          </div>
+            dangerouslySetInnerHTML={{ __html: 'Fill out the following<br />information below.' }}
+          />
 
           {message && (
             <div className={`mb-6 p-4 rounded-lg ${
