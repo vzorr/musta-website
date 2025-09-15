@@ -39,9 +39,16 @@ export default function CustomDropdown({
       const selectedValues = Array.isArray(value) ? value : [];
       const selectedOptions = options.filter(option => selectedValues.includes(option.value));
       const fieldName = name.charAt(0).toUpperCase() + name.slice(1);
-      const newLabel = selectedOptions.length > 0 
-        ? `${fieldName}: ${selectedOptions.map(option => option.label).join(', ')}`
-        : '';
+      
+      let newLabel = '';
+      if (selectedOptions.length > 0) {
+        if (selectedOptions.length <= 2) {
+          newLabel = `${fieldName}: ${selectedOptions.map(option => option.label).join(', ')}`;
+        } else {
+          const firstTwo = selectedOptions.slice(0, 2).map(option => option.label).join(', ');
+          newLabel = `${fieldName}: ${firstTwo}...`;
+        }
+      }
       setSelectedLabel(newLabel);
     } else {
       const selectedOption = options.find(option => option.value === value);

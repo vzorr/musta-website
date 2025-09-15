@@ -156,7 +156,6 @@
 
 .option.selected {
   background-color: rgba(0, 0, 0, 0.05);
-  font-weight: 600;
 }
 
 .option:active {
@@ -171,7 +170,7 @@
   width: 18px;
   height: 18px;
   margin-left: 12px;
-  margin-right: 12px;
+  margin-right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,7 +182,7 @@
 }
 
 .option.selected .checkbox {
-  transform: scale(1.1);
+  transform: none;
 }
 
 .optionLabel {
@@ -198,7 +197,7 @@
 }
 
 .option.selected .optionLabel {
-  font-weight: 600;
+  font-weight: 400;
   color: var(--Navy, #00203F);
   font-size: 14px;
   font-style: normal;
