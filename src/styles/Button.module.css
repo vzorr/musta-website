@@ -130,13 +130,17 @@
   padding: 8px 24px;
   font-size: 1rem;
   font-weight: 600;
+  height: 44px;
+  min-height: 44px;
 }
 
 /* Large Button */
 .large {
-  padding: 12px 32px;
+  padding: 10px 32px;
   font-size: 1.125rem;
   font-weight: 600;
+  height: 44px;
+  min-height: 44px;
 }
 
 /* Extra Large Button */

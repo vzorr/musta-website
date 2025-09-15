@@ -68,6 +68,12 @@ body {
   line-height: 24px !important;
 }
 
+/* Input fields height (excluding textarea) */
+.neumorphic-input:not(textarea) {
+  height: 44px !important;
+  min-height: 44px !important;
+}
+
 /* Select dropdown options styling */
 .neumorphic-input option {
   color: var(--Navy, #00203F) !important;
