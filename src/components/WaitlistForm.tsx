@@ -16,8 +16,8 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
 }
 
 export default function WaitlistForm() {
@@ -26,8 +26,8 @@ export default function WaitlistForm() {
     name: '',
     email: '',
     phone: '',
-    category: '',
-    location: ''
+    category: [] as string[],
+    location: [] as string[]
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string>('');
@@ -229,6 +229,7 @@ export default function WaitlistForm() {
                   placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
                   name="category"
                   required
+                  multiple={true}
                 />
                 
                 <CustomDropdown
@@ -238,6 +239,7 @@ export default function WaitlistForm() {
                   placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
                   name="location"
                   required
+                  multiple={true}
                 />
                 
                 <Button

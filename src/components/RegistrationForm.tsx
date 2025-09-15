@@ -12,8 +12,8 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
 }
 
 interface ConsentState {
@@ -34,8 +34,8 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
     name: '',
     email: '',
     phone: '',
-    category: '',
-    location: ''
+    category: [] as string[],
+    location: [] as string[]
   });
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [marketingOptIn, setMarketingOptIn] = useState(false);
@@ -260,6 +260,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     placeholder={t('registration.categories.placeholder')}
                     name="category"
                     required
+                    multiple={true}
                   />
                   
                   <CustomDropdown
@@ -269,6 +270,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     placeholder={t('registration.locations.placeholder')}
                     name="location"
                     required
+                    multiple={true}
                   />
 
                   {/* Privacy Policy Agreement */}

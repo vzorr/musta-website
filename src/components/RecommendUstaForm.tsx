@@ -13,8 +13,8 @@ interface RecommendFormData {
   name: string;
   phone: string;
   email?: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
   ustaName?: string;
   ustaPhone?: string;
   ustaEmail?: string;
@@ -26,8 +26,8 @@ export default function RecommendUstaForm() {
     name: '',
     phone: '',
     email: '',
-    category: '',
-    location: '',
+    category: [] as string[],
+    location: [] as string[],
     ustaName: '',
     ustaPhone: '',
     ustaEmail: ''
@@ -237,6 +237,7 @@ export default function RecommendUstaForm() {
             placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
             name="category"
             required
+            multiple={true}
           />
           
           <CustomDropdown
@@ -246,6 +247,7 @@ export default function RecommendUstaForm() {
             placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
             name="location"
             required
+            multiple={true}
           />
 
           {!isSuccess ? (
