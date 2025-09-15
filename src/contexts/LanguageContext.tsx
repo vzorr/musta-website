@@ -22,7 +22,7 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('sq');
+  const [language, setLanguage] = useState<Language>('en');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
