@@ -22,6 +22,21 @@
   color: #868686;
 }
 
+.breadcrumbLink {
+  color: #868686;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #FFC800;
+}
+
+.breadcrumbCurrent {
+  color: #00203F;
+  font-weight: 700;
+}
+
 .breadcrumbSeparator {
   color: #868686;
 }
