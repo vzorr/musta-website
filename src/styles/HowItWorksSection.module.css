@@ -28,7 +28,7 @@
   background: #f3f3f3;
   /* Remove fixed height to allow content to define height */
   /* height: 190px; */
-  padding: 1.25rem 1rem; /* Reduced vertical and horizontal padding */
+  padding: 20px; /* 20px padding on all sides */
   border-radius: 1rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -39,13 +39,13 @@
 
 /* Step Card Elements Spacing */
 .stepNumber {
-  margin-bottom: 0.5rem; /* Reduce space below step number */
-  font-weight: 500;
+  margin-bottom: 12px; /* 12px gap below step number */
+  font-weight: 400;
   color: #00203F;
 }
 
 .stepIconContainer {
-  margin: 0 auto 1rem auto; /* Reduce space below icon */
+  margin: 0 auto 12px auto; /* 12px gap below icon */
   width: 48px;
   height: 48px;
   background: #FFC800;
@@ -70,7 +70,7 @@
   color: #888888;
   line-height: 1.5;
   margin: 0;
-  font-size: 0.97rem;
+  font-size: 16px;
 }
 
 /* Perfect centering for step icons */
@@ -116,7 +116,7 @@
   }
   
   .stepCard {
-    padding: 1.5rem 1.25rem; /* Slightly more padding on tablet, but still reduced */
+    padding: 20px; /* 20px padding on all sides */
   }
 }
 
@@ -149,6 +149,6 @@
   }
   
   .stepCard {
-    padding: 1.5rem 1.25rem; /* Consistent padding */
+    padding: 20px; /* 20px padding on all sides */
   }
 }

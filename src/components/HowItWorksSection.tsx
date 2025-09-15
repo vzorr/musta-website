@@ -74,7 +74,7 @@ export default function HowItWorksSection() {
           
           {/* Step 3 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step3.title')}
             </p>
             <div className={styles.stepIconContainer}>
