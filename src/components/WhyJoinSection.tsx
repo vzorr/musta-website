@@ -80,12 +80,18 @@ export default function WhyJoinSection() {
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                   <div className={styles.iconContainer}>
-                    <Image 
+                    <img 
                       src={feature.iconSrc}
                       alt={feature.iconAlt}
-                      width={19.59}
-                      height={19.59}
-                      className="flex-shrink-0"
+                      className={`${styles.stepIcon} flex-shrink-0`}
+                      style={{ 
+                        width: '19px', 
+                        height: '19px',
+                        maxWidth: '19px',
+                        maxHeight: '19px',
+                        minWidth: '19px',
+                        minHeight: '19px'
+                      }}
                     />
                   </div>
                   <h3 className={styles.cardTitle}>

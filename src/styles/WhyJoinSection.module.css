@@ -98,6 +98,37 @@
               2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+.iconContainer img {
+  width: 19px !important;
+  height: 19px !important;
+  max-width: 19px !important;
+  max-height: 19px !important;
+  min-width: 19px !important;
+  min-height: 19px !important;
+  object-fit: contain !important;
+}
+
+/* Override any global icon-container styles */
+.whyJoinSection .iconContainer img {
+  width: 19px !important;
+  height: 19px !important;
+  max-width: 19px !important;
+  max-height: 19px !important;
+  min-width: 19px !important;
+  min-height: 19px !important;
+  object-fit: contain !important;
+}
+
+.stepIcon {
+  width: 19px !important;
+  height: 19px !important;
+  max-width: 19px !important;
+  max-height: 19px !important;
+  min-width: 19px !important;
+  min-height: 19px !important;
+  object-fit: contain !important;
+}
+
 .cardTitle {
   font-size: 1.125rem;
   font-weight: 600;

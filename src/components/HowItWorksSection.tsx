@@ -41,7 +41,7 @@ export default function HowItWorksSection() {
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
-                src="/assets/file.svg" 
+                src="/assets/doc.svg" 
                 alt="Profile Icon" 
                 width={19.589}
                 height={19.586}
@@ -62,8 +62,8 @@ export default function HowItWorksSection() {
               <Image 
                 src="/assets/profile.svg" 
                 alt="Skills Icon" 
-                width={19.589}
-                height={19.586}
+                width={24}
+                height={24}
                 className="flex-shrink-0"
               />
             </div>
