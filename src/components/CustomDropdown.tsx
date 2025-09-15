@@ -38,8 +38,9 @@ export default function CustomDropdown({
     if (multiple) {
       const selectedValues = Array.isArray(value) ? value : [];
       const selectedOptions = options.filter(option => selectedValues.includes(option.value));
+      const fieldName = name.charAt(0).toUpperCase() + name.slice(1);
       const newLabel = selectedOptions.length > 0 
-        ? selectedOptions.map(option => option.label).join(', ')
+        ? `${fieldName}: ${selectedOptions.map(option => option.label).join(', ')}`
         : '';
       setSelectedLabel(newLabel);
     } else {
@@ -47,7 +48,7 @@ export default function CustomDropdown({
       const newLabel = selectedOption ? selectedOption.label : '';
       setSelectedLabel(newLabel);
     }
-  }, [value, options, multiple]);
+  }, [value, options, multiple, name]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
