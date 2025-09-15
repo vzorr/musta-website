@@ -318,7 +318,7 @@ export default function WaitlistForm() {
         )}
 
         <div className="mt-16 text-center max-w-2xl mx-auto">
-          <div className="mb-12">
+          <div className="mb-6">
             <TwoLineTitle 
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
               secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
@@ -328,7 +328,7 @@ export default function WaitlistForm() {
               centered={true}
             />
           </div>
-          <div className="mb-12 text-center">
+          <div className="mb-6 text-center">
             {language === 'sq' 
               ? (
                 <>
