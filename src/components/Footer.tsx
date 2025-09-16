@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="bg-myusta-navy text-white py-12 sm:py-16 lg:px-24">
       {/* UPDATED: Added max-width container */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8">
+      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-8">
         {/* Main Footer Content */}
         <div className="flex flex-col sm:flex-row justify-between ilg:tems-start items-center mb-8 sm:mb-12 gap-8">
           {/* Left Side - Logo and Social */}
@@ -27,7 +27,13 @@ export default function Footer() {
             <div className={`flex space-x-6 ${styles.social_icon}`}>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -36,12 +42,18 @@ export default function Footer() {
                   alt="Facebook" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0"
                 />
               </a>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -50,12 +62,18 @@ export default function Footer() {
                   alt="LinkedIn" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0"
                 />
               </a>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -64,7 +82,7 @@ export default function Footer() {
                   alt="Instagram" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0"
                 />
               </a>
             </div>
@@ -94,10 +112,16 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
           <p className={`text-white text-center sm:text-left ${styles.copy_para}`}>{t('footer.tagline')}</p>
           {/* Social Icons for mobile view */}
-            <div className={`flex space-x-6 ${styles.social_icon_mobile}`}>
+            <div className={`flex space-x-6 justify-start ${styles.social_icon_mobile}`}>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 transition-all duration-200 group rounded"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -106,12 +130,18 @@ export default function Footer() {
                   alt="Facebook" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
                 />
               </a>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 transition-all duration-200 group rounded"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -120,12 +150,18 @@ export default function Footer() {
                   alt="LinkedIn" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
                 />
               </a>
               <a 
                 href="#" 
-                className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125"
+                className="w-6 h-6 transition-all duration-200 group rounded"
+                style={{ 
+                  backgroundColor: 'transparent',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -134,7 +170,7 @@ export default function Footer() {
                   alt="Instagram" 
                   width={24}
                   height={24}
-                  className="w-full h-full"
+                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
                 />
               </a>
             </div>

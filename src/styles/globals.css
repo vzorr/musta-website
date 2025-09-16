@@ -204,6 +204,7 @@ select.neumorphic-input {
 
 .faq-item button {
   padding: 12px;
+  padding-bottom: 8px;
   font-size: 16px;
   font-weight: 400;
   min-height: 48px;
