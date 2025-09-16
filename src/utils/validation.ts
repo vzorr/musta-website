@@ -10,13 +10,32 @@ interface ValidationResult {
 }
 
 class ValidationUtil {
+  private normalizeFormData(data: any): any {
+    const normalized = { ...data };
+    
+    if (Array.isArray(normalized.category) && normalized.category.length > 0) {
+      normalized.category = normalized.category[0];
+    }
+    if (Array.isArray(normalized.location) && normalized.location.length > 0) {
+      normalized.location = normalized.location[0];
+    }
+    
+    return normalized;
+  }
+
   // Existing registration schema
   private registrationSchema = Joi.object({
     name: Joi.string().trim().min(2).max(100).required(),
     email: Joi.string().email().max(150).required(),
     phone: Joi.string().trim().min(8).max(20).required(),
-    category: Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'other').required(),
-    location: Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other').required(),
+    category: Joi.alternatives().try(
+      Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'woodworker', 'other'),
+      Joi.array().items(Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'woodworker', 'other')).min(1).max(1)
+    ).required(),
+    location: Joi.alternatives().try(
+      Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other'),
+      Joi.array().items(Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other')).min(1).max(1)
+    ).required(),
     language: Joi.string().valid('sq', 'en').required(),
     gdprConsent: Joi.boolean().valid(true).required(),
     marketingConsent: Joi.boolean().optional()
@@ -53,8 +72,14 @@ class ValidationUtil {
     }),
     
     // Common fields
-    category: Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'woodworker', 'other').required(),
-    location: Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other').required(),
+    category: Joi.alternatives().try(
+      Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'woodworker', 'other'),
+      Joi.array().items(Joi.string().valid('plumber', 'electrician', 'painter', 'carpenter', 'tiler', 'mason', 'woodworker', 'other')).min(1).max(1)
+    ).required(),
+    location: Joi.alternatives().try(
+      Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other'),
+      Joi.array().items(Joi.string().valid('tirana', 'durres', 'vlore', 'shkoder', 'elbasan', 'korce', 'fier', 'berat', 'other')).min(1).max(1)
+    ).required(),
     language: Joi.string().valid('sq', 'en').default('sq'),
     isRecommendation: Joi.boolean().default(false)
   });
@@ -69,7 +94,8 @@ class ValidationUtil {
 
   // Existing validation methods
   validateRegistration(data: RegistrationData): ValidationResult {
-    const { error, value } = this.registrationSchema.validate(data, { 
+    const normalizedData = this.normalizeFormData(data);
+    const { error, value } = this.registrationSchema.validate(normalizedData, { 
       abortEarly: false,
       stripUnknown: true
     });
@@ -130,7 +156,8 @@ class ValidationUtil {
   }
 
   validateRecommendForm(data: RecommendFormData): ValidationResult {
-    const { error, value } = this.recommendSchema.validate(data, { 
+    const normalizedData = this.normalizeFormData(data);
+    const { error, value } = this.recommendSchema.validate(normalizedData, { 
       abortEarly: false,
       stripUnknown: true
     });

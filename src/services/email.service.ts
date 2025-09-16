@@ -13,8 +13,8 @@ interface RegistrationEmailData {
   name: string;
   email: string;
   phone?: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
   language: 'sq' | 'en';
 }
 
@@ -371,8 +371,8 @@ class EmailService {
                 <div class="details">
                     <h3>Detajet e regjistrimit tuaj:</h3>
                     <ul>
-                        <li><strong>Kategoria:</strong> ${this.getCategoryTranslation(data.category, 'sq')}</li>
-                        <li><strong>Vendndodhja:</strong> ${this.getLocationTranslation(data.location, 'sq')}</li>
+                        <li><strong>Kategoria:</strong> ${this.formatCategories(data.category, 'sq')}</li>
+                        <li><strong>Vendndodhja:</strong> ${this.formatLocations(data.location, 'sq')}</li>
                         <li><strong>Data e regjistrimit:</strong> ${new Date().toLocaleDateString('sq-AL')}</li>
                     </ul>
                 </div>
@@ -441,8 +441,8 @@ class EmailService {
                 <div class="details">
                     <h3>Your registration details:</h3>
                     <ul>
-                        <li><strong>Category:</strong> ${this.getCategoryTranslation(data.category, 'en')}</li>
-                        <li><strong>Location:</strong> ${this.getLocationTranslation(data.location, 'en')}</li>
+                        <li><strong>Category:</strong> ${this.formatCategories(data.category, 'en')}</li>
+                        <li><strong>Location:</strong> ${this.formatLocations(data.location, 'en')}</li>
                         <li><strong>Registration date:</strong> ${new Date().toLocaleDateString('en-US')}</li>
                     </ul>
                 </div>
@@ -482,8 +482,8 @@ Përshëndetje ${data.name}!
 Faleminderit që u bashkuat me myUsta! Ne kemi pranuar regjistrimin tuaj dhe do t'ju kontaktojmë sa më shpejt që myUsta të lançohet.
 
 Detajet e regjistrimit tuaj:
-- Kategoria: ${this.getCategoryTranslation(data.category, 'sq')}
-- Vendndodhja: ${this.getLocationTranslation(data.location, 'sq')}
+- Kategoria: ${this.formatCategories(data.category, 'sq')}
+- Vendndodhja: ${this.formatLocations(data.location, 'sq')}
 - Data e regjistrimit: ${new Date().toLocaleDateString('sq-AL')}
 
 Me myUsta, ju do të:
@@ -513,8 +513,8 @@ Hello ${data.name}!
 Thank you for joining myUsta! We've received your registration and will contact you as soon as myUsta launches.
 
 Your registration details:
-- Category: ${this.getCategoryTranslation(data.category, 'en')}
-- Location: ${this.getLocationTranslation(data.location, 'en')}
+- Category: ${this.formatCategories(data.category, 'en')}
+- Location: ${this.formatLocations(data.location, 'en')}
 - Registration date: ${new Date().toLocaleDateString('en-US')}
 
 With myUsta, you will:
@@ -569,8 +569,8 @@ Your Skills. Our platform. Endless Opportunities.
                         <li style="margin: 8px 0;"><strong>👤 Name:</strong> ${data.name}</li>
                         <li style="margin: 8px 0;"><strong>📧 Email:</strong> ${data.email}</li>
                         ${data.phone ? `<li style="margin: 8px 0;"><strong>📱 Phone:</strong> ${data.phone}</li>` : ''}
-                        <li style="margin: 8px 0;"><strong>🔧 Category:</strong> <span class="highlight">${this.getCategoryTranslation(data.category, 'en')}</span></li>
-                        <li style="margin: 8px 0;"><strong>📍 Location:</strong> <span class="highlight">${this.getLocationTranslation(data.location, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>🔧 Category:</strong> <span class="highlight">${this.formatCategories(data.category, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>📍 Location:</strong> <span class="highlight">${this.formatLocations(data.location, 'en')}</span></li>
                         <li style="margin: 8px 0;"><strong>🌐 Language:</strong> ${data.language.toUpperCase()}</li>
                         <li style="margin: 8px 0;"><strong>📅 Registered:</strong> ${new Date().toLocaleString()}</li>
                     </ul>
@@ -601,6 +601,7 @@ Your Skills. Our platform. Endless Opportunities.
       carpenter: { sq: 'Marangoz', en: 'Carpenter' },
       tiler: { sq: 'Pllakaxhi', en: 'Tiler' },
       mason: { sq: 'Murator', en: 'Mason' },
+      woodworker: { sq: 'Zdrukthëtar', en: 'Woodworker' },
       other: { sq: 'Tjetër', en: 'Other' }
     };
 
@@ -624,6 +625,22 @@ Your Skills. Our platform. Endless Opportunities.
     };
 
     return translations[location]?.[language] || location;
+  }
+
+  /**
+   * Helper function to format multiple categories
+   */
+  private formatCategories(categories: string | string[], language: 'sq' | 'en'): string {
+    const categoryArray = Array.isArray(categories) ? categories : [categories];
+    return categoryArray.map(cat => this.getCategoryTranslation(cat, language)).join(', ');
+  }
+
+  /**
+   * Helper function to format multiple locations
+   */
+  private formatLocations(locations: string | string[], language: 'sq' | 'en'): string {
+    const locationArray = Array.isArray(locations) ? locations : [locations];
+    return locationArray.map(loc => this.getLocationTranslation(loc, language)).join(', ');
   }
 
   /**
@@ -872,8 +889,8 @@ ${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}
                 <div class="details">
                     <h3>${data.language === 'sq' ? 'Detajet:' : 'Details:'}</h3>
                     <ul>
-                        <li><strong>${data.language === 'sq' ? 'Kategoria:' : 'Category:'}</strong> ${this.getCategoryTranslation(data.category, data.language)}</li>
-                        <li><strong>${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'}</strong> ${this.getLocationTranslation(data.location, data.language)}</li>
+                        <li><strong>${data.language === 'sq' ? 'Kategoria:' : 'Category:'}</strong> ${this.formatCategories(data.category, data.language)}</li>
+                        <li><strong>${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'}</strong> ${this.formatLocations(data.location, data.language)}</li>
                         ${data.isRecommendation && data.ustaName ? `<li><strong>${data.language === 'sq' ? 'Usta i rekomanduar:' : 'Recommended Usta:'}</strong> ${data.ustaName}</li>` : ''}
                         <li><strong>${data.language === 'sq' ? 'Data:' : 'Date:'}</strong> ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}</li>
                     </ul>
@@ -909,8 +926,8 @@ ${data.isRecommendation
 }
 
 ${data.language === 'sq' ? 'Detajet:' : 'Details:'}
-- ${data.language === 'sq' ? 'Kategoria:' : 'Category:'} ${this.getCategoryTranslation(data.category, data.language)}
-- ${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'} ${this.getLocationTranslation(data.location, data.language)}
+- ${data.language === 'sq' ? 'Kategoria:' : 'Category:'} ${this.formatCategories(data.category, data.language)}
+- ${data.language === 'sq' ? 'Vendndodhja:' : 'Location:'} ${this.formatLocations(data.location, data.language)}
 ${data.isRecommendation && data.ustaName ? `- ${data.language === 'sq' ? 'Usta i rekomanduar:' : 'Recommended Usta:'} ${data.ustaName}` : ''}
 - ${data.language === 'sq' ? 'Data:' : 'Date:'} ${new Date().toLocaleDateString(data.language === 'sq' ? 'sq-AL' : 'en-US')}
 
@@ -958,8 +975,8 @@ ${data.language === 'sq' ? 'Ekipi i myUsta' : 'The myUsta Team'}
                         <li style="margin: 8px 0;"><strong>👤 Name:</strong> ${data.name}</li>
                         <li style="margin: 8px 0;"><strong>📧 Email:</strong> ${data.email || data.recommender_email || 'Not provided'}</li>
                         <li style="margin: 8px 0;"><strong>📱 Phone:</strong> ${data.phone}</li>
-                        <li style="margin: 8px 0;"><strong>🔧 Category:</strong> <span class="highlight">${this.getCategoryTranslation(data.category, 'en')}</span></li>
-                        <li style="margin: 8px 0;"><strong>📍 Location:</strong> <span class="highlight">${this.getLocationTranslation(data.location, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>🔧 Category:</strong> <span class="highlight">${this.formatCategories(data.category, 'en')}</span></li>
+                        <li style="margin: 8px 0;"><strong>📍 Location:</strong> <span class="highlight">${this.formatLocations(data.location, 'en')}</span></li>
                         <li style="margin: 8px 0;"><strong>🌐 Language:</strong> ${data.language.toUpperCase()}</li>
                         <li style="margin: 8px 0;"><strong>📅 Submitted:</strong> ${new Date().toLocaleString()}</li>
                     </ul>
