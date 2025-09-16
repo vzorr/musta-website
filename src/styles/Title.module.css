@@ -6,7 +6,7 @@
 
 .title {
   color: var(--Navy, #00203F);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont;
+  font-family: Inter, sans-serif ;
   font-size: 48px;
   font-style: normal;
   font-weight: 400; /* Default weight for the title */

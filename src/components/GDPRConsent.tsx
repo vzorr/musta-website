@@ -145,7 +145,7 @@ export default function GDPRConsent({ onConsentChange, required = false }: GDPRC
               </div>
               
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 min-w-max">
+              <div className="flex flex-row gap-2 sm:gap-3 min-w-max">
                 <button
                   onClick={() => setShowModal(true)}
                   className="px-4 py-2 border-2 border-white text-white hover:bg-white hover:text-myusta-navy transition-all duration-200 rounded-lg text-sm font-medium"
