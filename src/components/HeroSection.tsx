@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
-import styles from '../styles/HeroSection.module.css';
+import styles from '../styles/Header.module.css';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -30,35 +30,34 @@ export default function HeroSection() {
       className={`w-full flex items-start 
                 tablet:h-[460px] xl:h-[600px] 
                 ${styles.heroBg}`}
-      style={{
-        backgroundImage: "url(/assets/hero-section-images/bg-image.png)",
-        backgroundSize: "200px 600px",
-        backgroundRepeat: "repeat-x",
 
-      }}
     >
 
       <div className="max-w-[1280px] w-full mx-auto relative xl:mt-8 tablet:mt-4 flex flex-col items-center justify-center tablet:flwx-none">
         <div className="xl:absolute xl:top-7 xl:left-0 hidden xl:block">
           <img
             className="w-[411px] h-[493px] object-contain"
-            src="/assets/hero-section-images/mobile-english.png"
+            src={t("hero.image")}
             alt="phone-left"
           />
+
         </div>
 
         <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
-        
-        xl:left-[48%] xl:-translate-x-1/2 text-center xl:max-w-[500px] tablet:max-w-[440px]
+        xl:left-[48%] xl:-translate-x-1/2 text-center 
         ">
           <h1
             style={{ lineHeight: "1" }}
-            className="xl:text-[64px] mt-8 tablet:mt-0 tablet:text-[48px] text-[32px]  font-bold tracking-tight text-[#00203F]"
+            className="xl:text-[64px] mt-8 tablet:mt-0 tablet:text-[48px] text-[32px] font-bold tracking-tight text-[#00203F] flex flex-col items-center"
           >
-            {t("hero.title")}
+            <span>{t("hero.title1")}</span>
+            <span>{t("hero.title2")}</span>
+
           </h1>
-          <p className="xl:text-[20px] text-sm tablet:text-base my-5  mx-auto text-[#335372]">
-            {t("hero.subtitle")}
+          <p className="xl:text-[20px] text-sm tablet:text-base my-5  mx-auto text-[#335372] flex flex-col items-center">
+            <span>{t("hero.subtitle1")}</span>
+            <span>{t("hero.subtitle2")}</span>
+
           </p>
           <div className="flex justify-center">
             <button
@@ -76,7 +75,7 @@ export default function HeroSection() {
             className="xl:w-[810px] xl:h-[567px] tablet:w-[561px] tablet:h-[393px] object-contain"
             src="/assets/hero-section-images/usta-hero-image.png"
             alt="phone-right"
-          /> 
+          />
         </div>
       </div>
     </section>

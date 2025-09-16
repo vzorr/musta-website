@@ -238,25 +238,25 @@
    HERO SECTION BACKGROUND
 ======================================== */
 
-/* Mobile (<850px) */
+.heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
+  background-repeat: repeat-x;
+}
+
 @media (max-width: 849px) {
   .heroBg {
-    background-size: 200px 100%; /* full height */
+    background-size: 200px 100%;
   }
 }
 
-/* Tablet (≥850px) */
 @media (min-width: 850px) {
   .heroBg {
     background-size: 200px 460px;
-    background-position: unset;
   }
 }
 
-/* Desktop (≥1280px) */
 @media (min-width: 1280px) {
   .heroBg {
     background-size: 200px 600px;
-    background-position: unset;
   }
 }
