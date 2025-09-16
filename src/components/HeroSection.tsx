@@ -33,7 +33,7 @@ export default function HeroSection() {
 
     >
 
-      <div className="max-w-[1280px] w-full mx-auto relative xl:mt-8 tablet:mt-4 flex flex-col items-center justify-center tablet:flwx-none">
+      <div className="tablet:max-w-[850px] xl:max-w-[1280px] w-full mx-auto relative xl:mt-8 tablet:mt-4 flex flex-col items-center justify-center tablet:flwx-none">
         <div className="xl:absolute xl:top-7 xl:left-0 hidden xl:block">
           <img
             className="w-[411px] h-[493px] object-contain"
@@ -42,13 +42,12 @@ export default function HeroSection() {
           />
 
         </div>
-
         <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
         xl:left-[48%] xl:-translate-x-1/2 text-center  z-30 -mr-5
         ">
           <h1
             style={{ lineHeight: "1" }}
-            className="xl:text-[64px] mt-8 tablet:mt-0 tablet:text-[48px] text-[32px] font-bold tracking-tight text-[#00203F] flex flex-col items-center"
+            className="xl:text-[64px] mt-8 tablet:mt-4 xl:mt-0 tablet:text-[48px] text-[32px] font-bold tracking-tight text-[#00203F] flex flex-col items-center"
           >
             <span>{t("hero.title1")}</span>
             <span>{t("hero.title2")}</span>
@@ -69,7 +68,6 @@ export default function HeroSection() {
             </button>
           </div>
         </div>
-
         <div className="-mt-8 sm:-mt-14 tablet:mt-0 tablet:absolute tablet:top-12 xl:top-2 xl:-right-10  tablet:-right-10 z-10">
           <img
             className="xl:w-[810px] xl:h-[567px] tablet:w-[561px] tablet:h-[393px] object-contain"
