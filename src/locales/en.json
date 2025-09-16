@@ -3,13 +3,17 @@
     "cta": "Register"
   },
   "hero": {
-    "title": "We bring the job to you!",
-    "subtitle": "Your next job is just a click away. Join myUSTA and connect with homeowners.",
-    "cta": "Join the Waitlist - It's free!"
+    "title1": "We bring the job ",
+    "title2": "to you!",
+    "subtitle1": "Your next job is just a click away. Join myUSTA and ",
+    "subtitle2": "connect with homeowners.",
+    "cta1": "Join the Waitlist - ",
+    "cta2": "It's free!",
+    "image": "/assets/hero-section-images/mobile-english.png"
   },
   "whyJoin": {
     "title": "Why join myUsta?",
-    "description": "At myUsta, we connect homeowners with trusted professionals for all home and maintenance needs. From quick fixes to major projects, we make finding and hiring the right expert simple. Our platform empowers both customers and tradespeople with tools for seamless collaboration and quality results.<br><br>Get things done smarter with myUsta.",
+    "description": "At myUsta, we connect homeowners with trusted professionals for all home and maintenance needs. From quick fixes to major projects, we make finding and hiring the right expert simple. Our platform empowers both customers and tradespeople with tools for seamless collaboration and quality results.<br><br>Get things done smarter with myUsta",
     "benefits": {
       "directOpportunities": {
         "title": "Get Direct Job Leads",

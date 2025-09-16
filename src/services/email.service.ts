@@ -35,33 +35,52 @@ class EmailService {
 
   private async initializeServices() {
     try {
-      const oauth2Client = new google.auth.OAuth2(
-        process.env.GOOGLE_CLIENT_ID,
-        process.env.GOOGLE_CLIENT_SECRET,
-        'https://developers.google.com/oauthplayground'
-      );
+      // Use SMTP configuration if available, otherwise fall back to Gmail OAuth
+      if (process.env.MAIL_SERVICE === 'custom' && process.env.MAIL_HOST) {
+        // Initialize Nodemailer with SMTP configuration
+        this.transporter = nodemailer.createTransport({
+          host: process.env.MAIL_HOST,
+          port: parseInt(process.env.MAIL_PORT || '465'),
+          secure: true, // Use SSL
+          auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASSWORD,
+          },
+        });
 
-      oauth2Client.setCredentials({
-        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
-      });
+        // Test the connection
+        await this.transporter.verify();
+        console.log('SMTP connection verified successfully');
+      } else {
+        // Fallback to Gmail OAuth
+        const oauth2Client = new google.auth.OAuth2(
+          process.env.GOOGLE_CLIENT_ID,
+          process.env.GOOGLE_CLIENT_SECRET,
+          'https://developers.google.com/oauthplayground'
+        );
 
-      // Initialize Gmail API
-      this.gmail = google.gmail({ version: 'v1', auth: oauth2Client });
+        oauth2Client.setCredentials({
+          refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+        });
 
-      // Initialize Nodemailer
-      const accessToken = await oauth2Client.getAccessToken();
+        // Initialize Gmail API
+        this.gmail = google.gmail({ version: 'v1', auth: oauth2Client });
 
-      this.transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          type: 'OAuth2',
-          user: process.env.FROM_EMAIL || process.env.EMAIL_USER,
-          clientId: process.env.GOOGLE_CLIENT_ID,
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-          accessToken: accessToken.token as string,
-        },
-      });
+        // Initialize Nodemailer
+        const accessToken = await oauth2Client.getAccessToken();
+
+        this.transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            type: 'OAuth2',
+            user: process.env.FROM_EMAIL || process.env.EMAIL_USER,
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+            accessToken: accessToken.token as string,
+          },
+        });
+      }
 
       this.initialized = true;
     } catch (error) {
@@ -80,7 +99,7 @@ class EmailService {
       const template = this.getConfirmationTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
         to: data.email,
         subject: template.subject,
         text: template.text,
@@ -105,8 +124,8 @@ class EmailService {
       const template = this.getAdminNotificationTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
-        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL || process.env.MAIL_FROM_EMAIL || process.env.EMAIL_USER,
         subject: template.subject,
         html: template.html,
       };
@@ -129,7 +148,7 @@ class EmailService {
       const template = this.getGDPRTemplate(type, data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
         to: email,
         subject: template.subject,
         html: template.html,
@@ -151,7 +170,7 @@ class EmailService {
       const template = this.getContactConfirmationTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
         to: data.email,
         subject: template.subject,
         text: template.text,
@@ -176,8 +195,8 @@ class EmailService {
       const template = this.getContactAdminTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
-        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL || process.env.MAIL_FROM_EMAIL || process.env.EMAIL_USER,
         subject: template.subject,
         html: template.html,
       };
@@ -200,7 +219,7 @@ class EmailService {
       const template = this.getRecommendConfirmationTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
         to: data.email || data.recommender_email,
         subject: template.subject,
         text: template.text,
@@ -225,8 +244,8 @@ class EmailService {
       const template = this.getRecommendAdminTemplate(data);
 
       const mailOptions = {
-        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
-        to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+        from: `${process.env.FROM_NAME || 'myUsta'} <${process.env.MAIL_FROM_EMAIL || process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
+        to: process.env.ADMIN_EMAIL || process.env.MAIL_FROM_EMAIL || process.env.EMAIL_USER,
         subject: template.subject,
         html: template.html,
       };
@@ -284,7 +303,7 @@ class EmailService {
             <div style="background: #f9f9f9; padding: 20px;">
               <h2>GDPR Request Confirmation</h2>
               <p>We have received your GDPR request and will process it within 30 days as required by law.</p>
-              <p>If you have any questions, please contact us at ${process.env.GDPR_CONTACT_EMAIL || process.env.ADMIN_EMAIL}</p>
+              <p>If you have any questions, please contact us at ${process.env.GDPR_CONTACT_EMAIL || process.env.MAIL_FROM_EMAIL || process.env.ADMIN_EMAIL}</p>
             </div>
           </div>
         `,
@@ -304,7 +323,7 @@ class EmailService {
               <div style="background: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
                 <pre style="white-space: pre-wrap; font-size: 12px;">${JSON.stringify(data, null, 2)}</pre>
               </div>
-              <p>If you have any questions, please contact us at ${process.env.GDPR_CONTACT_EMAIL || process.env.ADMIN_EMAIL}</p>
+              <p>If you have any questions, please contact us at ${process.env.GDPR_CONTACT_EMAIL || process.env.MAIL_FROM_EMAIL || process.env.ADMIN_EMAIL}</p>
             </div>
           </div>
         `,

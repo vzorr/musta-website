@@ -22,8 +22,8 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('sq');
-  const [isLoading, setIsLoading] = useState(true);
+  const [language, setLanguage] = useState<Language>('en');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Only run on client side after hydration
@@ -33,7 +33,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         setLanguage(savedLanguage);
       }
     }
-    setIsLoading(false);
   }, []);
 
   const handleSetLanguage = (lang: Language) => {
@@ -44,11 +43,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   const t = (key: string): string => {
-    // Return empty string during loading to prevent hydration mismatch
-    if (isLoading) {
-      return '';
-    }
-
     const keys = key.split('.');
     let value: any = translations[language];
     
@@ -59,18 +53,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     // Fallback to key if translation not found
     return value || key;
   };
-
-  // Show loading state to prevent hydration mismatch
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-myusta-gray flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4  border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-myusta-navy">Loading...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <LanguageContext.Provider value={{ 

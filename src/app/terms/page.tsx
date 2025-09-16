@@ -23,9 +23,9 @@ export default function TermsPage() {
               <div className={styles.termsContainer}>
                 {/* Breadcrumb */}
                 <nav className={styles.breadcrumb}>
-                  <span className={styles.breadcrumbItem}>Home</span>
+                  <a href="/" className={`${styles.breadcrumbItem} ${styles.breadcrumbLink}`}>Home</a>
                   <span className={styles.breadcrumbSeparator}>/</span>
-                  <span className={styles.breadcrumbItem}>Terms & Conditions</span>
+                  <span className={`${styles.breadcrumbItem} ${styles.breadcrumbCurrent}`}>Terms & Conditions</span>
                 </nav>
 
                 {/* Main Title */}

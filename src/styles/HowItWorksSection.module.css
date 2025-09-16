@@ -2,25 +2,24 @@
 
 /* How It Works Section Container - Exact Figma measurements */
 .howItWorksSection {
-  padding-top: 4rem; /* 64px top spacing as shown in Figma */
-  padding-bottom: 4rem; /* 64px bottom spacing as shown in Figma */
+  padding-top: 0; /* 0px top spacing */
+  padding-bottom: 0; /* 0px bottom spacing - VideoSection handles the gap */
   background: #f3f3f3;
 }
 
-/* Title to Cards Gap - 48px as shown in Figma */
+/* Title to Cards Gap - 48px spacing */
 .howItWorksTitle {
   margin-bottom: 3rem; /* 48px gap between title and cards */
   text-align: center;
-  opacity: 0.8;
+  color: var(--Navy, #00203F);
 }
 
 /* Cards Container - Proper spacing between cards */
 .howItWorksGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem; /* 24px gap on mobile */
-  width: 1040px;
-  /* max-width: 1200px; */
+  gap: 1rem; /* 16px gap on mobile */
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -29,7 +28,7 @@
   background: #f3f3f3;
   /* Remove fixed height to allow content to define height */
   /* height: 190px; */
-  padding: 1.25rem 1rem; /* Reduced vertical and horizontal padding */
+  padding: 20px; /* 20px padding on all sides */
   border-radius: 1rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -40,20 +39,22 @@
 
 /* Step Card Elements Spacing */
 .stepNumber {
-  margin-bottom: 0.5rem; /* Reduce space below step number */
-  font-weight: 500;
+  margin-bottom: 12px; /* 12px gap below step number */
+  font-weight: 400;
   color: #00203F;
 }
 
 .stepIconContainer {
-  margin: 0 auto 1rem auto; /* Reduce space below icon */
-  width: 2.5rem;
-  height: 2.5rem;
+  margin: 0 auto 12px auto; /* 12px gap below icon */
+  width: 48px;
+  height: 48px;
   background: #FFC800;
-  border-radius: 0.75rem;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  position: relative;
   box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
               1px 1px 1.4px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
@@ -69,7 +70,24 @@
   color: #888888;
   line-height: 1.5;
   margin: 0;
-  font-size: 0.97rem;
+  font-size: 16px;
+}
+
+/* Perfect centering for step icons */
+.stepIconContainer img {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+}
+
+/* Hand icon specific sizing */
+.stepIconContainer img[src*="hand.svg"] {
+  width: 30px !important;
+  height: 30px !important;
 }
 
 /* Hover Effects */
@@ -79,49 +97,58 @@
               -6px -6px 10px rgba(255, 255, 255, 0.9);
 }
 
+/* Mobile spacing */
+@media (max-width: 767px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on mobile */
+  }
+}
+
 /* Tablet spacing */
 @media (min-width: 768px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on tablet */
+  }
+  
   .howItWorksGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem; /* 32px gap on tablet */
   }
   
   .stepCard {
-    padding: 1.5rem 1.25rem; /* Slightly more padding on tablet, but still reduced */
+    padding: 20px; /* 20px padding on all sides */
   }
 }
 
 /* Desktop spacing - Match Figma exactly */
 @media (min-width: 1024px) {
   .howItWorksSection {
-    padding-top: 5rem; /* 80px on desktop */
-    padding-bottom: 5rem; /* 80px on desktop */
+    padding-top: 0; /* 0px on desktop */
+    padding-bottom: 0; /* 0px on desktop - VideoSection handles the gap */
   }
   
   .howItWorksTitle {
-    margin-bottom: 3rem; /* Keep 48px gap */
+    margin-bottom: 3rem; /* 48px gap on desktop */
   }
   
   .howItWorksGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; /* 32px gap between cards on desktop */
-    max-width: 1200px;
+    gap: 1rem; /* 16px gap for better alignment */
   }
 }
 
 /* Large Desktop Adjustments */
 @media (min-width: 1440px) {
   .howItWorksSection {
-    padding-top: 2rem; /* 96px on very large screens */
-    padding-bottom: 2rem;
+    padding-top: 0; /* 0px on very large screens */
+    padding-bottom: 0; /* 0px on very large screens - VideoSection handles the gap */
   }
   
   .howItWorksGrid {
-    max-width: 1400px;
-    gap: 2.5rem; /* 40px gap on very large screens */
+    gap: 1rem; /* 16px gap across all screen sizes */
   }
   
   .stepCard {
-    padding: 2rem 1.5rem; /* More padding on large screens, but still less than before */
+    padding: 20px; /* 20px padding on all sides */
   }
 }

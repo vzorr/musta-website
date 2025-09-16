@@ -3,6 +3,8 @@
 
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import Title from './Title';
+import Description from './Description';
 import styles from '../styles/HowItWorksSection.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
 
@@ -19,40 +21,41 @@ export default function HowItWorksSection() {
 
   return (
     <section className={styles.howItWorksSection}>
-      {/* Updated: Using container module instead of global classes */}
-      <div className={containerStyles.sectionContainer}>
-        {/* Title with Figma spacing */}
-        <div className='flex flex-row justify-center gap-2'>
-          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
-          <h2 className={`${styles.howItWorksTitle} text-3xl sm:text-4xl lg:text-5xl text-myusta-navy italic`}>
-            {remainingTitle}
-          </h2>
-        </div>
+      {/* Updated: Using 1000px width container for consistency */}
+      <div className="max-w-[1000px] mx-auto">
+        {/* Title with increased spacing */}
+        <Title 
+          firstText={firstWord}
+          secondText={remainingTitle}
+          as="h1"
+          centered={true}
+          className={styles.howItWorksTitle}
+        />
         
         {/* Cards Grid with proper Figma spacing */}
         <div className={styles.howItWorksGrid}>
           {/* Step 1 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step1.title')}
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
-                src="/assets/file.svg" 
+                src="/assets/doc.svg" 
                 alt="Profile Icon" 
                 width={24}
                 height={24}
-                className="w-6 h-6"
+                className="flex-shrink-0"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step1.description')}
-            </p>
+            </Description>
           </div>
           
           {/* Step 2 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step2.title')}
             </p>
             <div className={styles.stepIconContainer}>
@@ -61,31 +64,31 @@ export default function HowItWorksSection() {
                 alt="Skills Icon" 
                 width={24}
                 height={24}
-                className="w-6 h-6"
+                className="flex-shrink-0"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step2.description')}
-            </p>
+            </Description>
           </div>
           
           {/* Step 3 */}
           <div className={styles.stepCard}>
-            <p className={`${styles.stepNumber} text-myusta-navy font-medium`}>
+            <p className={`${styles.stepNumber} text-myusta-navy font-normal`}>
               {t('howItWorks.steps.step3.title')}
             </p>
             <div className={styles.stepIconContainer}>
               <Image 
                 src="/assets/hand.svg" 
                 alt="Work Icon" 
-                width={24}
-                height={24}
-                className="w-6 h-6"
+                width={30}
+                height={30}
+                className="flex-shrink-0"
               />
             </div>
-            <p className={`${styles.stepDescription} text-myusta-text-gray leading-relaxed`}>
+            <Description className={styles.stepDescription}>
               {t('howItWorks.steps.step3.description')}
-            </p>
+            </Description>
           </div>
         </div>
       </div>

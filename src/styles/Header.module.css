@@ -5,50 +5,47 @@
 ======================================== */
 
 .headerWrapper {
-  width: 100%;
+  width: 100vw;
   position: sticky;
   top: 0;
   z-index: 50;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background: #00203f;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
 }
-
 
 .header {
   width: 100%;
   max-width: 1440px;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
   isolation: isolate;
-  background: #00203F;
   color: white;
   padding: 0px 120px;
   height: 80px;
+  display: flex;
+  align-items: center;
 }
-
 
 .headerContent {
   width: 100%;
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 @media (min-width: 640px) {
   .headerContent {
-  
   }
 }
 
 /* ========================================
    HEADER SECTIONS
 ======================================== */
-
-
 
 .centerSection {
   display: flex;
@@ -73,41 +70,46 @@
   align-items: center;
   gap: 16px;
   border-radius: 8px;
-  background: #FFC800;
+  background: #ffc800;
   box-shadow: none;
-  
-  color: #00203F;
+
+  color: #00203f;
   font-weight: 600;
-  font-size: 0.860rem;
+  font-size: 0.86rem;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 120px;
-  height: 30px;
+  height: 40px;
   outline: none;
 }
 
 .ctaButton:hover {
   background-color: #e6b300;
-  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.40);
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.4);
 }
 
 .ctaButton:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.60);
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.6);
 }
 
 .ctaButton:active {
-  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.80);
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.8);
 }
 
 @media (max-width: 640px) {
-  .ctaButton{
+  .ctaButton {
     display: none;
   }
-  .header{
+  .header {
     padding: 0px 20px;
-    height: 90px;
+    height: 70px;
+  }
+  .headerWrapper {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
   }
 }
 
@@ -126,7 +128,6 @@
 /* Extra small mobile */
 @media (max-width: 480px) {
   .headerContent {
-
   }
 
   .ctaButton {
@@ -137,8 +138,8 @@
 
 /* Tablet */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .headerContent {
-    
+  .header {
+    padding: 0px 60px;
   }
 }
 
@@ -228,7 +229,34 @@
 
 @media (prefers-color-scheme: dark) {
   .header {
-    background: #00203F;
+    background: #00203f;
     border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* ========================================
+   HERO SECTION BACKGROUND
+======================================== */
+
+.heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
+  background-repeat: repeat-x;
+}
+
+@media (max-width: 849px) {
+  .heroBg {
+    background-size: 200px 100%;
+  }
+}
+
+@media (min-width: 850px) {
+  .heroBg {
+    background-size: 200px 460px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroBg {
+    background-size: 200px 600px;
   }
 }

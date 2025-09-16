@@ -2,23 +2,30 @@
 'use client';
 import { useLanguage } from '../contexts/LanguageContext';
 import Image from 'next/image';
+import Title from './Title';
+import Description from './Description';
 import styles from '../styles/WhyJoinSection.module.css';
 
 export default function WhyJoinSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const fullTitle = t('whyJoin.title');
-  const firstWord = fullTitle?.trim().split(/\s+/)[0] || "";
-
-  // Split the title into words
-  const words = fullTitle?.trim().split(/\s+/) || [];
-
-  // Extract first word and remaining part
-  const remainingTitle = words.slice(1).join(" ");
+  
+  // Handle different languages properly
+  let firstPart, remainingTitle;
+  if (language === 'sq') {
+    // For Albanian: "Pse të përdorni myUsta?" -> "Pse" + "të përdorni myUsta?"
+    firstPart = "Pse";
+    remainingTitle = fullTitle?.replace(/^Pse\s+/, "") || "";
+  } else {
+    // For English: "Why join myUsta?" -> "Why" + "join myUsta?"
+    firstPart = "Why";
+    remainingTitle = fullTitle?.replace(/^Why\s+/, "") || "";
+  }
   
   // Feature cards data
   const features = [
     {
-      imageSrc: "/assets/image_container.svg",
+      imageSrc: "/assets/c1.svg",
       imageAlt: "Direct Opportunities",
       iconSrc: "/assets/wrench-icon.svg",
       iconAlt: "Wrench Icon",
@@ -26,7 +33,7 @@ export default function WhyJoinSection() {
       descriptionKey: "whyJoin.benefits.directOpportunities.description"
     },
     {
-      imageSrc: "/assets/image_container.svg",
+      imageSrc: "/assets/time.svg",
       imageAlt: "Save Time",
       iconSrc: "/assets/clock-icon.svg",
       iconAlt: "Clock Icon",
@@ -45,22 +52,17 @@ export default function WhyJoinSection() {
 
   return (
     <section className={styles.whyJoinSection}>
-      {/* Updated: Using new container with specified width and layout */}
-      <div className={styles.whyJoinContainer}>
-        {/* Header */}
+      <div className="max-w-[1000px] mx-auto">
         <div className={styles.header}>
-          <div className='flex flex-row justify-center gap-2 text-center'>
-            <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{firstWord}</h1>
-            <h2 className={`${styles.title} text-2xl sm:text-4xl lg:text-5xl text-myusta-navy`}>
-              {remainingTitle}
-            </h2>
-          </div>
-          <div 
-            className={`${styles.description} text-base sm:text-lg text-myusta-navy leading-relaxed`}
-            dangerouslySetInnerHTML={{ __html: t('whyJoin.description') }}
+          <Title 
+            firstText={firstPart}
+            secondText={remainingTitle}
+            as="h1"
+            centered={true}
+            className={styles.title}
           />
+         
         </div>
-
         {/* Benefits Cards */}
         <div className={styles.benefitsGrid}>
           {features.map((feature, index) => (
@@ -71,26 +73,34 @@ export default function WhyJoinSection() {
                   alt={feature.imageAlt}
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className={styles.cardContent}>
                 <div className={styles.cardHeader}>
                   <div className={styles.iconContainer}>
-                    <Image 
+                    <img 
                       src={feature.iconSrc}
                       alt={feature.iconAlt}
-                      width={24}
-                      height={24}
-                      className="w-6 h-6"
+                      className={`${styles.stepIcon} ${feature.iconSrc.includes('chain-icon') ? styles.largeIcon : ''} flex-shrink-0`}
+                      style={{ 
+                        width: feature.iconSrc.includes('chain-icon') ? '30px' : '19px', 
+                        height: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        maxWidth: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        maxHeight: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        minWidth: feature.iconSrc.includes('chain-icon') ? '30px' : '19px',
+                        minHeight: feature.iconSrc.includes('chain-icon') ? '30px' : '19px'
+                      }}
                     />
                   </div>
                   <h3 className={styles.cardTitle}>
                     {t(feature.titleKey)}
                   </h3>
                 </div>
-                <p className={styles.cardDescription}>
+                <Description className={styles.cardDescription}>
                   {t(feature.descriptionKey)}
-                </p>
+                </Description>
               </div>
             </div>
           ))}

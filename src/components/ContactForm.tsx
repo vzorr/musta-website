@@ -4,7 +4,9 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import Title from './Title';
 import styles from '../styles/ContactForm.module.css';
+import containerStyles from '../styles/SectionContainer.module.css';
 
 interface ContactFormData {
   name: string;
@@ -111,17 +113,21 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
   };
 
   return (
-    <div className={styles.contactFormContainer}>
-      <div className={styles.formCard}>
-        <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>
-            {language === 'sq' ? 'Na Kontaktoni' : 'Contact Us'}
-          </h2>
-          <p className={styles.formSubtitle}>
-            {language === 'sq' 
-              ? 'Jemi këtu për ju. Lidhuni me ekipin tonë në çdo kohë.' 
-              : 'We\'re here for you. Get in touch with our team anytime.'}
-          </p>
+    <div className={containerStyles.formContainer}>
+      <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
+        <div 
+          className="text-xl font-semibold text-myusta-navy mb-8"
+          style={{
+            color: 'var(--Navy, #00203F)',
+            textAlign: 'center',
+            fontFamily: 'Inter',
+            fontSize: '20px',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            lineHeight: '120%'
+          }}
+        >
+          {language === 'sq' ? 'Na Kontaktoni' : 'Contact Us'}
         </div>
 
         {message && (
@@ -130,71 +136,61 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
           </div>
         )}
 
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Emri' : 'Name'}
-              className={styles.input}
-              required
-              maxLength={100}
-            />
-          </div>
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Emri' : 'Name'}
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+            required
+            maxLength={100}
+          />
 
-          <div className={styles.formGroup}>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
-              className={styles.input}
-              required
-              maxLength={20}
-            />
-          </div>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+            required
+            maxLength={20}
+          />
 
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'E-Mail' : 'E-Mail'}
-              className={styles.input}
-              required
-              maxLength={150}
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'E-Mail' : 'E-Mail'}
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+            required
+            maxLength={150}
+          />
 
-          <div className={styles.formGroup}>
-            <input
-              type="text"
-              name="subject"
-              value={formData.subject}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Subjekti' : 'Subject'}
-              className={styles.input}
-              required
-              maxLength={200}
-            />
-          </div>
+          <input
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Subjekti' : 'Subject'}
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+            required
+            maxLength={200}
+          />
 
-          <div className={styles.formGroup}>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Mesazhi Juaj' : 'Your Message'}
-              className={`${styles.input} ${styles.textarea}`}
-              rows={5}
-              required
-              maxLength={1000}
-            />
-          </div>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Mesazhi Juaj' : 'Your Message'}
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray resize-none"
+            rows={5}
+            required
+            maxLength={1000}
+          />
 
           <Button
             type="submit"
@@ -203,7 +199,7 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             fullWidth
             loading={isSubmitting}
             disabled={isSubmitting}
-            className={styles.submitButton}
+            className="text-myusta-navy font-semibold text-lg rounded-lg"
           >
             {isSubmitting 
               ? (language === 'sq' ? 'Po dërgohet...' : 'Sending...') 

@@ -20,7 +20,7 @@
 
 .formCard {
   background: #f3f3f3;
-  border-radius: 1.5rem;
+  border-radius: 24px;
   padding: 2rem;
   /* box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
               -4px -4px 7.3px rgba(255, 255, 255, 0.9); */
@@ -97,7 +97,7 @@
   width: 100%;
   padding: 0.875rem 1.25rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   background: #f3f3f3;
   color: #00203F;
   font-size: 1rem;
@@ -111,6 +111,11 @@
 .input::placeholder {
   color: #00203F;
   opacity: 0.6;
+}
+
+/* Add space before placeholder when input is focused */
+.input:focus::placeholder {
+  text-indent: 1ch;
 }
 
 .input:focus {
@@ -198,7 +203,7 @@
 
 .message {
   padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -263,7 +268,7 @@
   
   .formCard {
     padding: 2.5rem;
-    border-radius: 2rem;
+    border-radius: 24px;
   }
   
   .formTitle {
@@ -306,7 +311,7 @@
   
   .formCard {
     padding: 1.5rem;
-    border-radius: 1.25rem;
+    border-radius: 24px;
   }
   
   .formTitle {
@@ -337,8 +342,7 @@
 /* Focus visible for keyboard navigation */
 .input:focus-visible,
 .submitButton:focus-visible {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* High contrast mode */

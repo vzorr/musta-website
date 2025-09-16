@@ -151,6 +151,29 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
 );
 
 -- ========================================
+-- WAITLIST TABLE
+-- ========================================
+CREATE TABLE IF NOT EXISTS waitlist (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    category_id INTEGER REFERENCES categories(id),
+    location_id INTEGER REFERENCES locations(id),
+    language language_type DEFAULT 'sq',
+    gdpr_consent BOOLEAN DEFAULT FALSE,
+    marketing_consent BOOLEAN DEFAULT FALSE,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    status status_type DEFAULT 'pending',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    approved_at TIMESTAMP WITH TIME ZONE,
+    approved_by VARCHAR(100),
+    notes TEXT
+);
+
+-- ========================================
 -- RECOMMENDATIONS TABLE
 -- ========================================
 CREATE TABLE IF NOT EXISTS recommendations (
@@ -260,6 +283,13 @@ CREATE INDEX idx_registration_category ON registrations(category_id);
 CREATE INDEX idx_registration_location ON registrations(location_id);
 CREATE INDEX idx_registration_status ON registrations(status);
 CREATE INDEX idx_registration_created ON registrations(created_at DESC);
+
+CREATE INDEX idx_waitlist_email ON waitlist(email);
+CREATE INDEX idx_waitlist_phone ON waitlist(phone);
+CREATE INDEX idx_waitlist_category ON waitlist(category_id);
+CREATE INDEX idx_waitlist_location ON waitlist(location_id);
+CREATE INDEX idx_waitlist_status ON waitlist(status);
+CREATE INDEX idx_waitlist_created ON waitlist(created_at DESC);
 
 CREATE INDEX idx_email_log_recipient ON email_logs(recipient_email);
 CREATE INDEX idx_email_log_type ON email_logs(email_type);

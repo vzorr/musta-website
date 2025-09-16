@@ -4,15 +4,17 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import CustomDropdown from './CustomDropdown';
 import Image from 'next/image';
 import styles from '../styles/RecommendUsta.module.css';
+import containerStyles from '../styles/SectionContainer.module.css';
 
 interface RecommendFormData {
   name: string;
   phone: string;
   email?: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
   ustaName?: string;
   ustaPhone?: string;
   ustaEmail?: string;
@@ -28,8 +30,8 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
     name: '',
     phone: '',
     email: '',
-    category: '',
-    location: '',
+    category: [] as string[],
+    location: [] as string[],
     ustaName: '',
     ustaPhone: '',
     ustaEmail: ''
@@ -38,6 +40,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
   const [message, setMessage] = useState<string>('');
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -51,6 +54,19 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
     setIsSuccess(false);
     setMessage('');
     setMessageType('');
+    setShowSuccessMessage(false);
+    
+    // Reset form data
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      category: '',
+      location: '',
+      ustaName: '',
+      ustaPhone: '',
+      ustaEmail: ''
+    });
   };
 
   const categories = [
@@ -122,8 +138,9 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('Usta Recommended');
+        setMessage(language === 'sq' ? 'Usta u rekomandua me sukses!' : 'Usta Recommended Successfully!');
         setMessageType('success');
+        setShowSuccessMessage(true);
         setIsSuccess(true);
         
         // Reset form
@@ -137,6 +154,12 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
           ustaPhone: '',
           ustaEmail: ''
         });
+        
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+          setMessage('');
+          setMessageType('');
+        }, 3000);
       } else {
         setMessage(data.message || 'An error occurred');
         setMessageType('error');
@@ -153,105 +176,85 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
 
   return (
     <div className={styles.recommendContainer}>
-      <div className={styles.formCard}>
-        <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>
-            Join the Waitlist - It's Free!
-          </h2>
-        </div>
+      <div className={containerStyles.formContainer}>
+        <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
+          <div 
+            className="text-xl font-semibold text-myusta-navy mb-8"
+            style={{
+              color: 'var(--Navy, #00203F)',
+              textAlign: 'center',
+              fontSize: '20px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: '100%'
+            }}
+            dangerouslySetInnerHTML={{ __html: 'Fill out the following<br />information below.' }}
+          />
 
-        {message && (
-          <div className={`${styles.message} ${styles[messageType]}`}>
-            {message}
-          </div>
-        )}
-
-        {!isSuccess ? (
-          <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Emri' : 'Name'}
-              className={styles.input}
-              required
-              maxLength={100}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
-              className={styles.input}
-              required
-              maxLength={20}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`}
-              className={styles.input}
-              maxLength={150}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <div className={styles.selectWrapper}>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleInputChange}
-                className={styles.select}
-                required
-              >
-                <option value="">{language === 'sq' ? 'Kategoria' : 'Category'}</option>
-                {categories.map(cat => (
-                  <option key={cat.value} value={cat.value}>
-                    {cat.label}
-                  </option>
-                ))}
-              </select>
-              <div className={styles.selectArrow}>
-                <Image src="/assets/vector.svg" alt="arrow" width={16} height={16} />
-              </div>
+          {message && (
+            <div className={`mb-6 p-4 rounded-lg ${
+              messageType === 'success' 
+                ? 'bg-green-100 text-green-700 border border-green-300' 
+                : 'bg-red-100 text-red-700 border border-red-300'
+            }`}>
+              {message}
             </div>
-          </div>
+          )}
 
+          <form className="space-y-4" onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Emri' : 'Name'} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
+            required 
+            maxLength={100}
+          />
+          
+          <input 
+            type="tel" 
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
+            required 
+            maxLength={20}
+          />
+          
+          <input 
+            type="email" 
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`} 
+            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
+            maxLength={150}
+          />
+          
+          <CustomDropdown
+            options={categories}
+            value={formData.category}
+            onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+            placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
+            name="category"
+            required
+            multiple={true}
+          />
+          
+          <CustomDropdown
+            options={locations}
+            value={formData.location}
+            onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+            placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
+            name="location"
+            required
+            multiple={true}
+          />
 
-          <div className={styles.formGroup}>
-            <div className={styles.selectWrapper}>
-              <select
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                className={styles.select}
-                required
-              >
-                <option value="">{language === 'sq' ? 'Vendndodhja' : 'Location'}</option>
-                {locations.map(loc => (
-                  <option key={loc.value} value={loc.value}>
-                    {loc.label}
-                  </option>
-                ))}
-              </select>
-              <div className={styles.selectArrow}>
-                <Image src="/assets/vector.svg" alt="arrow" width={16} height={16} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.buttonGroup}>
+          {!isSuccess ? (
             <Button
               type="submit"
               variant="primary"
@@ -259,35 +262,32 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
               fullWidth
               loading={isSubmitting}
               disabled={isSubmitting}
-              className={styles.submitButton}
+              className={`text-myusta-navy font-semibold text-lg ${styles.formbtn}`}
+              style={{ marginTop: '32px' }}
             >
               {isSubmitting 
-                ? 'Registering...' 
-                : 'Join the Waitlist'}
+                ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')
+                : (language === 'sq' ? 'Rekomando Usta' : 'Recommend Usta')}
             </Button>
-          </div>
-        </form>
-        ) : (
-          <div className={styles.successState}>
-            <div className={styles.successContent}>
-              <div className={styles.successIcon}>✓</div>
-              <h3 className={styles.successTitle}>Usta Recommended</h3>
-              <p className={styles.successMessage}>
-                Thank you for recommending! We'll reach out to them soon.
-              </p>
-              <Button
+          ) : (
+            <div className={styles.successButtons}>
+              <div className={styles.ustaRecommendedCard}>
+                {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
+              </div>
+              <button
+                type="button"
                 onClick={handleRecommendAnother}
-                variant="primary"
-                size="large"
-                fullWidth
                 className={styles.recommendAnotherButton}
               >
-                <span className={styles.plusIcon}>+</span>
-                Recommend Another Usta
-              </Button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F"/>
+                </svg>
+                {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
+              </button>
             </div>
-          </div>
-        )}
+          )}
+          </form>
+        </div>
       </div>
     </div>
   );

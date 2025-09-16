@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -20,7 +20,7 @@
 
 .formCard {
   background: #f3f3f3;
-  border-radius: 1.5rem;
+  border-radius: 24px;
   padding: 2rem;
   box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
               -4px -4px 7.3px rgba(255, 255, 255, 0.9);
@@ -48,11 +48,12 @@
 }
 
 .formTitle {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #00203F;
-  margin-bottom: 0.75rem;
-  font-family: 'Inter', sans-serif;
+  color: var(--Navy, #00203F);
+text-align: center;
+font-size: 12px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; 
 }
 
 /* ========================================
@@ -78,7 +79,7 @@
   width: 100%;
   padding: 0.875rem 1.25rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   background: #f3f3f3;
   color: #00203F;
   font-size: 1rem;
@@ -92,6 +93,11 @@
 .input::placeholder {
   color: #00203F;
   opacity: 0.6;
+}
+
+/* Add space before placeholder when input is focused */
+.input:focus::placeholder {
+  text-indent: 1ch;
 }
 
 .input:focus {
@@ -117,7 +123,7 @@
   width: 100%;
   padding: 0.875rem 3rem 0.875rem 1.25rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   background: #f3f3f3;
   color: #00203F;
   font-size: 1rem;
@@ -165,13 +171,13 @@
   margin-top: 0.5rem;
   padding: 1rem;
   background: rgba(255, 200, 0, 0.05);
-  border-radius: 0.75rem;
+  border-radius: 24px;
   border: 1px dashed rgba(255, 200, 0, 0.3);
 }
 
 .categoryItem {
   padding: 0.5rem 1rem;
-  border-radius: 2rem;
+  border-radius: 24px;
   background: #f3f3f3;
   color: #00203F;
   font-size: 0.875rem;
@@ -229,6 +235,134 @@
 }
 
 /* ========================================
+   SUCCESS BUTTONS
+======================================== */
+
+.successButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.ustaRecommendedCard {
+  display: flex;
+  height: 44px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #59BE34;
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  border: none;
+  cursor: default;
+}
+
+.recommendAnotherButton {
+  display: flex;
+  height: 36px;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Yellow, #FFC800);
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+  color: var(--Navy, #00203F);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recommendAnotherButton:hover {
+  background: #e6b300 !important;
+  color: var(--Navy, #00203F) !important;
+  transform: translateY(-1px);
+  box-shadow: -6px -6px 10px 0 rgba(255, 255, 255, 0.95), 6px 6px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.recommendAnotherButton:hover * {
+  color: var(--Navy, #00203F) !important;
+  fill: var(--Navy, #00203F) !important;
+}
+
+.recommendAnotherButton:active {
+  transform: translateY(0);
+  box-shadow: -4px -4px 7.3px 0 rgba(255, 255, 255, 0.90), 4px 4px 6.8px 0 rgba(0, 0, 0, 0.10);
+}
+
+.recommendAnotherButton:hover svg {
+  fill: var(--Navy, #00203F);
+}
+
+.recommendAnotherButton svg {
+  fill: var(--Navy, #00203F) !important;
+  transition: fill 0.3s ease;
+  opacity: 1 !important;
+}
+
+.recommendAnotherButton span,
+.recommendAnotherButton {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ========================================
+   FORM BUTTON (matching RegistrationForm)
+======================================== */
+
+.formbtn {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  background: #FFC800;
+  box-shadow: none;
+  
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.formbtn:hover:not(:disabled) {
+  background-color: #e6b300;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.40);
+}
+
+.formbtn:focus:not(:disabled) {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.60);
+}
+
+.formbtn:active:not(:disabled) {
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.80);
+}
+
+.formbtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ========================================
    SUBMIT BUTTON
 ======================================== */
 
@@ -280,7 +414,7 @@
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 2rem;
+  border-radius: 24px;
   background: transparent;
   color: #00203F;
   border: 2px solid #FFC800;
@@ -348,7 +482,7 @@
 
 .message {
   padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
+  border-radius: 24px;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   line-height: 1.5;
@@ -410,16 +544,16 @@
 /* Tablet */
 @media (min-width: 640px) {
   .recommendContainer {
-    padding: 2rem;
+    padding: 0;
   }
   
   .formCard {
     padding: 2.5rem;
-    border-radius: 2rem;
+    border-radius: 24px;
   }
   
   .formTitle {
-    font-size: 2rem;
+    font-size: 25px;
   }
   
   .input,
@@ -481,7 +615,7 @@
   
   .formCard {
     padding: 1.5rem;
-    border-radius: 1.25rem;
+    border-radius: 24px;
   }
   
   .formTitle {
@@ -627,8 +761,7 @@
 .submitButton:focus-visible,
 .recommendAnotherButton:focus-visible,
 .categoryItem:focus-visible {
-  outline: 2px solid #FFC800;
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* High contrast mode */

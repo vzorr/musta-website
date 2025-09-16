@@ -4,6 +4,7 @@
 import { useSearchParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Title from '../../components/Title';
 import { LanguageProvider } from '../../contexts/LanguageContext';
 import styles from '../../styles/LegalPage.module.css';
 
@@ -23,13 +24,19 @@ export default function LegalPage() {
               <div className={styles.legalContainer}>
                 {/* Breadcrumb */}
                 <nav className={styles.breadcrumb}>
-                  <span className={styles.breadcrumbItem}>Home</span>
+                  <a href="/" className={`${styles.breadcrumbItem} ${styles.breadcrumbLink}`}>Home</a>
                   <span className={styles.breadcrumbSeparator}>/</span>
-                  <span className={styles.breadcrumbItem}>Terms & Conditions</span>
+                  <span className={`${styles.breadcrumbItem} ${styles.breadcrumbCurrent}`}>Terms & Conditions</span>
                 </nav>
 
                 {/* Main Title */}
-                <h1 className={styles.mainTitle}>Terms & Conditions</h1>
+                <Title 
+                  firstText="Terms"
+                  secondText="& Conditions"
+                  as="h1"
+                  centered={true}
+                  className={styles.mainTitle}
+                />
 
                 {/* Terms & Conditions Section */}
                 <div className={styles.legalSection}>
@@ -37,6 +44,9 @@ export default function LegalPage() {
                   <p className={styles.sectionText}>
                     myUsta is a platform in development that will help customers connect with skilled tradespeople ("Ustas") for home improvement and service jobs. This landing page allows you to join our waitlist and be among the first to try it.
                   </p>
+                  
+                  {/* Divider after Welcome section */}
+                  <div className={styles.welcomeDivider}></div>
 
                   <h3 className={styles.subsectionTitle}>1. Joining the Waitlist</h3>
                   <p className={styles.sectionText}>
@@ -72,14 +82,21 @@ export default function LegalPage() {
                   </ul>
                 </div>
 
-                {/* Divider */}
-                <div className={styles.divider}></div>
+              
 
                 {/* Privacy Policy Section */}
                 <div className={styles.legalSection}>
-                  <h2 className={styles.sectionTitle}>Privacy Policy</h2>
+                  <h2 className={styles.sectionTitle}>🔐 Privacy Policy</h2>
+                  <p className={styles.sectionText}>
+                    We respect your privacy. This section explains how we collect, use, and protect your information.
+                  </p>
+
+                  <div className={styles.divider}></div>
                   
                   <h3 className={styles.subsectionTitle}>1. What We Collect</h3>
+                  <p className={styles.sectionText}>
+                    When you join the waitlist, we may collect:
+                  </p>
                   <ul className={styles.legalList}>
                     <li>Your name</li>
                     <li>Your email</li>
@@ -90,39 +107,42 @@ export default function LegalPage() {
                   </p>
 
                   <h3 className={styles.subsectionTitle}>2. How We Use Your Info</h3>
+                  <p className={styles.sectionText}>
+                    We use your info to:
+                  </p>
                   <ul className={styles.legalList}>
-                    <li>Notify you about myUsta's progress, updates, and launch</li>
-                    <li>Understand general user interest by region or profession</li>
-                    <li>Occasionally request feedback or offer early access</li>
+                    <li>Notify you about myUsta's progress, updates, and launch,</li>
+                    <li>Understand general user interest by region or profession,</li>
+                    <li>Occasionally request feedback or offer early access.</li>
                   </ul>
                   <p className={styles.sectionText}>
                     We will never sell your data or share it with third parties for marketing.
                   </p>
 
                   <h3 className={styles.subsectionTitle}>3. Data Storage</h3>
-                  <ul className={styles.legalList}>
-                    <li>We store your data securely using trusted third-party services (such as email management or analytics providers)</li>
-                    <li>We take reasonable steps to protect your data from unauthorized access</li>
-                  </ul>
+                  <p className={styles.sectionText}>
+                    Your data is stored securely using trusted third-party services (such as email management or analytics providers). We take reasonable steps to protect your data from unauthorized access.
+                  </p>
 
                   <h3 className={styles.subsectionTitle}>4. Your Rights</h3>
+                  <p className={styles.sectionText}>
+                    You may:
+                  </p>
                   <ul className={styles.legalList}>
-                    <li>Request a copy of your data</li>
-                    <li>Ask us to delete your data at any time</li>
-                    <li>Opt out of emails by clicking 'unsubscribe' in any message or contacting us directly</li>
+                    <li>Request a copy of your data,</li>
+                    <li>Ask us to delete your data at any time,</li>
+                    <li>Opt out of emails by clicking "unsubscribe" in any message or contacting us directly.</li>
                   </ul>
 
                   <h3 className={styles.subsectionTitle}>5. Cookies & Analytics</h3>
-                  <ul className={styles.legalList}>
-                    <li>We use limited cookies or basic analytics (like Google Analytics) to understand how you interact with our landing page</li>
-                    <li>You can disable cookies in your browser settings</li>
-                  </ul>
+                  <p className={styles.sectionText}>
+                    We may use limited cookies or basic analytics (like Google Analytics) to see how users interact with the landing page. You can disable cookies in your browser settings.
+                  </p>
 
                   <h3 className={styles.subsectionTitle}>6. Future Changes</h3>
-                  <ul className={styles.legalList}>
-                    <li>We may update this Privacy Policy before the full platform launch</li>
-                    <li>Check back occasionally for changes</li>
-                  </ul>
+                  <p className={styles.sectionText}>
+                    We may update this Privacy Policy before launching the full platform. Check back occasionally for changes.
+                  </p>
                 </div>
 
                 {/* Footer Message */}

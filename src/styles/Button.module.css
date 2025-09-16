@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
-  border-radius: 32px;
+  border-radius: 8px;
   background: #FFC800;
   box-shadow: none;
   
@@ -17,8 +17,12 @@
   border: none;
   cursor: pointer;
   outline: none;
-  font-family: inherit;
   text-decoration: none;
+  color: var(--Navy, #00203F);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 450;
+  line-height: normal;
 }
 
 /* ========================================
@@ -121,29 +125,33 @@
 /* Small Button */
 .small {
   padding: 6px 16px;
-  font-size: 0.875rem;
+  font-size: 16px;
   font-weight: 500;
 }
 
 /* Medium Button (default) */
 .medium {
   padding: 8px 24px;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
+  height: 44px;
+  min-height: 44px;
 }
 
 /* Large Button */
 .large {
-  padding: 12px 32px;
-  font-size: 1.125rem;
-  font-weight: 600;
+  padding: 10px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 44px;
+  min-height: 44px;
 }
 
 /* Extra Large Button */
 .xlarge {
   padding: 16px 40px;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 /* ========================================
@@ -161,7 +169,6 @@
 /* Loading State */
 .loading {
   position: relative;
-  color: transparent;
 }
 
 .loading::after {
@@ -205,7 +212,7 @@
   padding: 8px;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 8px;
 }
 
 .iconButton.small {

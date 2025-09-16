@@ -33,12 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sq" className={`scroll-smooth ${inter.variable}`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://myusta.com" />
+        <link rel="preload" href="/assets/hero-bg.svg" as="image" type="image/svg+xml" />
+        <link rel="preload" href="/assets/myusta_logo.svg" as="image" type="image/svg+xml" />
       </head>
       <body className={`${inter.className} font-inter bg-myusta-gray text-myusta-navy min-h-screen`}>
         <LanguageProvider>

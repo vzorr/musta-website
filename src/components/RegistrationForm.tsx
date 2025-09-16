@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
+import CustomDropdown from './CustomDropdown';
 import styles from '../styles/registeration.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
 
@@ -11,8 +12,8 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  category: string;
-  location: string;
+  category: string | string[];
+  location: string | string[];
 }
 
 interface ConsentState {
@@ -33,8 +34,8 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
     name: '',
     email: '',
     phone: '',
-    category: '',
-    location: ''
+    category: [] as string[],
+    location: [] as string[]
   });
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [marketingOptIn, setMarketingOptIn] = useState(false);
@@ -186,9 +187,10 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
             </div>
             
             <div className={containerStyles.formContainer}>
-              <div className="neumorphic-card p-6 sm:p-8 rounded-2xl bg-myusta-gray relative z-20">
+              <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
                 <div 
                   className="text-xl font-semibold text-myusta-navy mb-8"
+                  style={{ lineHeight: '100%' }}
                   dangerouslySetInnerHTML={{ __html: t('registration.formTitle') }}
                 />
                 
@@ -217,14 +219,14 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                   </div>
                 )}
                 
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form className="space-y-3" onSubmit={handleSubmit}>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.name')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={100}
                   />
@@ -235,7 +237,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.email')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={150}
                   />
@@ -246,63 +248,39 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder={t('registration.fields.phone')} 
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray" 
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
                     required 
                     maxLength={20}
                   />
                   
-                  <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
-                    <select 
-                      name="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                      className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                      required
-                    >
-                      <option value="">{t('registration.categories.placeholder')}</option>
-                      {categories.map(category => (
-                        <option key={category.value} value={category.value}>
-                          {category.label}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    options={categories}
+                    value={formData.category}
+                    onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                    placeholder={t('registration.categories.placeholder')}
+                    name="category"
+                    required
+                    multiple={true}
+                  />
                   
-                  <div className="neumorphic-input rounded-lg relative bg-myusta-gray">
-                    <select 
-                      name="location"
-                      value={formData.location}
-                      onChange={handleInputChange}
-                      className="w-full p-3 bg-transparent border-0 text-myusta-navy appearance-none focus:outline-none" 
-                      required
-                    >
-                      <option value="">{t('registration.locations.placeholder')}</option>
-                      {locations.map(location => (
-                        <option key={location.value} value={location.value}>
-                          {location.label}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <CustomDropdown
+                    options={locations}
+                    value={formData.location}
+                    onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+                    placeholder={t('registration.locations.placeholder')}
+                    name="location"
+                    required
+                    multiple={true}
+                  />
 
                   {/* Privacy Policy Agreement */}
-                  <div className="text-left mt-6">
+                  <div className="text-left" style={{ marginTop: '32px' }}>
                     <label className="flex items-start space-x-3 text-sm">
                       <input
                         type="checkbox"
                         checked={privacyAccepted}
                         onChange={(e) => setPrivacyAccepted(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-0 flex-shrink-0"
                         required
                       />
                       <span className="text-myusta-text-gray">
@@ -358,7 +336,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                         type="checkbox"
                         checked={marketingOptIn}
                         onChange={(e) => setMarketingOptIn(e.target.checked)}
-                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-myusta-yellow flex-shrink-0"
+                        className="mt-1 w-4 h-4 text-myusta-yellow border-gray-300 rounded focus:ring-0 flex-shrink-0"
                       />
                       <span className="text-myusta-text-gray">
                         {language === 'sq' 
@@ -370,21 +348,23 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                   </div>
                   
                   {/* ✅ UPDATED: Using Button Component */}
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="large"
-                    fullWidth
-                    loading={isSubmitting}
-                    disabled={!privacyAccepted || !gdprConsents.gdprAccepted}
-                    className={`text-myusta-navy font-semibold text-lg mt-8 ${styles.formbtn}`}
-                  >
+                  <div className="mt-16">
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="large"
+                      fullWidth
+                      loading={isSubmitting}
+                      disabled={!privacyAccepted || !gdprConsents.gdprAccepted}
+                      className={`text-myusta-navy font-semibold text-lg ${styles.formbtn}`}
+                    >
                     {isSubmitting ? (
                       language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
                     ) : (
                       t('registration.cta')
                     )}
-                  </Button>
+                    </Button>
+                  </div>
                 </form>
               </div>
             </div>
