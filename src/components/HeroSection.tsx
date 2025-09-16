@@ -43,7 +43,7 @@ export default function HeroSection() {
 
         </div>
 
-        <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
+        <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[46.5%] tablet:-translate-x-1/2
         xl:left-[48%] xl:-translate-x-1/2 text-center 
         ">
           <h1
