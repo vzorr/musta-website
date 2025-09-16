@@ -44,7 +44,7 @@ export default function HeroSection() {
         </div>
 
         <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
-        xl:left-[48%] xl:-translate-x-1/2 text-center 
+        xl:left-[48%] xl:-translate-x-1/2 text-center  z-20
         ">
           <h1
             style={{ lineHeight: "1" }}
@@ -70,7 +70,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="-mt-8 sm:-mt-14 tablet:mt-0 tablet:absolute tablet:top-12 xl:top-2 xl:-right-10  tablet:-right-10">
+        <div className="-mt-8 sm:-mt-14 tablet:mt-0 tablet:absolute tablet:top-12 xl:top-2 xl:-right-10  tablet:-right-10 z-0">
           <img
             className="xl:w-[810px] xl:h-[567px] tablet:w-[561px] tablet:h-[393px] object-contain"
             src="/assets/hero-section-images/usta-hero-image.png"
