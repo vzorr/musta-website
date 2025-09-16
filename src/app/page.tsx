@@ -60,6 +60,7 @@ export default function Home() {
             <HeroSection />
           </div>
 
+         <div id="after-hero-section-full-page" className="px-5 md:px-0">
           <WhyJoinSection />
           <HowItWorksSection />
           <VideoSection />
@@ -71,6 +72,9 @@ export default function Home() {
           <div className="w-full bg-myusta-gray">
             <FAQSection />
           </div>
+
+          </div>
+
         </main>
     
         <Footer />
