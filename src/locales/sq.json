@@ -3,10 +3,14 @@
     "cta": "Regjistrohu"
   },
   "hero": {
-    "title": "Ne e sjellim punën tek ju!",
-    "subtitle": "Puna juaj e radhës është vetëm një klik larg. Bashkohuni me myUSTA dhe lidhuni me pronarët e shtëpive.",
+    "title1": "Ne e sjellim ",
+    "title2": "punën tek ju!",
+
+    "subtitle1": "Puna juaj e radhës është vetëm një klik larg. Bashkohuni ",
+    "subtitle2": "me myUSTA dhe lidhuni me pronarët e shtëpive.",
     "cta1": "Hyr në Listën e Pritjes - ",
-    "cta2": "Është Falas!"
+    "cta2": "Është Falas!",
+     "image": "/assets/hero-section-images/mobile-qatar.png"
 
   },
   "whyJoin": {

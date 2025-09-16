@@ -3,11 +3,13 @@
     "cta": "Register"
   },
   "hero": {
-    "title": "We bring the job to you!",
-    "subtitle": "Your next job is just a click away. Join myUSTA and connect with homeowners.",
+    "title1": "We bring the job ",
+    "title2": "to you!",
+    "subtitle1": "Your next job is just a click away. Join myUSTA and ",
+    "subtitle2": "connect with homeowners.",
     "cta1": "Join the Waitlist - ",
-    "cta2": "It's free!"
-
+    "cta2": "It's free!",
+    "image": "/assets/hero-section-images/mobile-english.png"
   },
   "whyJoin": {
     "title": "Why join myUsta?",
