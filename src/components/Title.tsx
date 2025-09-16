@@ -32,7 +32,7 @@ const Title: React.FC<TitleProps> = ({
 
   return (
     <Component className={titleClasses}>
-     <span className={styles.firstWord}> {firstText} </span> &nbsp;{secondText}
+     <span className={styles.firstWord}> {firstText} </span> {secondText}
     </Component>
   );
 };
