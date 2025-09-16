@@ -44,7 +44,7 @@ export default function HeroSection() {
         </div>
 
         <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
-        xl:left-[48%] xl:-translate-x-1/2 text-center  z-30
+        xl:left-[48%] xl:-translate-x-1/2 text-center  z-30 -mr-5
         ">
           <h1
             style={{ lineHeight: "1" }}
