@@ -1,4 +1,4 @@
-/* src/styles/Title.module.css - Reusable Title Component Styles */
+/* src/styles/Title.module.css - Simplified Title Component Styles */
 
 /* ========================================
    BASE TITLE STYLES
@@ -6,31 +6,24 @@
 
 .title {
   color: var(--Navy, #00203F);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont;
   font-size: 48px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400; /* Default weight for the title */
   line-height: 100%;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
+  display: block; /* Changed from flex to block */
 }
 
-/* ========================================
-   TEXT WEIGHT VARIATIONS
-======================================== */
-
-.firstText {
-  font-weight: 700; /* Bold */
-
+/* Style for first word - requires wrapping first word in a span or strong tag */
+.title .firstWord,
+.title strong {
+  font-weight: 700; /* Bold for first word */
 }
 
-.secondText {
-  font-weight: 400; /* Light/Normal */
-  color: var(--Navy, #00203F);
-}
+/* Alternative: Using CSS to target first word with ::before pseudo-element */
+/* Note: Pure CSS cannot directly select the first word without JavaScript or markup */
 
 /* ========================================
    CENTERED LAYOUT
@@ -38,28 +31,28 @@
 
 .centered {
   text-align: center;
-  justify-content: center;
 }
 
 /* ========================================
    RESPONSIVE DESIGN
 ======================================== */
 
-/* Mobile adjustments */
+/* Mobile (up to 640px) - Always centered */
 @media (max-width: 640px) {
   .title {
     font-size: 32px;
     line-height: 100%;
-    flex-direction: column;
-    gap: 0;
+    text-align: center; /* Force center alignment on mobile */
   }
   
-  .centered {
+  /* Override any other alignment on mobile */
+  .title.centered,
+  .title:not(.centered) {
     text-align: center;
   }
 }
 
-/* Tablet adjustments */
+/* Tablet (641px to 1023px) */
 @media (min-width: 641px) and (max-width: 1023px) {
   .title {
     font-size: 40px;
@@ -67,7 +60,7 @@
   }
 }
 
-/* Desktop adjustments */
+/* Desktop (1024px and up) */
 @media (min-width: 1024px) {
   .title {
     font-size: 48px;
@@ -75,7 +68,7 @@
   }
 }
 
-/* Large desktop */
+/* Large desktop (1440px and up) */
 @media (min-width: 1440px) {
   .title {
     font-size: 52px;
@@ -90,11 +83,6 @@
 /* High contrast mode */
 @media (prefers-contrast: high) {
   .title {
-    color: #000000;
-  }
-  
-  .firstText,
-  .secondText {
     color: #000000;
   }
 }
@@ -115,10 +103,4 @@
     color: #000000;
     font-size: 24px;
   }
-  
-  .firstText,
-  .secondText {
-    color: #000000;
-  }
 }
-
