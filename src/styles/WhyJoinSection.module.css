@@ -231,7 +231,7 @@
   }
   
   .benefitsGrid {
-    padding: 0 1rem;  /* Optional: add padding to grid */
+    padding: 0;  /* Optional: add padding to grid */
   }
 }
 
