@@ -26,7 +26,7 @@
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
 }
 
 .videoPlaceholder {
@@ -74,24 +74,24 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .videoSection {
-padding: 1.25rem;
+    padding: 1.25rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .videoSection {
     padding: 1.5rem 0; /* 24px top and bottom = 48px total on mobile */
   }
-  
+
   .videoContainer {
     padding: 0 0rem;
   }
-  
+
   .playButton {
     width: 60px;
     height: 60px;
   }
-  
+
   .playIcon {
     width: 20px;
     height: 20px;
@@ -102,12 +102,12 @@ padding: 1.25rem;
   .videoSection {
     padding: 1rem 0; /* 16px top and bottom = 32px total on small mobile */
   }
-  
+
   .playButton {
     width: 50px;
     height: 50px;
   }
-  
+
   .playIcon {
     width: 16px;
     height: 16px;
@@ -120,12 +120,18 @@ padding: 1.25rem;
   .playButton {
     transition: none;
   }
-  
+
   .videoPlaceholder:hover {
     transform: none;
   }
-  
+
   .videoPlaceholder:hover .playButton {
     transform: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .header {
+    margin-bottom: 0;
   }
 }

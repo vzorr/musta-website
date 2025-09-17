@@ -43,8 +43,8 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
 
   const validateForm = (): boolean => {
     // Basic validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || 
-        !formData.subject.trim() || !formData.message.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() ||
+      !formData.subject.trim() || !formData.message.trim()) {
       setMessage(language === 'sq' ? 'Të gjitha fushat janë të detyrueshme' : 'All fields are required');
       setMessageType('error');
       return false;
@@ -63,7 +63,7 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -86,11 +86,11 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(language === 'sq' 
-          ? 'Mesazhi juaj u dërgua me sukses! Do t\'ju kontaktojmë së shpejti.' 
+        setMessage(language === 'sq'
+          ? 'Mesazhi juaj u dërgua me sukses! Do t\'ju kontaktojmë së shpejti.'
           : 'Your message was sent successfully! We will contact you soon.');
         setMessageType('success');
-        
+
         // Reset form
         setFormData({
           name: '',
@@ -113,22 +113,30 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
   };
 
   return (
-    <div className={containerStyles.formContainer}>
-      <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
-        <div 
-          className="text-xl font-semibold text-myusta-navy mb-8"
+    <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]" >
+      <div>
+        <div
+          className="text-[24px] font-semibold text-center  mb-4 xl:mb-6 p-0"
           style={{
-            color: 'var(--Navy, #00203F)',
-            textAlign: 'center',
-            fontFamily: 'Inter',
-            fontSize: '20px',
-            fontStyle: 'normal',
-            fontWeight: '600',
             lineHeight: '120%'
           }}
         >
-          {language === 'sq' ? 'Na Kontaktoni' : 'Contact Us'}
+          <span className='text-bold text-myusta-navy'>{language === 'sq' ? 'Na ' : 'Contact '}</span>
+          <span className='text-normal text-myusta-navy'>{language === 'sq' ? 'Kontaktoni' : 'Us'}</span>
+
         </div>
+        <div
+          className="!mb-5 text-sm sm:text-base text-light-gray-text  mobile:!mb-8 text-center"
+          // style={{ lineHeight: '100%' }}
+          dangerouslySetInnerHTML={{
+            __html: language === 'sq' ? 'Jemi këtu për ju. Kontaktoni me ekipin tonë në çdo kohë.' : `We're here for you. Get in touch <br /> with our team anytime.`
+          }}
+        />
+      </div>
+
+      <div className="neumorphic-card p-5 mobile:p-8  rounded-2xl bg-myusta-gray relative z-20">
+
+
 
         {message && (
           <div className={`${styles.message} ${styles[messageType]}`}>
@@ -199,10 +207,11 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             fullWidth
             loading={isSubmitting}
             disabled={isSubmitting}
-            className="text-myusta-navy font-semibold text-lg rounded-lg"
+            // className="text-myusta-navy font-semibold text-lg rounded-lg"
+            className="!mt-5 text-myusta-navy font-semibold text-lg rounded-lg mobile:!mt-8"
           >
-            {isSubmitting 
-              ? (language === 'sq' ? 'Po dërgohet...' : 'Sending...') 
+            {isSubmitting
+              ? (language === 'sq' ? 'Po dërgohet...' : 'Sending...')
               : (language === 'sq' ? 'Dërgo Mesazhin' : 'Send Message')}
           </Button>
         </form>

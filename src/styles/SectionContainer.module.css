@@ -111,6 +111,12 @@
   }
 }
 
+@media (max-width: 440px) {
+  .formContainer {
+    width: 100%;
+  }
+}
+
 /* Tablet adjustments */
 @media (min-width: 641px) and (max-width: 1023px) {
   .formContainer {
@@ -167,7 +173,7 @@
   .contentGrid {
     max-width: 1600px;
   }
-  
+
   .sectionContainer,
   .responsiveContainer {
     padding-left: 4rem;
@@ -182,7 +188,7 @@
   .contentGrid {
     max-width: 1800px;
   }
-  
+
   .sectionContainer,
   .responsiveContainer {
     padding-left: 6rem;

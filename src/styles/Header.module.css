@@ -30,6 +30,7 @@
 }
 
 .headerContent {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -47,10 +48,12 @@
 ======================================== */
 
 .centerSection {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
  
 }
 
@@ -128,8 +131,7 @@
 
 /* Extra small mobile */
 @media (max-width: 480px) {
-  .headerContent {
-  }
+
 
   .ctaButton {
     font-size: 0.75rem;
@@ -144,17 +146,7 @@
   }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-  .headerContent {
-  }
-}
 
-/* Large desktop */
-@media (min-width: 1440px) {
-  .headerContent {
-  }
-}
 
 /* Ultra-wide displays */
 @media (min-width: 2560px) {

@@ -55,7 +55,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
     setMessage('');
     setMessageType('');
     setShowSuccessMessage(false);
-    
+
     // Reset form data
     setFormData({
       name: '',
@@ -114,7 +114,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -142,7 +142,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
         setMessageType('success');
         setShowSuccessMessage(true);
         setIsSuccess(true);
-        
+
         // Reset form
         setFormData({
           name: '',
@@ -154,7 +154,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
           ustaPhone: '',
           ustaEmail: ''
         });
-        
+
         setTimeout(() => {
           setShowSuccessMessage(false);
           setMessage('');
@@ -175,11 +175,11 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
 
 
   return (
-    <div className={styles.recommendContainer}>
-      <div className={containerStyles.formContainer}>
-        <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
-          <div 
-            className="text-xl font-semibold text-myusta-navy mb-8"
+    <div className='relative'>
+      <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]" >
+        <div className="neumorphic-card p-5 mobile:p-8 rounded-2xl bg-myusta-gray relative z-20">
+          <div
+            className="!mb-5 text-xl font-semibold text-myusta-navy  mobile:!mb-8 text-center"
             style={{
               color: 'var(--Navy, #00203F)',
               textAlign: 'center',
@@ -192,100 +192,135 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
           />
 
           {message && (
-            <div className={`mb-6 p-4 rounded-lg ${
-              messageType === 'success' 
-                ? 'bg-green-100 text-green-700 border border-green-300' 
-                : 'bg-red-100 text-red-700 border border-red-300'
-            }`}>
+            <div className={`mb-6 p-4 rounded-lg ${messageType === 'success'
+              ? 'bg-green-100 text-green-700 border border-green-300'
+              : 'bg-red-100 text-red-700 border border-red-300'
+              }`}>
               {message}
             </div>
           )}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder={language === 'sq' ? 'Emri' : 'Name'} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-            required 
-            maxLength={100}
-          />
-          
-          <input 
-            type="tel" 
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-            required 
-            maxLength={20}
-          />
-          
-          <input 
-            type="email" 
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`} 
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-            maxLength={150}
-          />
-          
-          <CustomDropdown
-            options={categories}
-            value={formData.category}
-            onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
-            placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
-            name="category"
-            required
-            multiple={true}
-          />
-          
-          <CustomDropdown
-            options={locations}
-            value={formData.location}
-            onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
-            placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
-            name="location"
-            required
-            multiple={true}
-          />
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder={language === 'sq' ? 'Emri' : 'Name'}
+              className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+              required
+              maxLength={100}
+            />
 
-          {!isSuccess ? (
-            <Button
-              type="submit"
-              variant="primary"
-              size="large"
-              fullWidth
-              loading={isSubmitting}
-              disabled={isSubmitting}
-              className={`text-myusta-navy font-semibold text-lg ${styles.formbtn}`}
-              style={{ marginTop: '32px' }}
-            >
-              {isSubmitting 
-                ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')
-                : (language === 'sq' ? 'Rekomando Usta' : 'Recommend Usta')}
-            </Button>
-          ) : (
-            <div className={styles.successButtons}>
-              <div className={styles.ustaRecommendedCard}>
-                {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
-              </div>
-              <button
-                type="button"
-                onClick={handleRecommendAnother}
-                className={styles.recommendAnotherButton}
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
+              className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+              required
+              maxLength={20}
+            />
+
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`}
+              className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+              maxLength={150}
+            />
+
+            <CustomDropdown
+              options={categories}
+              value={formData.category}
+              onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+              placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
+              name="category"
+              required
+              multiple={true}
+            />
+
+            <CustomDropdown
+              options={locations}
+              value={formData.location}
+              onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+              placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
+              name="location"
+              required
+              multiple={true}
+            />
+
+            {!isSuccess ? (
+              <Button
+                type="submit"
+                variant="primary"
+                size="large"
+                fullWidth
+                loading={isSubmitting}
+                disabled={isSubmitting}
+                className={`!mt-5 *:text-myusta-navy font-semibold text-lg  mobile:!mt-8`}
+              // style={{ marginTop: '32px' }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F"/>
-                </svg>
-                {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
-              </button>
-            </div>
-          )}
+                {isSubmitting
+                  ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')
+                  : (language === 'sq' ? 'Rekomando Usta' : 'Recommend Usta')}
+              </Button>
+            ) : (
+              <div className="flex flex-col h-fit">
+                <Button
+                  type="submit"
+                  variant="myusta-green"
+                  size="large"
+                  fullWidth
+                  loading={isSubmitting}
+                  className="!mt-2 text-white font-semibold text-lg rounded-lg mobile:!mt-4"
+                // style={{ marginTop: '32px' }}
+                >
+                  {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
+                </Button>
+                {/* <div className={styles.ustaRecommendedCard}>
+                  {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
+                </div> */}
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="large"
+                  fullWidth
+                  loading={isSubmitting}
+                  className=" text-myusta-navy font-semibold text-lg rounded-lg mt-4"
+                // style={{ marginTop: '32px' }}
+                >
+                  <div className='flex items-center'>
+                  <span className="mr-2 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F" />
+                  </svg></span>
+                  <span>
+
+                  {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
+                  </span>
+                  </div>
+                 
+
+                
+                </Button>
+
+
+                {/* <button
+                  type="button"
+                  onClick={handleRecommendAnother}
+                  className={styles.recommendAnotherButton}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F" />
+                  </svg>
+                  {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
+                </button> */}
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -1,9 +1,10 @@
 /* Language Switcher Container */
 .langContainer {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6.4px;
   flex-shrink: 0;
+  width: 120px;
 }
 
 /* Flag Image Styling - Desktop */
@@ -15,10 +16,10 @@
   /* border: 1px solid rgba(255, 255, 255, 0.2); */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   cursor: pointer;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
 }
 
-.flagImage:hover {
+/* .flagImage:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -31,7 +32,6 @@
   outline: none;
 }
 
-/* Active/Inactive States */
 .active {
   opacity: 1;
 }
@@ -42,7 +42,7 @@
 
 .inactive:hover {
   opacity: 0.9;
-}
+} */
 
 /* Mobile View - Exact Figma specifications */
 @media (max-width: 640px) {
@@ -53,13 +53,13 @@
     width: 97px;
     height: 16px;
   }
-  
+
   .flagImage {
     width: 21.333px !important;
     height: 16px !important;
     border-radius: 3.2px;
   }
-  
+
   .flagImage:hover {
     transform: scale(1.02);
   }
@@ -88,7 +88,7 @@
   .langIcon {
     transition: none;
   }
-  
+
   .langIcon:hover {
     transform: none;
   }
