@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
-import styles from '../styles/Header.module.css';
+import styles from "../styles/Header.module.css";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -30,37 +30,33 @@ export default function HeroSection() {
       className={`w-full flex items-start 
                 tablet:h-[460px] xl:h-[600px] 
                 ${styles.heroBg}`}
-
     >
-
       <div className="tablet:max-w-[850px] xl:max-w-[1280px] w-full mx-auto relative xl:mt-8 tablet:mt-4 flex flex-col items-center justify-center tablet:flwx-none">
-        <div className="xl:absolute xl:top-7 xl:left-0 hidden xl:block">
+        <div className="xl:absolute xl:top-5 xl:left-[10px] hidden xl:block">
           <img
             className="w-[411px] h-[493px] object-contain"
             src={t("hero.image")}
             alt="phone-left"
           />
-
         </div>
-        <div className="tablet:absolute tablet:top-16 xl:top-32 tablet:left-[40%] tablet:-translate-x-1/2
-        xl:left-[48%] xl:-translate-x-1/2 text-center  z-30 -mr-5
-        ">
+        <div
+          className="mt-[25px] tablet:mt-0 tablet:absolute tablet:top-20 xl:top-[130px] tablet:left-[50%] tablet:-translate-x-1/2
+        xl:left-[50%] xl:-translate-x-1/2 text-center z-30"
+        >
           <h1
             style={{ lineHeight: "1" }}
             className="xl:text-[64px] mt-8 tablet:mt-4 xl:mt-0 tablet:text-[48px] text-[32px] font-bold tracking-tight text-[#00203F] flex flex-col items-center"
           >
             <span>{t("hero.title1")}</span>
             <span>{t("hero.title2")}</span>
-
           </h1>
-          <p className="xl:text-[20px] text-sm tablet:text-base my-5  mx-auto text-[#335372] flex flex-col items-center">
+          <p className="xl:text-[20px] text-sm tablet:text-base mb-[20px] tablet:mb-[32px] mt-[20px]  mx-auto text-[#335372] flex flex-col items-center">
             <span>{t("hero.subtitle1")}</span>
             <span>{t("hero.subtitle2")}</span>
-
           </p>
           <div className="flex justify-center">
             <button
-              className="bg-[#FFD700] text-[#00203F] text-base  px-6 py-2 rounded-[8px] cursor-pointer"
+              className="bg-[#FFD700] hover:bg-[#e6b300] text-[#00203F] text-base xl:text-[20px] h-[44px] px-6 py-2 rounded-[8px] cursor-pointer"
               onClick={scrollToRecommend}
             >
               <span className="font-medium">{t("hero.cta1")}</span>
@@ -68,11 +64,28 @@ export default function HeroSection() {
             </button>
           </div>
         </div>
-        <div className="-mt-8 sm:-mt-14 tablet:mt-0 tablet:absolute tablet:top-12 xl:top-2 xl:-right-10  tablet:-right-10 z-10">
+        {/* <div className="-mt-[40px] tablet:mt-0 tablet:absolute tablet:top-[23px] xl:top-0 xl:-right-24  tablet:-right-[110px] z-10">
           <img
-            className="xl:w-[810px] xl:h-[567px] tablet:w-[561px] tablet:h-[393px] object-contain"
+            className="xl:w-[810px] xl:h-[567px] tablet:w-[561px] tablet:h-[420px] h-[350px] w-[450px] object-contain"
             src="/assets/hero-section-images/usta-hero-image.png"
             alt="phone-right"
+          />
+        </div> */}
+
+        <div className=" -mt-[0px] tablet:mt-0 tablet:absolute tablet:top-[23px] xl:top-0 xl:-right-24 tablet:-right-[110px] z-10">
+          {/* Mobile & Tablet (0px – 850px) */}
+          <img
+            src="/assets/hero-section-images/ustamobile-man.png"
+            alt="Hero Mobile"
+            width={450}
+            className="object-contain min-w-[450px]  block max-[850px]:block min-[851px]:hidden"
+          />
+
+          {/* Desktop (851px and above) */}
+          <img
+            src="/assets/hero-section-images/usta-hero-image.png"
+            alt="Hero Desktop"
+            className="object-contain hidden min-[851px]:block tablet:w-[561px] tablet:h-[420px] xl:w-[810px] xl:h-[567px]"
           />
         </div>
       </div>
