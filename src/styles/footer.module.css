@@ -1,0 +1,20 @@
+
+.social_icon_mobile{
+    display: none;
+}
+
+
+@media (max-width: 640px) {
+.social_icon{
+    display: none;
+}
+.copyrighttext{
+    width: 50%;
+}
+.social_icon_mobile{
+    display: flex;
+}
+.copy_para{
+    width: 50%;
+}
+}

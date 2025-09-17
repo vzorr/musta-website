@@ -1,0 +1,210 @@
+/* src/styles/TermsPage.module.css - Terms & Conditions page styles */
+
+.termsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #868686;
+}
+
+.breadcrumbItem {
+  color: #868686;
+}
+
+.breadcrumbLink {
+  color: #868686;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #FFC800;
+}
+
+.breadcrumbCurrent {
+  color: #00203F;
+  font-weight: 700;
+}
+
+.breadcrumbSeparator {
+  color: #868686;
+}
+
+/* Main Title */
+.mainTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #00203F;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Introduction Section */
+.introSection {
+  margin-bottom: 2rem;
+}
+
+.introText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #868686;
+  text-align: center;
+  margin: 0;
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 2rem 0;
+}
+
+/* Terms Content */
+.termsContent {
+  margin-bottom: 3rem;
+}
+
+.termsSection {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #00203F;
+  margin-bottom: 1rem;
+}
+
+.termsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.termsList li {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #868686;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.termsList li::before {
+  content: '•';
+  color: #00203F;
+  font-weight: 600;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.contactText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #868686;
+  margin: 0;
+}
+
+.contactLink {
+  color: #00203F;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.contactLink:hover {
+  color: #335372;
+}
+
+/* Footer Message */
+.footerMessage {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footerMessage p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: #868686;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .termsContainer {
+    padding: 0 0.5rem;
+  }
+  
+  .mainTitle {
+    font-size: 20px;
+  }
+  
+  .sectionTitle {
+    font-size: 20px;
+  }
+  
+  .introText,
+  .termsList li,
+  .contactText,
+  .footerMessage p {
+    font-size: 14px;
+  }
+  
+  .breadcrumb {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 18px;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+  }
+  
+  .introText,
+  .termsList li,
+  .contactText,
+  .footerMessage p {
+    font-size: 13px;
+  }
+}

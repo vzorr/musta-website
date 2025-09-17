@@ -1,0 +1,269 @@
+/* src/styles/Header.module.css - Header component styles */
+
+/* ========================================
+   HEADER WRAPPER & CONTAINER
+======================================== */
+
+.headerWrapper {
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  background: #00203f;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 32, 63, 0.15);
+}
+
+.header {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  isolation: isolate;
+  color: white;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.headerContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+@media (min-width: 640px) {
+  .headerContent {
+  }
+}
+
+/* ========================================
+   HEADER SECTIONS
+======================================== */
+
+.centerSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+ 
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+}
+
+
+/* ========================================
+   HEADER CTA BUTTON - UPDATED
+======================================== */
+
+.ctaButton {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 8px;
+  background: #ffc800;
+  box-shadow: none;
+
+  color: #00203f;
+  font-weight: 600;
+  font-size: 0.86rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 120px;
+  height: 40px;
+  outline: none;
+}
+
+.ctaButton:hover {
+  background-color: #e6b300;
+  /* box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.4); */
+}
+
+.ctaButton:focus {
+  outline: none;
+  /* box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.6); */
+}
+
+/* .ctaButton:active {
+  box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.8);
+} */
+
+@media (max-width: 849px) {
+  .ctaButton {
+    display: none;
+  }
+  .header {
+    padding: 0px 20px;
+    height: 70px;
+  }
+  .headerWrapper {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .ctaButton {
+    font-size: 1rem;
+  }
+}
+
+/* Features strip removed for cleaner header design */
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+======================================== */
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+  .headerContent {
+  }
+
+  .ctaButton {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    padding: 0px 60px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .headerContent {
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .headerContent {
+  }
+}
+
+/* Ultra-wide displays */
+@media (min-width: 2560px) {
+  .headerContent {
+    max-width: 1000px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ========================================
+   BROWSER-SPECIFIC FIXES
+======================================== */
+
+/* Additional sticky fix for Safari */
+@supports (-webkit-backdrop-filter: blur(12px)) {
+  .header {
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Firefox backdrop-filter fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .header {
+    background: rgba(0, 32, 63, 0.95);
+  }
+
+  .featuresStrip {
+    background: rgba(51, 83, 114, 0.95);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+======================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom: 2px solid white;
+  }
+
+  .ctaButton {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .ctaButton {
+    transition: none;
+  }
+
+  .ctaButton:hover {
+    transform: none;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  .header {
+    display: none;
+  }
+}
+
+/* ========================================
+   DARK MODE SUPPORT (Future-proofing)
+======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: #00203f;
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* ========================================
+   HERO SECTION BACKGROUND
+======================================== */
+
+.heroBg {
+  background-image: url("../../public/assets/hero-section-images/usta-mobile-background.png");
+
+}
+
+@media (max-width: 849px) {
+  .heroBg {
+    background-size: 200px 528px;
+    background-repeat: repeat-x;
+  }
+}
+
+@media (min-width: 850px) {
+  .heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
+
+    background-size: 200px 460px;
+      background-repeat: repeat-x;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
+    background-size: 200px 600px;
+      background-repeat: repeat-x;
+  }
+}

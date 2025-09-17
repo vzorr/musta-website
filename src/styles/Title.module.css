@@ -1,0 +1,113 @@
+/* src/styles/Title.module.css - Simplified Title Component Styles */
+
+/* ========================================
+   BASE TITLE STYLES
+======================================== */
+
+.title {
+  color: var(--Navy, #00203F);
+  font-family: Inter, sans-serif ;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400; /* Default weight for the title */
+  line-height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block; /* Changed from flex to block */
+}
+
+/* Style for first word - requires wrapping first word in a span or strong tag */
+.title .firstWord,
+.title strong {
+  font-weight: 700; /* Bold for first word */
+}
+
+/* Alternative: Using CSS to target first word with ::before pseudo-element */
+/* Note: Pure CSS cannot directly select the first word without JavaScript or markup */
+
+/* ========================================
+   CENTERED LAYOUT
+======================================== */
+
+.centered {
+  text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+/* Mobile (up to 640px) - Always centered */
+@media (max-width: 640px) {
+  .title {
+    font-size: 24px;
+    line-height: 100%;
+    text-align: center; /* Force center alignment on mobile */
+  }
+  
+  /* Override any other alignment on mobile */
+  .title.centered,
+  .title:not(.centered) {
+    text-align: center;
+  }
+}
+
+/* Tablet (641px to 1023px) */
+@media (min-width: 641px) and (max-width: 768px) {
+  .title {
+    font-size: 32px;
+    line-height: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .title {
+    font-size: 40px;
+    line-height: 100%;
+  }
+}
+
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
+  .title {
+    font-size: 48px;
+    line-height: 100%;
+  }
+}
+
+/* Large desktop (1440px and up) */
+/* @media (min-width: 1440px) {
+  .title {
+    font-size: 52px;
+    line-height: 100%;
+  }
+} */
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .title {
+    color: #000000;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .title {
+    transition: none;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  .title {
+    color: #000000;
+    font-size: 24px;
+  }
+}

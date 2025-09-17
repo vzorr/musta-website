@@ -1,0 +1,188 @@
+{
+  "header": {
+    "cta": "Register"
+  },
+  "hero": {
+    "title1": "We bring the job ",
+    "title2": "to you!",
+    "subtitle1": "Your next job is just a click away. Join myUSTA and ",
+    "subtitle2": "connect with homeowners.",
+    "cta1": "Join the Waitlist - ",
+    "cta2": "It's free!",
+    "image": "/assets/hero-section-images/mobile-english.png"
+  },
+  "whyJoin": {
+    "title": "Why join myUsta?",
+    "description": "At myUsta, we connect homeowners with trusted professionals for all home and maintenance needs. From quick fixes to major projects, we make finding and hiring the right expert simple. Our platform empowers both customers and tradespeople with tools for seamless collaboration and quality results.<br><br>Get things done smarter with myUsta",
+    "benefits": {
+      "directOpportunities": {
+        "title": "Get Direct Job Leads",
+        "description": "Connect with clients actively looking for professionals like you."
+      },
+      "saveTime": {
+        "title": "Save Time",
+        "description": "We bring the jobs to you - no more chasing leads."
+      },
+      "buildReputation": {
+        "title": "Grow Your Reputation",
+        "description": "Showcase your work, collect reviews, and stand out."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How it works?",
+    "steps": {
+      "step1": {
+        "title": "Step 1",
+        "description": "Tell us your trade and location."
+      },
+      "step2": {
+        "title": "Step 2",
+        "description": "Showcase your expertise."
+      },
+      "step3": {
+        "title": "Step 3",
+        "description": "Start receiving job opportunities."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here for you. Get in touch with our team anytime.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "submitting": "Sending..."
+    },
+    "messages": {
+      "success": "Your message was sent successfully! We will contact you soon.",
+      "error": "An error occurred. Please try again.",
+      "validationRequired": "All fields are required",
+      "validationEmail": "Invalid email address"
+    }
+  },
+  "recommend": {
+    "title": "Recommend a Usta",
+    "subtitle": "Fill out the following information below.",
+    "form": {
+      "yourInfo": "Your Information",
+      "name": "Name",
+      "email": "E-Mail (Optional)",
+      "phone": "Phone Number",
+      "category": "Category",
+      "location": "Location",
+      "ustaInfo": "Usta Information You're Recommending",
+      "ustaName": "Usta Name",
+      "ustaPhone": "Usta Phone Number",
+      "ustaEmail": "Usta Email (Optional)",
+      "submit": "Usta Recommended",
+      "submitRecommendation": "Send Recommendation",
+      "submitting": "Registering...",
+      "sendingRecommendation": "Sending...",
+      "recommendAnother": "Recommend Another Usta"
+    },
+    "categories": {
+      "plumber": "Plumber",
+      "electrician": "Electrician",
+      "woodworker": "Woodworker",
+      "mason": "Mason",
+      "tiler": "Tiler",
+      "painter": "Painter",
+      "carpenter": "Carpenter",
+      "other": "Other"
+    },
+    "locations": {
+      "tirana": "Tirana",
+      "durres": "Durres",
+      "vlore": "Vlore",
+      "shkoder": "Shkoder",
+      "elbasan": "Elbasan",
+      "korce": "Korce",
+      "fier": "Fier",
+      "berat": "Berat",
+      "other": "Other"
+    },
+    "messages": {
+      "successRegistration": "Your information was registered successfully! We will notify you soon.",
+      "successRecommendation": "Recommendation sent successfully! Thank you for helping us grow.",
+      "error": "An error occurred. Please try again.",
+      "validationRequired": "Please fill in all required fields",
+      "validationUstaRequired": "Please provide the usta's information you are recommending",
+      "validationEmail": "Invalid email address",
+      "duplicateUsta": "This usta is already registered"
+    }
+  },
+  "registration": {
+    "title": "Register Today. It's Free!",
+    "formTitle": "Fill out the following<br>information below.",
+    "fields": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Phone Number",
+      "category": "Category",
+      "location": "Location"
+    },
+    "categories": {
+      "placeholder": "Category",
+      "plumber": "Plumber",
+      "electrician": "Electrician",
+      "painter": "Painter",
+      "carpenter": "Carpenter",
+      "tiler": "Tiler",
+      "mason": "Mason",
+      "other": "Other"
+    },
+    "locations": {
+      "placeholder": "Location",
+      "tirana": "Tirana",
+      "durres": "Durres",
+      "vlore": "Vlore",
+      "shkoder": "Shkoder",
+      "elbasan": "Elbasan",
+      "korce": "Korce",
+      "fier": "Fier",
+      "berat": "Berat",
+      "other": "Other"
+    },
+    "cta": "Join the Waitlist!",
+    "success": "Thank you! You have been successfully registered.",
+    "error": "An error occurred. Please try again.",
+    "validation": {
+      "required": "All fields are required",
+      "email": "Please enter a valid email address"
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "items": {
+      "cost": {
+        "question": "How much does it cost to join myUSTA?",
+        "answer": "Joining myUSTA is completely free. There are no hidden costs."
+      },
+      "howItHelps": {
+        "question": "How does myUsta help me find jobs?",
+        "answer": "myUSTA connects you directly with clients actively searching for tradespeople in your field and area."
+      },
+      "whoCanJoin": {
+        "question": "Who can join myUsta?",
+        "answer": "myUSTA is open to all tradespeople, including plumbers, electricians, painters, carpenters, and many more."
+      },
+      "launch": {
+        "question": "When will myUsta launch?",
+        "answer": "The launch date is coming soon. Sign up now to join the waitlist and stay updated!"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Your Skills. Our platform. Endless Opportunities.",
+    "copyright": "©2025 myUsta. All rights reserved.",
+    "links": {
+      "termsAndConditions": "Terms and Conditions",
+      "contact": "Contact Us"
+    }
+  }
+}

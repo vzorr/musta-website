@@ -1,0 +1,166 @@
+/* HowItWorksSection.module.css - Module CSS for How It Works section */
+
+/* How It Works Section Container - Exact Figma measurements */
+.howItWorksSection {
+  padding-top: 0; /* 0px top spacing */
+  padding-bottom: 0; /* 0px bottom spacing - VideoSection handles the gap */
+  background: #f3f3f3;
+}
+
+/* Title to Cards Gap - 48px spacing */
+.howItWorksTitle {
+  margin-bottom: 3rem; /* 48px gap between title and cards */
+  text-align: center;
+  color: var(--Navy, #00203F);
+}
+
+/* Cards Container - Proper spacing between cards */
+.howItWorksGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem; /* 16px gap on mobile */
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Individual Step Card Styling */
+.stepCard {
+  background: #f3f3f3;
+  /* Remove fixed height to allow content to define height */
+  /* height: 190px; */
+  padding: 20px; /* 20px padding on all sides */
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 6.8px rgba(0, 0, 0, 0.1), 
+              -4px -4px 7.3px rgba(255, 255, 255, 0.9);
+  min-height: 120px; /* Optional: ensure a minimum height for visual consistency */
+}
+
+/* Step Card Elements Spacing */
+.stepNumber {
+  margin-bottom: 12px; /* 12px gap below step number */
+  font-weight: 400;
+  color: #00203F;
+}
+
+.stepIconContainer {
+  margin: 0 auto 12px auto; /* 12px gap below icon */
+  width: 48px;
+  height: 48px;
+  background: #FFC800;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: -1px -1px 1.1px rgba(255, 255, 255, 1), 
+              1px 1px 1.4px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.stepIconContainer:hover {
+  transform: scale(1.1);
+  box-shadow: -2px -2px 2px rgba(255, 255, 255, 1), 
+              2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.stepDescription {
+  color: #888888;
+  line-height: 1.5;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Perfect centering for step icons */
+.stepIconContainer img {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+}
+
+/* Hand icon specific sizing */
+.stepIconContainer img[src*="hand.svg"] {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+/* Hover Effects */
+.stepCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15), 
+              -6px -6px 10px rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .howItWorksSection {
+padding: 1.25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .howItWorksGrid {
+    gap: 1.25rem; 
+  }
+}
+
+/* Mobile spacing */
+@media (max-width: 767px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on mobile */
+  }
+}
+
+/* Tablet spacing */
+@media (min-width: 768px) {
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on tablet */
+  }
+  
+  .howItWorksGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* 32px gap on tablet */
+  }
+  
+  .stepCard {
+    padding: 20px; /* 20px padding on all sides */
+  }
+}
+
+/* Desktop spacing - Match Figma exactly */
+@media (min-width: 1024px) {
+  .howItWorksSection {
+    padding-top: 0; /* 0px on desktop */
+    padding-bottom: 0; /* 0px on desktop - VideoSection handles the gap */
+  }
+  
+  .howItWorksTitle {
+    margin-bottom: 3rem; /* 48px gap on desktop */
+  }
+  
+  .howItWorksGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem; /* 16px gap for better alignment */
+  }
+}
+
+/* Large Desktop Adjustments */
+@media (min-width: 1440px) {
+  .howItWorksSection {
+    padding-top: 0; /* 0px on very large screens */
+    padding-bottom: 0; /* 0px on very large screens - VideoSection handles the gap */
+  }
+  
+  .howItWorksGrid {
+    gap: 1rem; /* 16px gap across all screen sizes */
+  }
+  
+  .stepCard {
+    padding: 20px; /* 20px padding on all sides */
+  }
+}

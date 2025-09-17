@@ -1,0 +1,131 @@
+/* src/styles/VideoSection.module.css - Video section styles */
+
+.videoSection {
+  width: 100%;
+  background: #f3f3f3;
+  padding: 3rem 0 4rem 0; /* 48px top, 64px bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoContainer {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.videoWrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  aspect-ratio: 16/9;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #2d2d2d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.videoPlaceholder:hover {
+  background: #3a3a3a;
+  transform: scale(1.02);
+}
+
+.playButton {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.videoPlaceholder:hover .playButton {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.playIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: 4px; /* Slight offset to center the triangle visually */
+}
+
+/* Responsive Design */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .videoSection {
+padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .videoSection {
+    padding: 1.5rem 0; /* 24px top and bottom = 48px total on mobile */
+  }
+  
+  .videoContainer {
+    padding: 0 0rem;
+  }
+  
+  .playButton {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .playIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .videoSection {
+    padding: 1rem 0; /* 16px top and bottom = 32px total on small mobile */
+  }
+  
+  .playButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .playIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .videoPlaceholder,
+  .playButton {
+    transition: none;
+  }
+  
+  .videoPlaceholder:hover {
+    transform: none;
+  }
+  
+  .videoPlaceholder:hover .playButton {
+    transform: none;
+  }
+}
