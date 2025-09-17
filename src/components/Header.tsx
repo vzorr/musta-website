@@ -27,7 +27,7 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           {/* Language Selector */}
-          <div className="w-[97px] h-fit">
+          <div className="w-[97px]  flex items-center">
             <LanguageSwitcher />
           </div>
 

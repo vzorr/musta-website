@@ -46,8 +46,8 @@ export default function WaitlistForm() {
   };
 
   const validateForm = (): boolean => {
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || 
-        !formData.category || !formData.location) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() ||
+      !formData.category || !formData.location) {
       setMessage(language === 'sq' ? 'Ju lutemi plotësoni të gjitha fushat' : 'Please fill in all fields');
       setMessageType('error');
       return false;
@@ -65,7 +65,7 @@ export default function WaitlistForm() {
 
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -75,7 +75,7 @@ export default function WaitlistForm() {
 
     try {
       const userAgent = navigator.userAgent;
-      
+
       const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: {
@@ -91,18 +91,18 @@ export default function WaitlistForm() {
       });
 
       if (response.ok) {
-        setMessage(language === 'sq' 
-          ? 'U regjistruat me sukses në listën e pritjes!' 
+        setMessage(language === 'sq'
+          ? 'U regjistruat me sukses në listën e pritjes!'
           : 'Successfully registered in waiting list!');
         setMessageType('success');
-        
+
         // Show recommend form after successful waitlist registration
         console.log('Setting showRecommendForm to true');
         setShowRecommendForm(true);
         setShowCommunitySection(false);
         setShowWaitlistForm(false);
         setShowRegistrationSuccess(true);
-        
+
         // Reset form
         setFormData({
           name: '',
@@ -151,14 +151,16 @@ export default function WaitlistForm() {
   console.log('showRecommendForm state:', showRecommendForm);
   console.log('showCommunitySection state:', showCommunitySection);
 
+
+
   return (
-    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-16">
+    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-10 sm:pb-12 pt-6 md:pt-8 lg:pt-2">
       <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
-            <div className="mb-12">
-              <TwoLineTitle 
+            <div className="mb-[38px] mobile:mb-12">
+              <TwoLineTitle
                 firstLine={language === 'sq' ? 'Regjistrohu Sot.' : 'Register Today.'}
                 secondLine={language === 'sq' ? 'Është Falas!' : 'It\'s Free!'}
                 firstLineBold={false}
@@ -167,122 +169,121 @@ export default function WaitlistForm() {
                 centered={true}
               />
             </div>
-          
-          <div className="mx-auto" style={{ maxWidth: '400px' }}>
-            <div className="neumorphic-card p-4 sm:p-6 rounded-2xl bg-myusta-gray relative z-20">
-              <div 
-                className="text-xl font-semibold text-myusta-navy mb-8 text-center"
-                style={{ lineHeight: '100%' }}
-                dangerouslySetInnerHTML={{ 
-                  __html: language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following<br />information below.' 
-                }}
-              />
-              
-              {message && (
-                <div className={`mb-6 p-4 rounded-lg ${
-                  messageType === 'success' 
-                    ? 'bg-green-100 text-green-700 border border-green-300' 
+
+            <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]" >
+              <div className="neumorphic-card p-5 mobile:p-8  rounded-2xl bg-myusta-gray relative z-20">
+                <div
+                  className="!mb-5 text-xl font-semibold text-myusta-navy  mobile:!mb-8 text-center"
+                  style={{ lineHeight: '100%' }}
+                  dangerouslySetInnerHTML={{
+                    __html: language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following<br />information below.'
+                  }}
+                />
+
+                {message && (
+                  <div className={`mb-6 p-4 rounded-lg ${messageType === 'success'
+                    ? 'bg-green-100 text-green-700 border border-green-300'
                     : 'bg-red-100 text-red-700 border border-red-300'
-                }`}>
-                  {message}
-                </div>
-              )}
-              
-              <form className="space-y-4" onSubmit={handleWaitlistSubmit}>
-                <input 
-                  type="text" 
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder={language === 'sq' ? 'Emri' : 'Name'} 
-                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-                  required 
-                  maxLength={100}
-                />
-                
-                <input 
-                  type="tel" 
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'} 
-                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-                  required 
-                  maxLength={20}
-                />
-                
-                <input 
-                  type="email" 
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder={language === 'sq' ? 'E-Mail' : 'E-Mail'} 
-                  className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray" 
-                  required 
-                  maxLength={150}
-                />
-                
-                <CustomDropdown
-                  options={categories}
-                  value={formData.category}
-                  onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
-                  placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
-                  name="category"
-                  required
-                  multiple={true}
-                />
-                
-                <CustomDropdown
-                  options={locations}
-                  value={formData.location}
-                  onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
-                  placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
-                  name="location"
-                  required
-                  multiple={true}
-                />
-                
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="large"
-                  fullWidth
-                  loading={isSubmitting}
-                  className="text-myusta-navy font-semibold text-lg rounded-lg"
-                  style={{ marginTop: '32px' }}
-                >
-                  {isSubmitting ? (
-                    language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
-                  ) : (
-                    language === 'sq' ? 'Bashkohu në Listën e Pritjes!' : 'Join the Waitlist!'
-                  )}
-                </Button>
-              </form>
+                    }`}>
+                    {message}
+                  </div>
+                )}
+
+                <form className="space-y-4" onSubmit={handleWaitlistSubmit}>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder={language === 'sq' ? 'Emri' : 'Name'}
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+                    required
+                    maxLength={100}
+                  />
+
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+                    required
+                    maxLength={20}
+                  />
+
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder={language === 'sq' ? 'E-Mail' : 'E-Mail'}
+                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+                    required
+                    maxLength={150}
+                  />
+
+                  <CustomDropdown
+                    options={categories}
+                    value={formData.category}
+                    onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                    placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
+                    name="category"
+                    required
+                    multiple={true}
+                  />
+
+                  <CustomDropdown
+                    options={locations}
+                    value={formData.location}
+                    onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+                    placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
+                    name="location"
+                    required
+                    multiple={true}
+                  />
+
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="large"
+                    fullWidth
+                    loading={isSubmitting}
+                    className="!mt-5 text-myusta-navy font-semibold text-lg rounded-lg mobile:!mt-8"
+                  // style={{ marginTop: '32px' }}
+                  >
+                    {isSubmitting ? (
+                      language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
+                    ) : (
+                      language === 'sq' ? 'Bashkohu në Listën e Pritjes!' : 'Join the Waitlist!'
+                    )}
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
         )}
 
         {showRegistrationSuccess && (
-          <div className=" text-center max-w-2xl mx-auto flex flex-col items-center " style={{marginTop: -100}}>
+          <div className=" text-center max-w-2xl mx-auto flex flex-col items-center " style={{ marginTop: -100, }}>
             <div style={{ height: 64 }} />
             <div className="w-16 h-16 mb-6 flex items-center justify-center">
-              <Image 
-                src="/assets/tick.svg" 
-                alt="Success" 
+              <Image
+                src="/assets/tick.svg"
+                alt="Success"
                 width={64}
                 height={64}
                 className="w-16 h-16"
               />
             </div>
             <div style={{ height: 24 }} />
-             <Title 
-               firstText={language === 'sq' ? 'Sukses!' : 'Success!'} 
-               className="mb-4"
-             />
+            <Title
+              firstText={language === 'sq' ? 'Sukses!' : 'Success!'}
+              className="mb-4"
+            />
             <div style={{ height: 24 }} />
             <Description className="text-base leading-[22.4px]">
-              {language === 'sq' 
+              {language === 'sq'
                 ? 'Faleminderit që jeni pjesë e komunitetit tonë të listës së pritjes. Do t\'ju informojmë me përditësime, datat e nisjes dhe lajmet ekskluzive.'
                 : 'Thank you for being part of our waitlist community. We\'ll keep you informed with updates, launch dates, and exclusive news.'
               }
@@ -290,9 +291,9 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        <div className={`${showRecommendForm ? 'mt-0' : 'mt-16'} text-center max-w-2xl mx-auto`}>
+        <div className={`${showRecommendForm ? 'mt-0' : 'pt-[32px] mobile:pt-[42px] md:pt-[48px]  '} w-full small:w-[400px] text-center  mx-auto`}>
           <div className="mb-6">
-            <TwoLineTitle 
+            <TwoLineTitle
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
               secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
               firstLineBold={true}
@@ -302,7 +303,7 @@ export default function WaitlistForm() {
             />
           </div>
           <div className="mb-6 text-center">
-            {language === 'sq' 
+            {language === 'sq'
               ? (
                 <>
                   <Description className="mb-2">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</Description>
@@ -317,7 +318,7 @@ export default function WaitlistForm() {
               )
             }
           </div>
-          
+
           {!showRecommendForm ? (
             <div className="flex justify-center">
               <div className="w-full max-w-sm">

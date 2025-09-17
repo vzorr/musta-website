@@ -15,19 +15,19 @@ export default function ContactPage() {
 
   return (
     <LanguageProvider>
-      <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
+      <div className=" bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
         <Header />
-        
+
         <main className="w-full relative">
           <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1440px] mx-auto py-12 sm:py-20 px-4 sm:px-8">
+            <div className="w-full max-w-[1000px] mx-auto global-main-page py-[32px] xl:py-[48px]">
               {/* Breadcrumb */}
               <nav className="flex items-center gap-2 mb-8 font-inter text-sm font-normal text-gray-500">
                 <a href="/" className="text-gray-500 hover:text-myusta-yellow transition-colors">Home</a>
                 <span className="text-gray-500">/</span>
                 <span className="text-myusta-navy font-bold">Contact Us</span>
               </nav>
-              
+
               <ContactForm defaultLanguage={defaultLanguage} />
             </div>
           </div>

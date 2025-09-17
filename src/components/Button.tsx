@@ -6,7 +6,7 @@ import styles from '../styles/Button.module.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Button variant */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'myusta-green';
   /** Button size */
   size?: 'small' | 'medium' | 'large' | 'xlarge';
   /** Full width button */

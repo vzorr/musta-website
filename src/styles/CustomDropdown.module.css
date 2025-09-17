@@ -259,15 +259,17 @@
   }
   
   .dropdownOptions {
-    padding: 8px;
+    padding: 0px;
     border-radius: 12px;
     box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1), 
                 inset -2px -2px 3px rgba(255, 255, 255, 1);
   }
   
   .option {
-    padding: 10px 12px;
-    min-height: 44px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+  
   }
   
   .optionLabel {
@@ -345,3 +347,4 @@
     border: 1px solid #ccc;
   }
 }
+

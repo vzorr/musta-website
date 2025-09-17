@@ -14,13 +14,13 @@ export default function TermsPage() {
 
   return (
     <LanguageProvider>
-      <div className="font-inter bg-white text-myusta-navy min-h-screen relative overflow-x-hidden">
+      <div className=" bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
         <Header />
-        
+
         <main className="w-full relative">
-          <div className="w-full bg-white">
-            <div className="w-full max-w-[1440px] mx-auto py-12 sm:py-20 px-4 sm:px-8">
-              <div className={styles.termsContainer}>
+          <div className="w-full bg-myusta-gray">
+            <div className="w-full max-w-[1000px] mx-auto global-main-page py-[32px] xl:py-48">
+              {/* <div className={styles.termsContainer}> */}
                 {/* Breadcrumb */}
                 <nav className={styles.breadcrumb}>
                   <a href="/" className={`${styles.breadcrumbItem} ${styles.breadcrumbLink}`}>Home</a>
@@ -113,7 +113,7 @@ export default function TermsPage() {
                     Thanks for your interest in myUsta! We're building something meaningful—and you're part of it from the start. 🙌
                   </p>
                 </div>
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </main>

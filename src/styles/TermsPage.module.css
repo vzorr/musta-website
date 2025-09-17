@@ -1,10 +1,10 @@
 /* src/styles/TermsPage.module.css - Terms & Conditions page styles */
 
-.termsContainer {
-  max-width: 800px;
+/* .termsContainer {
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 1rem;
-}
+} */
 
 /* Breadcrumb Navigation */
 .breadcrumb {
@@ -12,7 +12,6 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #868686;

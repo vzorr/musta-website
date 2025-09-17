@@ -9,13 +9,18 @@ module.exports = {
     extend: {
       screens: {
         tablet: '850px', 
+        mobile: '640px', 
+        small:'440px',
+
       },
       colors: {
         'myusta-navy': '#00203F',
         'myusta-blue': '#335372',
         'myusta-yellow': '#FFC800',
         'myusta-gray': '#F3F3F3',
-        'myusta-text-gray': '#888888'
+        'myusta-text-gray': '#888888',
+        'light-gray-text': '#868686',
+        'myusta-green': '#59BE34'
       },
       fontFamily: {
         'inter': ['Inter', 'sans-serif']

@@ -21,7 +21,7 @@ export default function HeroSection() {
   }, []);
 
   const scrollToRecommend = () => {
-    const element = document.getElementById("recommend");
+    const element = document.getElementById("waitlist");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 

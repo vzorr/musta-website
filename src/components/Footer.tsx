@@ -11,9 +11,9 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-myusta-navy text-white py-12 sm:py-16 lg:px-24">
+    <footer className="bg-myusta-navy text-white py-12 sm:py-16">
       {/* UPDATED: Added max-width container */}
-      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-8">
+      <div className="w-full max-w-[1000px] mx-auto global-main-page">
         {/* Main Footer Content */}
         <div className="flex flex-col sm:flex-row justify-between ilg:tems-start items-center mb-8 sm:mb-12 gap-8">
           {/* Left Side - Logo and Social */}
@@ -89,7 +89,7 @@ export default function Footer() {
           </div>
 
           {/* Right Side - Footer Links */}
-          <div className="text-left sm:text-right space-y-3">
+          <div className="text-center sm:text-right space-y-3">
             <a 
               href="/legal" 
               className="block text-white hover:text-myusta-yellow transition-colors"
