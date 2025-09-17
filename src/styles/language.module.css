@@ -12,8 +12,8 @@
   height: 20px;
   border-radius: 4px;
   transition: all 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -50,7 +50,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6.4px;
-    width: 49.0667px;
+    width: 97px;
     height: 16px;
   }
   

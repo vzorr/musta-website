@@ -184,6 +184,7 @@ export default function RegistrationForm({ gdprConsents }: RegistrationFormProps
                 {remainingTitle}
               </h2>
               <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-myusta-navy`}>{lastWord}</h1>
+              
             </div>
             
             <div className={containerStyles.formContainer}>

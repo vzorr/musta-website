@@ -24,7 +24,6 @@
   transition: all 0.3s ease;
   isolation: isolate;
   color: white;
-  /* padding: 0px 120px; */
   height: 80px;
   display: flex;
   align-items: center;
@@ -52,12 +51,14 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+ 
 }
 
 .rightSection {
   display: flex;
   align-items: center;
 }
+
 
 /* ========================================
    HEADER CTA BUTTON - UPDATED
@@ -86,19 +87,19 @@
 
 .ctaButton:hover {
   background-color: #e6b300;
-  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.4);
+  /* box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.4); */
 }
 
 .ctaButton:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.6);
+  /* box-shadow: 0 0 0 4px rgba(181, 200, 214, 0.6); */
 }
 
-.ctaButton:active {
+/* .ctaButton:active {
   box-shadow: 0 0 0 2px rgba(181, 200, 214, 0.8);
-}
+} */
 
-@media (max-width: 640px) {
+@media (max-width: 849px) {
   .ctaButton {
     display: none;
   }
@@ -239,24 +240,30 @@
 ======================================== */
 
 .heroBg {
-  background-image: url("../../public/assets/hero-section-images/bg-image.png");
-  background-repeat: repeat-x;
+  background-image: url("../../public/assets/hero-section-images/usta-mobile-background.png");
+
 }
 
 @media (max-width: 849px) {
   .heroBg {
-    background-size: 200px 100%;
+    background-size: 200px 528px;
+    background-repeat: repeat-x;
   }
 }
 
 @media (min-width: 850px) {
   .heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
+
     background-size: 200px 460px;
+      background-repeat: repeat-x;
   }
 }
 
 @media (min-width: 1280px) {
   .heroBg {
+  background-image: url("../../public/assets/hero-section-images/bg-image.png");
     background-size: 200px 600px;
+      background-repeat: repeat-x;
   }
 }

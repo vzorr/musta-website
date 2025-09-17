@@ -157,6 +157,12 @@
   font-size: 0.875rem;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .whyJoinSection {
+padding: 1.25rem;
+  }
+}
+
 /* Responsive Design */
 @media (min-width: 640px) {
   .whyJoinSection {
@@ -174,6 +180,10 @@
   
   .cardContent {
     padding: 1.25rem;
+  }
+
+  .benefitsGrid {
+    gap: 1.25rem;
   }
 }
 

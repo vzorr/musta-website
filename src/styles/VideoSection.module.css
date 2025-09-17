@@ -72,13 +72,19 @@
 
 /* Responsive Design */
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .videoSection {
+padding: 1.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   .videoSection {
     padding: 1.5rem 0; /* 24px top and bottom = 48px total on mobile */
   }
   
   .videoContainer {
-    padding: 0 1rem;
+    padding: 0 0rem;
   }
   
   .playButton {
