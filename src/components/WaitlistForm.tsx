@@ -154,7 +154,7 @@ export default function WaitlistForm() {
 
 
   return (
-    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-10 sm:pb-12 pt-6 md:pt-8 lg:pt-2">
+    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-8 sm:pb-10 pt-6 md:pt-8 lg:pt-2">
       <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
@@ -176,7 +176,7 @@ export default function WaitlistForm() {
                   className="!mb-5 text-xl font-semibold text-myusta-navy  mobile:!mb-8 text-center"
                   style={{ lineHeight: '100%' }}
                   dangerouslySetInnerHTML={{
-                    __html: language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following<br />information below.'
+                    __html: language === 'sq' ? 'Plotësoni informacionet <br /> e mëposhtme' : 'Fill out the following<br />information below.'
                   }}
                 />
 
@@ -255,7 +255,7 @@ export default function WaitlistForm() {
                     {isSubmitting ? (
                       language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
                     ) : (
-                      language === 'sq' ? 'Bashkohu në Listën e Pritjes!' : 'Join the Waitlist!'
+                      language === 'sq' ? 'Futu tek Lista e Pritjes!' : 'Join the Waitlist!'
                     )}
                   </Button>
                 </form>
@@ -264,7 +264,7 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        {showRegistrationSuccess && (
+         {showRegistrationSuccess && ( 
           <div className=" text-center max-w-2xl mx-auto flex flex-col items-center " style={{ marginTop: -100, }}>
             <div style={{ height: 64 }} />
             <div className="w-16 h-16 mb-6 flex items-center justify-center">
@@ -291,29 +291,48 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        <div className={`${showRecommendForm ? 'mt-0' : 'pt-[32px] mobile:pt-[42px] md:pt-[48px]  '} w-full small:w-[400px] text-center  mx-auto`}>
+        <div className={`${showRecommendForm ? 'mt-0' : 'pt-[42px] md:pt-[48px]  '} w-full small:w-[400px] text-center  mx-auto`}>
           <div className="mb-6">
-            <TwoLineTitle
+            {/* <TwoLineTitle
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
               secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
               firstLineBold={true}
               secondLineBold={false}
               as="h2"
               centered={true}
-            />
+            /> */}
+            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy">
+              <p className='font-normal '>{language === 'sq' ? 'Ndihmo në rritjen e' : 'Help us Grow'}</p>
+              <p className='font-bold'>{language === 'sq' ? 'Komunitetit!!' : 'the Community!'}</p>
+            </div>
           </div>
           <div className="mb-6 text-center">
             {language === 'sq'
               ? (
                 <>
-                  <Description className="mb-2">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</Description>
-                  <Description>Rekomandojeni më poshtë.</Description>
+                  <div>
+                    <p className=" text-sm text-center md:text-base block mobile:hidden font-normal text-[#898888]">Njihni ndonjë Usta që do të përfitojë <br/> nga mundësitë e punës?</p>
+                    <p className=" text-sm md:text-base text-center hidden mobile:block font-normal whitespace-nowrap text-[#898888]">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</p>
+
+                  </div>
+                  <p className=" text-sm text-center md:text-base font-normal text-[#898888]">Rekomandojeni më poshtë.</p>
                 </>
               )
               : (
                 <>
-                  <Description className="mb-2">Know a fellow Usta who would benefit from job opportunities?</Description>
-                  <Description>Recommend them below.</Description>
+                  <div>
+                    {/* Mobile / small screens (lg se chhoti screens) */}
+                    <p className=" text-sm text-center md:text-base block mobile:hidden font-normal text-[#898888]">
+                      Know a fellow Usta who would benefit <br /> from job opportunities?
+                    </p>
+
+                    {/* Large screens and above */}
+                    <p className=" text-sm md:text-base text-center hidden mobile:block font-normal whitespace-nowrap text-[#898888]">
+                      Know a fellow Usta who would benefit from job opportunities?
+                    </p>
+                  </div>
+
+                  <p className=" text-sm text-center md:text-base font-normal text-[#898888]">Recommend them below.</p>
                 </>
               )
             }

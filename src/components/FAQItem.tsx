@@ -19,7 +19,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
           }`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="text-myusta-navy pr-4">{question}</span>
+        <span className="text-myusta-navy pr-4 text-sm mobile:text-base">{question}</span>
         <div className="icon-container min-w-6 min-h-6 rounded flex items-center justify-center">
           <Image
             src="/assets/vector.svg"
@@ -34,7 +34,7 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         className={`faq-content overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 pb-2' : 'max-h-0 pb-0'
           }`}
       >
-        <div className="px-3">
+        <div className="px-3 text-sm mobile:text-base">
           <Description centered={false}>{answer}</Description>
         </div>
       </div>

@@ -178,11 +178,111 @@
     }
   },
   "footer": {
-    "tagline": "Your Skills. Our platform. Endless Opportunities.",
+    "tagline1": "Your Skills. Our platform. <br/> Endless Opportunities.",
+    "tagline2": "Your Skills. Our platform. Endless Opportunities.",
+
     "copyright": "©2025 myUsta. All rights reserved.",
     "links": {
       "termsAndConditions": "Terms and Conditions",
       "contact": "Contact Us"
     }
+  },
+
+  "terms": {
+    "breadcrumb": {
+      "home": "Home",
+      "termsAndConditions": "Terms and Conditions"
+    },
+    "title": {
+      "first": "Terms",
+      "second": "& Conditions"
+    },
+    "welcome": {
+      "title": "Welcome to myUsta!",
+      "description": "myUsta is a platform in development that will help customers connect with skilled tradespeople (“Ustas”) for home improvement and service jobs. This landing page allows you to join our waitlist and be among the first to try it."
+    },
+    "sections": {
+      "joiningWaitlist": {
+        "title": "1. Joining the Waitlist",
+        "description": "By submitting your information, you agree:",
+        "points": [
+          "You are at least 18 years old.",
+          "The information you provide (like name and email) is accurate.",
+          "You’re okay with us contacting you about myUsta updates and launch info."
+        ],
+        "note": "You are not committing to use the service, and we are not committing to accept every waitlist signup into the full platform."
+      },
+      "intellectualProperty": {
+        "title": "2. Intellectual Property",
+        "description": "All content on this site—including text, logos, designs, and visuals—is owned by or licensed to myUsta. Don’t use, reproduce, or modify anything without our written permission."
+      },
+      "noWarranties": {
+        "title": "3. No Warranties (Yet!)",
+        "description": "Since this is an early access preview, the waitlist page is provided “as is.” We can’t guarantee availability, accuracy, or performance. We're still building!"
+      },
+      "limitationOfLiability": {
+        "title": "4. Limitation of Liability",
+        "description": "We're not liable for:",
+        "points": [
+          "Any errors or bugs on the waitlist site,",
+          "Losses resulting from relying on preliminary info about our platform,",
+          "Issues related to third-party tools or services."
+        ]
+      }
+    },
+    "privacyPolicy": {
+      "title": "🔐 Privacy Policy",
+      "description": "We respect your privacy. This section explains how we collect, use, and protect your information.",
+      "sections": {
+        "whatWeCollect": {
+          "title": "1. What We Collect",
+          "description": "When you join the waitlist, we may collect:",
+          "points": [
+            "Your name",
+            "Your email",
+            "(Optional) Your location or service interest, if you provide it"
+          ],
+          "note": "We do not collect payment details or sensitive personal data at this stage."
+        },
+        "howWeUseInfo": {
+          "title": "2. How We Use Your Info",
+          "description": "We use your info to:",
+          "points": [
+            "Notify you about myUsta's progress, updates, and launch,",
+            "Understand general user interest by region or profession,",
+            "Occasionally request feedback or offer early access."
+          ],
+          "note": "We will never sell your data or share it with third parties for marketing."
+        },
+        "dataStorage": {
+          "title": "3. Data Storage",
+          "description": "Your data is stored securely using trusted third-party services (such as email management or analytics providers). We take reasonable steps to protect your data from unauthorized access."
+        },
+        "yourRights": {
+          "title": "4. Your Rights",
+          "description": "You may:",
+          "points": [
+            "Request a copy of your data,",
+            "Ask us to delete your data at any time,",
+            "Opt out of emails by clicking \"unsubscribe\" in any message or contacting us directly."
+          ]
+        },
+        "cookiesAnalytics": {
+          "title": "5. Cookies & Analytics",
+          "description": "We may use limited cookies or basic analytics (like Google Analytics) to see how users interact with the landing page. You can disable cookies in your browser settings."
+        },
+        "futureChanges": {
+          "title": "6. Future Changes",
+          "description": "We may update this Privacy Policy before launching the full platform. Check back occasionally for changes."
+        }
+      }
+    },
+    "footerMessage1": "Thanks for your interest in myUsta!",
+    "footerMessage2": "We're building something meaningful—and you're part of it from the start. 🙌"
+  },
+
+  "contactBreadcrumb": {
+    "home": "Home",
+    "contact": "Contact Us"
   }
 }

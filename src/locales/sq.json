@@ -10,8 +10,7 @@
     "subtitle2": "me myUSTA dhe lidhuni me pronarët e shtëpive.",
     "cta1": "Hyr në Listën e Pritjes - ",
     "cta2": "Është Falas!",
-     "image": "/assets/hero-section-images/mobile-qatar.png"
-
+    "image": "/assets/hero-section-images/mobile-qatar.png"
   },
   "whyJoin": {
     "title": "Pse të përdorni myUsta?",
@@ -180,11 +179,110 @@
     }
   },
   "footer": {
-    "tagline": "Aftësitë tuaja. Platforma jonë. Mundësi të pafundme.",
+    "tagline1": "Aftësitë tuaja. Platforma jonë. <br/> Mundësi të pafundme.",
+    "tagline2": "Aftësitë tuaja. Platforma jonë. Mundësi të pafundme.",
+
     "copyright": "©2025 myUsta. Të gjitha të drejtat e rezervuara.",
     "links": {
       "termsAndConditions": "Kushtet dhe Kushtet",
       "contact": "Na Kontaktoni"
     }
+  },
+  "terms": {
+    "breadcrumb": {
+      "home": "Shtëpia",
+      "termsAndConditions": "Kushtet dhe Kushtet"
+    },
+    "title": {
+      "first": "Termat ",
+      "second": "& Kushtet"
+    },
+    "welcome": {
+      "title": "Mirë se vini në myUsta!",
+      "description": "myUsta është një platformë në zhvillim që do t’i ndihmojë klientët të lidhen me mjeshtër të kualifikuar (“Usta”) për punë të ndryshme në shtëpi. Kjo faqe pritjeje ju lejon të regjistroheni në listën e pritjes dhe të jeni ndër të parët që e provoni."
+    },
+    "sections": {
+      "joiningWaitlist": {
+        "title": "1. Regjistrimi në Listën e Pritjes",
+        "description": "Duke dërguar të dhënat tuaja, ju pranoni se:",
+        "points": [
+          "Jeni të paktën 18 vjeç.",
+          "Të dhënat që dërgoni (si emri dhe emaili) janë të sakta",
+          "Jeni dakord që të ju kontaktojmë për njoftime dhe përditësime rreth myUsta."
+        ],
+        "note": "Regjistrimi në listën e pritjes nuk ju detyron të përdorni shërbimin, dhe ne nuk garantojmë se çdo përdorues në listë do të ftohet në platformën e plotë."
+      },
+      "intellectualProperty": {
+        "title": "2. Prona Intelektuale",
+        "description": "Të gjitha përmbajtjet në këtë faqe—duke përfshirë tekstet, logot, dizajnet dhe pamjet—janë në pronësi ose të licencuara nga myUsta. Mos i përdorni, kopjoni apo modifikoni pa leje të shkruar."
+      },
+      "noWarranties": {
+        "title": "3. Pa Garanci (Ende!)",
+        "description": "Meqenëse kjo është një faqe pritjeje në fazë të hershme, ofrohet “ashtu siç është”. Nuk garantojmë që do të jetë gjithmonë e saktë, e qasshme apo pa gabime. Jemi ende duke ndërtuar!"
+      },
+      "limitationOfLiability": {
+        "title": "4. Kufizimi i Përgjegjësisë",
+        "description": "Nuk mbajmë përgjegjësi për:",
+        "points": [
+          "Gabime ose probleme teknike në faqe,",
+          "Humbje që vijnë nga mbështetja në informacione të hershme për platformën,",
+          "Çështje që lidhen me shërbime të palëve të treta."
+        ]
+      }
+    },
+    "privacyPolicy": {
+      "title": "🔐 Politika e Privatësisë",
+      "description": "E respektojmë privatësinë tuaj. Më poshtë shpjegojmë se si i mbledhim, përdorim dhe mbrojmë të dhënat tuaja.",
+      "sections": {
+        "whatWeCollect": {
+          "title": "1. Çfarë Mbledhim",
+          "description": "Kur regjistroheni në listën e pritjes, mund të mbledhim:",
+          "points": [
+            "Emrin tuaj",
+            "Email-in tuaj",
+            "(Opsionale) Vendndodhjen ose interesin për kategori shërbimesh, nëse e ofroni"
+          ],
+          "note": "Nuk mbledhim të dhëna pagese ose informacione të ndjeshme personale në këtë fazë."
+        },
+        "howWeUseInfo": {
+          "title": "2. Si i Përdorim të Dhënat Tuaja",
+          "description": "Ne i përdorim të dhënat tuaja për:",
+          "points": [
+            "T’ju njoftuar për zhvillimet, përditësimet dhe lançimin e myUsta,",
+            "Të kuptuar më mirë interesin e përdoruesve sipas rajoneve apo profesioneve,",
+            "Herë pas here, për të kërkuar mendime ose për të ofruar akses të hershëm."
+          ],
+          "note": "Nuk do t’i shesim kurrë të dhënat tuaja dhe nuk do t’i ndajmë me palë të treta për qëllime marketingu."
+        },
+        "dataStorage": {
+          "title": "3. Ruajtja e të Dhënave",
+          "description": "Të dhënat tuaja ruhen në mënyrë të sigurt duke përdorur shërbime të besueshme të palëve të treta (si për menaxhimin e email-eve ose analiza). Ne ndërmarrim hapa të arsyeshëm për t’i mbrojtur nga aksesi i paautorizuar."
+        },
+        "yourRights": {
+          "title": "4. Të Drejtat Tuaja",
+          "description": "Ju keni të drejtë të:",
+          "points": [
+            "Kërkoni një kopje të të dhënave tuaja.",
+            "Na kërkoni t’i fshijmë të dhënat në çdo moment.",
+            "Dilni nga lista e email-eve duke klikuar “unsubscribe” në ndonjë mesazh ose duke na kontaktuar direkt."
+          ]
+        },
+        "cookiesAnalytics": {
+          "title": "5. Cookies & Analitika",
+          "description": "Ne mund të përdorim cookies të kufizuara ose analiza të thjeshta (si Google Analytics) për të parë si ndërveprojnë përdoruesit me faqen. Ju mund të çaktivizoni cookies në cilësimet e shfletuesit tuaj."
+        },
+        "futureChanges": {
+          "title": "6. Ndryshime të Ardhshme",
+          "description": "Ne mund ta përditësojmë këtë Politikë Privatësie para se të lançohet platforma e plotë. Kontrolloni herë pas here për ndonjë ndryshim."
+        }
+      }
+    },
+    "footerMessage1": "Faleminderit që jeni të interesuar në myUsta!",
+    "footerMessage2": "Po ndërtojmë diçka me kuptim—dhe ju jeni pjesë e saj që në fillim. 🙌"
+  },
+
+  "contactBreadcrumb": {
+    "home": "Kryefaqa",
+    "contact": "Na Kontaktoni"
   }
 }

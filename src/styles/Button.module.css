@@ -315,13 +315,13 @@
 
   .medium {
     padding: 10px 24px;
-    font-size: 1rem;
+    font-size: 14px;
   }
 
   .large {
     padding: 12px 32px;
     /* font-size: 1.125rem; */
-    font-size: 1rem;
+    font-size: 14px;
   }
 }
 

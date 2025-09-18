@@ -116,20 +116,20 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
     <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]" >
       <div>
         <div
-          className="text-[24px] font-semibold text-center  mb-4 xl:mb-6 p-0"
+          className="!mb-4 text-center xl:!mb-4 p-0"
           style={{
-            lineHeight: '120%'
+            lineHeight: '100%'
           }}
         >
-          <span className='text-bold text-myusta-navy'>{language === 'sq' ? 'Na ' : 'Contact '}</span>
-          <span className='text-normal text-myusta-navy'>{language === 'sq' ? 'Kontaktoni' : 'Us'}</span>
+          <span className="text-[23px] xl:text-[48px] font-bold ">{language === 'sq' ? 'Na ' : 'Contact '}</span>
+          <span className="text-[23px] xl:text-[48px]  ">{language === 'sq' ? 'Kontaktoni' : 'Us'}</span>
 
         </div>
         <div
-          className="!mb-5 text-sm sm:text-base text-light-gray-text  mobile:!mb-8 text-center"
+          className="!mb-5 text-sm sm:text-base text-light-gray-text  mobile:!mb-12 text-center"
           // style={{ lineHeight: '100%' }}
           dangerouslySetInnerHTML={{
-            __html: language === 'sq' ? 'Jemi këtu për ju. Kontaktoni me ekipin tonë në çdo kohë.' : `We're here for you. Get in touch <br /> with our team anytime.`
+            __html: language === 'sq' ? 'Jemi këtu për ju. Kontaktoni me ekipin tonë në çdo kohë.' : `We're here for you. Get in touch with our team anytime.`
           }}
         />
       </div>
@@ -194,7 +194,7 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             value={formData.message}
             onChange={handleInputChange}
             placeholder={language === 'sq' ? 'Mesazhi Juaj' : 'Your Message'}
-            className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray resize-none"
+             className="neumorphic-input w-full block p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray resize-none leading-none align-top"
             rows={5}
             required
             maxLength={1000}
@@ -207,8 +207,7 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             fullWidth
             loading={isSubmitting}
             disabled={isSubmitting}
-            // className="text-myusta-navy font-semibold text-lg rounded-lg"
-            className="!mt-5 text-myusta-navy font-semibold text-lg rounded-lg mobile:!mt-8"
+            className="!mt-5 text-myusta-navy font-semibold text-lg rounded-lg mobile:!mt-8  "
           >
             {isSubmitting
               ? (language === 'sq' ? 'Po dërgohet...' : 'Sending...')

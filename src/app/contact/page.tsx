@@ -12,29 +12,25 @@ export default function ContactPage() {
   // Get language from URL parameter (e.g., /contact?lang=en)
   const langParam = searchParams.get("lang") as "sq" | "en" | null;
   const defaultLanguage = langParam || "sq";
-  const { t, language } = useLanguage();
+  const { t, } = useLanguage();
   return (
-    <LanguageProvider>
+    <>
       <div className=" bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
         <Header />
 
         <main className="w-full relative">
           <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1000px] mx-auto global-main-page py-[32px] xl:py-[48px]">
+            <div className="w-full max-w-[1000px] mx-auto global-main-page pt-[32px] pb-[48px] mobile:pt-[48px] mobile:pb-[48px]">
               {/* Breadcrumb */}
-              <nav className="flex items-center gap-2 mb-8 font-inter text-sm font-normal text-gray-500">
-                <a
-                  href="/"
-                  className="text-gray-500 hover:text-myusta-yellow transition-colors"
-                >
-                  {language === "sq" ? "Kryefaqa" : "Home"}
+              <nav className="xl:mb-[64px] mb-[32px] text-sm xl:text-base">
+                <a href="/" className="text-[#868686] hover:text-myusta-yellow transition-colors">
+                  {t("contactBreadcrumb.home")}
                 </a>
-                <span className="text-gray-500">/</span>
-                <span className="text-myusta-navy font-bold">
-                  {language === "sq" ? "Na Kontaktoni" : "Contact Us"}
+                <span className="ml-2 mr-0.5 text-myusta-navy">/</span>
+                <span className="text-myusta-navy font-semibold">
+                  {t("contactBreadcrumb.contact")}
                 </span>
               </nav>
-
               <ContactForm defaultLanguage={defaultLanguage} />
             </div>
           </div>
@@ -42,6 +38,6 @@ export default function ContactPage() {
 
         <Footer />
       </div>
-    </LanguageProvider>
+    </>
   );
 }

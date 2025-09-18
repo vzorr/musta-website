@@ -56,7 +56,7 @@ export default function HeroSection() {
           </p>
           <div className="flex justify-center">
             <button
-              className="bg-[#FFD700] hover:bg-[#e6b300] text-[#00203F] text-base xl:text-[20px] h-[44px] px-6 py-2 rounded-[8px] cursor-pointer"
+              className="bg-[#FFD700] hover:bg-[#e6b300] text-[#00203F] text-base xl:text-[18px] h-[44px] px-6 py-2 rounded-[8px] cursor-pointer"
               onClick={scrollToRecommend}
             >
               <span className="font-medium">{t("hero.cta1")}</span>
