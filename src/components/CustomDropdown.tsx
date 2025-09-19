@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '../styles/CustomDropdown.module.css';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface DropdownOption {
   value: string;
@@ -32,14 +33,49 @@ export default function CustomDropdown({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedLabel, setSelectedLabel] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useLanguage();
 
   // Update selected label when value changes
+  // useEffect(() => {
+  //   if (multiple) {
+  //     const selectedValues = Array.isArray(value) ? value : [];
+  //     const selectedOptions = options.filter(option => selectedValues.includes(option.value));
+  //     const fieldName = name.charAt(0).toUpperCase() + name.slice(1);
+      
+
+  //     console.log('selectedOptions', selectedOptions);
+      
+  //     let newLabel = '';
+  //     if (selectedOptions.length > 0) {
+  //       if (selectedOptions.length <= 2) {
+  //         newLabel = `${fieldName}: ${selectedOptions.map(option => option.label).join(', ')}`;
+  //       } else {
+  //         const firstTwo = selectedOptions.slice(0, 2).map(option => option.label).join(', ');
+  //         newLabel = `${fieldName}: ${firstTwo}...`;
+  //       }
+  //     }
+  //     setSelectedLabel(newLabel);
+  //   } else {
+  //     const selectedOption = options.find(option => option.value === value);
+  //     const newLabel = selectedOption ? selectedOption.label : '';
+  //     setSelectedLabel(newLabel);
+  //   }
+  // }, [value, options, multiple, name]);
+
   useEffect(() => {
     if (multiple) {
       const selectedValues = Array.isArray(value) ? value : [];
       const selectedOptions = options.filter(option => selectedValues.includes(option.value));
-      const fieldName = name.charAt(0).toUpperCase() + name.slice(1);
-      
+  
+      let fieldName = '';
+      if (name === 'category') {
+        fieldName = language === 'sq' ? 'Kategoria' : 'Category';
+      } else if (name === 'location') {
+        fieldName = language === 'sq' ? 'Vendndodhja' : 'Location';
+      } else {
+        fieldName = name.charAt(0).toUpperCase() + name.slice(1);
+      }
+  
       let newLabel = '';
       if (selectedOptions.length > 0) {
         if (selectedOptions.length <= 2) {
@@ -55,7 +91,8 @@ export default function CustomDropdown({
       const newLabel = selectedOption ? selectedOption.label : '';
       setSelectedLabel(newLabel);
     }
-  }, [value, options, multiple, name]);
+  }, [value, options, multiple, name, language]);
+  
 
   // Close dropdown when clicking outside
   useEffect(() => {

@@ -115,11 +115,11 @@ select.neumorphic-input {
   }
 }
 
-.neumorphic-card:hover {
+/* .neumorphic-card:hover {
   transform: translateY(-2px);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.15),
     -6px -6px 10px rgba(255, 255, 255, 0.9);
-}
+} */
 
 /* ========================================
    NEUMORPHIC INPUT FIELDS
@@ -500,6 +500,19 @@ a:focus {
 /* ========================================
    UTILITY CLASSES
 ======================================== */
+
+/* Global Section Title Spacing */
+.section-title {
+  margin-top: 48px !important;
+  margin-bottom: 32px !important;
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    margin-top: 64px !important;
+    margin-bottom: 48px !important;
+  }
+}
 
 /* Spacing Utilities */
 .spacing-section {

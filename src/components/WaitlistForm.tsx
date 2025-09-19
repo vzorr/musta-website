@@ -154,12 +154,12 @@ export default function WaitlistForm() {
 
 
   return (
-    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-10 sm:pb-12 pt-6 md:pt-8 lg:pt-2">
+    <section id="waitlist" className="bg-myusta-gray relative z-10">
       <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
-            <div className="mb-[38px] mobile:mb-12">
+            <div className="">
               <TwoLineTitle
                 firstLine={language === 'sq' ? 'Regjistrohu Sot.' : 'Register Today.'}
                 secondLine={language === 'sq' ? 'Është Falas!' : 'It\'s Free!'}
@@ -167,6 +167,7 @@ export default function WaitlistForm() {
                 secondLineBold={true}
                 as="h2"
                 centered={true}
+                className='section-title'
               />
             </div>
 
@@ -176,7 +177,7 @@ export default function WaitlistForm() {
                   className="!mb-5 text-xl font-semibold text-myusta-navy  mobile:!mb-8 text-center"
                   style={{ lineHeight: '100%' }}
                   dangerouslySetInnerHTML={{
-                    __html: language === 'sq' ? 'Plotësoni informacionin më poshtë.' : 'Fill out the following<br />information below.'
+                    __html: language === 'sq' ? 'Plotësoni informacionet <br /> e mëposhtme' : 'Fill out the following<br />information below.'
                   }}
                 />
 
@@ -250,12 +251,12 @@ export default function WaitlistForm() {
                     fullWidth
                     loading={isSubmitting}
                     className="!mt-5 text-myusta-navy font-semibold text-lg rounded-lg mobile:!mt-8"
-                  // style={{ marginTop: '32px' }}
+
                   >
                     {isSubmitting ? (
                       language === 'sq' ? 'Po regjistrohet...' : 'Registering...'
                     ) : (
-                      language === 'sq' ? 'Bashkohu në Listën e Pritjes!' : 'Join the Waitlist!'
+                      language === 'sq' ? 'Futu tek Lista e Pritjes!' : 'Join the Waitlist!'
                     )}
                   </Button>
                 </form>
@@ -265,55 +266,90 @@ export default function WaitlistForm() {
         )}
 
         {showRegistrationSuccess && (
-          <div className=" text-center max-w-2xl mx-auto flex flex-col items-center " style={{ marginTop: -100, }}>
-            <div style={{ height: 64 }} />
-            <div className="w-16 h-16 mb-6 flex items-center justify-center">
+          <div className="text-center max-w-2xl mx-auto mb-[32px] mt-[48px] mobile:mt-[64px] mobile:mb-[48px]">
+            {/* Tick Icon */}
+            <div className="mb-6 flex justify-center">
               <Image
                 src="/assets/tick.svg"
                 alt="Success"
-                width={64}
-                height={64}
-                className="w-16 h-16"
+                width={48}
+                height={48}
+                className="w-12 h-12"
               />
             </div>
-            <div style={{ height: 24 }} />
-            <Title
-              firstText={language === 'sq' ? 'Sukses!' : 'Success!'}
-              className="mb-4"
-            />
-            <div style={{ height: 24 }} />
-            <Description className="text-base leading-[22.4px]">
-              {language === 'sq'
-                ? 'Faleminderit që jeni pjesë e komunitetit tonë të listës së pritjes. Do t\'ju informojmë me përditësime, datat e nisjes dhe lajmet ekskluzive.'
-                : 'Thank you for being part of our waitlist community. We\'ll keep you informed with updates, launch dates, and exclusive news.'
-              }
-            </Description>
+
+            {/* Heading */}
+            <h2 className="text-[20px] mobile:text-[32px]  text-myusta-navy  font-semibold mb-4" style={{ lineHeight: '100%' }}>
+              {language === "sq" ? "Sukses!" : "Success!"}
+            </h2>
+
+
+            {language === 'sq'
+              ? (
+                <>
+                  <div className="text-[14px] mobile:text-base text-center  text-[#868686] font-normal" >
+                    <p className=" hidden mobile:block">Faleminderit që jeni pjesë e komunitetit tonë në listën e <br /> pritjes. Do ju mbajmë të informuar me përditësime dhe <br /> informacione ekskluzive.</p>
+                    <p className="block mobile:hidden  ">Faleminderit që jeni pjesë e komunitetit tonë në <br /> listën e pritjes. Do ju mbajmë të informuar me <br /> përditësime dhe informacione ekskluzive.</p>
+
+                  </div>
+
+                </>
+              )
+              : (
+                <>
+                  <div className="text-[14px] mobile:text-base text-center  text-[#868686] font-normal" >
+                    <p className=" hidden mobile:block">
+                      Thank you for being part of our waitlist community. We’ll <br /> keep you informed with updates, launch dates, and <br /> exclusive news.
+                    </p>
+
+
+                    <p className="block mobile:hidden " >
+                      Thank you for being part of our waitlist  <br /> community. We’ll keep you informed with updates,  <br /> launch dates, and exclusive news.
+                    </p>
+                  </div>
+
+
+                </>
+              )
+            }
           </div>
+
         )}
 
-        <div className={`${showRecommendForm ? 'mt-0' : 'pt-[32px] mobile:pt-[42px] md:pt-[48px]  '} w-full small:w-[400px] text-center  mx-auto`}>
+        <div className={`${showRecommendForm ? 'mt-0' : ' '} w-full small:w-[400px] text-center  mx-auto`}>
           <div className="mb-6">
-            <TwoLineTitle
-              firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
-              secondLine={language === 'sq' ? 'Komunitetin!' : 'the Community!'}
-              firstLineBold={true}
-              secondLineBold={false}
-              as="h2"
-              centered={true}
-            />
+            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy section-title">
+              <p className='font-normal '>{language === 'sq' ? 'Ndihmo në rritjen e' : 'Help us Grow'}</p>
+              <p className='font-bold'>{language === 'sq' ? 'Komunitetit!!' : 'the Community!'}</p>
+            </div>
           </div>
           <div className="mb-6 text-center">
             {language === 'sq'
               ? (
                 <>
-                  <Description className="mb-2">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</Description>
-                  <Description>Rekomandojeni më poshtë.</Description>
+                  <div>
+                    <p className=" text-sm text-center md:text-base block mobile:hidden font-normal text-[#898888]">Njihni ndonjë Usta që do të përfitojë <br /> nga mundësitë e punës?</p>
+                    <p className=" text-sm md:text-base text-center hidden mobile:block font-normal whitespace-nowrap text-[#898888]">Njihni ndonjë Usta që do të përfitojë nga mundësitë e punës?</p>
+
+                  </div>
+                  <p className=" text-sm text-center md:text-base font-normal text-[#898888]">Rekomandojeni më poshtë.</p>
                 </>
               )
               : (
                 <>
-                  <Description className="mb-2">Know a fellow Usta who would benefit from job opportunities?</Description>
-                  <Description>Recommend them below.</Description>
+                  <div>
+                    {/* Mobile / small screens (lg se chhoti screens) */}
+                    <p className=" text-sm text-center md:text-base block mobile:hidden font-normal text-[#898888]">
+                      Know a fellow Usta who would benefit <br /> from job opportunities?
+                    </p>
+
+                    {/* Large screens and above */}
+                    <p className=" text-sm md:text-base text-center hidden mobile:block font-normal whitespace-nowrap text-[#898888]">
+                      Know a fellow Usta who would benefit from job opportunities?
+                    </p>
+                  </div>
+
+                  <p className=" text-sm text-center md:text-base font-normal text-[#898888]">Recommend them below.</p>
                 </>
               )
             }

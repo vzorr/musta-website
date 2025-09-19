@@ -286,11 +286,12 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
                 </div> */}
 
                 <Button
-                  type="submit"
+                  type="button"
                   variant="primary"
                   size="large"
                   fullWidth
                   loading={isSubmitting}
+                  onClick={handleRecommendAnother}
                   className=" text-myusta-navy font-semibold text-lg rounded-lg mt-4"
                 // style={{ marginTop: '32px' }}
                 >

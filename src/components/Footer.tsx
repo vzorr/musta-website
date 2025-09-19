@@ -20,15 +20,15 @@ export default function Footer() {
           <div className="space-y-6 sm:space-y-8">
             {/* Logo - Same as header */}
             <div className="flex items-center">
-              <Logo variant="custom" width={118} height={40} className="w-[118px] h-[40px]" />
+              <Logo variant="custom" width={118} height={40} className="w-[118px] h-[32px] mobile:h-[40px]" />
             </div>
-            
+
             {/* Social Icons */}
             <div className={`flex space-x-6 ${styles.social_icon}`}>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
-                style={{ 
+                style={{
                   backgroundColor: 'transparent',
                   transition: 'background-color 0.2s ease'
                 }}
@@ -37,18 +37,18 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image 
-                  src="/assets/icons___bxl-facebook-square.svg" 
-                  alt="Facebook" 
+                <Image
+                  src="/assets/icons___bxl-facebook-square.svg"
+                  alt="Facebook"
                   width={24}
                   height={24}
                   className="w-full h-full transition-all duration-200 group-hover:brightness-0"
                 />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
-                style={{ 
+                style={{
                   backgroundColor: 'transparent',
                   transition: 'background-color 0.2s ease'
                 }}
@@ -57,18 +57,18 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image 
-                  src="/assets/icons___bxl-linkedin.svg" 
-                  alt="LinkedIn" 
+                <Image
+                  src="/assets/icons___bxl-linkedin.svg"
+                  alt="LinkedIn"
                   width={24}
                   height={24}
                   className="w-full h-full transition-all duration-200 group-hover:brightness-0"
                 />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-6 h-6 hover:scale-110 transition-all duration-200 hover:brightness-125 rounded group"
-                style={{ 
+                style={{
                   backgroundColor: 'transparent',
                   transition: 'background-color 0.2s ease'
                 }}
@@ -77,9 +77,9 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image 
-                  src="/assets/icons___bxl-instagram-alt.svg" 
-                  alt="Instagram" 
+                <Image
+                  src="/assets/icons___bxl-instagram-alt.svg"
+                  alt="Instagram"
                   width={24}
                   height={24}
                   className="w-full h-full transition-all duration-200 group-hover:brightness-0"
@@ -89,15 +89,15 @@ export default function Footer() {
           </div>
 
           {/* Right Side - Footer Links */}
-          <div className="text-center sm:text-right space-y-3">
-            <a 
-              href="/legal" 
+          <div className="text-center text-sm mobile:text-base sm:text-right space-y-3">
+            <a
+              href="/legal"
               className="block text-white hover:text-myusta-yellow transition-colors"
             >
               {t('footer.links.termsAndConditions')}
             </a>
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               className="block text-white hover:text-myusta-yellow transition-colors"
             >
               {t('footer.links.contact')}
@@ -110,71 +110,78 @@ export default function Footer() {
 
         {/* Footer Bottom - Two Column Layout like Figma */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm sm:text-base">
-          <p className={`text-white text-center sm:text-left ${styles.copy_para}`}>{t('footer.tagline')}</p>
+
+          <p className={`text-white text-center sm:text-left block mobile:hidden ${styles.copy_para}`}
+            dangerouslySetInnerHTML={{
+              __html: `${t('footer.tagline1')}`,
+            }}></p>
+
+          <p className={`text-white text-center sm:text-left hidden mobile:block ${styles.copy_para}`}>{t('footer.tagline2')}</p>
+
           {/* Social Icons for mobile view */}
-            <div className={`flex space-x-6 justify-start ${styles.social_icon_mobile}`}>
-              <a 
-                href="#" 
-                className="w-6 h-6 transition-all duration-200 group rounded"
-                style={{ 
-                  backgroundColor: 'transparent',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image 
-                  src="/assets/icons___bxl-facebook-square.svg" 
-                  alt="Facebook" 
-                  width={24}
-                  height={24}
-                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
-                />
-              </a>
-              <a 
-                href="#" 
-                className="w-6 h-6 transition-all duration-200 group rounded"
-                style={{ 
-                  backgroundColor: 'transparent',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image 
-                  src="/assets/icons___bxl-linkedin.svg" 
-                  alt="LinkedIn" 
-                  width={24}
-                  height={24}
-                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
-                />
-              </a>
-              <a 
-                href="#" 
-                className="w-6 h-6 transition-all duration-200 group rounded"
-                style={{ 
-                  backgroundColor: 'transparent',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image 
-                  src="/assets/icons___bxl-instagram-alt.svg" 
-                  alt="Instagram" 
-                  width={24}
-                  height={24}
-                  className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
-                />
-              </a>
-            </div>
-          <p className={`text-white text-center sm:text-right ${styles.copyrighttext}`}>{t('footer.copyright')}</p>
+          <div className={`flex space-x-6 justify-start ${styles.social_icon_mobile}`}>
+            <a
+              href="#"
+              className="w-6 h-6 transition-all duration-200 group rounded"
+              style={{
+                backgroundColor: 'transparent',
+                transition: 'background-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/icons___bxl-facebook-square.svg"
+                alt="Facebook"
+                width={24}
+                height={24}
+                className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
+              />
+            </a>
+            <a
+              href="#"
+              className="w-6 h-6 transition-all duration-200 group rounded"
+              style={{
+                backgroundColor: 'transparent',
+                transition: 'background-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/icons___bxl-linkedin.svg"
+                alt="LinkedIn"
+                width={24}
+                height={24}
+                className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
+              />
+            </a>
+            <a
+              href="#"
+              className="w-6 h-6 transition-all duration-200 group rounded"
+              style={{
+                backgroundColor: 'transparent',
+                transition: 'background-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FFC800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/assets/icons___bxl-instagram-alt.svg"
+                alt="Instagram"
+                width={24}
+                height={24}
+                className="w-full h-full transition-all duration-200 group-hover:brightness-0 group-hover:drop-shadow-[0_0_6px_#FFC800]"
+              />
+            </a>
+          </div>
+          <p className={`text-white text-center text-sm mobile:text-base sm:text-right ${styles.copyrighttext}`}>{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

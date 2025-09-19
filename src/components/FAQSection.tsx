@@ -30,11 +30,12 @@ export default function FAQSection() {
     <section className="bg-myusta-gray">
       <div>
         <div className="max-w-[1000px] mx-auto sm:px-6 lg:px-8">
-          <div className="mb-10 sm:mb-12 text-center mt-1 sm:mt-3">
+          <div className="text-center">
             <Title
               firstText={t('faq.title')}
               as="h2"
               centered={true}
+              className='section-title'
             />
           </div>
 

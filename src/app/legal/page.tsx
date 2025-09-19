@@ -5,170 +5,155 @@ import { useSearchParams } from 'next/navigation';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
-import { LanguageProvider } from '../../contexts/LanguageContext';
-import styles from '../../styles/LegalPage.module.css';
+import { LanguageProvider, useLanguage } from '../../contexts/LanguageContext';
 
 export default function LegalPage() {
-  const searchParams = useSearchParams();
-  const langParam = searchParams.get('lang') as 'sq' | 'en' | null;
-  const defaultLanguage = langParam || 'en';
+  const { t } = useLanguage();
 
   return (
-    <LanguageProvider>
-      <div className=" bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
-        <Header />
+    <div className="bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
+      <Header />
 
-        <main className="w-full relative">
-          <div className="w-full bg-myusta-gray">
-            <div className="w-full max-w-[1000px] mx-auto global-main-page py-[32px] xl:py-[48px]">
-              {/* <div className={styles.legalContainer}> */}
-              {/* Breadcrumb */}
-              <nav className={styles.breadcrumb}>
-                <a href="/" className={`${styles.breadcrumbItem} ${styles.breadcrumbLink}`}>Home</a>
-                <span className={styles.breadcrumbSeparator}>/</span>
-                <span className={`${styles.breadcrumbItem} ${styles.breadcrumbCurrent}`}>Terms & Conditions</span>
-              </nav>
+      <main className="w-full relative">
+        <div className="w-full bg-myusta-gray">
+          <div className="w-full max-w-[1000px] mx-auto global-main-page pt-[32px] pb-[48px] mobile:pt-[48px] mobile:pb-[48px]">
 
-              {/* <div
-          className="text-[24px] font-semibold text-center  mb-4 xl:mb-6 p-0"
-          style={{
-            lineHeight: '120%'
-          }}
-        >
-          <span className='text-bold text-myusta-navy'>{language === 'sq' ? 'Na ' : 'Contact '}</span>
-          <span className='text-normal text-myusta-navy'>{language === 'sq' ? 'Kontaktoni' : 'Us'}</span>
+            {/* Breadcrumb */}
+            <nav className="mobile:mb-[64px] mb-[32px] text-sm mobile:text-base ">
+              <a href="/" className="text-[#868686] hover:text-myusta-yellow transition-colors">{t("terms.breadcrumb.home")}</a>
+              <span className="ml-2 mr-0.5 text-myusta-navy">/</span>
+              <span className="text-myusta-navy font-semibold ">{t("terms.breadcrumb.termsAndConditions")}</span>
+            </nav>
 
-        </div> */}
+            {/* Main Title */}
+            <Title
+              firstText={t("terms.title.first")}
+              secondText={t("terms.title.second")}
+              as="h1"
+              centered={true}
+              className="text-[28px] mobile:text-[48px] font-bold "
+            />
 
-              {/* Main Title */}
-              <Title
-                firstText="Terms"
-                secondText="& Conditions"
-                as="h1"
-                centered={true}
-                className={styles.mainTitle}
-              />
+            {/* Terms & Conditions Section */}
+            <div className="mb-4 mt-8 mobile:mt-12">
+              <h2 className="text-[20px] mobile:text-[24px] font-semibold mb-4 text-myusta-navy">{t("terms.welcome.title")}</h2>
+              <p className="text-sm mobile:text-base mb-5 mobile:mb-6 text-light-gray-text ">
+                {t("terms.welcome.description")}
+              </p>
 
-              {/* Terms & Conditions Section */}
-              <div className={styles.legalSection}>
-                <h2 className={styles.sectionTitle}>Welcome to myUsta!</h2>
-                <p className={styles.sectionText}>
-                  myUsta is a platform in development that will help customers connect with skilled tradespeople ("Ustas") for home improvement and service jobs. This landing page allows you to join our waitlist and be among the first to try it.
-                </p>
+              {/* Divider after Welcome section */}
+              <div className="w-full h-[1px] bg-[#D3D3D3] mb-5 mobile:mb-6"></div>
 
-                {/* Divider after Welcome section */}
-                <div className={styles.welcomeDivider}></div>
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.sections.joiningWaitlist.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text ">
+                {t("terms.sections.joiningWaitlist.description")}
+              </p>
+              <ul className="list-disc pl-6 text-sm mobile:text-base text-light-gray-text space-y-1">
+                <li>{t("terms.sections.joiningWaitlist.points.0")}</li>
+                <li>{t("terms.sections.joiningWaitlist.points.1")}</li>
+                <li>{t("terms.sections.joiningWaitlist.points.2")}</li>
+              </ul>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.sections.joiningWaitlist.note")}
+              </p>
 
-                <h3 className={styles.subsectionTitle}>1. Joining the Waitlist</h3>
-                <p className={styles.sectionText}>
-                  By submitting your information, you agree:
-                </p>
-                <ul className={styles.legalList}>
-                  <li>You are at least 18 years old.</li>
-                  <li>The information you provide (like name and email) is accurate.</li>
-                  <li>You're okay with us contacting you about myUsta updates and launch info.</li>
-                </ul>
-                <p className={styles.sectionText}>
-                  You are not committing to use the service, and we are not committing to accept every waitlist signup into the full platform.
-                </p>
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.sections.intellectualProperty.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.sections.intellectualProperty.description")}
+              </p>
 
-                <h3 className={styles.subsectionTitle}>2. Intellectual Property</h3>
-                <p className={styles.sectionText}>
-                  All content on this site—including text, logos, designs, and visuals—is owned by or licensed to myUsta. Don't use, reproduce, or modify anything without our written permission.
-                </p>
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.sections.noWarranties.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.sections.noWarranties.description")}
+              </p>
 
-                <h3 className={styles.subsectionTitle}>3. No Warranties (Yet!)</h3>
-                <p className={styles.sectionText}>
-                  Since this is an early access preview, the waitlist page is provided "as is." We can't guarantee availability, accuracy, or performance. We're still building!
-                </p>
-
-                <h3 className={styles.subsectionTitle}>4. Limitation of Liability</h3>
-                <p className={styles.sectionText}>
-                  We're not liable for:
-                </p>
-                <ul className={styles.legalList}>
-                  <li>Any errors or bugs on the waitlist site,</li>
-                  <li>Losses resulting from relying on preliminary info about our platform,</li>
-                  <li>Issues related to third-party tools or services.</li>
-                </ul>
-              </div>
-
-
-
-              {/* Privacy Policy Section */}
-              <div className={styles.legalSection}>
-                <h2 className={styles.sectionTitle}>🔐 Privacy Policy</h2>
-                <p className={styles.sectionText}>
-                  We respect your privacy. This section explains how we collect, use, and protect your information.
-                </p>
-
-                <div className={styles.divider}></div>
-
-                <h3 className={styles.subsectionTitle}>1. What We Collect</h3>
-                <p className={styles.sectionText}>
-                  When you join the waitlist, we may collect:
-                </p>
-                <ul className={styles.legalList}>
-                  <li>Your name</li>
-                  <li>Your email</li>
-                  <li>(Optional) Your location or service interest, if you provide it</li>
-                </ul>
-                <p className={styles.sectionText}>
-                  We do not collect payment details or sensitive personal data at this stage.
-                </p>
-
-                <h3 className={styles.subsectionTitle}>2. How We Use Your Info</h3>
-                <p className={styles.sectionText}>
-                  We use your info to:
-                </p>
-                <ul className={styles.legalList}>
-                  <li>Notify you about myUsta's progress, updates, and launch,</li>
-                  <li>Understand general user interest by region or profession,</li>
-                  <li>Occasionally request feedback or offer early access.</li>
-                </ul>
-                <p className={styles.sectionText}>
-                  We will never sell your data or share it with third parties for marketing.
-                </p>
-
-                <h3 className={styles.subsectionTitle}>3. Data Storage</h3>
-                <p className={styles.sectionText}>
-                  Your data is stored securely using trusted third-party services (such as email management or analytics providers). We take reasonable steps to protect your data from unauthorized access.
-                </p>
-
-                <h3 className={styles.subsectionTitle}>4. Your Rights</h3>
-                <p className={styles.sectionText}>
-                  You may:
-                </p>
-                <ul className={styles.legalList}>
-                  <li>Request a copy of your data,</li>
-                  <li>Ask us to delete your data at any time,</li>
-                  <li>Opt out of emails by clicking "unsubscribe" in any message or contacting us directly.</li>
-                </ul>
-
-                <h3 className={styles.subsectionTitle}>5. Cookies & Analytics</h3>
-                <p className={styles.sectionText}>
-                  We may use limited cookies or basic analytics (like Google Analytics) to see how users interact with the landing page. You can disable cookies in your browser settings.
-                </p>
-
-                <h3 className={styles.subsectionTitle}>6. Future Changes</h3>
-                <p className={styles.sectionText}>
-                  We may update this Privacy Policy before launching the full platform. Check back occasionally for changes.
-                </p>
-              </div>
-
-              {/* Footer Message */}
-              <div className={styles.footerMessage}>
-                <p>
-                  Thanks for your interest in myUsta! We're building something meaningful—and you're part of it from the start. 🙌
-                </p>
-              </div>
-              {/* </div> */}
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.sections.limitationOfLiability.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text ">
+                {t("terms.sections.limitationOfLiability.description")}
+              </p>
+              <ul className="list-disc pl-6 text-light-gray-text space-y-1">
+                <li>{t("terms.sections.limitationOfLiability.points.0")}</li>
+                <li>{t("terms.sections.limitationOfLiability.points.1")}</li>
+                <li>{t("terms.sections.limitationOfLiability.points.2")}</li>
+              </ul>
             </div>
-          </div>
-        </main>
 
-        <Footer />
-      </div>
-    </LanguageProvider>
+            {/* Privacy Policy Section */}
+            <div className="mt-12">
+              <h2 className="text-[20px] mobile:text-[24px] font-semibold mb-4 text-myusta-navy">{t("terms.privacyPolicy.title")}</h2>
+              <p className="text-sm mobile:text-base mb-5 mobile:mb-6 text-light-gray-text ">
+                {t("terms.privacyPolicy.description")}
+              </p>
+
+              <div className="w-full h-[1px] bg-[#D3D3D3] mb-5 mobile:mb-6"></div>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.whatWeCollect.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text ">
+                {t("terms.privacyPolicy.sections.whatWeCollect.description")}
+              </p>
+              <ul className="list-disc pl-6 text-sm mobile:text-base text-light-gray-text space-y-1">
+                <li>{t("terms.privacyPolicy.sections.whatWeCollect.points.0")}</li>
+                <li>{t("terms.privacyPolicy.sections.whatWeCollect.points.1")}</li>
+                <li>{t("terms.privacyPolicy.sections.whatWeCollect.points.2")}</li>
+              </ul>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.privacyPolicy.sections.whatWeCollect.note")}
+              </p>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.howWeUseInfo.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text ">
+                {t("terms.privacyPolicy.sections.howWeUseInfo.description")}
+              </p>
+              <ul className="list-disc pl-6 text-sm mobile:text-base text-light-gray-text space-y-1">
+                <li>{t("terms.privacyPolicy.sections.howWeUseInfo.points.0")}</li>
+                <li>{t("terms.privacyPolicy.sections.howWeUseInfo.points.1")}</li>
+                <li>{t("terms.privacyPolicy.sections.howWeUseInfo.points.2")}</li>
+              </ul>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.privacyPolicy.sections.howWeUseInfo.note")}
+              </p>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.dataStorage.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.privacyPolicy.sections.dataStorage.description")}
+              </p>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.yourRights.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text ">
+                {t("terms.privacyPolicy.sections.yourRights.description")}
+              </p>
+              <ul className="list-disc pl-6 text-sm mobile:text-base text-light-gray-text space-y-1">
+                <li>{t("terms.privacyPolicy.sections.yourRights.points.0")}</li>
+                <li>{t("terms.privacyPolicy.sections.yourRights.points.1")}</li>
+                <li>{t("terms.privacyPolicy.sections.yourRights.points.2")}</li>
+              </ul>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.cookiesAnalytics.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text mb-4 mobile:mb-5">
+                {t("terms.privacyPolicy.sections.cookiesAnalytics.description")}
+              </p>
+
+              <h3 className="text-[20px] mobile:text-[24px] font-semibold mb-4 mobile:mb-5 text-myusta-navy">{t("terms.privacyPolicy.sections.futureChanges.title")}</h3>
+              <p className="text-sm mobile:text-base text-light-gray-text">
+                {t("terms.privacyPolicy.sections.futureChanges.description")}
+              </p>
+            </div>
+
+            {/* Footer Message */}
+            <div className="">
+              <p className="text-sm mobile:text-base text-light-gray-text">
+                {t("terms.footerMessage1")}
+              </p>
+              <p className="text-sm mobile:text-base text-light-gray-text">
+                {t("terms.footerMessage2")}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 }
