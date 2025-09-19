@@ -1,7 +1,7 @@
 /* Why Join Section Container */
 .whyJoinSection {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  /* padding-top: 4rem;
+  padding-bottom: 4rem; */
   background: #f3f3f3;
 }
 
@@ -18,11 +18,11 @@
 /* Header Container */
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 }
 
 .title {
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   color: var(--Navy, #00203F);
 }
 
@@ -159,13 +159,13 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .whyJoinSection {
-padding: 1.25rem;
+padding:0rem 1.25rem;
   }
 }
 
 /* Responsive Design */
 @media (min-width: 640px) {
-  .whyJoinSection {
+  /* .whyJoinSection {
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
@@ -176,7 +176,7 @@ padding: 1.25rem;
   
   .title {
     margin-bottom: 3rem;
-  }
+  } */
   
   .cardContent {
     padding: 1.25rem;
@@ -195,10 +195,10 @@ padding: 1.25rem;
 }
 
 @media (min-width: 1024px) {
-  .whyJoinSection {
+  /* .whyJoinSection {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
+  } */
   
   .benefitsGrid {
     grid-template-columns: repeat(3, 1fr);
@@ -208,10 +208,10 @@ padding: 1.25rem;
 
 /* Large Desktop Adjustments */
 @media (min-width: 1440px) {
-  .whyJoinSection {
+  /* .whyJoinSection {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
+  } */
   
   .benefitsGrid {
     gap: 1rem;
@@ -220,37 +220,27 @@ padding: 1.25rem;
 
 
 @media (max-width: 639px) {
-  .header {
+  /* .header {
     margin-bottom: 0;
-  }
+  } */
   
   /* Add any other mobile-specific styles here */
-  .whyJoinSection {
-    padding-top: 2rem;  /* Optional: reduce padding on mobile */
+  /* .whyJoinSection {
+    padding-top: 2rem;  
     padding-bottom: 3rem;
-  }
+  } */
   
   .title {
-    margin-bottom: 1.5rem;  /* Optional: reduce title margin */
-    font-size: 1.5rem;  /* Optional: adjust font size */
+    /* margin-bottom: 1.5rem;   */
+    font-size: 1.5rem; 
   }
   
   .description {
-    padding: 0 1rem;  /* Optional: add horizontal padding */
+  
     font-size: 0.875rem;  /* Optional: slightly smaller text */
   }
   
   .benefitsGrid {
     padding: 0;  /* Optional: add padding to grid */
   }
-}
-
-/* Alternative: Extra small devices (phones, 480px and below) */
-@media (max-width: 480px) {
-  /* Even more specific mobile styles if needed */
-}
-
-/* Alternative: Small devices (landscape phones, 576px and below) */
-@media (max-width: 576px) {
-  /* Bootstrap's mobile breakpoint */
 }

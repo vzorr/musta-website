@@ -59,7 +59,7 @@ export default function WhyJoinSection() {
             secondText={remainingTitle}
             as="h1"
             centered={true}
-            className={styles.title}
+            className={`${styles.title} section-title`}
           />
          
         </div>

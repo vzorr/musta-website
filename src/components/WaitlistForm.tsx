@@ -154,12 +154,12 @@ export default function WaitlistForm() {
 
 
   return (
-    <section id="waitlist" className="bg-myusta-gray relative z-10 pb-8 sm:pb-10 pt-6 md:pt-8 lg:pt-2">
+    <section id="waitlist" className="bg-myusta-gray relative z-10">
       <div className="max-w-[1000px] mx-auto">
         {/* Register Today Section */}
         {showWaitlistForm && (
           <div className="text-center">
-            <div className="mb-[38px] mobile:mb-12">
+            <div className="">
               <TwoLineTitle
                 firstLine={language === 'sq' ? 'Regjistrohu Sot.' : 'Register Today.'}
                 secondLine={language === 'sq' ? 'Është Falas!' : 'It\'s Free!'}
@@ -167,6 +167,7 @@ export default function WaitlistForm() {
                 secondLineBold={true}
                 as="h2"
                 centered={true}
+                className='section-title'
               />
             </div>
 
@@ -291,7 +292,7 @@ export default function WaitlistForm() {
           </div>
         )}
 
-        <div className={`${showRecommendForm ? 'mt-0' : 'pt-[42px] md:pt-[48px]  '} w-full small:w-[400px] text-center  mx-auto`}>
+        <div className={`${showRecommendForm ? 'mt-0' : ' '} w-full small:w-[400px] text-center  mx-auto`}>
           <div className="mb-6">
             {/* <TwoLineTitle
               firstLine={language === 'sq' ? 'Ndihmoni të Rritim' : 'Help us Grow'}
@@ -301,7 +302,7 @@ export default function WaitlistForm() {
               as="h2"
               centered={true}
             /> */}
-            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy">
+            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy section-title">
               <p className='font-normal '>{language === 'sq' ? 'Ndihmo në rritjen e' : 'Help us Grow'}</p>
               <p className='font-bold'>{language === 'sq' ? 'Komunitetit!!' : 'the Community!'}</p>
             </div>

@@ -3,7 +3,9 @@
 .videoSection {
   width: 100%;
   background: #f3f3f3;
-  padding: 3rem 0 4rem 0; /* 48px top, 64px bottom */
+  /* padding: 3rem 0 4rem 0;  */
+  /* 48px top, 64px bottom */
+  padding-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,13 +76,13 @@
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .videoSection {
-    padding: 1.25rem;
+    padding:0rem 1.25rem;
   }
 }
 
 @media (max-width: 767px) {
   .videoSection {
-    padding: 1.5rem 0; /* 24px top and bottom = 48px total on mobile */
+    padding-top: 1.5rem; /* 24px top and bottom = 48px total on mobile */
   }
 
   .videoContainer {
@@ -100,7 +102,7 @@
 
 @media (max-width: 480px) {
   .videoSection {
-    padding: 1rem 0; /* 16px top and bottom = 32px total on small mobile */
+    padding-top: 1rem; /* 16px top and bottom = 32px total on small mobile */
   }
 
   .playButton {

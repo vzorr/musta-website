@@ -501,6 +501,19 @@ a:focus {
    UTILITY CLASSES
 ======================================== */
 
+/* Global Section Title Spacing */
+.section-title {
+  margin-top: 48px !important;
+  margin-bottom: 32px !important;
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    margin-top: 64px !important;
+    margin-bottom: 48px !important;
+  }
+}
+
 /* Spacing Utilities */
 .spacing-section {
   padding-top: 3rem;

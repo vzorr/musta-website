@@ -9,7 +9,7 @@
 
 /* Title to Cards Gap - 48px spacing */
 .howItWorksTitle {
-  margin-bottom: 3rem; /* 48px gap between title and cards */
+  /* margin-bottom: 3rem; */
   text-align: center;
   color: var(--Navy, #00203F);
 }
@@ -100,6 +100,7 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .howItWorksSection {
 padding:0 1.25rem;
+padding-bottom: 1.25rem;
   }
 }
 
@@ -111,16 +112,16 @@ padding:0 1.25rem;
 
 /* Mobile spacing */
 @media (max-width: 767px) {
-  .howItWorksTitle {
-    margin-bottom: 3rem; /* 48px gap on mobile */
-  }
+  /* .howItWorksTitle {
+    margin-bottom: 3rem; 
+  } */
 }
 
 /* Tablet spacing */
 @media (min-width: 768px) {
-  .howItWorksTitle {
-    margin-bottom: 3rem; /* 48px gap on tablet */
-  }
+  /* .howItWorksTitle {
+    margin-bottom: 3rem;
+  } */
   
   .howItWorksGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -134,14 +135,14 @@ padding:0 1.25rem;
 
 /* Desktop spacing - Match Figma exactly */
 @media (min-width: 1024px) {
-  .howItWorksSection {
-    padding-top: 0; /* 0px on desktop */
-    padding-bottom: 0; /* 0px on desktop - VideoSection handles the gap */
+  /* .howItWorksSection {
+    padding-top: 0;
+    padding-bottom: 0; 
   }
   
   .howItWorksTitle {
-    margin-bottom: 3rem; /* 48px gap on desktop */
-  }
+    margin-bottom: 3rem; 
+  } */
   
   .howItWorksGrid {
     grid-template-columns: repeat(3, 1fr);
@@ -151,10 +152,10 @@ padding:0 1.25rem;
 
 /* Large Desktop Adjustments */
 @media (min-width: 1440px) {
-  .howItWorksSection {
-    padding-top: 0; /* 0px on very large screens */
-    padding-bottom: 0; /* 0px on very large screens - VideoSection handles the gap */
-  }
+  /* .howItWorksSection {
+    padding-top: 0; 
+    padding-bottom: 0; 
+  } */
   
   .howItWorksGrid {
     gap: 1rem; /* 16px gap across all screen sizes */

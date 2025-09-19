@@ -29,7 +29,8 @@ export default function HowItWorksSection() {
           secondText={remainingTitle}
           as="h1"
           centered={true}
-          className={styles.howItWorksTitle}
+          className={`${styles.howItWorksTitle} section-title`}
+          
         />
         
         {/* Cards Grid with proper Figma spacing */}
