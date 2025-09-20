@@ -4,6 +4,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import Logo from './Logo';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/footer.module.css';
 
 

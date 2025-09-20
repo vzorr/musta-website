@@ -363,11 +363,9 @@ export default function WaitlistForm() {
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
-                      setTimeout(() => {
-                        setShowRecommendForm(true);
-                        setShowCommunitySection(false);
-                        setShowWaitlistForm(false);
-                      }, 0);
+                      setShowRecommendForm(true);
+                      setShowCommunitySection(false);
+                      setShowWaitlistForm(false);
                     }}
                     variant="primary"
                     className="text-myusta-navy font-semibold text-lg rounded-lg w-[207px] h-[44px]"
