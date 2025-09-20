@@ -27,29 +27,28 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="bg-myusta-gray">
-      <div>
-        <div className="max-w-[1000px] mx-auto sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Title
-              firstText={t('faq.title')}
-              as="h2"
-              centered={true}
-              className='section-title'
-            />
-          </div>
+    <section className="">
+      <div className="max-w-[1000px] mx-auto md:px-5 lg:px-0">
+        <div className="text-center">
+          <Title
+            firstText={t('faq.title')}
+            as="h2"
+            centered={true}
+            className='section-title'
+          />
+        </div>
 
-          <div className="space-y-4" style={{ marginBottom: '48px' }}>
-            {faqItems.map((item, index) => (
-              <FAQItem
-                key={index}
-                question={item.question}
-                answer={item.answer}
-              />
-            ))}
-          </div>
+        <div className="space-y-4" style={{ marginBottom: '48px' }}>
+          {faqItems.map((item, index) => (
+            <FAQItem
+              key={index}
+              question={item.question}
+              answer={item.answer}
+            />
+          ))}
         </div>
       </div>
+
     </section>
   );
 }

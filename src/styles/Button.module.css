@@ -23,6 +23,8 @@
   font-style: normal;
   font-weight: 450;
   line-height: normal;
+  touch-action: manipulation; /* Prevent double-tap zoom and improve touch responsiveness */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
 }
 
 /* ========================================
@@ -306,6 +308,8 @@
   .button {
     min-height: 44px; 
     font-size: 14px;
+    touch-action: manipulation; /* Prevent double-tap zoom and improve touch responsiveness */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
   }
 
   .small {

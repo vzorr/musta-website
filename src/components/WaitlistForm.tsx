@@ -197,7 +197,7 @@ export default function WaitlistForm() {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder={language === 'sq' ? 'Emri' : 'Name'}
-                    className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
+                    className="neumorphic-input appearance-none w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
                     required
                     maxLength={100}
                   />
@@ -316,11 +316,11 @@ export default function WaitlistForm() {
 
         )}
 
-        <div className={`${showRecommendForm ? 'mt-0' : ' '} w-full small:w-[400px] text-center  mx-auto`}>
-          <div className="mb-6">
-            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy section-title">
+        <div className={`${showRecommendForm ? 'mt-0' : ' '} `}>
+          <div className="max-w-[1000px] mx-auto">
+            <div style={{ lineHeight: '100%' }} className="text-[24px] mobile:[32px] md:text-[40px] lg:text-[48px]  font-normal text-myusta-navy section-title-description text-center">
               <p className='font-normal '>{language === 'sq' ? 'Ndihmo në rritjen e' : 'Help us Grow'}</p>
-              <p className='font-bold'>{language === 'sq' ? 'Komunitetit!!' : 'the Community!'}</p>
+              <p className='font-bold'>{language === 'sq' ? 'Komunitetit!' : 'the Community!'}</p>
             </div>
           </div>
           <div className="mb-6 text-center">
@@ -354,31 +354,36 @@ export default function WaitlistForm() {
               )
             }
           </div>
-
-          {!showRecommendForm ? (
-            <div className="flex justify-center">
-              <div className="w-full max-w-sm">
-                <Button
-                  onClick={() => {
-                    console.log('Debug: Setting showRecommendForm to true');
-                    setShowRecommendForm(true);
-                    setShowCommunitySection(false);
-                    setShowWaitlistForm(false);
-                  }}
-                  variant="primary"
-                  size="large"
-                  fullWidth
-                  className="text-myusta-navy font-semibold text-lg py-4 rounded-lg"
-                >
-                  {language === 'sq' ? 'Rekomando Usta' : 'Recommend an Usta'}
-                </Button>
+          <div className=''>
+            {!showRecommendForm ? (
+              <div className="max-w-[1000px] mx-auto text-center">
+                <div className="w-full flex justify-center">
+                  <Button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setTimeout(() => {
+                        setShowRecommendForm(true);
+                        setShowCommunitySection(false);
+                        setShowWaitlistForm(false);
+                      }, 0);
+                    }}
+                    variant="primary"
+                    className="text-myusta-navy font-semibold text-lg rounded-lg w-[207px] h-[44px]"
+                  >
+                    {language === 'sq' ? 'Rekomando Usta' : 'Recommend an Usta'}
+                  </Button>
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="w-full flex justify-center">
-              <RecommendUstaForm />
-            </div>
-          )}
+            ) : (
+              <div className="flex justify-center w-full small:max-w-[400px] small:min-w-[400px] text-center  mx-auto">
+                <RecommendUstaForm />
+              </div>
+            )}
+          </div>
+
+
         </div>
       </div>
     </section>
