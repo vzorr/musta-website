@@ -11,6 +11,7 @@ module.exports = {
         tablet: '850px', 
         mobile: '640px', 
         small:'440px',
+        extraSmall:'400px'
 
       },
       colors: {

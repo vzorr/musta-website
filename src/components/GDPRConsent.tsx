@@ -117,7 +117,7 @@ export default function GDPRConsent({ onConsentChange, required = false }: GDPRC
   }
 
   return (
-    <>
+    <div>
       {/* GDPR Banner - Fixed at bottom of screen */}
       {showBanner && (
         <div className="fixed bottom-0 left-0 right-0 bg-myusta-navy text-white z-50 shadow-2xl border-t-4 border-myusta-yellow">
@@ -145,7 +145,7 @@ export default function GDPRConsent({ onConsentChange, required = false }: GDPRC
               </div>
               
               {/* Action Buttons */}
-              <div className="flex flex-row flex-wrap gap-2 sm:gap-3 min-w-max">
+              <div className="flex extraSmall:flex-row flex-wrap gap-2 sm:gap-3 extraSmall:min-w-max">
                 <button
                   onClick={() => setShowModal(true)}
                   className="px-4 py-2 border-2 border-white text-white hover:bg-white hover:text-myusta-navy transition-all duration-200 rounded-lg text-sm font-medium"
@@ -349,6 +349,6 @@ export default function GDPRConsent({ onConsentChange, required = false }: GDPRC
           </p>
         </div>
       )}
-    </>
+    </div>
   );
 }
