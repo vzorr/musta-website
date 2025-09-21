@@ -610,7 +610,7 @@ a:focus {
    PERFORMANCE OPTIMIZATIONS
 ======================================== */
 
-/* GPU Acceleration for Animations */
+
 .neumorphic-card,
 .icon-container {
   will-change: transform;
