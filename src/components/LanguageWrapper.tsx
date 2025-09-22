@@ -12,16 +12,14 @@ export default function LanguageWrapper({ children }: LanguageWrapperProps) {
 
   if (!isHydrated) {
     return (
-      <div className="min-h-screen bg-myusta-gray flex flex-col items-center justify-center">
-       
-        {/* <div className="w-12 h-12 border-4 border-myusta-navy border-t-myusta-yellow rounded-full animate-spin"></div>
-
-     
-        <div className="mt-4 text-myusta-navy text-lg font-medium tracking-wide">
-          Loading...
-        </div> */}
-        <img src="/assets/LoadingDots.gif" alt="Loading" />
+      <div className="min-h-screen bg-myusta-gray flex flex-col items-center justify-center space-y-4">
+      {/* Outer ring spinner */}
+      <div className="relative w-16 h-16">
+        <div className="absolute inset-0 rounded-full border-4 border-myusta-navy/20"></div>
+        <div className="absolute inset-0 rounded-full border-4 border-myusta-navy border-t-transparent animate-spin"></div>
       </div>
+    </div>
+    
     );
   }
 
