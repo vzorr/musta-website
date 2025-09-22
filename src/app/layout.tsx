@@ -41,7 +41,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="google" content="notranslate" />
         <link rel="canonical" href="https://myusta.com" />
-        <link rel="preload" href="/assets/hero-bg.svg" as="image" type="image/svg+xml" />
+        {/* <link rel="preload" href="/assets/hero-bg.svg" as="image" type="image/svg+xml" /> */}
         <link rel="preload" href="/assets/myusta_logo.svg" as="image" type="image/svg+xml" />
         <script
           dangerouslySetInnerHTML={{

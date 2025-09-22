@@ -54,7 +54,7 @@ const nextConfig = {
       };
     }
     
-    // FIXED: Improved webpack cache configuration for development
+    // FIXED: Improved webpack cache configuration for both dev and production
     if (dev) {
       config.cache = {
         type: 'filesystem',
@@ -64,15 +64,19 @@ const nextConfig = {
         // Exclude problematic packages from managed paths
         managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!(googleapis|nodemailer|@types[\\/]node))/],
       };
+    } else {
+      // Production: Use memory cache to avoid filesystem issues
+      config.cache = {
+        type: 'memory',
+      };
     }
     
-    if (dev) {
-      config.plugins.push(
-        new webpack.DefinePlugin({
-          'process.env.NEXT_RUNTIME': JSON.stringify('nodejs'),
-        })
-      );
-    }
+    // Add DefinePlugin for both dev and production
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env.NEXT_RUNTIME': JSON.stringify('nodejs'),
+      })
+    );
     
     return config;
   },
