@@ -15,11 +15,12 @@ export function middleware(request: NextRequest) {
   // CSP header for security
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com;
+    frame-src 'self' https://player.vimeo.com https://vimeo.com https://*.vimeo.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://player.vimeo.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' blob: data:;
+    img-src 'self' blob: data: https:;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self';
+    connect-src 'self' https://player.vimeo.com;
     frame-ancestors 'none';
   `.replace(/\s{2,}/g, ' ').trim();
   
