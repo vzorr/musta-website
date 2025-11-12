@@ -11,7 +11,7 @@ export default function WhyJoinSection() {
   const fullTitle = t('whyJoin.title');
   
   // Handle different languages properly
-  let firstPart, remainingTitle;
+  let firstPart, remainingTitle;  
   if (language === 'sq') {
     // For Albanian: "Pse të përdorni myUsta?" -> "Pse" + "të përdorni myUsta?"
     firstPart = "Pse";
