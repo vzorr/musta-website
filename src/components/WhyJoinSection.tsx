@@ -41,7 +41,7 @@ export default function WhyJoinSection() {
       descriptionKey: "whyJoin.benefits.saveTime.description"
     },
     {
-      imageSrc: "/assets/image_container.svg",
+      imageSrc: "/assets/hat.svg",
       imageAlt: "Build Reputation",
       iconSrc: "/assets/chain-icon.svg",
       iconAlt: "Chain Link Icon",
