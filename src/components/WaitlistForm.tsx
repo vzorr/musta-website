@@ -293,19 +293,19 @@ export default function WaitlistForm() {
                     multiple={true}
                   />
 
-                  <div
-                    style={{
-                      margin: "20px 0",
-                      display: "flex",
+                  <div className="w-full my-5" style={{ minHeight: "78px" }}>
+                    <div style={{ 
+                      display: "flex", 
                       justifyContent: "center",
-                      minHeight: "78px",
-                    }}
-                  >
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      size="normal"
-                      sitekey="6LfiPAosAAAAAAPqLMu7_KSBxsqaOOX93qZNL40L"
-                    />
+                      transform: "scale(1.05)",
+                      transformOrigin: "center"
+                    }}>
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        size="normal"
+                        sitekey="6LfiPAosAAAAAAPqLMu7_KSBxsqaOOX93qZNL40L"
+                      />
+                    </div>
                   </div>
                   <Button
                     type="submit"

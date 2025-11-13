@@ -11,16 +11,16 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   
-  // CSP WITH RECAPTCHA SUPPORT
+  // CSP WITH RECAPTCHA AND VIMEO SUPPORT
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://player.vimeo.com;
     script-src-elem 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' blob: data: https://www.gstatic.com;
+    img-src 'self' blob: data: https:;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://www.google.com;
-    frame-src https://www.google.com;
+    connect-src 'self' https://www.google.com https://player.vimeo.com;
+    frame-src 'self' https://www.google.com https://player.vimeo.com https://vimeo.com https://*.vimeo.com;
     frame-ancestors 'none';
   `.replace(/\s{2,}/g, ' ').trim();
   
