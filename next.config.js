@@ -19,20 +19,10 @@ const nextConfig = {
     unoptimized: false,
   },
   
-  // Internationalization (keeping for potential future use)
- // i18n: {
-  //  locales: ['sq', 'en'],
-  //  defaultLocale: 'sq',
-  //},
-  
   // Performance optimizations
   swcMinify: true,
   
-  // FIXED: Updated experimental features for Next.js 14.2.0
   experimental: {
-    // REMOVED: appDir is now default in Next.js 14+
-    // REMOVED: serverActions is now enabled by default
-    // Server components external packages
     serverComponentsExternalPackages: ['nodemailer', 'googleapis'],
   },
   
@@ -41,9 +31,7 @@ const nextConfig = {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
   
-  // FIXED: Webpack configuration with cache improvements
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Handle node modules that might not be compatible with edge runtime
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -54,14 +42,12 @@ const nextConfig = {
       };
     }
     
-    // FIXED: Improved webpack cache configuration for both dev and production
     if (dev) {
       config.cache = {
         type: 'filesystem',
         buildDependencies: {
           config: [__filename],
         },
-        // Exclude problematic packages from managed paths
         managedPaths: [/^(.+?[\\/]node_modules[\\/])(?!(googleapis|nodemailer|@types[\\/]node))/],
       };
     } else {
@@ -81,9 +67,25 @@ const nextConfig = {
     return config;
   },
   
-  // Headers for security and CORS
+  // Headers for security and CORS + reCAPTCHA
   async headers() {
     return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; " +
+                   "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
+                   "script-src-elem 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
+                   "frame-src 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
+                   "style-src 'self' 'unsafe-inline' https://www.gstatic.com; " +
+                   "img-src 'self' data: blob: https: https://www.gstatic.com; " +
+                   "connect-src 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net; " +
+                   "font-src 'self' https://fonts.gstatic.com;",
+          },
+        ],
+      },
       {
         source: '/api/:path*',
         headers: [
@@ -95,44 +97,22 @@ const nextConfig = {
       },
     ];
   },
-  
-  // Redirects (if needed)
+
   async redirects() {
-    return [
-      // Example redirect
-      // {
-      //   source: '/old-page',
-      //   destination: '/new-page',
-      //   permanent: true,
-      // },
-    ];
+    return [];
   },
   
-  // Rewrites for API or other routes
   async rewrites() {
-    return [
-      // Example rewrite
-      // {
-      //   source: '/api-proxy/:path*',
-      //   destination: 'https://external-api.com/:path*',
-      // },
-    ];
+    return [];
   },
   
-  // Output configuration
-  output: 'standalone', // For Docker deployments
+  output: 'standalone',
   
-  // TypeScript configuration
   typescript: {
-    // Dangerously allow production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreBuildErrors: false,
   },
   
-  // ESLint configuration
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: false,
   },
 }

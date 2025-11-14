@@ -1,13 +1,13 @@
 // src/components/ContactForm.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import Button from './Button';
 import Title from './Title';
 import styles from '../styles/ContactForm.module.css';
 import containerStyles from '../styles/SectionContainer.module.css';
-
+import ReCAPTCHA from "react-google-recaptcha"
 interface ContactFormData {
   name: string;
   phone: string;
@@ -22,6 +22,7 @@ interface ContactFormProps {
 
 export default function ContactForm({ defaultLanguage }: ContactFormProps) {
   const { t, language } = useLanguage();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     phone: '',
@@ -67,11 +68,36 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
     if (!validateForm()) {
       return;
     }
+    const recaptchaToken = recaptchaRef.current?.getValue();
+
+    if (!recaptchaToken) {
+      setMessage(
+        language === "sq"
+          ? "Ju lutemi plotësoni reCAPTCHA"
+          : "Please complete reCAPTCHA"
+      );
+      setMessageType("error");
+      return;
+    }
+    debugger;
 
     setIsSubmitting(true);
     setMessage('');
 
     try {
+      const validateResponse = await fetch("/api/validateRecaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ recaptchaToken }),
+      });
+
+      if (!validateResponse.ok) {
+        setMessage("reCAPTCHA validation failed");
+        setMessageType("error");
+        recaptchaRef.current?.reset();
+        setIsSubmitting(false);
+        return;
+      }
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -199,6 +225,20 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             required
             maxLength={1000}
           />
+          <div className="w-full my-5" style={{ minHeight: "78px" }}>
+            <div style={{ 
+              display: "flex", 
+              justifyContent: "center",
+              transform: "scale(1.05)",
+              transformOrigin: "center"
+            }}>
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                size="normal"
+                sitekey="6LfiPAosAAAAAAPqLMu7_KSBxsqaOOX93qZNL40L"
+              />
+            </div>
+          </div>
 
           <Button
             type="submit"

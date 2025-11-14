@@ -1,13 +1,14 @@
 // src/components/RecommendUstaForm.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import Button from "./Button";
 import CustomDropdown from "./CustomDropdown";
 import Image from "next/image";
 import styles from "../styles/RecommendUsta.module.css";
 import containerStyles from "../styles/SectionContainer.module.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface RecommendFormData {
   name: string;
@@ -22,6 +23,8 @@ interface RecommendFormData {
 
 export default function RecommendUstaForm() {
   const { t, language } = useLanguage();
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
   const [formData, setFormData] = useState<RecommendFormData>({
     name: "",
     phone: "",
@@ -127,11 +130,36 @@ export default function RecommendUstaForm() {
     if (!validateForm()) {
       return;
     }
+    const recaptchaToken = recaptchaRef.current?.getValue();
 
+    if (!recaptchaToken) {
+      setMessage(
+        language === "sq"
+          ? "Ju lutemi plotësoni reCAPTCHA"
+          : "Please complete reCAPTCHA"
+      );
+      setMessageType("error");
+      return;
+    }
+    debugger;
     setIsSubmitting(true);
     setMessage("");
 
     try {
+      const validateResponse = await fetch("/api/validateRecaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ recaptchaToken }),
+      });
+
+      if (!validateResponse.ok) {
+        setMessage("reCAPTCHA validation failed");
+        setMessageType("error");
+        recaptchaRef.current?.reset();
+        setIsSubmitting(false);
+        return;
+      }
+
       const response = await fetch("/api/recommend", {
         method: "POST",
         headers: {
@@ -281,6 +309,20 @@ export default function RecommendUstaForm() {
               required
               multiple={true}
             />
+            <div className="w-full my-5" style={{ minHeight: "78px" }}>
+              <div style={{ 
+                display: "flex", 
+                justifyContent: "center",
+                transform: "scale(1.05)",
+                transformOrigin: "center"
+              }}>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  size="normal"
+                  sitekey="6LfiPAosAAAAAAPqLMu7_KSBxsqaOOX93qZNL40L"
+                />
+              </div>
+            </div>
 
             {!isSuccess ? (
               <Button
