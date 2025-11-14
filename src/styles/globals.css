@@ -130,19 +130,36 @@ select.neumorphic-input {
   background: #f3f3f3;
   border: none;
   outline: none;
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
+  box-sizing: border-box;
+  overflow: hidden;
+  contain: layout style;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-/* Responsive Input Shadows */
+/* Responsive Input Shadows - Fixed for mobile */
 @media (max-width: 640px) {
   .neumorphic-input {
     box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.1),
-      inset -2px -2px 3px rgba(255, 255, 255, 1);
+    inset -2px -2px 3px rgba(255, 255, 255, 1);
+    /* box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1),
+      inset -1px -1px 2px rgba(255, 255, 255, 1); */
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    transform: translateZ(0); /* Force hardware acceleration */
+    -webkit-transform: translateZ(0);
   }
 
   .neumorphic-input:focus {
     box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0.15),
-      inset -3px -3px 4px rgba(255, 255, 255, 1);
+    inset -3px -3px 4px rgba(255, 255, 255, 1);
+    /* box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.15),
+      inset -2px -2px 3px rgba(255, 255, 255, 1); */
+    transform: translateZ(0); /* Force hardware acceleration */
+    -webkit-transform: translateZ(0);
   }
 }
 
@@ -153,8 +170,8 @@ select.neumorphic-input {
   }
 
   .neumorphic-input:focus {
-    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.15),
-      inset -4px -4px 6px rgba(255, 255, 255, 1);
+    box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0.15),
+      inset -3px -3px 4px rgba(255, 255, 255, 1);
   }
 }
 
@@ -164,9 +181,9 @@ select.neumorphic-input {
 }
 
 /* Add space before placeholder when input is focused */
-.neumorphic-input:focus::placeholder {
+/* .neumorphic-input:focus::placeholder {
   text-indent: 1ch;
-}
+} */
 
 /* ========================================
    ICON CONTAINERS
@@ -344,6 +361,18 @@ footer > div {
     min-width: 44px;
     min-height: 44px;
   }
+
+  /* Prevent form container overflow */
+  .neumorphic-card {
+    overflow: hidden;
+    contain: layout style;
+  }
+
+  /* Prevent body scroll when input is focused */
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
 }
 
 /* ========================================
@@ -514,7 +543,18 @@ a:focus {
   }
 }
 
-/* Spacing Utilities */
+.section-title-description {
+  margin-top: 48px !important;
+  margin-bottom: 24px !important;
+}
+
+@media (min-width: 1024px) {
+  .section-title-description {
+    margin-top: 64px !important;
+    margin-bottom: 32px !important;
+  }
+}
+
 .spacing-section {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -570,7 +610,7 @@ a:focus {
    PERFORMANCE OPTIMIZATIONS
 ======================================== */
 
-/* GPU Acceleration for Animations */
+
 .neumorphic-card,
 .icon-container {
   will-change: transform;
@@ -578,16 +618,16 @@ a:focus {
 }
 
 /* Optimize Font Loading */
-@font-face {
+/* @font-face {
   font-family: "Inter";
   font-display: swap;
-}
+} */
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .global-main-page {
     /* padding: 0px 60px; */
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
 

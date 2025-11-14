@@ -194,7 +194,7 @@ export default function ContactForm({ defaultLanguage }: ContactFormProps) {
             value={formData.message}
             onChange={handleInputChange}
             placeholder={language === 'sq' ? 'Mesazhi Juaj' : 'Your Message'}
-             className="neumorphic-input w-full block p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray resize-none leading-none align-top"
+            className="neumorphic-input w-full block p-3 rounded-lg border-0 text-myusta-navy placeholder-myusta-navy placeholder-opacity-70 focus:outline-none bg-myusta-gray resize-none leading-none align-top"
             rows={5}
             required
             maxLength={1000}

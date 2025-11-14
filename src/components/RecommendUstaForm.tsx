@@ -1,13 +1,13 @@
 // src/components/RecommendUstaForm.tsx
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import Button from './Button';
-import CustomDropdown from './CustomDropdown';
-import Image from 'next/image';
-import styles from '../styles/RecommendUsta.module.css';
-import containerStyles from '../styles/SectionContainer.module.css';
+import React, { useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import Button from "./Button";
+import CustomDropdown from "./CustomDropdown";
+import Image from "next/image";
+import styles from "../styles/RecommendUsta.module.css";
+import containerStyles from "../styles/SectionContainer.module.css";
 
 interface RecommendFormData {
   name: string;
@@ -20,82 +20,91 @@ interface RecommendFormData {
   ustaEmail?: string;
 }
 
-interface RecommendFormProps {
-  defaultLanguage?: 'sq' | 'en';
-}
-
-export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProps) {
+export default function RecommendUstaForm() {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState<RecommendFormData>({
-    name: '',
-    phone: '',
-    email: '',
+    name: "",
+    phone: "",
+    email: "",
     category: [] as string[],
     location: [] as string[],
-    ustaName: '',
-    ustaPhone: '',
-    ustaEmail: ''
+    ustaName: "",
+    ustaPhone: "",
+    ustaEmail: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState<string>('');
-  const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+  const [message, setMessage] = useState<string>("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleRecommendAnother = () => {
     setIsSuccess(false);
-    setMessage('');
-    setMessageType('');
+    setMessage("");
+    setMessageType("");
     setShowSuccessMessage(false);
 
     // Reset form data
     setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      category: '',
-      location: '',
-      ustaName: '',
-      ustaPhone: '',
-      ustaEmail: ''
+      name: "",
+      phone: "",
+      email: "",
+      category: "",
+      location: "",
+      ustaName: "",
+      ustaPhone: "",
+      ustaEmail: "",
     });
   };
 
   const categories = [
-    { value: 'plumber', label: language === 'sq' ? 'Hidraulik' : 'Plumber' },
-    { value: 'electrician', label: language === 'sq' ? 'Elektricist' : 'Electrician' },
-    { value: 'woodworker', label: language === 'sq' ? 'Zdrukthëtar' : 'Woodworker' },
-    { value: 'mason', label: language === 'sq' ? 'Murator' : 'Mason' },
-    { value: 'tiler', label: language === 'sq' ? 'Pllakështrues' : 'Tiler' },
-    { value: 'painter', label: language === 'sq' ? 'Bojaxhi' : 'Painter' },
-    { value: 'other', label: language === 'sq' ? 'Tjetër' : 'Other' },
+    { value: "plumber", label: language === "sq" ? "Hidraulik" : "Plumber" },
+    {
+      value: "electrician",
+      label: language === "sq" ? "Elektricist" : "Electrician",
+    },
+    {
+      value: "woodworker",
+      label: language === "sq" ? "Zdrukthëtar" : "Woodworker",
+    },
+    { value: "mason", label: language === "sq" ? "Murator" : "Mason" },
+    { value: "tiler", label: language === "sq" ? "Pllakështrues" : "Tiler" },
+    { value: "painter", label: language === "sq" ? "Bojaxhi" : "Painter" },
+    { value: "other", label: language === "sq" ? "Tjetër" : "Other" },
   ];
 
   const locations = [
-    { value: 'tirana', label: language === 'sq' ? 'Tiranë' : 'Tirana' },
-    { value: 'durres', label: language === 'sq' ? 'Durrës' : 'Durres' },
-    { value: 'vlore', label: language === 'sq' ? 'Vlorë' : 'Vlore' },
-    { value: 'shkoder', label: language === 'sq' ? 'Shkodër' : 'Shkoder' },
-    { value: 'elbasan', label: language === 'sq' ? 'Elbasan' : 'Elbasan' },
-    { value: 'korce', label: language === 'sq' ? 'Korçë' : 'Korce' },
-    { value: 'fier', label: language === 'sq' ? 'Fier' : 'Fier' },
-    { value: 'berat', label: language === 'sq' ? 'Berat' : 'Berat' },
-    { value: 'other', label: language === 'sq' ? 'Tjetër' : 'Other' },
+    { value: "tirana", label: language === "sq" ? "Tiranë" : "Tirana" },
+    { value: "durres", label: language === "sq" ? "Durrës" : "Durres" },
+    { value: "vlore", label: language === "sq" ? "Vlorë" : "Vlore" },
+    { value: "shkoder", label: language === "sq" ? "Shkodër" : "Shkoder" },
+    { value: "elbasan", label: language === "sq" ? "Elbasan" : "Elbasan" },
+    { value: "korce", label: language === "sq" ? "Korçë" : "Korce" },
+    { value: "fier", label: language === "sq" ? "Fier" : "Fier" },
+    { value: "berat", label: language === "sq" ? "Berat" : "Berat" },
+    { value: "other", label: language === "sq" ? "Tjetër" : "Other" },
   ];
 
   const validateForm = (): boolean => {
     // Required fields for recommender
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.category || !formData.location) {
-      setMessage('Please fill in all required fields');
-      setMessageType('error');
+    if (
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
+      !formData.category ||
+      !formData.location
+    ) {
+      setMessage("Please fill in all required fields");
+      setMessageType("error");
       return false;
     }
 
@@ -103,8 +112,8 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
     if (formData.email && formData.email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        setMessage('Invalid email address');
-        setMessageType('error');
+        setMessage("Invalid email address");
+        setMessageType("error");
         return false;
       }
     }
@@ -120,82 +129,94 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
     }
 
     setIsSubmitting(true);
-    setMessage('');
+    setMessage("");
 
     try {
-      const response = await fetch('/api/recommend', {
-        method: 'POST',
+      const response = await fetch("/api/recommend", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
           language,
-          isRecommendation: false
+          isRecommendation: false,
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(language === 'sq' ? 'Usta u rekomandua me sukses!' : 'Usta Recommended Successfully!');
-        setMessageType('success');
+        setMessage(
+          language === "sq"
+            ? "Usta u rekomandua me sukses!"
+            : "Usta Recommended Successfully!"
+        );
+        setMessageType("success");
         setShowSuccessMessage(true);
         setIsSuccess(true);
 
         // Reset form
         setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          category: '',
-          location: '',
-          ustaName: '',
-          ustaPhone: '',
-          ustaEmail: ''
+          name: "",
+          phone: "",
+          email: "",
+          category: "",
+          location: "",
+          ustaName: "",
+          ustaPhone: "",
+          ustaEmail: "",
         });
 
         setTimeout(() => {
           setShowSuccessMessage(false);
-          setMessage('');
-          setMessageType('');
+          setMessage("");
+          setMessageType("");
         }, 3000);
       } else {
-        setMessage(data.message || 'An error occurred');
-        setMessageType('error');
+        setMessage(data.message || "An error occurred");
+        setMessageType("error");
       }
     } catch (error) {
-      console.error('Recommend form error:', error);
-      setMessage('An error occurred');
-      setMessageType('error');
+      console.error("Recommend form error:", error);
+      setMessage("An error occurred");
+      setMessageType("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-
   return (
-    <div className='relative'>
-      <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]" >
+    <div className="relative">
+      <div className="mx-auto w-full small:min-w-[400px] max-w-[400px]">
         <div className="neumorphic-card p-5 mobile:p-8 rounded-2xl bg-myusta-gray relative z-20">
           <div
             className="!mb-5 text-xl font-semibold text-myusta-navy  mobile:!mb-8 text-center"
             style={{
-              color: 'var(--Navy, #00203F)',
-              textAlign: 'center',
-              fontSize: '20px',
-              fontStyle: 'normal',
-              fontWeight: '600',
-              lineHeight: '100%'
+              lineHeight: "100%",
             }}
-            dangerouslySetInnerHTML={{ __html: 'Fill out the following<br />information below.' }}
-          />
+          >
+            {language === "sq" ? (
+              <p>
+                Plotësoni informacionet <br />e mëposhtme
+              </p>
+            ) : (
+              <p>
+                Fill out the following
+                <br />
+                information below.
+              </p>
+            )}
+          </div>
 
           {message && (
-            <div className={`mb-6 p-4 rounded-lg ${messageType === 'success'
-              ? 'bg-green-100 text-green-700 border border-green-300'
-              : 'bg-red-100 text-red-700 border border-red-300'
-              }`}>
+            <div
+              className={`mb-6 p-4 rounded-lg ${
+                messageType === "success"
+                  ? "bg-green-100 text-green-700 border border-green-300"
+                  : "bg-red-100 text-red-700 border border-red-300"
+              }`}
+            >
               {message}
             </div>
           )}
@@ -206,7 +227,7 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Emri' : 'Name'}
+              placeholder={language === "sq" ? "Emri" : "Name"}
               className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
               required
               maxLength={100}
@@ -217,7 +238,9 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              placeholder={language === 'sq' ? 'Numri i Telefonit' : 'Phone Number'}
+              placeholder={
+                language === "sq" ? "Numri i Telefonit" : "Phone Number"
+              }
               className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
               required
               maxLength={20}
@@ -228,7 +251,9 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder={`${language === 'sq' ? 'E-Mail' : 'E-Mail'} (${language === 'sq' ? 'Opsionale' : 'Optional'})`}
+              placeholder={`${language === "sq" ? "E-Mail" : "E-Mail"} (${
+                language === "sq" ? "Opsionale" : "Optional"
+              })`}
               className="neumorphic-input w-full p-3 rounded-lg border-0 text-myusta-navy focus:outline-none bg-myusta-gray"
               maxLength={150}
             />
@@ -236,8 +261,10 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
             <CustomDropdown
               options={categories}
               value={formData.category}
-              onChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
-              placeholder={language === 'sq' ? 'Kategoria' : 'Category'}
+              onChange={(value) =>
+                setFormData((prev) => ({ ...prev, category: value }))
+              }
+              placeholder={language === "sq" ? "Kategoria" : "Category"}
               name="category"
               required
               multiple={true}
@@ -246,8 +273,10 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
             <CustomDropdown
               options={locations}
               value={formData.location}
-              onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
-              placeholder={language === 'sq' ? 'Vendndodhja' : 'Location'}
+              onChange={(value) =>
+                setFormData((prev) => ({ ...prev, location: value }))
+              }
+              placeholder={language === "sq" ? "Vendndodhja" : "Location"}
               name="location"
               required
               multiple={true}
@@ -262,11 +291,15 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
                 loading={isSubmitting}
                 disabled={isSubmitting}
                 className={`!mt-5 *:text-myusta-navy font-semibold text-lg  mobile:!mt-8`}
-              // style={{ marginTop: '32px' }}
+                // style={{ marginTop: '32px' }}
               >
                 {isSubmitting
-                  ? (language === 'sq' ? 'Po regjistrohet...' : 'Registering...')
-                  : (language === 'sq' ? 'Rekomando Usta' : 'Recommend Usta')}
+                  ? language === "sq"
+                    ? "Po regjistrohet..."
+                    : "Registering..."
+                  : language === "sq"
+                  ? "Rekomando Usta"
+                  : "Recommend Usta"}
               </Button>
             ) : (
               <div className="flex flex-col h-fit">
@@ -277,9 +310,9 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
                   fullWidth
                   loading={isSubmitting}
                   className="!mt-2 text-white font-semibold text-lg rounded-lg mobile:!mt-4"
-                // style={{ marginTop: '32px' }}
+                  // style={{ marginTop: '32px' }}
                 >
-                  {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
+                  {language === "sq" ? "Usta u Rekomandua" : "Usta Recommended"}
                 </Button>
                 {/* <div className={styles.ustaRecommendedCard}>
                   {language === 'sq' ? 'Usta u Rekomandua' : 'Usta Recommended'}
@@ -293,22 +326,32 @@ export default function RecommendUstaForm({ defaultLanguage }: RecommendFormProp
                   loading={isSubmitting}
                   onClick={handleRecommendAnother}
                   className=" text-myusta-navy font-semibold text-lg rounded-lg mt-4"
-                // style={{ marginTop: '32px' }}
+                  // style={{ marginTop: '32px' }}
                 >
-                  <div className='flex items-center'>
-                  <span className="mr-2 font-semibold"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 25" fill="none">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z" fill="#00203F" />
-                  </svg></span>
-                  <span>
-
-                  {language === 'sq' ? 'Rekomando Një Usta Tjetër' : 'Recommend Another Usta'}
-                  </span>
+                  <div className="flex items-center">
+                    <span className="mr-2 font-semibold">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 25"
+                        fill="none"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M3.51488 4.01488C8.20138 -0.671626 15.7986 -0.671626 20.4851 4.01488C25.1716 8.70138 25.1716 16.2986 20.4851 20.9851C15.7986 25.6716 8.20138 25.6716 3.51488 20.9851C-1.17163 16.2986 -1.17163 8.70138 3.51488 4.01488ZM11.0205 7.90827V11.5205H7.40827C6.1188 11.5205 6.1188 13.4796 7.40827 13.4796H11.0205V17.0919C11.0205 18.3814 12.9796 18.3814 12.9796 17.0919V13.4796H16.5919C17.8814 13.4796 17.8814 11.5205 16.5919 11.5205H12.9796V7.90827C12.9796 6.6188 11.0205 6.6188 11.0205 7.90827ZM4.90009 5.40009C0.978895 9.32128 0.978895 15.679 4.90009 19.6002C8.82128 23.5214 15.179 23.5214 19.1002 19.6002C23.0214 15.679 23.0214 9.32128 19.1002 5.40009C15.179 1.4789 8.82128 1.4789 4.90009 5.40009Z"
+                          fill="#00203F"
+                        />
+                      </svg>
+                    </span>
+                    <span>
+                      {language === "sq"
+                        ? "Rekomando Një Usta Tjetër"
+                        : "Recommend Another Usta"}
+                    </span>
                   </div>
-                 
-
-                
                 </Button>
-
 
                 {/* <button
                   type="button"

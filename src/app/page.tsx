@@ -11,7 +11,6 @@ import RecommendSection from '../components/RecommendSection';
 import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 import GDPRConsent from '../components/GDPRConsent';
-import { LanguageProvider } from '../contexts/LanguageContext';
 import { useState, useCallback, useEffect } from 'react';
 
 interface ConsentState {
@@ -49,7 +48,7 @@ export default function Home() {
   }, []);
 
   return (
-    <LanguageProvider>
+    <>
       {/* Root container to prevent horizontal overflow */}
       <div className="font-inter bg-myusta-gray text-myusta-navy min-h-screen relative overflow-x-hidden">
         
@@ -81,6 +80,6 @@ export default function Home() {
 
         <GDPRConsent onConsentChange={handleGdprConsentChange} />
       </div>
-    </LanguageProvider>
+    </>
   );
 }

@@ -1,24 +1,22 @@
 // src/components/HeroSection.tsx
 "use client";
-
-import { useState, useEffect } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import styles from "../styles/Header.module.css";
 
 export default function HeroSection() {
   const { t } = useLanguage();
-  const [imageLoaded, setImageLoaded] = useState(false);
+  // const [imageLoaded, setImageLoaded] = useState(false);
 
-  useEffect(() => {
-    const img = new window.Image();
-    img.onload = () => {
-      setImageLoaded(true);
-    };
-    img.onerror = () => {
-      console.error("Hero background failed to load");
-    };
-    img.src = "/assets/hero-bg.svg";
-  }, []);
+  // useEffect(() => {
+  //   const img = new window.Image();
+  //   img.onload = () => {
+  //     setImageLoaded(true);
+  //   };
+  //   img.onerror = () => {
+  //     console.error("Hero background failed to load");
+  //   };
+  //   img.src = "/assets/hero-bg.svg";
+  // }, []);
 
   const scrollToRecommend = () => {
     const element = document.getElementById("waitlist");
@@ -31,6 +29,7 @@ export default function HeroSection() {
                 tablet:h-[460px] xl:h-[600px] 
                 ${styles.heroBg}`}
     >
+
       <div className="tablet:max-w-[850px] xl:max-w-[1280px] w-full mx-auto relative xl:mt-8 tablet:mt-4 flex flex-col items-center justify-center tablet:flwx-none">
         <div className="xl:absolute xl:top-5 xl:left-[10px] hidden xl:block">
           <img

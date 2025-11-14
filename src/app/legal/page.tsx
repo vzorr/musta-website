@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import { LanguageProvider, useLanguage } from '../../contexts/LanguageContext';
+import Link from 'next/link';
 
 export default function LegalPage() {
   const { t } = useLanguage();

@@ -184,14 +184,14 @@
 
     "copyright": "©2025 myUsta. Të gjitha të drejtat e rezervuara.",
     "links": {
-      "termsAndConditions": "Kushtet dhe Kushtet",
+      "termsAndConditions": "Termat & Kushtet",
       "contact": "Na Kontaktoni"
     }
   },
   "terms": {
     "breadcrumb": {
-      "home": "Shtëpia",
-      "termsAndConditions": "Kushtet dhe Kushtet"
+      "home": "Kryefaqa",
+      "termsAndConditions": "Termat & Kushtet"
     },
     "title": {
       "first": "Termat ",
@@ -283,6 +283,6 @@
 
   "contactBreadcrumb": {
     "home": "Kryefaqa",
-    "contact": "Na Kontaktoni"
+    "contact": "Na kontaktoni"
   }
 }

@@ -4,6 +4,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import Logo from './Logo';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/footer.module.css';
 
 
@@ -11,7 +12,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-myusta-navy text-white py-12 sm:py-16">
+    <footer className="bg-myusta-navy text-white pt-8 pb-8 mobile:pt-12 mobile:pb-[64px]">
       {/* UPDATED: Added max-width container */}
       <div className="w-full max-w-[1000px] mx-auto global-main-page">
         {/* Main Footer Content */}

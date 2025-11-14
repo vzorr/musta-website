@@ -12,6 +12,7 @@ interface LanguageContextType {
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
   isLoading: boolean;
+  isHydrated: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -22,38 +23,36 @@ const translations = {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  // Initialize with default language to prevent hydration mismatch
   const [language, setLanguage] = useState<Language>('sq');
   const [isLoading, setIsLoading] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  // if any issues with hydration, use this instead of the one below useEffect
-  // const [language, setLanguage] = useState<Language>(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const savedLanguage = localStorage.getItem('myusta-language') as Language;
-  //     if (savedLanguage && (savedLanguage === 'sq' || savedLanguage === 'en')) {
-  //       return savedLanguage;
-  //     }
-  //   }
-  //   return 'sq'; // default
-  // });
-
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const savedLanguage = localStorage.getItem('myusta-language') as Language;
-  //     if (savedLanguage && (savedLanguage === 'sq' || savedLanguage === 'en')) {
-  //       setLanguage(savedLanguage);
-  //     }
-  //   }
-  // }, []);
-
+  // Handle hydration and language loading
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('myusta-language') as Language;
-      if (savedLanguage === 'sq' || savedLanguage === 'en') {
-        setLanguage(savedLanguage);
-      } else {
+      try {
+        const savedLanguage = localStorage.getItem('myusta-language') as Language;
+        if (savedLanguage === 'sq' || savedLanguage === 'en') {
+          setLanguage(savedLanguage);
+          document.documentElement.lang = savedLanguage;
+        } else {
+          setLanguage('sq');
+          localStorage.setItem('myusta-language', 'sq');
+          document.documentElement.lang = 'sq';
+        }
+      } catch (error) {
+        // Fallback if localStorage fails
+        console.warn('localStorage not available, using default language');
         setLanguage('sq');
-        localStorage.setItem('myusta-language', 'sq');
+        document.documentElement.lang = 'sq';
       }
+      setIsHydrated(true);
+      setIsLoading(false);
+    } else {
+      // Server-side: ensure consistent state
+      setIsHydrated(true);
+      setIsLoading(false);
     }
   }, []);
 
@@ -61,7 +60,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('myusta-language', lang);
+      try {
+        localStorage.setItem('myusta-language', lang);
+        document.documentElement.lang = lang;
+      } catch (error) {
+        console.warn('Failed to save language to localStorage:', error);
+        // Still update the language state even if localStorage fails
+        document.documentElement.lang = lang;
+      }
     }
   };
 
@@ -82,7 +88,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       language,
       setLanguage: handleSetLanguage,
       t,
-      isLoading
+      isLoading,
+      isHydrated
     }}>
       {children}
     </LanguageContext.Provider>
