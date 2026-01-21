@@ -196,6 +196,15 @@ Write-Success "Git push completed!"
 Write-Step "Waiting for deployment to settle (30 seconds)..."
 Start-Sleep -Seconds 30
 
+# Restart the app to ensure new build is loaded
+Write-Step "Restarting the app..."
+az webapp restart --name $WebAppName --resource-group $ResourceGroup 2>&1 | Out-Null
+Write-Success "App restarted"
+
+# Wait for app to come back up
+Write-Host "Waiting 20 seconds for app to restart..."
+Start-Sleep -Seconds 20
+
 # Verify deployment
 Write-Step "Verifying deployment..."
 $maxAttempts = 6
