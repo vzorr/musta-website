@@ -11,15 +11,15 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   
-  // CSP WITH RECAPTCHA AND VIMEO SUPPORT
+  // CSP WITH RECAPTCHA, VIMEO, AND GOOGLE ANALYTICS SUPPORT
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://player.vimeo.com;
-    script-src-elem 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com https://player.vimeo.com https://www.googletagmanager.com;
+    script-src-elem 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     img-src 'self' blob: data: https:;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://www.google.com https://player.vimeo.com;
+    connect-src 'self' https://www.google.com https://player.vimeo.com https://www.googletagmanager.com https://www.google-analytics.com;
     frame-src 'self' https://www.google.com https://player.vimeo.com https://vimeo.com https://*.vimeo.com;
     frame-ancestors 'none';
   `.replace(/\s{2,}/g, ' ').trim();
