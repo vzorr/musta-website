@@ -4,40 +4,78 @@
     Deploys myusta-landing-page to Azure App Service (myusta.al)
 
 .DESCRIPTION
+    ============================================================================
+    MYUSTA LANDING PAGE DEPLOYMENT SCRIPT
+    ============================================================================
+
+    Target URL:     https://myusta.al
+    Azure App:      myusta-landingPage
+    Resource Group: myusta-rg
+    App Service:    myusta-api-plan (shared with web app)
+
     This script automates the entire deployment process:
-    1. Commits any uncommitted changes (optional)
-    2. Upgrades App Service Plan to B3 (7GB RAM) for build
-    3. Pushes to Azure Git remote
-    4. Waits for deployment to complete
-    5. Downgrades back to B1 to save costs
-    6. Verifies the deployment
+    1. Checks Azure CLI login and git remotes
+    2. Commits any uncommitted changes (optional)
+    3. Upgrades App Service Plan to B3 (7GB RAM) for build
+    4. Pushes to Azure Git remote (triggers Oryx build)
+    5. Restarts the app to load new build
+    6. Verifies deployment with HTTP 200 check
+    7. Downgrades back to B1 to save costs
+
+    TYPICAL DEPLOYMENT TIME: ~7-8 minutes
+
+    REQUIREMENTS:
+    - Azure CLI installed and logged in (run 'az login' first)
+    - Git installed
+    - PowerShell 5.1 or higher
+
+    COST OPTIMIZATION:
+    The script automatically upgrades to B3 tier (~$70/month) for builds
+    and downgrades back to B1 (~$13/month) after deployment to minimize costs.
+
+    TROUBLESHOOTING:
+    - If git push fails with "index.lock" error, the script auto-fixes it
+    - If verification fails, check https://myusta.al manually
+    - Logs available at: https://myusta-landingPage.scm.azurewebsites.net
+
+    ============================================================================
 
 .PARAMETER CommitMessage
     Optional commit message. If provided, will commit all changes before deploying.
+    Example: -CommitMessage "Fix contact form"
 
 .PARAMETER SkipUpgrade
     Skip the B3 upgrade (use if already on B3 or higher tier)
 
 .PARAMETER SkipDowngrade
-    Skip the B1 downgrade after deployment
+    Skip the B1 downgrade after deployment (keeps B3 running - higher cost!)
 
 .PARAMETER Branch
     Local branch to deploy. Default: main
 
 .PARAMETER Force
-    Force rebuild even if no changes
+    Force rebuild even if no changes (creates empty commit to trigger build)
 
 .EXAMPLE
     .\deploy-to-azure.ps1
-    # Deploy current committed changes
+    # Standard deployment - deploy current committed changes
 
 .EXAMPLE
     .\deploy-to-azure.ps1 -CommitMessage "Add Google Analytics"
-    # Commit changes and deploy
+    # Commit all changes and deploy in one step
+
+.EXAMPLE
+    .\deploy-to-azure.ps1 -Force
+    # Force rebuild even without code changes
 
 .EXAMPLE
     .\deploy-to-azure.ps1 -SkipUpgrade -SkipDowngrade
-    # Deploy without changing App Service Plan tier
+    # Deploy without changing App Service Plan tier (use if already on B3)
+
+.NOTES
+    Author: MyUSTA Team
+    Last Updated: January 2026
+    Repository: myusta-landing-page
 #>
 
 param(
@@ -193,8 +231,8 @@ if ($pushExitCode -ne 0) {
 Write-Success "Git push completed!"
 
 # Wait a moment for deployment to settle
-Write-Step "Waiting for deployment to settle (30 seconds)..."
-Start-Sleep -Seconds 30
+Write-Step "Waiting for deployment to settle (15 seconds)..."
+Start-Sleep -Seconds 15
 
 # Restart the app to ensure new build is loaded
 Write-Step "Restarting the app..."
@@ -202,8 +240,8 @@ az webapp restart --name $WebAppName --resource-group $ResourceGroup 2>&1 | Out-
 Write-Success "App restarted"
 
 # Wait for app to come back up
-Write-Host "Waiting 20 seconds for app to restart..."
-Start-Sleep -Seconds 20
+Write-Host "Waiting 10 seconds for app to restart..."
+Start-Sleep -Seconds 10
 
 # Verify deployment
 Write-Step "Verifying deployment..."
