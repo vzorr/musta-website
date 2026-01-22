@@ -31,7 +31,9 @@
 
     COST OPTIMIZATION:
     The script automatically upgrades to B3 tier (~$70/month) for builds
-    and downgrades back to B1 (~$13/month) after deployment to minimize costs.
+    and downgrades back to B2 (~$26/month) after deployment. Note: B1 tier
+    has insufficient memory for 3 apps sharing the plan (myusta.al,
+    app.myusta.al, api.myusta.al).
 
     TROUBLESHOOTING:
     - If git push fails with "index.lock" error, the script auto-fixes it
@@ -93,7 +95,7 @@ $WebAppName = "myusta-landingPage"
 $AzureRemote = "azure"
 $TargetUrl = "https://myusta.al"
 $HighTier = "B3"
-$LowTier = "B1"
+$LowTier = "B2"  # B1 has insufficient memory for 3 apps sharing the plan
 
 # Colors for output
 function Write-Step { param($msg) Write-Host "`n==> $msg" -ForegroundColor Cyan }

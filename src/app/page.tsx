@@ -54,19 +54,20 @@ export default function Home() {
         
         <Header />
         
-        <main className="w-full relative">    
+        <main className="w-full relative">
           <div className="w-full relative">
             <HeroSection />
           </div>
 
          <div id="after-hero-section-full-page" className="px-5 md:px-0">
-          <WhyJoinSection />
-          <HowItWorksSection />
           <VideoSection />
 
           <div id="waitlist" className="w-full bg-myusta-gray">
             <WaitlistForm />
           </div>
+
+          <WhyJoinSection />
+          <HowItWorksSection />
 
           <div className="w-full bg-myusta-gray">
             <FAQSection />
