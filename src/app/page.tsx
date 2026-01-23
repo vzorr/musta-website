@@ -3,7 +3,7 @@
 
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
-import WhyJoinSection from '../components/WhyJoinSection';
+// import WhyJoinSection from '../components/WhyJoinSection'; // Hidden for now
 import HowItWorksSection from '../components/HowItWorksSection';
 import VideoSection from '../components/VideoSection';
 import WaitlistForm from '../components/WaitlistForm';
@@ -66,8 +66,6 @@ export default function Home() {
           <div id="waitlist" className="w-full bg-myusta-gray">
             <WaitlistForm />
           </div>
-
-          <WhyJoinSection />
 
           <div className="w-full bg-myusta-gray">
             <FAQSection />
