@@ -60,6 +60,7 @@ export default function Home() {
           </div>
 
          <div id="after-hero-section-full-page" className="px-5 md:px-0">
+          <HowItWorksSection />
           <VideoSection />
 
           <div id="waitlist" className="w-full bg-myusta-gray">
@@ -67,7 +68,6 @@ export default function Home() {
           </div>
 
           <WhyJoinSection />
-          <HowItWorksSection />
 
           <div className="w-full bg-myusta-gray">
             <FAQSection />
